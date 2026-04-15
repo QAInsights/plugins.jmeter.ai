@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+import pluginsData from '../data/plugins_data.json';
+import PluginCard from '../components/PluginCard.astro';
+
+// Sort descending by trending delta for "Hot This Week"
+const trendingPlugins = [...pluginsData]
+  .sort((a, b) => b.stats.trendingDelta - a.stats.trendingDelta)
+  .slice(0, 3); // Get top 3
+
+---
+
+<html lang="en" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>plugins.JMeter.ai - The Modern JMeter Directory</title>
+        <meta name="description" content="Discover, search, and track modern and AI-ready JMeter plugins. Community-driven directory automatically synced daily." />
+	</head>
+	<body class="bg-bg-base text-text-main selection:bg-primary selection:text-bg-base min-h-screen flex flex-col font-sans antialiased overflow-x-hidden">
+		
+        {/* Header */}
+        <header class="sticky top-0 z-50 w-full border-b border-white/10 bg-bg-base/80 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center font-bold text-bg-base shadow-[0_0_15px_rgba(204,255,0,0.3)]">
+                        J
+                    </div>
+                    <span class="text-xl font-extrabold tracking-tight">plugins.JMeter<span class="text-primary">.ai</span></span>
+                </div>
+
+                <div class="flex items-center gap-6 text-sm font-medium text-text-muted">
+                    <a href="https://jmeter-plugins.org/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Original Repo</a>
+                    <a href="https://github.com/undera/jmeter-plugins" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow flex flex-col">
+            
+            {/* Hero Section */}
+            <section class="relative pt-24 pb-16 px-6 border-b border-white/5 overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-bg-base to-bg-base pointer-events-none"></div>
+                <div class="max-w-4xl mx-auto text-center relative z-10">
+                    <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
+                        Power up <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">JMeter</span> with AI.
+                    </h1>
+                    <p class="text-lg md:text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
+                        The ultimate directory for modern load testing. Search, discover, and track the velocity of the best plugins, completely synced daily.
+                    </p>
+
+                    {/* Search Bar */}
+                    <div class="relative max-w-2xl mx-auto group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur opacity-25 group-focus-within:opacity-50 transition duration-500"></div>
+                        <div class="relative flex items-center bg-bg-surface border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                            <span class="pl-5 text-white/40 group-focus-within:text-primary transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </span>
+                            <input 
+                                type="text" 
+                                id="searchInput"
+                                placeholder="Search plugins by name, description, or class..." 
+                                class="w-full bg-transparent text-white placeholder-white/40 px-4 py-5 outline-none font-medium text-lg"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Trending Section */}
+            <section class="py-16 px-6 bg-white/[0.01]">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center gap-3 mb-8">
+                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        <h2 class="text-2xl font-bold">Trending This Week</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {trendingPlugins.map(plugin => (
+                            <PluginCard plugin={plugin} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* All Plugins Grid */}
+            <section class="py-16 px-6 flex-grow">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center justify-between mb-8">
+                        <h2 class="text-2xl font-bold">All Directory Plugins</h2>
+                        <span class="text-text-muted bg-white/10 px-3 py-1 rounded-full text-sm font-bold" id="resultCount">{pluginsData.length} plugins</span>
+                    </div>
+
+                    <div id="noResults" class="hidden text-center py-20 border border-white/5 rounded-2xl bg-white/[0.01]">
+                        <h3 class="text-xl text-text-muted">No plugins found matching your search.</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="pluginGrid">
+                        {pluginsData.map(plugin => (
+                            <div class="plugin-wrapper" data-name={plugin.name.toLowerCase()} data-desc={plugin.description.toLowerCase()} data-vendor={plugin.vendor.toLowerCase()}>
+                                <PluginCard plugin={plugin} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-white/10 py-12 px-6 mt-auto">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-text-muted">
+                <p>&copy; {new Date().getFullYear()} plugins.JMeter.ai. Directory data from canonical upstream.</p>
+                <div class="flex gap-6">
+                    <span class="flex items-center gap-2">Built with <span class="text-primary font-bold">Astro</span> & <span class="text-secondary font-bold">Tailwind</span></span>
+                </div>
+            </div>
+        </footer>
+
+        {/* Client-side search logic */}
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const searchInput = document.getElementById('searchInput');
+                const pluginWrappers = document.querySelectorAll('.plugin-wrapper');
+                const noResults = document.getElementById('noResults');
+                const resultCount = document.getElementById('resultCount');
+                
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        const term = e.target.value.toLowerCase().trim();
+                        let visibleCount = 0;
+
+                        pluginWrappers.forEach(wrapper => {
+                            const name = wrapper.getAttribute('data-name');
+                            const desc = wrapper.getAttribute('data-desc');
+                            const vendor = wrapper.getAttribute('data-vendor');
+
+                            if (name.includes(term) || desc.includes(term) || vendor.includes(term)) {
+                                wrapper.classList.remove('hidden');
+                                visibleCount++;
+                            } else {
+                                wrapper.classList.add('hidden');
+                            }
+                        });
+
+                        resultCount.textContent = `${visibleCount} plugin${visibleCount !== 1 ? 's' : ''}`;
+                        
+                        if (visibleCount === 0) {
+                            noResults.classList.remove('hidden');
+                        } else {
+                            noResults.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+        </script>
+	</body>
+</html>
