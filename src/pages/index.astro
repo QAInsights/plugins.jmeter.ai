@@ -207,6 +207,45 @@ const categories = Array.from(categoriesSet);
             </div>
         </footer>
 
+        {/* Plugin Details Modal */}
+        <dialog id="pluginModal" class="m-auto backdrop:bg-black/70 backdrop:backdrop-blur-sm bg-transparent p-4 md:p-6 w-full max-w-3xl border-none outline-none overflow-visible">
+            <div class="relative bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
+                <div class="flex items-start justify-between p-6 border-b border-gray-100 dark:border-white/10 relative">
+                    <div id="modalHeaderBg" class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary hidden"></div>
+                    <div>
+                        <h2 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white leading-tight pr-8"></h2>
+                        <p id="modalVendor" class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-widest"></p>
+                    </div>
+                    <button id="modalClose" class="absolute top-6 right-6 p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div class="p-6 overflow-y-auto flex-grow flex flex-col gap-6 text-gray-700 dark:text-gray-300">
+                    <p id="modalDescription" class="text-base leading-relaxed"></p>
+                    <div id="modalClassesWrapper">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">Component Classes</h4>
+                        <div id="modalClasses" class="bg-gray-50 dark:bg-black/20 rounded-lg p-4 font-mono text-xs overflow-x-auto border border-gray-100 dark:border-white/5 max-h-48 overflow-y-auto leading-loose whitespace-pre"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 dark:bg-black/20 rounded-lg p-4 border border-gray-100 dark:border-white/5">
+                            <h4 class="text-xs font-bold text-gray-500 uppercase mb-1">Total Downloads</h4>
+                            <p id="modalDownloads" class="text-xl font-bold text-gray-900 dark:text-white"></p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-black/20 rounded-lg p-4 border border-gray-100 dark:border-white/5">
+                            <h4 class="text-xs font-bold text-gray-500 uppercase mb-1">Downloads This Week</h4>
+                            <p id="modalTrending" class="text-xl font-bold"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 border-t border-gray-100 dark:border-white/10 flex justify-end gap-4 bg-gray-50 dark:bg-white/[0.02]">
+                    <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-dark-bg font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-lg flex items-center gap-2">
+                        View Plugin Repository
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </dialog>
+
         {/* Client-side logic for Theme and Searching/Filtering */}
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -292,6 +331,57 @@ const categories = Array.from(categoriesSet);
                         updateGrid();
                     });
                 });
+
+                // Modal Logic
+                const modal = document.getElementById('pluginModal');
+                const closeBtn = document.getElementById('modalClose');
+
+                closeBtn.addEventListener('click', () => modal.close());
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) modal.close();
+                });
+                
+                modal.addEventListener('close', () => {
+                    document.body.style.overflow = 'auto'; // restore scrolling
+                });
+
+                document.querySelectorAll('.plugin-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const p = JSON.parse(card.getAttribute('data-plugin'));
+                        
+                        document.getElementById('modalTitle').textContent = p.name;
+                        document.getElementById('modalVendor').textContent = `By ${p.vendor}`;
+                        document.getElementById('modalDescription').textContent = p.description;
+                        document.getElementById('modalLink').href = p.helpUrl;
+                        
+                        const classWrapper = document.getElementById('modalClassesWrapper');
+                        const classContainer = document.getElementById('modalClasses');
+                        if (p.componentClasses && p.componentClasses.length) {
+                            classContainer.textContent = p.componentClasses.join('\n');
+                            classWrapper.style.display = 'block';
+                        } else {
+                            classWrapper.style.display = 'none';
+                        }
+
+                        document.getElementById('modalDownloads').textContent = new Intl.NumberFormat('en-US').format(p.stats.absoluteDownloads);
+                        
+                        const trendEl = document.getElementById('modalTrending');
+                        const arrow = p.stats.trendingDelta > 0 ? '+' : '';
+                        trendEl.textContent = `${arrow}${new Intl.NumberFormat('en-US').format(p.stats.trendingDelta)}`;
+                        trendEl.className = `text-xl font-bold ${p.stats.trendingDelta > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`;
+
+                        const headerBg = document.getElementById('modalHeaderBg');
+                        if (p.isFeatured || p.sponsored) {
+                            headerBg.classList.remove('hidden');
+                        } else {
+                            headerBg.classList.add('hidden');
+                        }
+
+                        document.body.style.overflow = 'hidden'; // prevent bg scroll
+                        modal.showModal();
+                    });
+                });
+
             });
         </script>
 	</body>

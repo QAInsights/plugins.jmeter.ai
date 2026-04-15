@@ -23,9 +23,10 @@ if (plugin.componentClasses) {
 const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
 ---
 
-<a href={plugin.helpUrl} target="_blank" rel="noopener noreferrer" 
-   class="plugin-card group relative flex flex-col bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] hover:-translate-y-1"
+<button type="button" 
+   class="plugin-card text-left group relative flex flex-col bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] hover:-translate-y-1 w-full"
    data-category={category.toLowerCase()}
+   data-plugin={JSON.stringify(plugin)}
 >
   
   {/* Sponsored / Featured Highlight */}
@@ -88,4 +89,4 @@ const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
       </div>
     </div>
   </div>
-</a>
+</button>
