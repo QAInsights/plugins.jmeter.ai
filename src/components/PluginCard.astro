@@ -3,43 +3,53 @@ const { plugin } = Astro.props;
 
 // Determine tags
 const tags = [];
+if (plugin.isFeatured) tags.push('Featured');
 if (plugin.isAiReady) tags.push('AI Ready');
 if (plugin.sponsored) tags.push('Sponsored');
 
 // Try to infer a category from class names
-let category = 'Plugin';
+let category = 'Others';
 if (plugin.componentClasses) {
   const classesStr = plugin.componentClasses.join(' ').toLowerCase();
-  if (classesStr.includes('assertion')) category = 'Assertion';
-  else if (classesStr.includes('listener')) category = 'Listener';
-  else if (classesStr.includes('sampler')) category = 'Sampler';
-  else if (classesStr.includes('config')) category = 'Config';
-  else if (classesStr.includes('timer')) category = 'Timer';
+  // Using exact broader categories requested
+  if (classesStr.includes('assertion')) category = 'Assertions';
+  else if (classesStr.includes('listener') || classesStr.includes('visualizer')) category = 'Listeners';
+  else if (classesStr.includes('sampler')) category = 'Samplers';
+  else if (classesStr.includes('config')) category = 'Configs';
+  else if (classesStr.includes('timer')) category = 'Timers';
+  else if (classesStr.includes('processor')) category = 'Processors';
 }
 
 const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
 ---
 
-<a href={plugin.helpUrl} target="_blank" rel="noopener noreferrer" class="group relative flex flex-col bg-bg-surface border border-white/5 hover:border-primary/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] hover:-translate-y-1">
+<a href={plugin.helpUrl} target="_blank" rel="noopener noreferrer" 
+   class="plugin-card group relative flex flex-col bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] hover:-translate-y-1"
+   data-category={category.toLowerCase()}
+>
   
-  {/* Sponsored Highlight */}
-  {plugin.sponsored && (
+  {/* Sponsored / Featured Highlight */}
+  {(plugin.sponsored || plugin.isFeatured) && (
     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
   )}
 
   <div class="p-6 flex flex-col h-full">
     <div class="flex justify-between items-start mb-4">
       <div class="flex flex-col">
-        <h3 class="text-xl font-bold text-text-main group-hover:text-primary transition-colors leading-tight">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-[#ccff00] transition-colors leading-tight line-clamp-2">
           {plugin.name}
         </h3>
-        <p class="text-xs text-text-muted mt-1 uppercase tracking-wider font-semibold">By {plugin.vendor}</p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-wider font-semibold">By {plugin.vendor}</p>
       </div>
 
       {tags.length > 0 && (
-        <div class="flex flex-col gap-2 items-end shrink-0 pl-4">
+        <div class="flex flex-col gap-2 items-end shrink-0 pl-3">
           {tags.map(tag => (
-            <span class={`px-2 py-1 text-[10px] uppercase font-bold rounded-sm ${tag === 'AI Ready' ? 'bg-primary/10 text-primary border border-primary/30 shadow-[0_0_10px_rgba(204,255,0,0.2)]' : 'bg-secondary/10 text-secondary border border-secondary/30'}`}>
+            <span class={`px-2 py-1 text-[9px] uppercase font-bold rounded-sm whitespace-nowrap
+              ${tag === 'AI Ready' ? 'bg-primary/20 text-primary-dark dark:text-[#ccff00] border border-primary/50' : ''}
+              ${tag === 'Sponsored' ? 'bg-secondary/10 text-secondary border border-secondary/30' : ''}
+              ${tag === 'Featured' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 border border-purple-300 dark:border-purple-500/50' : ''}
+            `}>
               {tag}
             </span>
           ))}
@@ -47,26 +57,32 @@ const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
       )}
     </div>
 
-    <p class="text-sm text-text-muted leading-relaxed mb-6 flex-grow line-clamp-3">
+    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 flex-grow line-clamp-3">
       {plugin.description}
     </p>
 
-    <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs text-text-muted">
+    <div class="mt-auto pt-4 border-t border-gray-100 dark:border-white/5 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
       <div class="flex items-center gap-2">
-        <span class="flex items-center gap-1">
-          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-          <span class="font-medium text-text-main">{formatNumber(plugin.stats.absoluteDownloads)}</span>
+        <span class="flex items-center gap-1" title="Total Downloads">
+          <svg class="w-4 h-4 text-primary dark:text-[#ccff00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          <span class="font-medium text-gray-700 dark:text-gray-300">{formatNumber(plugin.stats.absoluteDownloads)}</span>
         </span>
       </div>
       
       <div class="flex items-center gap-3">
         {plugin.stats.trendingDelta > 0 && (
-          <span class="flex items-center gap-1 text-green-400" title="Downloads this week">
+          <span class="flex items-center gap-1 text-green-600 dark:text-green-400" title="Downloads this week">
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
             +{formatNumber(plugin.stats.trendingDelta)}
           </span>
         )}
-        <span class="bg-white/5 px-2 py-1 rounded text-white/70">
+        {plugin.stats.trendingDelta < 0 && (
+          <span class="flex items-center gap-1 text-red-500" title="Downloads this week">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6"></path></svg>
+            {formatNumber(plugin.stats.trendingDelta)}
+          </span>
+        )}
+        <span class="bg-gray-100 dark:bg-white/5 px-2 py-1 rounded text-gray-600 dark:text-gray-400">
           {category}
         </span>
       </div>

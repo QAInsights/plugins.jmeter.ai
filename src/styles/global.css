@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-base: #09090b;
-  --color-bg-surface: #18181b;
-  --color-primary: #ccff00;
+  --color-primary: #b0d600; /* Darker primary for light mode */
   --color-secondary: #ff4d4d;
-  --color-text-main: #f4f4f5;
-  --color-text-muted: #a1a1aa;
+  --color-dark-bg: #09090b;
+  --color-dark-surface: #18181b;
 }
 
 @layer base {
   body {
-    background-color: var(--color-bg-base);
-    color: var(--color-text-main);
+    @apply bg-gray-50 text-gray-900 transition-colors duration-300;
+  }
+  
+  :is(.dark body) {
+    @apply bg-dark-bg text-gray-100;
   }
 }
