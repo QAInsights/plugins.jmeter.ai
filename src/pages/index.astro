@@ -130,85 +130,106 @@ const categories = Array.from(categoriesSet);
             let currentSearchTerm = '';
             let currentCategory = 'all';
 
-            // Store original DOM order for "relevance"
-            const allPlugins = Array.from(pluginWrappers) as HTMLElement[];
-            allPlugins.forEach((el, index) => {
-                el.setAttribute('data-index', String(index));
+            // Cache attributes into memory for much faster filtering/sorting
+            // reading from DOM is slow, memory is fast.
+            const pluginsCache = Array.from(pluginWrappers).map((wrapper, index) => {
+                return {
+                    element: wrapper as HTMLElement,
+                    index: index,
+                    name: wrapper.getAttribute('data-name') || '',
+                    desc: wrapper.getAttribute('data-desc') || '',
+                    vendor: wrapper.getAttribute('data-vendor') || '',
+                    cat: wrapper.getAttribute('data-category') || '',
+                    downloads: parseInt(wrapper.getAttribute('data-downloads') || '0', 10),
+                    trending: parseInt(wrapper.getAttribute('data-trending') || '0', 10),
+                    aiReady: parseInt(wrapper.getAttribute('data-ai') || '0', 10),
+                    isHidden: false // initially visible
+                };
             });
 
             function applySort() {
                 if(!sortSelect) return;
                 const sortValue = sortSelect.value;
-                allPlugins.sort((a, b) => {
+                
+                // Duplicate cache to sort it
+                const sorted = [...pluginsCache].sort((a, b) => {
                     if (sortValue === 'name-asc') {
-                        return (a.getAttribute('data-name') || '').localeCompare(b.getAttribute('data-name') || '');
+                        return a.name.localeCompare(b.name);
                     } else if (sortValue === 'downloads-desc') {
-                        return parseInt(b.getAttribute('data-downloads') || '0', 10) - parseInt(a.getAttribute('data-downloads') || '0', 10);
+                        return b.downloads - a.downloads;
                     } else if (sortValue === 'trending-desc') {
-                        return parseInt(b.getAttribute('data-trending') || '0', 10) - parseInt(a.getAttribute('data-trending') || '0', 10);
+                        return b.trending - a.trending;
                     } else if (sortValue === 'ai-ready') {
-                        // secondary sort by downloads if ai-ready is tied
-                        const aiDiff = parseInt(b.getAttribute('data-ai') || '0', 10) - parseInt(a.getAttribute('data-ai') || '0', 10);
-                        if (aiDiff === 0) return parseInt(b.getAttribute('data-downloads') || '0', 10) - parseInt(a.getAttribute('data-downloads') || '0', 10);
+                        const aiDiff = b.aiReady - a.aiReady;
+                        if (aiDiff === 0) return b.downloads - a.downloads;
                         return aiDiff;
                     }
-                    // relevance (default index)
-                    return parseInt(a.getAttribute('data-index') || '0', 10) - parseInt(b.getAttribute('data-index') || '0', 10);
+                    // default relevance - keep original order
+                    return a.index - b.index;
                 });
                 
-                // assign css order
-                allPlugins.forEach((el, index) => {
-                    el.style.order = String(index);
+                // Apply 'order' via requestAnimationFrame to avoid synchronous layout thrashing
+                requestAnimationFrame(() => {
+                    sorted.forEach((item, index) => {
+                        item.element.style.order = String(index);
+                    });
                 });
             }
 
             function updateGrid() {
                 let visibleCount = 0;
 
-                if (featuredTrendingSection) {
-                    // Only hide the featured section if the user is actively text-searching.
-                    // Hiding it during category filtering causes the page to aggressively shift up under the user's cursor.
-                    if (currentSearchTerm !== '') {
-                        featuredTrendingSection.classList.add('hidden');
-                    } else {
-                        featuredTrendingSection.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    if (featuredTrendingSection) {
+                        if (currentSearchTerm !== '') {
+                            featuredTrendingSection.classList.add('hidden');
+                        } else {
+                            featuredTrendingSection.classList.remove('hidden');
+                        }
                     }
-                }
 
-                pluginWrappers.forEach(wrapper => {
-                    const name = wrapper.getAttribute('data-name') || '';
-                    const desc = wrapper.getAttribute('data-desc') || '';
-                    const vendor = wrapper.getAttribute('data-vendor') || '';
-                    const cat = wrapper.getAttribute('data-category') || '';
+                    pluginsCache.forEach(item => {
+                        const matchesSearch = currentSearchTerm === '' || item.name.includes(currentSearchTerm) || item.desc.includes(currentSearchTerm) || item.vendor.includes(currentSearchTerm);
+                        const matchesCategory = currentCategory === 'all' || item.cat === currentCategory;
+                        const shouldBeVisible = matchesSearch && matchesCategory;
 
-                    const matchesSearch = name.includes(currentSearchTerm) || desc.includes(currentSearchTerm) || vendor.includes(currentSearchTerm);
-                    const matchesCategory = currentCategory === 'all' || cat === currentCategory;
+                        if (shouldBeVisible) {
+                            visibleCount++;
+                        }
 
-                    if (matchesSearch && matchesCategory) {
-                        wrapper.classList.remove('hidden');
-                        visibleCount++;
-                    } else {
-                        wrapper.classList.add('hidden');
+                        // Only write to DOM if state changed
+                        if (shouldBeVisible && item.isHidden) {
+                            item.element.classList.remove('hidden');
+                            item.isHidden = false;
+                        } else if (!shouldBeVisible && !item.isHidden) {
+                            item.element.classList.add('hidden');
+                            item.isHidden = true;
+                        }
+                    });
+
+                    if (resultCount) {
+                        resultCount.textContent = `${visibleCount} plugin${visibleCount !== 1 ? 's' : ''}`;
+                    }
+                    
+                    if (noResults) {
+                        if (visibleCount === 0) {
+                            noResults.classList.remove('hidden');
+                        } else {
+                            noResults.classList.add('hidden');
+                        }
                     }
                 });
-
-                if (resultCount) {
-                    resultCount.textContent = `${visibleCount} plugin${visibleCount !== 1 ? 's' : ''}`;
-                }
-                
-                if (noResults) {
-                    if (visibleCount === 0) {
-                        noResults.classList.remove('hidden');
-                    } else {
-                        noResults.classList.add('hidden');
-                    }
-                }
             }
 
+            // Debounce search input
+            let debounceTimer: number | null = null;
             if (searchInput) {
                 searchInput.addEventListener('input', (e) => {
-                    currentSearchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
-                    updateGrid();
+                    if (debounceTimer) clearTimeout(debounceTimer);
+                    debounceTimer = window.setTimeout(() => {
+                        currentSearchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
+                        updateGrid();
+                    }, 250);
                 });
             }
 
@@ -220,13 +241,11 @@ const categories = Array.from(categoriesSet);
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    // Reset all
                     filterBtns.forEach(b => {
                         b.classList.remove('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
                         b.classList.add('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
                     });
                     
-                    // Set active
                     const target = e.currentTarget as HTMLElement;
                     target.classList.remove('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
                     target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
