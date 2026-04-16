@@ -23,7 +23,38 @@ import StarMap from './StarMap.astro';
                     placeholder="Search plugins by name, description, or class..." 
                     class="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 px-4 py-5 outline-none font-medium text-lg"
                 />
+                <button 
+                    id="clearSearchBtn" 
+                    type="button" 
+                    aria-label="Clear search"
+                    class="hidden pr-5 pl-2 text-gray-400 hover:text-gray-600 dark:text-white/40 dark:hover:text-white transition-colors duration-200 focus:outline-none"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+        const clearBtn = document.getElementById('clearSearchBtn');
+
+        if (searchInput && clearBtn) {
+            searchInput.addEventListener('input', () => {
+                if (searchInput.value.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+            });
+
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
+            });
+        }
+    });
+</script>
