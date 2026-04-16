@@ -81,8 +81,8 @@ const categories = Array.from(categoriesSet);
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="pluginGrid">
-                    {pluginsData.map(plugin => (
-                        <div class="plugin-wrapper flex flex-col" 
+                    {pluginsData.map((plugin, index) => (
+                        <div class={`plugin-wrapper flex flex-col ${index >= 24 ? 'hidden' : ''}`} 
                              data-name={plugin.name.toLowerCase()} 
                              data-desc={plugin.description.toLowerCase()} 
                              data-vendor={plugin.vendor.toLowerCase()}
@@ -109,6 +109,10 @@ const categories = Array.from(categoriesSet);
                         </div>
                     ))}
                 </div>
+
+                <div id="scrollSentinel" class="hidden py-10 flex justify-center w-full">
+                    <div class="w-8 h-8 rounded-full border-4 border-gray-200 dark:border-white/10 border-t-primary animate-spin"></div>
+                </div>
             </div>
         </section>
     </main>
@@ -126,9 +130,13 @@ const categories = Array.from(categoriesSet);
             const filterBtns = document.querySelectorAll('.filter-btn');
             const sortSelect = document.getElementById('sortSelect') as HTMLSelectElement;
             const featuredTrendingSection = document.getElementById('featuredTrendingSection');
+            const scrollSentinel = document.getElementById('scrollSentinel');
             
             let currentSearchTerm = '';
             let currentCategory = 'all';
+
+            const ITEMS_PER_PAGE = 24;
+            let displayLimit = ITEMS_PER_PAGE;
 
             // Cache attributes into memory for much faster filtering/sorting
             // reading from DOM is slow, memory is fast.
@@ -143,16 +151,17 @@ const categories = Array.from(categoriesSet);
                     downloads: parseInt(wrapper.getAttribute('data-downloads') || '0', 10),
                     trending: parseInt(wrapper.getAttribute('data-trending') || '0', 10),
                     aiReady: parseInt(wrapper.getAttribute('data-ai') || '0', 10),
-                    isHidden: false // initially visible
+                    isHidden: index >= 24
                 };
             });
+            
+            let sortedPlugins = [...pluginsCache];
 
             function applySort() {
                 if(!sortSelect) return;
                 const sortValue = sortSelect.value;
                 
-                // Duplicate cache to sort it
-                const sorted = [...pluginsCache].sort((a, b) => {
+                sortedPlugins.sort((a, b) => {
                     if (sortValue === 'name-asc') {
                         return a.name.localeCompare(b.name);
                     } else if (sortValue === 'downloads-desc') {
@@ -164,20 +173,22 @@ const categories = Array.from(categoriesSet);
                         if (aiDiff === 0) return b.downloads - a.downloads;
                         return aiDiff;
                     }
-                    // default relevance - keep original order
                     return a.index - b.index;
                 });
                 
-                // Apply 'order' via requestAnimationFrame to avoid synchronous layout thrashing
                 requestAnimationFrame(() => {
-                    sorted.forEach((item, index) => {
+                    sortedPlugins.forEach((item, index) => {
                         item.element.style.order = String(index);
                     });
+                    
+                    displayLimit = ITEMS_PER_PAGE;
+                    updateGrid();
                 });
             }
 
             function updateGrid() {
-                let visibleCount = 0;
+                let matchedCount = 0;
+                let renderedCount = 0;
 
                 requestAnimationFrame(() => {
                     if (featuredTrendingSection) {
@@ -188,37 +199,63 @@ const categories = Array.from(categoriesSet);
                         }
                     }
 
-                    pluginsCache.forEach(item => {
+                    sortedPlugins.forEach(item => {
                         const matchesSearch = currentSearchTerm === '' || item.name.includes(currentSearchTerm) || item.desc.includes(currentSearchTerm) || item.vendor.includes(currentSearchTerm);
                         const matchesCategory = currentCategory === 'all' || item.cat === currentCategory;
-                        const shouldBeVisible = matchesSearch && matchesCategory;
+                        const isMatched = matchesSearch && matchesCategory;
 
-                        if (shouldBeVisible) {
-                            visibleCount++;
-                        }
-
-                        // Only write to DOM if state changed
-                        if (shouldBeVisible && item.isHidden) {
-                            item.element.classList.remove('hidden');
-                            item.isHidden = false;
-                        } else if (!shouldBeVisible && !item.isHidden) {
-                            item.element.classList.add('hidden');
-                            item.isHidden = true;
+                        if (isMatched) {
+                            matchedCount++;
+                            if (renderedCount < displayLimit) {
+                                renderedCount++;
+                                if (item.isHidden) {
+                                    item.element.classList.remove('hidden');
+                                    item.isHidden = false;
+                                }
+                            } else {
+                                if (!item.isHidden) {
+                                    item.element.classList.add('hidden');
+                                    item.isHidden = true;
+                                }
+                            }
+                        } else {
+                            if (!item.isHidden) {
+                                item.element.classList.add('hidden');
+                                item.isHidden = true;
+                            }
                         }
                     });
 
                     if (resultCount) {
-                        resultCount.textContent = `${visibleCount} plugin${visibleCount !== 1 ? 's' : ''}`;
+                        resultCount.textContent = `${matchedCount} plugin${matchedCount !== 1 ? 's' : ''}`;
                     }
                     
                     if (noResults) {
-                        if (visibleCount === 0) {
+                        if (matchedCount === 0) {
                             noResults.classList.remove('hidden');
                         } else {
                             noResults.classList.add('hidden');
                         }
                     }
+                    
+                    if (scrollSentinel) {
+                        if (renderedCount < matchedCount) {
+                            scrollSentinel.classList.remove('hidden');
+                        } else {
+                            scrollSentinel.classList.add('hidden');
+                        }
+                    }
                 });
+            }
+
+            if (scrollSentinel) {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        displayLimit += ITEMS_PER_PAGE;
+                        updateGrid();
+                    }
+                }, { rootMargin: '400px' }); // Load nicely before it becomes fully visible
+                observer.observe(scrollSentinel);
             }
 
             // Debounce search input
@@ -228,6 +265,7 @@ const categories = Array.from(categoriesSet);
                     if (debounceTimer) clearTimeout(debounceTimer);
                     debounceTimer = window.setTimeout(() => {
                         currentSearchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
+                        displayLimit = ITEMS_PER_PAGE;
                         updateGrid();
                     }, 250);
                 });
@@ -251,9 +289,13 @@ const categories = Array.from(categoriesSet);
                     target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
 
                     currentCategory = target.getAttribute('data-filter') || 'all';
+                    displayLimit = ITEMS_PER_PAGE;
                     updateGrid();
                 });
             });
+
+            // Initialize Grid State
+            updateGrid();
         });
     </script>
 </Layout>
