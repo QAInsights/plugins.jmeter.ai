@@ -2,7 +2,7 @@
 import PluginCard from './PluginCard.astro';
 const { trendingPlugins } = Astro.props;
 ---
-<section id="featuredTrendingSection" class="py-16 px-6 bg-gray-50/50 dark:bg-white/[0.01] transition-all duration-300">
+<section id="featuredTrendingSection" class="py-10 px-6 bg-gray-50/50 dark:bg-white/[0.01] transition-all duration-300">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         
         <div class="flex flex-col">
@@ -11,7 +11,7 @@ const { trendingPlugins } = Astro.props;
                 <h2 class="text-2xl font-bold dark:text-white">Featured</h2>
             </div>
             
-            <a href="mailto:support@qainsights.com?subject=Feature my JMeter Plugin" class="flex-grow ai-glow-wrapper rounded-xl flex flex-col items-center justify-center cursor-pointer group min-h-[200px] shadow-md dark:shadow-[0_0_15px_rgba(155,114,203,0.1)] hover:shadow-xl dark:hover:shadow-[0_0_25px_rgba(66,133,244,0.3)] transition-all">
+            <a href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new?template=feature_plugin.md" target="_blank" rel="noopener noreferrer" class="flex-grow ai-glow-wrapper rounded-xl flex flex-col items-center justify-center cursor-pointer group min-h-[200px] shadow-md dark:shadow-[0_0_15px_rgba(155,114,203,0.1)] hover:shadow-xl dark:hover:shadow-[0_0_25px_rgba(66,133,244,0.3)] transition-all">
                 <div class="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-white dark:bg-dark-surface rounded-[10px] hover:bg-gray-50 dark:hover:bg-[#1f1f22] transition-colors">
                     <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
