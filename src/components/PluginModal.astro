@@ -84,148 +84,153 @@
             });
         }
 
+        // Expose function globally for the Star Map and other components
+        // @ts-ignore
+        window.openPluginModal = (p: any) => {
+            const titleEl = document.getElementById('modalTitle');
+            if(titleEl) titleEl.textContent = p.name;
+            
+            const vendorEl = document.getElementById('modalVendor');
+            if(vendorEl) vendorEl.textContent = `By ${p.vendor}`;
+            
+            const descEl = document.getElementById('modalDescription');
+            if(descEl) descEl.textContent = p.description;
+            
+            const linkEl = document.getElementById('modalLink') as HTMLAnchorElement;
+            if(linkEl) linkEl.href = p.helpUrl;
+            
+            const deepLinkEl = document.getElementById('modalDeepLink') as HTMLAnchorElement;
+            if(deepLinkEl) deepLinkEl.href = `/plugin/${p.id}`;
+            
+            const badgeContainer = document.getElementById('modalBadgeContainer');
+            const badgeCode = document.getElementById('modalBadgeCode');
+            if(badgeContainer && badgeCode) {
+                const badgeMd = `[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://plugins.jmeter.ai/plugin/${p.id})`;
+                badgeContainer.setAttribute('data-badge', badgeMd);
+                badgeCode.textContent = badgeMd;
+            }
+            
+            // Screenshot Logic
+            const screenshotEl = document.getElementById('modalScreenshot') as HTMLImageElement;
+            let sUrl = p.screenshotUrl || p.screenshotURL;
+            if (screenshotEl) {
+                if (sUrl) {
+                    if (!sUrl.startsWith('http')) {
+                        sUrl = 'https://jmeter-plugins.org' + (sUrl.startsWith('/') ? '' : '/') + sUrl;
+                    }
+                    screenshotEl.src = sUrl;
+                    screenshotEl.classList.remove('hidden');
+                } else {
+                    screenshotEl.src = '';
+                    screenshotEl.classList.add('hidden');
+                }
+            }
+
+            const classWrapper = document.getElementById('modalClassesWrapper');
+            const classContainer = document.getElementById('modalClasses');
+            if (classWrapper && classContainer) {
+                if (p.componentClasses && p.componentClasses.length) {
+                    classContainer.textContent = p.componentClasses.join('\n');
+                    classWrapper.style.display = 'block';
+                } else {
+                    classWrapper.style.display = 'none';
+                }
+            }
+
+            const dlEl = document.getElementById('modalDownloads');
+            if(dlEl) dlEl.textContent = new Intl.NumberFormat('en-US').format(p.stats?.absoluteDownloads || 0);
+            
+            const trendEl = document.getElementById('modalTrending');
+            if(trendEl) {
+                const arrow = (p.stats?.trendingDelta || 0) > 0 ? '+' : '';
+                trendEl.textContent = `${arrow}${new Intl.NumberFormat('en-US').format(p.stats?.trendingDelta || 0)}`;
+                trendEl.className = `text-xl font-bold ${(p.stats?.trendingDelta || 0) > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`;
+            }
+
+            const headerBg = document.getElementById('modalHeaderBg');
+            if(headerBg) {
+                if (p.isFeatured || p.sponsored) {
+                    headerBg.classList.remove('hidden');
+                } else {
+                    headerBg.classList.add('hidden');
+                }
+            }
+
+            // Chart Rendering
+            const canvas = document.getElementById('usageChart') as HTMLCanvasElement;
+            if(canvas) {
+                const ctx = canvas.getContext('2d');
+                // @ts-ignore
+                if (window.usageChartInstance) {
+                    // @ts-ignore
+                    window.usageChartInstance.destroy();
+                }
+                
+                const history = p.stats?.history || {};
+                const labels = Object.keys(history).sort();
+                const data = labels.map(l => history[l]);
+                
+                const isDark = document.documentElement.classList.contains('dark');
+                const chartColor = isDark ? '#ccff00' : '#b0d600'; 
+                
+                // @ts-ignore
+                if (window.Chart && ctx) {
+                    // @ts-ignore
+                    window.usageChartInstance = new window.Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: data,
+                                borderColor: chartColor,
+                                borderWidth: 2,
+                                backgroundColor: `${chartColor}20`,
+                                fill: true,
+                                pointRadius: 0,
+                                pointHoverRadius: 6,
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: {
+                                    mode: 'index',
+                                    intersect: false,
+                                    backgroundColor: isDark ? '#18181b' : '#ffffff',
+                                    titleColor: isDark ? '#ffffff' : '#000000',
+                                    bodyColor: isDark ? '#a1a1aa' : '#4b5563',
+                                    borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                                    borderWidth: 1,
+                                    padding: 12
+                                }
+                            },
+                            scales: {
+                                x: { display: false },
+                                y: {
+                                    grid: { color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' },
+                                    ticks: { color: isDark ? '#a1a1aa' : '#6b7280', maxTicksLimit: 6 },
+                                    border: { display: false }
+                                }
+                            },
+                            interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                        }
+                    });
+                }
+            }
+
+            document.body.style.overflow = 'hidden';
+            if(modal) modal.showModal();
+        };
+
         document.querySelectorAll('.plugin-card').forEach(card => {
             card.addEventListener('click', () => {
                 const pluginAttr = card.getAttribute('data-plugin');
                 if(!pluginAttr) return;
-                const p = JSON.parse(pluginAttr);
-                
-                const titleEl = document.getElementById('modalTitle');
-                if(titleEl) titleEl.textContent = p.name;
-                
-                const vendorEl = document.getElementById('modalVendor');
-                if(vendorEl) vendorEl.textContent = `By ${p.vendor}`;
-                
-                const descEl = document.getElementById('modalDescription');
-                if(descEl) descEl.textContent = p.description;
-                
-                const linkEl = document.getElementById('modalLink') as HTMLAnchorElement;
-                if(linkEl) linkEl.href = p.helpUrl;
-                
-                const deepLinkEl = document.getElementById('modalDeepLink') as HTMLAnchorElement;
-                if(deepLinkEl) deepLinkEl.href = `/plugin/${p.id}`;
-                
-                const badgeContainer = document.getElementById('modalBadgeContainer');
-                const badgeCode = document.getElementById('modalBadgeCode');
-                if(badgeContainer && badgeCode) {
-                    const badgeMd = `[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://plugins.jmeter.ai/plugin/${p.id})`;
-                    badgeContainer.setAttribute('data-badge', badgeMd);
-                    badgeCode.textContent = badgeMd;
-                }
-                
-                // Screenshot Logic
-                const screenshotEl = document.getElementById('modalScreenshot') as HTMLImageElement;
-                let sUrl = p.screenshotUrl || p.screenshotURL;
-                if (screenshotEl) {
-                    if (sUrl) {
-                        if (!sUrl.startsWith('http')) {
-                            sUrl = 'https://jmeter-plugins.org' + (sUrl.startsWith('/') ? '' : '/') + sUrl;
-                        }
-                        screenshotEl.src = sUrl;
-                        screenshotEl.classList.remove('hidden');
-                    } else {
-                        screenshotEl.src = '';
-                        screenshotEl.classList.add('hidden');
-                    }
-                }
-
-                const classWrapper = document.getElementById('modalClassesWrapper');
-                const classContainer = document.getElementById('modalClasses');
-                if (classWrapper && classContainer) {
-                    if (p.componentClasses && p.componentClasses.length) {
-                        classContainer.textContent = p.componentClasses.join('\n');
-                        classWrapper.style.display = 'block';
-                    } else {
-                        classWrapper.style.display = 'none';
-                    }
-                }
-
-                const dlEl = document.getElementById('modalDownloads');
-                if(dlEl) dlEl.textContent = new Intl.NumberFormat('en-US').format(p.stats?.absoluteDownloads || 0);
-                
-                const trendEl = document.getElementById('modalTrending');
-                if(trendEl) {
-                    const arrow = (p.stats?.trendingDelta || 0) > 0 ? '+' : '';
-                    trendEl.textContent = `${arrow}${new Intl.NumberFormat('en-US').format(p.stats?.trendingDelta || 0)}`;
-                    trendEl.className = `text-xl font-bold ${(p.stats?.trendingDelta || 0) > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`;
-                }
-
-                const headerBg = document.getElementById('modalHeaderBg');
-                if(headerBg) {
-                    if (p.isFeatured || p.sponsored) {
-                        headerBg.classList.remove('hidden');
-                    } else {
-                        headerBg.classList.add('hidden');
-                    }
-                }
-
-                // Chart Rendering
-                const canvas = document.getElementById('usageChart') as HTMLCanvasElement;
-                if(canvas) {
-                    const ctx = canvas.getContext('2d');
-                    // @ts-ignore
-                    if (window.usageChartInstance) {
-                        // @ts-ignore
-                        window.usageChartInstance.destroy();
-                    }
-                    
-                    const history = p.stats?.history || {};
-                    const labels = Object.keys(history).sort();
-                    const data = labels.map(l => history[l]);
-                    
-                    const isDark = document.documentElement.classList.contains('dark');
-                    const chartColor = isDark ? '#ccff00' : '#b0d600'; 
-                    
-                    // @ts-ignore
-                    if (window.Chart && ctx) {
-                        // @ts-ignore
-                        window.usageChartInstance = new window.Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    data: data,
-                                    borderColor: chartColor,
-                                    borderWidth: 2,
-                                    backgroundColor: `${chartColor}20`,
-                                    fill: true,
-                                    pointRadius: 0,
-                                    pointHoverRadius: 6,
-                                    tension: 0.3
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    legend: { display: false },
-                                    tooltip: {
-                                        mode: 'index',
-                                        intersect: false,
-                                        backgroundColor: isDark ? '#18181b' : '#ffffff',
-                                        titleColor: isDark ? '#ffffff' : '#000000',
-                                        bodyColor: isDark ? '#a1a1aa' : '#4b5563',
-                                        borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                                        borderWidth: 1,
-                                        padding: 12
-                                    }
-                                },
-                                scales: {
-                                    x: { display: false },
-                                    y: {
-                                        grid: { color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' },
-                                        ticks: { color: isDark ? '#a1a1aa' : '#6b7280', maxTicksLimit: 6 },
-                                        border: { display: false }
-                                    }
-                                },
-                                interaction: { mode: 'nearest', axis: 'x', intersect: false }
-                            }
-                        });
-                    }
-                }
-
-                document.body.style.overflow = 'hidden';
-                if(modal) modal.showModal();
+                // @ts-ignore
+                window.openPluginModal(JSON.parse(pluginAttr));
             });
         });
 

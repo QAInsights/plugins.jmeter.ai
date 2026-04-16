@@ -1,0 +1,260 @@
+---
+import pluginsRaw from '../data/plugins_data.json';
+
+// Sort by downloads descending and keep only the top 25 to prevent canvas overcrowding
+const minifiedPlugins = [...pluginsRaw]
+    .sort((a, b) => (b.stats?.absoluteDownloads || 0) - (a.stats?.absoluteDownloads || 0))
+    .slice(0, 25)
+    .map((p) => ({
+    id: p.id,
+    name: p.name,
+    downloads: p.stats?.absoluteDownloads || 0,
+    aiReady: p.isAiReady,
+    // Pass full payload for the modal later
+    _raw: p
+}));
+---
+
+<div id="starMapContainer" class="absolute inset-0 bg-gray-50 dark:bg-dark-bg z-0 overflow-hidden" data-plugins={JSON.stringify(minifiedPlugins)}>
+    <canvas id="starCanvas" class="block w-full h-full"></canvas>
+    
+    <!-- Floating Tooltip -->
+    <div id="starTooltip" class="absolute pointer-events-none opacity-0 transition-opacity duration-200 bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 shadow-xl rounded-lg p-3 z-10 transform -translate-x-1/2 -translate-y-[120%]">
+        <h4 id="ttName" class="text-sm font-bold text-gray-900 dark:text-white mb-1"></h4>
+        <p id="ttDownloads" class="text-xs text-gray-500 font-mono"></p>
+        <p id="ttAi" class="text-xs font-bold text-primary dark:text-[#ccff00] mt-1 hidden">AI Ready Spark</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('starMapContainer');
+        const canvas = document.getElementById('starCanvas') as HTMLCanvasElement;
+        const tooltip = document.getElementById('starTooltip');
+        const ttName = document.getElementById('ttName');
+        const ttDownloads = document.getElementById('ttDownloads');
+        const ttAi = document.getElementById('ttAi');
+        
+        if (!container || !canvas || !tooltip) return;
+
+        const ctx = canvas.getContext('2d', { alpha: false }); // alpha: false optimizes rendering if background is completely solid
+        if(!ctx) return;
+
+        let width = container.clientWidth;
+        let height = container.clientHeight;
+        canvas.width = width * window.devicePixelRatio;
+        canvas.height = height * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+        // Parse Plugin Data
+        const plugins = JSON.parse(container.getAttribute('data-plugins') || '[]');
+        
+        // Find max downloads for logarithmic scaling
+        const maxDl = Math.max(...plugins.map((p:any) => p.downloads), 1);
+        
+        // Stellar color profiles (RGB arrays) for realistic star types: White, Orange/Red, Blue, Yellow
+        const starHues = [
+            [255, 255, 255],
+            [255, 170, 100],
+            [150, 200, 255],
+            [255, 230, 150]
+        ];
+
+        const nodes = plugins.map((p: any) => {
+            // Square Root scale perfectly maps download count to visual area
+            // Massive scale difference to make top plugins incredibly huge relative to small ones
+            const ratio = p.downloads > 0 ? Math.sqrt(p.downloads) / Math.sqrt(maxDl) : 0;
+            const r = 2.5 + (ratio * 25); // min 2.5px, max 27.5px radius
+            
+            // Random start position
+            const x = Math.random() * width;
+            const y = Math.random() * height;
+            
+            // Random very slow drift
+            const vx = (Math.random() - 0.5) * 0.15;
+            const vy = (Math.random() - 0.5) * 0.15;
+            
+            // Randomly select a star color profile
+            const colorIdx = Math.floor(Math.random() * starHues.length);
+            
+            return { x, y, vx, vy, r, plugin: p, colorIdx };
+        });
+
+        let mouseX = -1000;
+        let mouseY = -1000;
+        let hoveredNode: any = null;
+        let isAnimating = false;
+        let animationId: number;
+
+        // Interaction
+        container.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            mouseX = -1000;
+            mouseY = -1000;
+        });
+
+        container.addEventListener('click', () => {
+            if (hoveredNode && window.openPluginModal) {
+                // @ts-ignore
+                window.openPluginModal(hoveredNode.plugin._raw);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            width = container.clientWidth;
+            height = container.clientHeight;
+            canvas.width = width * window.devicePixelRatio;
+            canvas.height = height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        });
+
+        function draw() {
+            if (!isAnimating) return;
+
+            const isDark = document.documentElement.classList.contains('dark');
+            const bgColor = isDark ? '#09090b' : '#f9fafb';
+            const lineStrokeColor = isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)';
+
+            // Clear Background
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, width, height);
+
+            // Update & Draw Nodes
+            let newHovered = null;
+            let minDist = Number.MAX_VALUE;
+
+            for (let i = 0; i < nodes.length; i++) {
+                let n = nodes[i];
+                
+                // Drift
+                n.x += n.vx;
+                n.y += n.vy;
+                
+                // Wrap around edges
+                if (n.x < 0) n.x = width;
+                if (n.x > width) n.x = 0;
+                if (n.y < 0) n.y = height;
+                if (n.y > height) n.y = 0;
+
+                // Collision / Hover Dist
+                const dxm = n.x - mouseX;
+                const dym = n.y - mouseY;
+                const distToMouse = Math.hypot(dxm, dym);
+                
+                let currentR = n.r;
+                let isHovered = false;
+
+                if (distToMouse < n.r + 15 && distToMouse < minDist) {
+                    minDist = distToMouse;
+                    newHovered = n;
+                    isHovered = true;
+                    currentR = n.r * 1.5; // swell slightly
+                }
+
+                // Star RGB Profile
+                let rVal, gVal, bVal;
+                
+                if (n.plugin.aiReady) {
+                    rVal = isDark ? 204 : 144;
+                    gVal = isDark ? 255 : 176;
+                    bVal = 0;
+                    ctx.shadowColor = isDark ? '#ccff00' : '#b0d600';
+                } else {
+                    const hue = starHues[n.colorIdx];
+                    rVal = isDark ? hue[0] : Math.max(0, hue[0] - 150); // Darker in light mode
+                    gVal = isDark ? hue[1] : Math.max(0, hue[1] - 150);
+                    bVal = isDark ? hue[2] : Math.max(0, hue[2] - 150);
+                    ctx.shadowColor = isDark ? '#ffffff' : '#000000';
+                }
+
+                // Form gaseous radial gradient
+                const opacityCenter = isHovered ? 0.9 : 0.3;
+                
+                const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, currentR);
+                grad.addColorStop(0, `rgba(${rVal}, ${gVal}, ${bVal}, ${opacityCenter})`);
+                grad.addColorStop(0.5, `rgba(${rVal}, ${gVal}, ${bVal}, ${opacityCenter * 0.5})`);
+                grad.addColorStop(1, `rgba(${rVal}, ${gVal}, ${bVal}, 0)`);
+
+                ctx.fillStyle = grad;
+                ctx.shadowBlur = isHovered ? 15 : 0;
+
+                // Draw Circle
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, currentR, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Reset shadow for lines to avoid messy glow on the network
+                ctx.shadowBlur = 0;
+
+                // Draw Network Lines
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const n2 = nodes[j];
+                    const dx = n.x - n2.x;
+                    const dy = n.y - n2.y;
+                    const d = Math.hypot(dx, dy);
+                    
+                    if (d < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = lineStrokeColor;
+                        ctx.lineWidth = 1 - (d / 100); // fade out
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(n2.x, n2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Handle Tooltip State
+            if (newHovered !== hoveredNode) {
+                hoveredNode = newHovered;
+                if (hoveredNode && ttName && ttDownloads && tooltip) {
+                    ttName.textContent = hoveredNode.plugin.name;
+                    ttDownloads.textContent = `${new Intl.NumberFormat().format(hoveredNode.plugin.downloads)} downloads`;
+                    
+                    if(hoveredNode.plugin.aiReady && ttAi) {
+                        ttAi.classList.remove('hidden');
+                    } else if (ttAi) {
+                        ttAi.classList.add('hidden');
+                    }
+
+                    tooltip.style.left = `${hoveredNode.x}px`;
+                    tooltip.style.top = `${hoveredNode.y}px`;
+                    tooltip.classList.remove('opacity-0');
+                    canvas.style.cursor = 'pointer';
+                } else if (tooltip) {
+                    tooltip.classList.add('opacity-0');
+                    canvas.style.cursor = 'default';
+                }
+            } else if (hoveredNode && tooltip) {
+                // follow node while hovered and moving
+                tooltip.style.left = `${hoveredNode.x}px`;
+                tooltip.style.top = `${hoveredNode.y}px`;
+            }
+
+            animationId = requestAnimationFrame(draw);
+        }
+
+        // --- Performance Guard ---
+        // Only run CPU-intensive Canvas math when section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        draw();
+                    }
+                } else {
+                    isAnimating = false;
+                    if (animationId) cancelAnimationFrame(animationId);
+                }
+            });
+        }, { threshold: 0.05 }); // Start pausing right as it leaves view
+
+        observer.observe(container);
+    });
+</script>
