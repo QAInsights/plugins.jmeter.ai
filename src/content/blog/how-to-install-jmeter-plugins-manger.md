@@ -21,6 +21,7 @@ JMeter's true power lies in its extensibility. Out of the box, it provides a sol
 - Custom Listeners
 - Protocols support
 - AI integrations
+- and more.
 
 ## Getting Started
 
