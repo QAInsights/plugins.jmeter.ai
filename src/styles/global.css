@@ -17,3 +17,18 @@
     @apply bg-dark-bg text-gray-100;
   }
 }
+
+@keyframes ai-glow-spin {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@layer utilities {
+    .ai-glow-wrapper {
+        padding: 2px;
+        background: linear-gradient(90deg, #4285F4, #9B72CB, #D96570, #F4B400, #4285F4);
+        background-size: 300% 300%;
+        animation: ai-glow-spin 4s ease infinite;
+    }
+}

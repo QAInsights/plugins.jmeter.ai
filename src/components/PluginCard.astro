@@ -24,17 +24,22 @@ const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
 ---
 
 <div tabindex="0" role="button"
-   class="plugin-card text-left group relative flex flex-col bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] hover:-translate-y-1 w-full cursor-pointer"
+   class={`plugin-card text-left group relative flex flex-col rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 w-full cursor-pointer ${
+     plugin.isAiReady
+       ? 'ai-glow-wrapper shadow-md dark:shadow-[0_0_15px_rgba(155,114,203,0.1)] hover:shadow-xl dark:hover:shadow-[0_0_25px_rgba(66,133,244,0.3)]'
+       : 'bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)]'
+   }`}
    data-category={category.toLowerCase()}
    data-plugin={JSON.stringify(plugin)}
 >
   
-  {/* Sponsored / Featured Highlight */}
-  {(plugin.sponsored || plugin.isFeatured) && (
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
-  )}
+  <div class={`flex flex-col h-full w-full relative z-10 ${plugin.isAiReady ? 'bg-white dark:bg-dark-surface rounded-[10px]' : ''}`}>
+    {/* Sponsored / Featured Highlight */}
+    {(plugin.sponsored || plugin.isFeatured) && (
+      <div class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary z-20 ${plugin.isAiReady ? 'rounded-t-[10px]' : ''}`}></div>
+    )}
 
-  <div class="p-6 flex flex-col h-full">
+    <div class="p-6 flex flex-col h-full">
     
     <div class="flex items-center gap-2 mb-2 relative z-10">
       <span class="text-[10px] font-mono text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/5 py-0.5 px-1.5 rounded">{plugin.id}</span>
