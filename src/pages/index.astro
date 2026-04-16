@@ -166,7 +166,9 @@ const categories = Array.from(categoriesSet);
                 let visibleCount = 0;
 
                 if (featuredTrendingSection) {
-                    if (currentSearchTerm !== '' || currentCategory !== 'all') {
+                    // Only hide the featured section if the user is actively text-searching.
+                    // Hiding it during category filtering causes the page to aggressively shift up under the user's cursor.
+                    if (currentSearchTerm !== '') {
                         featuredTrendingSection.classList.add('hidden');
                     } else {
                         featuredTrendingSection.classList.remove('hidden');
