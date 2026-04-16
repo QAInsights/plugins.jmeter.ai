@@ -6,6 +6,8 @@ labels: enhancement, featured
 assignees: ''
 ---
 
+> Free Plugin Only
+
 **Plugin details**
 - Plugin Name: 
 - Plugin ID (from JMeter Plugins Manager): 
