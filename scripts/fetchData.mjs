@@ -14,10 +14,10 @@ const REPOS = [
 
 const STATS_URL = 'https://jmeter-plugins.org/dat/stats/plugins_usage_history.json';
 
-// Example overrides for future monetization and tags
-const SPONSORED_PLUGINS = ['jmeter-studio-oss']; // Make JMeter Studio sponsor as a demo
-const AI_READY_PLUGINS = ['feather-wand-jmeter-ai-agent']; 
-const FEATURED_PLUGINS = []; // Real featured logic goes here in the future
+// We now read these from src/data/overrides.json
+let SPONSORED_PLUGINS = [];
+let AI_READY_PLUGINS = []; 
+let FEATURED_PLUGINS = [];
 
 async function fetchJson(url) {
     const res = await fetch(url);
@@ -48,6 +48,19 @@ async function main() {
     
     console.log('Fetching historical usage stats...');
     const pluginsStats = await fetchJson(STATS_URL);
+
+    // Read user overrides
+    try {
+        const overridesPath = path.join(process.cwd(), 'src', 'data', 'overrides.json');
+        const overridesRaw = await fs.readFile(overridesPath, 'utf-8');
+        const overrides = JSON.parse(overridesRaw);
+        SPONSORED_PLUGINS = overrides.sponsoredPlugins || [];
+        AI_READY_PLUGINS = overrides.aiReadyPlugins || [];
+        FEATURED_PLUGINS = overrides.featuredPlugins || [];
+        console.log(`Loaded overrides: ${SPONSORED_PLUGINS.length} sponsored, ${AI_READY_PLUGINS.length} AI-ready.`);
+    } catch (e) {
+        console.warn('Could not read custom overrides.json, using defaults.');
+    }
 
     console.log('Enriching data with trending calculations and custom tags...');
     
