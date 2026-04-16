@@ -6,15 +6,22 @@ interface Props {
 	title: string;
     description?: string;
     image?: string;
-    url?: string;
+    type?: "website" | "article";
+    articleDate?: string;
+    articleAuthor?: string;
 }
 
 const { 
     title, 
     description = "Discover, search, and track modern and AI-ready JMeter plugins. Community-driven directory automatically synced daily.", 
-    image = "https://plugins.jmeter.ai/favicon.svg",
-    url = "https://plugins.jmeter.ai" 
+    image = "/favicon.svg",
+    type = "website",
+    articleDate,
+    articleAuthor
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.site);
 ---
 
 <html lang="en" class="dark">
@@ -30,20 +37,28 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
         <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
 
         {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={url} />
+        <meta property="og:type" content={type} />
+        <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
+        <meta property="og:image" content={socialImageURL} />
+
+        {type === 'article' && articleDate && (
+            <meta property="article:published_time" content={articleDate} />
+        )}
+        {type === 'article' && articleAuthor && (
+            <meta property="article:author" content={articleAuthor} />
+        )}
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={url} />
+        <meta property="twitter:url" content={canonicalURL} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={image} />
+        <meta property="twitter:image" content={socialImageURL} />
 
         <script>
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
