@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog - PerfAtlas" description="Read the latest news and guides about JMeter plugins and performance testing.">
+    <Header />
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex-grow w-full">
+        <div class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4">
+                Perf<span class="text-green-600 dark:text-[#ccff00]">Atlas</span> Blog
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl">
+                Insights, tutorials, and updates on the best JMeter plugins and performance engineering techniques.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+                <article class="flex flex-col bg-white dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 dark:hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] group w-full">
+                    <a href={`/blog/${post.id}`} class="block overflow-hidden relative aspect-video">
+                        {post.data.image ? (
+                            <Image 
+                                src={post.data.image} 
+                                alt={post.data.imageAlt || post.data.title}
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                width={600}
+                                height={338}
+                                format="webp"
+                            />
+                        ) : (
+                            <div class="w-full h-full bg-gray-100 dark:bg-white/5 flex items-center justify-center">
+                                <span class="text-gray-400 dark:text-gray-600 font-medium">No Image</span>
+                            </div>
+                        )}
+                        {post.data.featured && (
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary z-20 rounded-t-xl"></div>
+                        )}
+                        {post.data.featured && (
+                            <div class="absolute top-4 right-4 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 border border-purple-300 dark:border-purple-500/50 text-xs font-bold px-3 py-1 rounded-sm shadow-md z-10 uppercase tracking-wider">
+                                Featured
+                            </div>
+                        )}
+                    </a>
+                    
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 mb-3 shrink-0 flex-wrap">
+                            <span class="text-[10px] font-mono text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/5 py-0.5 px-1.5 rounded uppercase tracking-wider">
+                                {post.data.pubDate.toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric',
+                                })}
+                            </span>
+                            {post.data.tags && post.data.tags.length > 0 && (
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    {post.data.tags.slice(0, 2).map((tag) => (
+                                        <span class="px-2 py-1 text-[9px] uppercase font-bold rounded-sm whitespace-nowrap bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-[#ccff00] transition-colors leading-tight line-clamp-2 mb-3 shrink-0">
+                            <a href={`/blog/${post.id}`} class="focus:outline-none">
+                                {post.data.title}
+                            </a>
+                        </h2>
+                        
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow line-clamp-3 mb-6">
+                            {post.data.description}
+                        </p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 dark:border-white/5 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                            <span class="text-sm font-medium text-gray-900 dark:text-white flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-gradient-to-br from-green-400 to-green-600 dark:from-[#ccff00] dark:to-green-500 flex items-center justify-center text-xs text-white dark:text-black font-bold shrink-0">
+                                    {post.data.author.charAt(0)}
+                                </div>
+                                <span class="truncate block max-w-[120px]">{post.data.author}</span>
+                            </span>
+                            <a href={`/blog/${post.id}`} class="text-sm font-bold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-[#ccff00] hover:underline flex items-center gap-1 transition-colors" aria-label={`Read ${post.data.title}`}>
+                                Read more <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            ))}
+        </div>
+    </main>
+    <Footer />
+</Layout>

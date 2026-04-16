@@ -1,0 +1,82 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} - PerfAtlas Blog`} description={post.data.description}>
+    <Header />
+    <main class="max-w-4xl mx-auto px-6 py-12 md:py-20 flex-grow w-full">
+        <article>
+            <header class="mb-10 text-center">
+                <div class="flex items-center justify-center gap-3 mb-6">
+                    <time datetime={post.data.pubDate.toISOString()} class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        {post.data.pubDate.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                        })}
+                    </time>
+                    <span class="text-gray-300 dark:text-gray-700">&bull;</span>
+                    <span class="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                        {post.data.author}
+                    </span>
+                </div>
+                
+                <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
+                    {post.data.title}
+                </h1>
+                
+                {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="flex items-center justify-center gap-2 mb-8 flex-wrap">
+                        {post.data.tags.map((tag) => (
+                            <span class="px-3 py-1 rounded-full bg-green-50 dark:bg-[#ccff00]/10 text-green-700 dark:text-[#ccff00] text-sm font-semibold">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                {post.data.image && (
+                    <div class="rounded-2xl overflow-hidden mb-12 shadow-xl border border-gray-100 dark:border-white/5">
+                         <Image 
+                            src={post.data.image} 
+                            alt={post.data.imageAlt || post.data.title}
+                            class="w-full h-auto object-cover max-h-[500px]"
+                            width={1200}
+                            height={675}
+                            format="webp"
+                        />
+                    </div>
+                )}
+            </header>
+
+            <div class="prose prose-lg dark:prose-invert prose-green max-w-none prose-headings:font-bold prose-a:text-green-600 dark:prose-a:text-[#ccff00] hover:prose-a:text-green-500 prose-img:rounded-xl prose-img:shadow-lg">
+                <Content />
+            </div>
+            
+            <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-white/10 flex items-center justify-between">
+                <a href="/blog" class="text-green-600 dark:text-[#ccff00] font-bold hover:underline flex items-center gap-2">
+                    &larr; Back to Blog
+                </a>
+                <a href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900 dark:hover:text-white font-medium text-sm transition-colors">
+                    Suggest an Edit
+                </a>
+            </footer>
+        </article>
+    </main>
+    <Footer />
+</Layout>
