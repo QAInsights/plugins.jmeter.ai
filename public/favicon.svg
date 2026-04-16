@@ -1,8 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" aria-label="PerfAtlas" role="img">
-  <circle cx="20" cy="20" r="16" stroke="#b0d600" stroke-width="1.8"/>
-  <ellipse cx="20" cy="20" rx="16" ry="6" stroke="#b0d600" stroke-width="1.2" opacity="0.4"/>
-  <line x1="4" y1="20" x2="36" y2="20" stroke="#b0d600" stroke-width="1.2" opacity="0.4"/>
-  <ellipse cx="20" cy="20" rx="7" ry="16" stroke="#b0d600" stroke-width="1.2" opacity="0.4"/>
-  <polyline points="7,26 12,22 16,24 20,11 24,17 28,15 34,19" stroke="#b0d600" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="20" cy="11" r="2" fill="#b0d600"/>
+  <!-- Globe circle -->
+  <circle cx="20" cy="20" r="16" stroke="#b0d600" stroke-width="2.2"/>
+
+  <!-- Latitude lines -->
+  <ellipse cx="20" cy="20" rx="16" ry="6" stroke="#b0d600" stroke-width="1.6" opacity="0.6"/>
+  <line x1="4" y1="20" x2="36" y2="20" stroke="#b0d600" stroke-width="1.6" opacity="0.6"/>
+
+  <!-- Center meridian -->
+  <ellipse cx="20" cy="20" rx="7" ry="16" stroke="#b0d600" stroke-width="1.6" opacity="0.6"/>
+
+  <!-- Performance spike -->
+  <polyline
+    points="7,26 12,22 16,24 20,11 24,17 28,15 34,19"
+    stroke="#b0d600"
+    stroke-width="2.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Peak dot -->
+  <circle cx="20" cy="11" r="3" fill="#b0d600"/>
 </svg>
