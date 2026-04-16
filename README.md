@@ -17,3 +17,7 @@ All commands are run from the root of the project.
 | `npm run build`           | Builds the production static site                |
 | `npm run fetch-plugins`   | Manually synchronizes the latest plugin datasets |
 
+## Sponsorship & Featuring
+
+* **Open Source/Indie Developers**: Free rotating slot for incredible community plugins.
+* **Corporate/Enterprise Sponsorship**: Contact us to feature your enterprise plugin or tool in the Featured slot for a fee.
