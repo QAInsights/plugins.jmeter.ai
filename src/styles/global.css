@@ -6,6 +6,7 @@
   --color-secondary: #ff4d4d;
   --color-dark-bg: #09090b;
   --color-dark-surface: #18181b;
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
