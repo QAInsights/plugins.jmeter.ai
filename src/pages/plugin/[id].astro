@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import pluginsData from '../../data/plugins_data.json';
+
+// Make this a statically generated route
+export async function getStaticPaths() {
+    return pluginsData.map(plugin => ({
+        params: { id: plugin.id },
+        props: { plugin },
+    }));
+}
+
+const { plugin } = Astro.props;
+
+// Format data just like the Modal
+const dlAbsolute = new Intl.NumberFormat('en-US').format(plugin.stats.absoluteDownloads);
+const trendArrow = plugin.stats.trendingDelta > 0 ? '+' : '';
+const trendDelta = new Intl.NumberFormat('en-US').format(plugin.stats.trendingDelta);
+
+// Determine the active screenshot
+let sUrl = plugin.screenshotUrl || plugin.screenshotURL || '';
+if (sUrl && !sUrl.startsWith('http')) {
+    sUrl = 'https://jmeter-plugins.org' + (sUrl.startsWith('/') ? '' : '/') + sUrl;
+}
+
+// Generate the OG Image
+const ogImage = sUrl || 'https://plugins.jmeter.ai/favicon.svg';
+
+const title = `${plugin.name} | PerfAtlas`;
+const description = `Discover ${plugin.name} by ${plugin.vendor}. ${plugin.description}`;
+const url = `https://plugins.jmeter.ai/plugin/${plugin.id}`;
+
+// Prepare Chart Data
+const history = plugin.stats.history || {};
+const chartLabels = Object.keys(history).sort();
+const chartData = chartLabels.map(l => history[l]);
+---
+
+<Layout title={title} description={description} image={ogImage} url={url}>
+    <Header />
+    <main class="flex-grow flex flex-col py-16 px-6">
+        <div class="max-w-4xl mx-auto w-full">
+            
+            {/* Back Button */}
+            <a href="/" class="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:hover:text-white mb-8 transition-colors text-sm font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Directory
+            </a>
+
+            {/* Plugin Header Card */}
+            <div class={`relative bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden mb-8 ${plugin.isAiReady ? 'p-[2px] ai-glow-wrapper' : ''}`}>
+                <div class={`relative bg-white dark:bg-dark-surface h-full w-full ${plugin.isAiReady ? 'rounded-[10px]' : ''}`}>
+                    {(plugin.sponsored || plugin.isFeatured) && (
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+                    )}
+                    
+                    <div class="p-8 md:p-12">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+                            <div>
+                                <h1 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight tracking-tight mb-2">
+                                    {plugin.name}
+                                </h1>
+                                <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
+                                    By {plugin.vendor} &bull; ID: {plugin.id}
+                                </p>
+                            </div>
+                            <div class="flex shrink-0 gap-3">
+                                <a href={plugin.helpUrl} target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-dark-bg font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-lg flex items-center gap-2">
+                                    View Repository
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10">
+                            {plugin.description}
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                            <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-6 border border-gray-100 dark:border-white/5">
+                                <h4 class="text-sm font-bold text-gray-500 uppercase mb-2">Total Downloads</h4>
+                                <p class="text-3xl font-black text-gray-900 dark:text-white">{dlAbsolute}</p>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-6 border border-gray-100 dark:border-white/5">
+                                <h4 class="text-sm font-bold text-gray-500 uppercase mb-2">Downloads This Week</h4>
+                                <p class={`text-3xl font-black ${plugin.stats.trendingDelta > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`}>
+                                    {trendArrow}{trendDelta}
+                                </p>
+                            </div>
+                        </div>
+
+                        {sUrl && (
+                            <div class="mb-10">
+                                <img src={sUrl} alt={`${plugin.name} UI Screenshot`} class="w-full h-auto rounded-xl border border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-black/20 shadow-sm" loading="lazy" />
+                            </div>
+                        )}
+
+                        <div class="mb-10">
+                            <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">Usage History</h4>
+                            <div class="w-full h-64 bg-gray-50 dark:bg-transparent rounded-xl border border-gray-100 dark:border-white/5 relative p-4" data-chart-labels={JSON.stringify(chartLabels)} data-chart-data={JSON.stringify(chartData)}>
+                                <canvas id="pluginUsageChart"></canvas>
+                            </div>
+                        </div>
+
+                        {plugin.componentClasses && plugin.componentClasses.length > 0 && (
+                            <div class="mb-10">
+                                <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">Component Classes</h4>
+                                <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-6 font-mono text-xs md:text-sm overflow-x-auto border border-gray-100 dark:border-white/5 max-h-64 overflow-y-auto leading-loose whitespace-pre text-gray-700 dark:text-gray-300">
+                                    {plugin.componentClasses.join('\n')}
+                                </div>
+                            </div>
+                        )}
+                        
+                        {/* GitHub Badge Generator */}
+                        <div class="border-t border-gray-100 dark:border-white/10 pt-8 mt-4">
+                            <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide flex items-center gap-2">
+                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+                                Embed on GitHub 
+                            </h4>
+                            <p class="text-sm text-gray-500 mb-4">Are you the author? Show off your plugin's listing on PerfAtlas by pasting this markdown badge in your README.md.</p>
+                            
+                            <div class="flex items-center gap-2 group cursor-pointer" id="badgeContainer" data-badge={`[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](${url})`}>
+                                <div class="bg-gray-100 dark:bg-black/30 border border-gray-200 dark:border-white/10 rounded-lg p-3 w-full font-mono text-xs text-gray-600 dark:text-gray-300 overflow-x-auto whitespace-pre group-hover:bg-gray-200 dark:group-hover:bg-white/5 transition-colors">
+                                    [![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)]({url})
+                                </div>
+                                <button id="copyBadgeBtn" class="p-3 bg-gray-200 dark:bg-white/10 group-hover:bg-primary group-hover:text-dark-bg transition-colors rounded-lg shrink-0 text-gray-600 dark:text-gray-300" title="Copy Markdown">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <Footer />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chartContainer = document.querySelector('[data-chart-labels]');
+            if (chartContainer) {
+                const labels = JSON.parse(chartContainer.getAttribute('data-chart-labels') || '[]');
+                const data = JSON.parse(chartContainer.getAttribute('data-chart-data') || '[]');
+                
+                const canvas = document.getElementById('pluginUsageChart') as HTMLCanvasElement;
+                if(canvas) {
+                    const ctx = canvas.getContext('2d');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    const chartColor = isDark ? '#ccff00' : '#b0d600'; 
+                    
+                    // @ts-ignore
+                    if (window.Chart && ctx) {
+                        // @ts-ignore
+                        new window.Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    data: data,
+                                    borderColor: chartColor,
+                                    borderWidth: 2,
+                                    backgroundColor: `${chartColor}20`,
+                                    fill: true,
+                                    pointRadius: 0,
+                                    pointHoverRadius: 6,
+                                    tension: 0.3
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { display: false },
+                                    tooltip: {
+                                        mode: 'index',
+                                        intersect: false,
+                                        backgroundColor: isDark ? '#18181b' : '#ffffff',
+                                        titleColor: isDark ? '#ffffff' : '#000000',
+                                        bodyColor: isDark ? '#a1a1aa' : '#4b5563',
+                                        borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                                        borderWidth: 1,
+                                        padding: 12
+                                    }
+                                },
+                                scales: {
+                                    x: { display: false },
+                                    y: {
+                                        grid: { color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' },
+                                        ticks: { color: isDark ? '#a1a1aa' : '#6b7280', maxTicksLimit: 6 },
+                                        border: { display: false }
+                                    }
+                                },
+                                interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                            }
+                        });
+                    }
+                }
+            }
+
+            const badgeContainer = document.getElementById('badgeContainer');
+            const copyBtn = document.getElementById('copyBadgeBtn');
+            if (badgeContainer && copyBtn) {
+                badgeContainer.addEventListener('click', () => {
+                    const md = badgeContainer.getAttribute('data-badge') || '';
+                    navigator.clipboard.writeText(md).then(() => {
+                        const originalHtml = copyBtn.innerHTML;
+                        copyBtn.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+                        setTimeout(() => { copyBtn.innerHTML = originalHtml; }, 2000);
+                    });
+                });
+            }
+        });
+    </script>
+</Layout>
