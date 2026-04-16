@@ -1,0 +1,15 @@
+---
+const lastSyncDate = new Date().toUTCString().replace('GMT', 'UTC');
+---
+<footer class="border-t border-gray-200 dark:border-white/10 py-12 px-6 mt-auto bg-gray-50 dark:bg-transparent">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-gray-500 dark:text-gray-400">
+        <p>&copy; {new Date().getFullYear()} PerfAtlas. <span class="hidden md:inline">|</span> Last synced: <span class="font-mono text-xs bg-gray-200 dark:bg-white/10 px-1.5 py-0.5 rounded ml-1">{lastSyncDate}</span></p>
+        <div class="flex flex-wrap gap-3 items-center justify-center font-medium">
+            <a href="https://jmeter.ai" target="_blank" rel="noopener" class="hover:text-gray-900 dark:hover:text-white transition-colors">jmeter.ai</a>
+            <span class="text-gray-300 dark:text-gray-700">|</span>
+            <a href="https://qainsights.com" target="_blank" rel="noopener" class="hover:text-gray-900 dark:hover:text-white transition-colors">qainsights.com</a>
+            <span class="text-gray-300 dark:text-gray-700">|</span>
+            <a href="https://ai.dosa.dev" target="_blank" rel="noopener" class="hover:text-gray-900 dark:hover:text-white transition-colors">ai.dosa.dev</a>
+        </div>
+    </div>
+</footer>

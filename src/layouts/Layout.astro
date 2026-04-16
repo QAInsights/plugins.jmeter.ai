@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+        <meta name="description" content="Discover, search, and track modern and AI-ready JMeter plugins. Community-driven directory automatically synced daily." />
+
+        <script>
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
+	</head>
+	<body class="min-h-screen flex flex-col font-sans antialiased overflow-x-hidden selection:bg-primary dark:selection:bg-[#ccff00] selection:text-white dark:selection:text-dark-bg">
+        <slot />
+    </body>
+</html>
