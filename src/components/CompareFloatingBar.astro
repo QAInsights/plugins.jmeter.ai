@@ -1,0 +1,144 @@
+---
+---
+<div id="compareBar" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[60] transform transition-all duration-500 translate-y-32 hidden">
+    <div class="bg-gray-900/90 dark:bg-dark-surface/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-4 flex items-center gap-6 min-w-[320px] max-w-[90vw]">
+        <div class="flex items-center gap-3 pr-6 border-r border-white/10">
+            <div class="relative">
+                <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                </div>
+                <div id="compareCount" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-gray-900">0</div>
+            </div>
+            <div>
+                <p class="text-white font-bold text-sm">Compare Plugins</p>
+                <p id="compareStatus" class="text-gray-400 text-[10px] uppercase font-bold tracking-widest">Select 2+ plugins</p>
+            </div>
+        </div>
+
+        <div id="compareThumbnails" class="flex items-center gap-2 overflow-x-auto max-w-[400px] py-1 scrollbar-hide">
+            <!-- Selected plugin thumbnails -->
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0 ml-auto">
+            <button id="clearCompare" class="text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest px-2 py-2">
+                Clear
+            </button>
+            <a id="compareBtn" href="/compare" class="bg-[#ccff00] text-black px-6 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-all opacity-50 pointer-events-none shadow-lg shadow-[#ccff00]/20">
+                Compare Now
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<script is:inline>
+    // Comparison State Management
+    (function() {
+        const MAX_COMPARE = 4;
+        let selectedIds = [];
+
+        try {
+            selectedIds = JSON.parse(localStorage.getItem('compareIds') || '[]');
+        } catch (e) {
+            selectedIds = [];
+        }
+
+        function updateCompareUI() {
+            const bar = document.getElementById('compareBar');
+            const countEl = document.getElementById('compareCount');
+            const statusEl = document.getElementById('compareStatus');
+            const btn = document.getElementById('compareBtn');
+            const thumbContainer = document.getElementById('compareThumbnails');
+
+            if (selectedIds.length > 0) {
+                bar.classList.remove('hidden');
+                // Use setTimeout to allow the browser to remove 'hidden' before animating translate-y
+                setTimeout(() => bar.classList.remove('translate-y-32'), 10);
+            } else {
+                bar.classList.add('translate-y-32');
+                setTimeout(() => bar.classList.add('hidden'), 500);
+            }
+
+            countEl.textContent = selectedIds.length;
+            
+            if (selectedIds.length < 2) {
+                statusEl.textContent = 'Select ' + (2 - selectedIds.length) + ' more';
+                statusEl.classList.add('text-gray-400');
+                statusEl.classList.remove('text-[#ccff00]');
+                btn.classList.add('opacity-50', 'pointer-events-none');
+                btn.href = '#';
+            } else {
+                statusEl.textContent = 'Ready to Analyze';
+                statusEl.classList.remove('text-gray-400');
+                statusEl.classList.add('text-[#ccff00]');
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+                btn.href = '/compare?ids=' + selectedIds.join(',');
+            }
+
+            // Update thumbnails
+            // We only show the initials or ID since we don't want to fetch all data here
+            // But on the directory page, we could sync names. For now, just show boxes.
+            thumbContainer.innerHTML = selectedIds.map(id => `
+                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[8px] font-black text-gray-500 uppercase p-1 text-center shrink-0">
+                    ${id.substring(0, 6)}
+                </div>
+            `).join('');
+
+            // Update all checkboxes on the page
+            document.querySelectorAll('.compare-checkbox').forEach(cb => {
+                const id = cb.getAttribute('data-plugin-id');
+                cb.checked = selectedIds.includes(id);
+                
+                // Disable other checkboxes if max reached
+                if (selectedIds.length >= MAX_COMPARE && !selectedIds.includes(id)) {
+                    cb.disabled = true;
+                    cb.parentElement.classList.add('opacity-30');
+                } else {
+                    cb.disabled = false;
+                    cb.parentElement.classList.remove('opacity-30');
+                }
+            });
+        }
+
+        function togglePlugin(id) {
+            const index = selectedIds.indexOf(id);
+            if (index > -1) {
+                selectedIds.splice(index, 1);
+            } else {
+                if (selectedIds.length < MAX_COMPARE) {
+                    selectedIds.push(id);
+                }
+            }
+            localStorage.setItem('compareIds', JSON.stringify(selectedIds));
+            updateCompareUI();
+        }
+
+        // Global event listener for checkboxes
+        document.addEventListener('change', (e) => {
+            if (e.target.classList.contains('compare-checkbox')) {
+                const id = e.target.getAttribute('data-plugin-id');
+                togglePlugin(id);
+            }
+        });
+
+        // Clear all
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'clearCompare') {
+                selectedIds = [];
+                localStorage.setItem('compareIds', JSON.stringify(selectedIds));
+                updateCompareUI();
+            }
+        });
+
+        // Initialize on load and after Astro navigation
+        window.addEventListener('load', updateCompareUI);
+        document.addEventListener('astro:after-swap', updateCompareUI);
+        
+        // Expose to cards that might be rendered dynamically
+        window.refreshCompareUI = updateCompareUI;
+    })();
+</script>

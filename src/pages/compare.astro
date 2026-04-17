@@ -1,0 +1,200 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import pluginsData from '../data/plugins_data.json';
+
+// We'll read the 'ids' from the URL on the client side to avoid huge paths in static build
+// but we can also pre-render common ones if we wanted. 
+// For now, it's a dynamic client-side comparison over static data.
+---
+
+<Layout title="Compare Plugins - PerfAtlas" description="Side-by-side comparison of JMeter plugins. Analyse performance, downloads, and AI-readiness.">
+    <Header />
+    
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex-grow w-full">
+        <div class="mb-12">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white mb-4">
+                Plugin <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-[#ccff00]">Comparison</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl">
+                Side-by-side analysis of your selected plugins.
+            </p>
+        </div>
+
+        <div class="flex items-center justify-between mb-6">
+            <div id="compareStats" class="text-sm text-gray-500">
+                {/* Comparison count text injected via JS */}
+            </div>
+            <button id="shareCompare" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary transition-all text-xs font-bold uppercase tracking-widest">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                Share Comparison
+            </button>
+        </div>
+
+        <div id="compareContainer" class="overflow-x-auto rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-dark-surface p-1 shadow-2xl">
+            <div id="loadingCompare" class="py-20 text-center">
+                <div class="w-12 h-12 rounded-full border-4 border-gray-200 dark:border-white/10 border-t-primary animate-spin mx-auto mb-4"></div>
+                <p class="text-gray-500">Loading comparison details...</p>
+            </div>
+            
+            <div id="emptyCompare" class="hidden py-40 text-center">
+                <h3 class="text-2xl font-bold dark:text-white mb-4">No plugins selected for comparison</h3>
+                <p class="text-gray-500 mb-8">Go back to the directory and select at least two plugins to compare.</p>
+                <a href="/" class="px-8 py-4 bg-primary text-gray-900 font-black rounded-xl hover:scale-105 transition-transform inline-block">
+                    Browse Directory
+                </a>
+            </div>
+
+            <table id="compareTable" class="w-full text-left border-collapse hidden">
+                <thead id="compareHeader">
+                    {/* Header injected via JS */}
+                </thead>
+                <tbody id="compareBody" class="divide-y divide-gray-100 dark:divide-white/5">
+                    {/* Rows injected via JS */}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>
+
+<script is:inline define:vars={{ pluginsData }}>
+    function initCompare() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ids = urlParams.get('ids')?.split(',').filter(Boolean) || [];
+        
+        const container = document.getElementById('compareContainer');
+        const loading = document.getElementById('loadingCompare');
+        const empty = document.getElementById('emptyCompare');
+        const table = document.getElementById('compareTable');
+        const header = document.getElementById('compareHeader');
+        const body = document.getElementById('compareBody');
+
+        if (ids.length === 0) {
+            loading.classList.add('hidden');
+            empty.classList.remove('hidden');
+            return;
+        }
+
+        const selectedPlugins = ids.map(id => pluginsData.find(p => p.id === id)).filter(Boolean);
+
+        if (selectedPlugins.length === 0) {
+            loading.classList.add('hidden');
+            empty.classList.remove('hidden');
+            return;
+        }
+
+        // Build Header
+        let headerHtml = `<tr>
+            <th class="p-6 bg-gray-50/50 dark:bg-white/[0.02] border-b border-gray-200 dark:border-white/10 w-48 text-xs font-bold uppercase tracking-widest text-gray-500">Attribute</th>`;
+        
+        selectedPlugins.forEach(p => {
+            headerHtml += `<th class="p-6 border-b border-gray-200 dark:border-white/10 min-w-[280px]">
+                <div class="flex flex-col gap-2">
+                    <span class="text-xs font-mono text-gray-400">${p.id}</span>
+                    <h3 class="text-lg font-black text-gray-900 dark:text-white leading-tight">${p.name}</h3>
+                    <span class="text-[10px] uppercase font-bold text-primary">${p.vendor}</span>
+                </div>
+            </th>`;
+        });
+        headerHtml += '</tr>';
+        header.innerHTML = headerHtml;
+
+        // Attributes to compare
+        const rows = [
+            { label: 'Description', key: 'description', type: 'text' },
+            { label: 'Total Downloads', key: 'absoluteDownloads', type: 'number', path: 'p.stats.absoluteDownloads' },
+            { label: 'Trending', key: 'trendingDelta', type: 'trending', path: 'p.stats.trendingDelta' },
+            { label: 'AI Ready', key: 'isAiReady', type: 'boolean' },
+            { label: 'Category', key: 'category', type: 'category' },
+            { label: 'GitHub Stars', key: 'stars', type: 'number', path: 'p.githubInfo?.stars || 0' },
+            { label: 'License', key: 'license', type: 'text', path: 'p.githubInfo?.license || "N/A"' }
+        ];
+
+        let bodyHtml = '';
+        rows.forEach(row => {
+            bodyHtml += `<tr class="group hover:bg-gray-50 dark:hover:bg-white/[0.01] transition-colors">
+                <td class="p-6 bg-gray-50/30 dark:bg-white/[0.01] font-bold text-sm text-gray-900 dark:text-gray-300 border-r border-gray-100 dark:border-white/5">${row.label}</td>`;
+            
+            selectedPlugins.forEach(p => {
+                let val = '';
+                if (row.path) {
+                    val = eval(row.path); // Safe here as row.path is controlled by us
+                } else {
+                    val = p[row.key];
+                }
+
+                let display = val;
+                if (row.type === 'number') display = new Intl.NumberFormat('en-US').format(val);
+                if (row.type === 'boolean') {
+                    display = val 
+                        ? '<span class="text-green-500 flex items-center gap-1">✔ Yes</span>' 
+                        : '<span class="text-gray-400">✖ No</span>';
+                }
+                if (row.type === 'trending') {
+                    display = val > 0 
+                        ? `<span class="text-green-500 font-bold">+${new Intl.NumberFormat('en-US').format(val)}</span>`
+                        : `<span class="text-gray-400">${new Intl.NumberFormat('en-US').format(val)}</span>`;
+                }
+                if (row.type === 'category') {
+                     let cat = 'Others';
+                    if (p.componentClasses) {
+                        const str = p.componentClasses.join(' ').toLowerCase();
+                        if (str.includes('assertion')) cat = 'Assertions';
+                        else if (str.includes('listener') || str.includes('visualizer')) cat = 'Listeners';
+                        else if (str.includes('sampler')) cat = 'Samplers';
+                        else if (str.includes('config')) cat = 'Configs';
+                        else if (str.includes('timer')) cat = 'Timers';
+                        else if (str.includes('processor')) cat = 'Processors';
+                    }
+                    display = `<span class="px-2 py-1 bg-gray-100 dark:bg-white/5 rounded text-[10px] uppercase font-bold">${cat}</span>`;
+                }
+
+                bodyHtml += `<td class="p-6 text-sm text-gray-600 dark:text-gray-400 align-top">${display}</td>`;
+            });
+            bodyHtml += '</tr>';
+        });
+
+        // Add "Get Plugin" row
+        bodyHtml += `<tr>
+            <td class="p-6 bg-gray-50/50 dark:bg-white/[0.02]"></td>`;
+        selectedPlugins.forEach(p => {
+            bodyHtml += `<td class="p-6">
+                <a href="${p.id.includes('/') ? `https://github.com/${p.id}` : `https://jmeter-plugins.org/?search=${p.id}`}" target="_blank" class="block text-center py-3 bg-gray-900 dark:bg-white text-white dark:text-black font-bold rounded-xl hover:bg-primary dark:hover:bg-[#ccff00] transition-colors">
+                    Get Plugin
+                </a>
+            </td>`;
+        });
+        bodyHtml += '</tr>';
+
+        body.innerHTML = bodyHtml;
+        loading.classList.add('hidden');
+        table.classList.remove('hidden');
+
+        // Update stats
+        const statsEl = document.getElementById('compareStats');
+        if (statsEl) {
+            statsEl.textContent = `Comparing ${selectedPlugins.length} plugin${selectedPlugins.length !== 1 ? 's' : ''}`;
+        }
+
+        // Share button
+        const shareBtn = document.getElementById('shareCompare');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(window.location.href);
+                const originalText = shareBtn.innerHTML;
+                shareBtn.innerHTML = '✔ Copied!';
+                shareBtn.classList.add('text-green-500');
+                setTimeout(() => {
+                    shareBtn.innerHTML = originalText;
+                    shareBtn.classList.remove('text-green-500');
+                }, 2000);
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', initCompare);
+    document.addEventListener('astro:after-swap', initCompare);
+</script>

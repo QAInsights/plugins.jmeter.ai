@@ -41,11 +41,21 @@ const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
 
     <div class="p-6 flex flex-col h-full">
     
-    <div class="flex items-center gap-2 mb-2 relative z-10">
-      <span class="text-[10px] font-mono text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/5 py-0.5 px-1.5 rounded">{plugin.id}</span>
-      <button type="button" class="copy-id-btn p-1 -ml-1 text-gray-400 hover:text-primary dark:hover:text-[#ccff00] transition-colors" data-plugin-id={plugin.id} title="Copy ID">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-      </button>
+    <div class="flex items-center justify-between mb-2 relative z-10">
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] font-mono text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/5 py-0.5 px-1.5 rounded">{plugin.id}</span>
+        <button type="button" class="copy-id-btn p-1 -ml-1 text-gray-400 hover:text-primary dark:hover:text-[#ccff00] transition-colors" data-plugin-id={plugin.id} title="Copy ID">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        </button>
+      </div>
+      
+      <label class="flex items-center gap-2 cursor-pointer group/compare" onclick="event.stopPropagation()">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover/compare:text-primary dark:group-hover/compare:text-[#ccff00] transition-colors">Compare</span>
+        <div class="relative inline-flex items-center">
+          <input type="checkbox" class="compare-checkbox sr-only peer" data-plugin-id={plugin.id}>
+          <div class="w-8 h-4 bg-gray-200 dark:bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary dark:peer-checked:bg-[#ccff00]"></div>
+        </div>
+      </label>
     </div>
 
     <div class="flex justify-between items-start mb-4">
