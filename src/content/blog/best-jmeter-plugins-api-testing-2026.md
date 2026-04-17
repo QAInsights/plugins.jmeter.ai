@@ -1,7 +1,7 @@
 ---
 title: "Best JMeter Plugins for API Load Testing in 2026 (With Download Stats & Benchmarks)"
 description: "Explore the top JMeter plugins for API load testing in 2026, featuring realistic workload modeling, protocol-specific enhancements like HTTP/2, and real-time observability."
-pubDate: 2026-04-17T12:00:00Z
+pubDate: 2026-04-16T12:00:00Z
 author: "NaveenKumar Namachivayam"
 image: "../../assets/blog/best-jmeter-plugins-api-testing-2026.png"
 imageAlt: "Featured image for Best JMeter Plugins for API Load Testing in 2026"
