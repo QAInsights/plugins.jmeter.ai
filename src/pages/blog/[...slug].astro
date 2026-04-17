@@ -4,9 +4,11 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
+import { getReadingTime, filterDrafts } from '../../utils/blog';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const allPosts = await getCollection('blog');
+    const posts = filterDrafts(allPosts);
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: { post },
@@ -38,9 +40,21 @@ const { Content } = await render(post);
                         })}
                     </time>
                     <span class="text-gray-300 dark:text-gray-700">&bull;</span>
-                    <span class="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
                         {post.data.author}
                     </span>
+                    <span class="text-gray-300 dark:text-gray-700">&bull;</span>
+                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        {getReadingTime(post.body || '')}
+                    </span>
+                    {post.data.draft && (
+                        <>
+                            <span class="text-gray-300 dark:text-gray-700">&bull;</span>
+                            <span class="px-2 py-0.5 rounded-md bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold uppercase tracking-wider border border-yellow-200 dark:border-yellow-500/30">
+                                Draft
+                            </span>
+                        </>
+                    )}
                 </div>
                 
                 <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">

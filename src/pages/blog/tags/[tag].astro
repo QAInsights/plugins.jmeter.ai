@@ -1,0 +1,85 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import { sortPosts, filterDrafts, getReadingTime } from '../../../utils/blog';
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection('blog');
+    const posts = filterDrafts(allPosts);
+    const uniqueTags = [...new Set(posts.map((post) => post.data.tags || []).flat())];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = posts.filter((post) => post.data.tags?.includes(tag));
+        return {
+            params: { tag },
+            props: { posts: sortPosts(filteredPosts) },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={`${tag} - PerfAtlas Blog`} description={`Explore all blog posts tagged with ${tag}.`}>
+    <Header />
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex-grow w-full">
+        <div class="mb-12 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4">
+                Topic: <span class="text-green-600 dark:text-[#ccff00]">{tag}</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl">
+                Showing all articles related to {tag}.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+                <article class="flex flex-col bg-white dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 dark:hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] group w-full">
+                    <a href={`/blog/${post.id}`} class="block overflow-hidden relative aspect-video">
+                        {post.data.image ? (
+                            <Image 
+                                src={post.data.image} 
+                                alt={post.data.imageAlt || post.data.title}
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                width={600}
+                                height={338}
+                                format="webp"
+                            />
+                        ) : (
+                            <div class="w-full h-full bg-gray-100 dark:bg-white/5 flex items-center justify-center">
+                                <span class="text-gray-400 dark:text-gray-600 font-medium">No Image</span>
+                            </div>
+                        )}
+                    </a>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 mb-3">
+                             <span class="text-[10px] font-mono text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/5 py-0.5 px-1.5 rounded uppercase tracking-wider">
+                                {getReadingTime(post.body || '')}
+                            </span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-[#ccff00] transition-colors leading-tight mb-3">
+                            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                        </h2>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 mb-6">
+                            {post.data.description}
+                        </p>
+                        <a href={`/blog/${post.id}`} class="mt-auto text-sm font-bold text-gray-900 dark:text-white flex items-center gap-1 group-hover:text-primary dark:group-hover:text-[#ccff00] transition-colors">
+                            Read more &rarr;
+                        </a>
+                    </div>
+                </article>
+            ))}
+        </div>
+        
+        <div class="mt-20 text-center">
+            <a href="/blog/tags" class="text-green-600 dark:text-[#ccff00] font-bold hover:underline">
+                View all topics &rarr;
+            </a>
+        </div>
+    </main>
+    <Footer />
+</Layout>

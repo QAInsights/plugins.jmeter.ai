@@ -3,7 +3,7 @@ title: "How to install JMeter Plugins Manager?"
 description: "Discover how to install JMeter Plugins Manager and explore the latest plugins to supercharge your testing workflows."
 pubDate: 2026-04-16T12:00:00Z
 author: "NaveenKumar Namachivayam"
-image: "./blog-header.png"
+image: "../../assets/blog/blog-header.png"
 imageAlt: "Abstract representation of data performance monitoring"
 tags: ["JMeter", "Plugins"]
 featured: true

@@ -4,10 +4,10 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import { sortPosts, filterDrafts, getReadingTime } from '../../utils/blog';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const allPosts = await getCollection('blog');
+const posts = sortPosts(filterDrafts(allPosts));
 ---
 
 <Layout title="Blog - PerfAtlas" description="Read the latest news and guides about JMeter plugins and performance testing.">
@@ -59,6 +59,15 @@ const posts = (await getCollection('blog')).sort(
                                     day: 'numeric',
                                 })}
                             </span>
+                            <span class="text-gray-300 dark:text-gray-700">&bull;</span>
+                            <span class="text-[10px] font-mono text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                                {getReadingTime(post.body || '')}
+                            </span>
+                            {post.data.draft && (
+                                <span class="px-2 py-0.5 rounded-md bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold uppercase tracking-wider border border-yellow-200 dark:border-yellow-500/30">
+                                    Draft
+                                </span>
+                            )}
                             {post.data.tags && post.data.tags.length > 0 && (
                                 <div class="flex items-center gap-2 flex-wrap">
                                     {post.data.tags.slice(0, 2).map((tag) => (

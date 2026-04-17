@@ -10,11 +10,12 @@ const blog = defineCollection({
     // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    author: z.string().default('PerfAtlas Team'),
+    author: z.string().default('NaveenKumar Namachivayam'),
     image: image().optional(), // image() handles local images efficiently
     imageAlt: z.string().optional(),
     tags: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
   }),
 });
 
