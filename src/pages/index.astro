@@ -6,6 +6,7 @@ import FeaturedTrending from '../components/FeaturedTrending.astro';
 import PluginCard from '../components/PluginCard.astro';
 import Footer from '../components/Footer.astro';
 import PluginModal from '../components/PluginModal.astro';
+import BadgesPromotion from '../components/BadgesPromotion.astro';
 import pluginsData from '../data/plugins_data.json';
 
 // Sort descending by trending delta for "Hot This Week"
@@ -39,6 +40,8 @@ const categories = Array.from(categoriesSet);
         <Hero />
         
         <FeaturedTrending trendingPlugins={trendingPlugins} />
+        
+        <BadgesPromotion />
 
         {/* All Plugins Grid with Filters */}
         <section class="py-10 px-6 flex-grow">
