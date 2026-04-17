@@ -68,7 +68,11 @@ const socialImageURL = new URL(image, Astro.site);
             }
         </script>
         
+        
         <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
+
+        {/* Cloudflare Web Analytics */}
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>
 	</head>
 	<body class="min-h-screen flex flex-col font-sans antialiased overflow-x-hidden selection:bg-primary dark:selection:bg-[#ccff00] selection:text-white dark:selection:text-dark-bg">
         <slot />
