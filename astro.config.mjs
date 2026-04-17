@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import expressiveCode from 'astro-expressive-code';
 import mdx from '@astrojs/mdx';
+import pagefind from 'astro-pagefind';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,7 +17,8 @@ export default defineConfig({
       }
     }),
     mdx(), 
-    sitemap()
+    sitemap(),
+    pagefind()
   ],
   vite: {
     plugins: [tailwindcss()]

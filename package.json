@@ -21,6 +21,8 @@
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.7",
     "astro-expressive-code": "^0.41.7",
+    "astro-pagefind": "^1.8.6",
+    "pagefind": "^1.5.2",
     "tailwindcss": "^4.2.2"
   }
 }
