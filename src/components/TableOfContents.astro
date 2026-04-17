@@ -1,0 +1,84 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+
+// Filter to only show h2 and h3 for a clean ToC
+const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
+---
+
+{toc.length > 0 && (
+  <nav class="toc-container">
+    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-4 border-b border-gray-200 dark:border-white/10 pb-2">
+      On this page
+    </h3>
+    <ul class="space-y-3">
+      {toc.map((heading) => (
+        <li class={`${heading.depth === 3 ? 'ml-4' : ''}`}>
+          <a
+            href={`#${heading.slug}`}
+            class="toc-link text-sm text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-all line-clamp-2 leading-snug"
+            data-slug={heading.slug}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .toc-link.active {
+    color: #16a34a; /* text-green-600 */
+    font-weight: 700; /* font-bold */
+    border-left: 2px solid #16a34a;
+    padding-left: 0.75rem; /* pl-3 */
+    margin-left: -14px;
+  }
+
+  :is(.dark .toc-link.active) {
+    color: #ccff00; /* dark:text-[#ccff00] */
+    border-color: #ccff00;
+  }
+</style>
+
+<script>
+  function observeHeadings() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -80% 0px',
+      threshold: 0,
+    };
+
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const headings = Array.from(tocLinks).map(link => 
+      document.getElementById(link.getAttribute('href')?.replace('#', '') || '')
+    ).filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          tocLinks.forEach((link) => {
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    headings.forEach((heading) => {
+      if (heading) observer.observe(heading);
+    });
+  }
+
+  // Run on page load and on Astro transitions if used
+  document.addEventListener('DOMContentLoaded', observeHeadings);
+  document.addEventListener('astro:after-swap', observeHeadings);
+</script>

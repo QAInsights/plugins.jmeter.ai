@@ -5,6 +5,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
 import { getReadingTime, filterDrafts } from '../../utils/blog';
+import TableOfContents from '../../components/TableOfContents.astro';
 import placeholderImg from '../../assets/blog/placeholder.png';
 
 export async function getStaticPaths() {
@@ -17,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <Layout 
@@ -29,74 +30,104 @@ const { Content } = await render(post);
     articleAuthor={post.data.author}
 >
     <Header />
-    <main class="max-w-4xl mx-auto px-6 py-12 md:py-20 flex-grow w-full">
-        <article data-pagefind-body>
-            <header class="mb-10 text-center">
-                <div class="flex items-center justify-center gap-3 mb-6">
-                    <time datetime={post.data.pubDate.toISOString()} class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                        {post.data.pubDate.toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                        })}
-                    </time>
-                    <span class="text-gray-300 dark:text-gray-700">&bull;</span>
-                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                        {post.data.author}
-                    </span>
-                    <span class="text-gray-300 dark:text-gray-700">&bull;</span>
-                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                        {getReadingTime(post.body || '')}
-                    </span>
-                    {post.data.draft && (
-                        <>
-                            <span class="text-gray-300 dark:text-gray-700">&bull;</span>
-                            <span class="px-2 py-0.5 rounded-md bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold uppercase tracking-wider border border-yellow-200 dark:border-yellow-500/30">
-                                Draft
-                            </span>
-                        </>
-                    )}
-                </div>
-                
-                <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
-                    {post.data.title}
-                </h1>
-                
-                {post.data.tags && post.data.tags.length > 0 && (
-                    <div class="flex items-center justify-center gap-2 mb-8 flex-wrap">
-                        {post.data.tags.map((tag) => (
-                            <span class="px-3 py-1 rounded-full bg-green-50 dark:bg-[#ccff00]/10 text-green-700 dark:text-[#ccff00] text-sm font-semibold">
-                                {tag}
-                            </span>
-                        ))}
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex-grow w-full">
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Sidebar TOC -->
+            <aside class="hidden lg:block w-64 shrink-0 order-1">
+                <div class="sticky top-24">
+                    <TableOfContents headings={headings} />
+                    
+                    <div class="mt-12 p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">Share this post</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Help others find this guide.</p>
+                        <div class="flex gap-2">
+                            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url.href)}`} target="_blank" class="p-2 rounded-lg bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                            </a>
+                            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`} target="_blank" class="p-2 rounded-lg bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                            </a>
+                        </div>
                     </div>
-                )}
 
-                <div class="rounded-2xl overflow-hidden mb-12 shadow-xl border border-gray-100 dark:border-white/5">
-                        <Image 
-                        src={post.data.image || placeholderImg} 
-                        alt={post.data.imageAlt || post.data.title}
-                        class="w-full h-auto object-cover max-h-[500px]"
-                        width={1200}
-                        height={675}
-                        format="webp"
-                    />
+                    <a href="/blog" class="mt-8 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 text-gray-500 hover:text-green-600 dark:hover:text-[#ccff00] transition-all text-xs font-bold uppercase tracking-widest">
+                        &larr; All Posts
+                    </a>
                 </div>
-            </header>
+            </aside>
 
-            <div class="prose prose-lg dark:prose-invert prose-green max-w-none prose-headings:font-bold prose-a:text-green-600 dark:prose-a:text-[#ccff00] hover:prose-a:text-green-500 prose-img:rounded-xl prose-img:shadow-lg">
-                <Content />
-            </div>
-            
-            <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-white/10 flex items-center justify-between">
-                <a href="/blog" class="text-green-600 dark:text-[#ccff00] font-bold hover:underline flex items-center gap-2">
-                    &larr; Back to Blog
-                </a>
-                <a href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900 dark:hover:text-white font-medium text-sm transition-colors">
-                    Suggest an Edit
-                </a>
-            </footer>
-        </article>
-    </main>
+            <!-- Article Body -->
+            <article class="flex-1 min-w-0 order-2" data-pagefind-body>
+                <header class="mb-10 text-center">
+                    <div class="flex items-center justify-center gap-3 mb-6">
+                        <time datetime={post.data.pubDate.toISOString()} class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {post.data.pubDate.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                            })}
+                        </time>
+                        <span class="text-gray-300 dark:text-gray-700">&bull;</span>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {post.data.author}
+                        </span>
+                        <span class="text-gray-300 dark:text-gray-700">&bull;</span>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {getReadingTime(post.body || '')}
+                        </span>
+                        {post.data.draft && (
+                            <>
+                                <span class="text-gray-300 dark:text-gray-700">&bull;</span>
+                                <span class="px-2 py-0.5 rounded-md bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold uppercase tracking-wider border border-yellow-200 dark:border-yellow-500/30">
+                                    Draft
+                                </span>
+                            </>
+                        )}
+                    </div>
+                    
+                    <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
+                        {post.data.title}
+                    </h1>
+                    
+                    {post.data.tags && post.data.tags.length > 0 && (
+                        <div class="flex items-center justify-center gap-2 mb-8 flex-wrap">
+                            {post.data.tags.map((tag) => (
+                                <span class="px-3 py-1 rounded-full bg-green-50 dark:bg-[#ccff00]/10 text-green-700 dark:text-[#ccff00] text-sm font-semibold">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
+                    <div class="rounded-2xl overflow-hidden mb-12 shadow-xl border border-gray-100 dark:border-white/5">
+                            <Image 
+                            src={post.data.image || placeholderImg} 
+                            alt={post.data.imageAlt || post.data.title}
+                            class="w-full h-auto object-cover max-h-[500px]"
+                            width={1200}
+                            height={675}
+                            format="webp"
+                        />
+                    </div>
+                </header>
+
+                <div class="prose prose-lg dark:prose-invert prose-green max-w-none prose-headings:font-bold prose-a:text-green-600 dark:prose-a:text-[#ccff00] hover:prose-a:text-green-500 prose-img:rounded-xl prose-img:shadow-lg">
+                    <Content />
+                </div>
+                
+                <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-white/10 flex items-center justify-between">
+                    <a href="/" class="hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-medium">
+                        Home
+                    </a>
+                    <a href="/blog" class="hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white border-b-2 border-green-600 dark:border-[#ccff00]">
+                        Blog
+                    </a>
+                    <a href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900 dark:hover:text-white font-medium text-sm transition-colors">
+                        Suggest an Edit
+                    </a>
+                </footer>
+            </article>
+    </div>
+</main>
     <Footer />
 </Layout>
