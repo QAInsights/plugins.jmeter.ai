@@ -5,6 +5,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
 import { getReadingTime, filterDrafts } from '../../utils/blog';
+import placeholderImg from '../../assets/blog/placeholder.png';
 
 export async function getStaticPaths() {
 	const allPosts = await getCollection('blog');
@@ -22,7 +23,7 @@ const { Content } = await render(post);
 <Layout 
     title={`${post.data.title} - PerfAtlas Blog`} 
     description={post.data.description}
-    image={post.data.image ? post.data.image.src : undefined}
+    image={post.data.image ? post.data.image.src : placeholderImg.src}
     type="article"
     articleDate={post.data.pubDate.toISOString()}
     articleAuthor={post.data.author}
@@ -71,18 +72,16 @@ const { Content } = await render(post);
                     </div>
                 )}
 
-                {post.data.image && (
-                    <div class="rounded-2xl overflow-hidden mb-12 shadow-xl border border-gray-100 dark:border-white/5">
-                         <Image 
-                            src={post.data.image} 
-                            alt={post.data.imageAlt || post.data.title}
-                            class="w-full h-auto object-cover max-h-[500px]"
-                            width={1200}
-                            height={675}
-                            format="webp"
-                        />
-                    </div>
-                )}
+                <div class="rounded-2xl overflow-hidden mb-12 shadow-xl border border-gray-100 dark:border-white/5">
+                        <Image 
+                        src={post.data.image || placeholderImg} 
+                        alt={post.data.imageAlt || post.data.title}
+                        class="w-full h-auto object-cover max-h-[500px]"
+                        width={1200}
+                        height={675}
+                        format="webp"
+                    />
+                </div>
             </header>
 
             <div class="prose prose-lg dark:prose-invert prose-green max-w-none prose-headings:font-bold prose-a:text-green-600 dark:prose-a:text-[#ccff00] hover:prose-a:text-green-500 prose-img:rounded-xl prose-img:shadow-lg">
