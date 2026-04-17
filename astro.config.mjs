@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import expressiveCode from 'astro-expressive-code';
 import mdx from '@astrojs/mdx';
 import pagefind from 'astro-pagefind';
+import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,7 +19,17 @@ export default defineConfig({
     }),
     mdx(), 
     sitemap(),
-    pagefind()
+    pagefind(),
+    compress({
+      CSS: true,
+      HTML: {
+        'collapse-whitespace': true,
+        'remove-comments': true,
+      },
+      Image: false, // We use Astro's built-in image optimization
+      JavaScript: true,
+      SVG: true,
+    })
   ],
   vite: {
     plugins: [tailwindcss()]
