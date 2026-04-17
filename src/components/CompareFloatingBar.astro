@@ -1,29 +1,29 @@
 ---
 ---
 <div id="compareBar" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[60] transform transition-all duration-500 translate-y-32 hidden">
-    <div class="bg-gray-900/90 dark:bg-dark-surface/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-4 flex items-center gap-6 min-w-[320px] max-w-[90vw]">
-        <div class="flex items-center gap-3 pr-6 border-r border-white/10">
+    <div class="bg-gray-900/90 dark:bg-dark-surface/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-3 sm:p-4 flex items-center justify-between sm:justify-start gap-2 sm:gap-6 w-[95vw] sm:min-w-[320px] sm:max-w-[90vw]">
+        <div class="flex items-center gap-2 sm:gap-3 pr-2 sm:pr-6 border-r border-white/10 shrink-0">
             <div class="relative">
-                <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 text-primary">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 text-primary">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                 </div>
                 <div id="compareCount" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-gray-900">0</div>
             </div>
-            <div>
-                <p class="text-white font-bold text-sm">Compare Plugins</p>
-                <p id="compareStatus" class="text-gray-400 text-[10px] uppercase font-bold tracking-widest">Select 2+ plugins</p>
+            <div class="hidden sm:block">
+                <p class="text-white font-bold text-xs sm:text-sm whitespace-nowrap">Compare Plugins</p>
+                <p id="compareStatus" class="text-gray-400 text-[9px] sm:text-[10px] uppercase font-bold tracking-widest whitespace-nowrap">Select 2+</p>
             </div>
         </div>
 
-        <div id="compareThumbnails" class="flex items-center gap-2 overflow-x-auto max-w-[400px] py-1 scrollbar-hide">
+        <div id="compareThumbnails" class="hidden md:flex items-center gap-2 overflow-x-auto max-w-[400px] py-1 scrollbar-hide">
             <!-- Selected plugin thumbnails -->
         </div>
 
-        <div class="flex items-center gap-3 shrink-0 ml-auto">
-            <button id="clearCompare" class="text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest px-2 py-2">
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0 ml-auto">
+            <button id="clearCompare" class="text-gray-400 hover:text-white transition-colors text-[10px] sm:text-xs font-bold uppercase tracking-widest px-1 sm:px-2 py-2">
                 Clear
             </button>
-            <a id="compareBtn" href="/compare" class="bg-[#ccff00] text-black px-6 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-all opacity-50 pointer-events-none shadow-lg shadow-[#ccff00]/20">
+            <a id="compareBtn" href="/compare" class="bg-[#ccff00] text-black px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-bold text-xs sm:text-sm hover:scale-105 transition-all opacity-50 pointer-events-none shadow-lg shadow-[#ccff00]/20 whitespace-nowrap">
                 Compare Now
             </a>
         </div>
