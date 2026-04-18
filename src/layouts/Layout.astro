@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import ScrollToTop from '../components/ScrollToTop.astro';
 import CompareFloatingBar from '../components/CompareFloatingBar.astro';
+import InstallFloatingBar from '../components/InstallFloatingBar.astro';
 import { SEO } from "astro-seo";
 
 interface Props {
@@ -86,5 +87,6 @@ const socialImageURL = new URL(image, Astro.site || 'https://plugins.jmeter.ai')
         <slot />
         <ScrollToTop />
         <CompareFloatingBar />
+        <InstallFloatingBar />
     </body>
 </html>

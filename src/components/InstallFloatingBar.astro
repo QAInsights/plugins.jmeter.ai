@@ -38,6 +38,20 @@
             installIds = [];
         }
 
+        function detectCmdName() {
+            try {
+                const uaData = navigator.userAgentData;
+                if (uaData && uaData.platform) {
+                    if (/windows/i.test(uaData.platform)) return 'PluginsManagerCMD.bat';
+                }
+            } catch (e) { /* ignore */ }
+            const ua = (navigator.userAgent || '') + ' ' + (navigator.platform || '');
+            if (/win/i.test(ua) && !/darwin|mac/i.test(ua)) return 'PluginsManagerCMD.bat';
+            return 'PluginsManagerCMD.sh';
+        }
+
+        const CMD_NAME = detectCmdName();
+
         function updateInstallUI() {
             const bar = document.getElementById('installBar');
             const countEl = document.getElementById('installCount');
@@ -56,7 +70,7 @@
             }
 
             if (countEl) countEl.textContent = `${installIds.length} selected`;
-            if (cmdText) cmdText.textContent = `PluginsManagerCMD.sh install ${installIds.join(',')}`;
+            if (cmdText) cmdText.textContent = `${CMD_NAME} install ${installIds.join(',')}`;
 
             // Update all install buttons on the page
             document.querySelectorAll('.install-add-btn').forEach(btn => {
@@ -86,24 +100,28 @@
             updateInstallUI();
         }
 
-        // Global event listener for install buttons
+        // Global event listener for install buttons.
+        // Use CAPTURE phase so we run before inline onclick="event.stopPropagation()"
+        // on .install-add-btn inside cards (otherwise bubble-phase handler never fires).
         document.addEventListener('click', (e) => {
-            const btn = e.target.closest('.install-add-btn');
+            const btn = e.target.closest && e.target.closest('.install-add-btn');
             if (btn) {
                 e.preventDefault();
                 const id = btn.getAttribute('data-plugin-id');
                 if (id) {
                     toggleInstallPlugin(id);
                 }
+                return;
             }
 
             if (e.target.id === 'clearInstall') {
                 installIds = [];
                 localStorage.setItem('installIds', JSON.stringify(installIds));
                 updateInstallUI();
+                return;
             }
 
-            const copyBtn = e.target.closest('#copyInstallCmd');
+            const copyBtn = e.target.closest && e.target.closest('#copyInstallCmd');
             if (copyBtn) {
                 const cmdText = document.getElementById('installCmdText').textContent;
                 navigator.clipboard.writeText(cmdText).then(() => {
@@ -112,12 +130,50 @@
                     setTimeout(() => { copyBtn.innerHTML = originalHtml; }, 2000);
                 });
             }
-        });
+        }, true);
 
         // Initialize on load and after Astro navigation
         window.addEventListener('load', updateInstallUI);
         document.addEventListener('astro:after-swap', updateInstallUI);
         document.addEventListener('plugin:install-update', updateInstallUI);
+
+        // Keep the floating bar visible when <dialog> modals are opened.
+        // Native dialog.showModal() promotes the dialog to the top layer which
+        // visually hides any fixed-position elements outside it. Move the
+        // install bar into the open dialog so it joins the top layer too.
+        function relocateBarForModal() {
+            const bar = document.getElementById('installBar');
+            if (!bar) return;
+            const openDialog = document.querySelector('dialog[open]');
+            if (openDialog) {
+                if (bar.parentElement !== openDialog) {
+                    openDialog.appendChild(bar);
+                }
+            } else if (bar.parentElement !== document.body) {
+                // Always restore to body when no dialog is open — never leave
+                // the bar stranded inside a closed dialog.
+                document.body.appendChild(bar);
+            }
+        }
+
+        // Observe every dialog for `open` attribute changes (covers both
+        // showModal() and close()). This is more reliable than listening to
+        // the modal's custom event, which fires before showModal() is called.
+        function observeDialogs() {
+            document.querySelectorAll('dialog').forEach(dlg => {
+                if (dlg.__installBarObserved) return;
+                dlg.__installBarObserved = true;
+                const mo = new MutationObserver(relocateBarForModal);
+                mo.observe(dlg, { attributes: true, attributeFilter: ['open'] });
+            });
+        }
+        observeDialogs();
+        document.addEventListener('astro:after-swap', observeDialogs);
+        // Also keep listening for install-update (in case DOM added dialogs late)
+        document.addEventListener('plugin:install-update', () => {
+            observeDialogs();
+            relocateBarForModal();
+        });
 
         // Expose to cards that might be rendered dynamically
         window.refreshInstallUI = updateInstallUI;
