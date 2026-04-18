@@ -20,7 +20,7 @@ if (plugin.componentClasses) {
   else if (classesStr.includes('processor')) category = 'Processors';
 }
 
-const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
+const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
 ---
 
 <div tabindex="0" role="button"

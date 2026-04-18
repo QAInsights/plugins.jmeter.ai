@@ -100,12 +100,12 @@ const minifiedPlugins = [...pluginsRaw]
 
         container.addEventListener('click', () => {
             if (hoveredNode && window.openPluginModal) {
-                // @ts-ignore
                 window.openPluginModal(hoveredNode.plugin._raw);
             }
         });
 
         window.addEventListener('resize', () => {
+            if (!ctx) return;
             width = container.clientWidth;
             height = container.clientHeight;
             canvas.width = width * window.devicePixelRatio;
@@ -114,7 +114,7 @@ const minifiedPlugins = [...pluginsRaw]
         });
 
         function draw() {
-            if (!isAnimating) return;
+            if (!isAnimating || !ctx) return;
 
             const isDark = document.documentElement.classList.contains('dark');
             const bgColor = isDark ? '#09090b' : '#f9fafb';
