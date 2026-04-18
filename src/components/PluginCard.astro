@@ -49,13 +49,27 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
         </button>
       </div>
       
-      <label class="flex items-center gap-2 cursor-pointer group/compare" onclick="event.stopPropagation()">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover/compare:text-primary dark:group-hover/compare:text-[#ccff00] transition-colors">Compare</span>
-        <div class="relative inline-flex items-center">
-          <input type="checkbox" class="compare-checkbox sr-only peer" data-plugin-id={plugin.id}>
-          <div class="w-8 h-4 bg-gray-200 dark:bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary dark:peer-checked:bg-[#ccff00]"></div>
-        </div>
-      </label>
+      <div class="flex items-center gap-1">
+        <button
+          type="button"
+          class="install-add-btn group/install relative flex items-center justify-center w-7 h-7 rounded-md text-gray-400 dark:text-gray-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-500/10 border border-transparent hover:border-green-500/30 transition-all z-20"
+          data-plugin-id={plugin.id}
+          aria-label="Add to install list"
+          title="Add to install list"
+          onclick="event.stopPropagation()"
+        >
+          <svg class="w-4 h-4 install-icon-plus" fill="none" stroke="currentColor" stroke-width="2.25" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+          <svg class="w-4 h-4 install-icon-check hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+          <span class="sr-only install-btn-label">Install</span>
+        </button>
+        <label class="flex items-center gap-1.5 cursor-pointer group/compare px-1.5 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors" onclick="event.stopPropagation()" title="Add to compare">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 group-hover/compare:text-gray-700 dark:group-hover/compare:text-gray-200 transition-colors">Compare</span>
+          <div class="relative inline-flex items-center">
+            <input type="checkbox" class="compare-checkbox sr-only peer" data-plugin-id={plugin.id}>
+            <div class="w-8 h-4 bg-gray-200 dark:bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary dark:peer-checked:bg-[#ccff00]"></div>
+          </div>
+        </label>
+      </div>
     </div>
 
     <div class="flex justify-between items-start mb-4">
