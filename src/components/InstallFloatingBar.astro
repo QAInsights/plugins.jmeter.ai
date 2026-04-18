@@ -44,15 +44,19 @@
             const cmdText = document.getElementById('installCmdText');
 
             if (installIds.length > 0) {
-                bar.classList.remove('hidden');
-                setTimeout(() => bar.classList.remove('translate-y-32'), 10);
+                if (bar) {
+                    bar.classList.remove('hidden');
+                    setTimeout(() => bar.classList.remove('translate-y-32'), 10);
+                }
             } else {
-                bar.classList.add('translate-y-32');
-                setTimeout(() => bar.classList.add('hidden'), 500);
+                if (bar) {
+                    bar.classList.add('translate-y-32');
+                    setTimeout(() => bar.classList.add('hidden'), 500);
+                }
             }
 
-            countEl.textContent = `${installIds.length} selected`;
-            cmdText.textContent = `PluginsManagerCMD.sh install ${installIds.join(',')}`;
+            if (countEl) countEl.textContent = `${installIds.length} selected`;
+            if (cmdText) cmdText.textContent = `PluginsManagerCMD.sh install ${installIds.join(',')}`;
 
             // Update all install buttons on the page
             document.querySelectorAll('.install-add-btn').forEach(btn => {
@@ -62,11 +66,11 @@
                 if (isSelected) {
                     btn.classList.add('bg-green-500/20', 'text-green-600', 'dark:text-green-400', 'border-green-500/30');
                     btn.classList.remove('bg-gray-100', 'dark:bg-white/5', 'text-gray-500');
-                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-[10px] font-bold uppercase tracking-wider ml-1">Added</span>`;
+                    if (btn.querySelector('span')) btn.querySelector('span').textContent = 'Added';
                 } else {
                     btn.classList.remove('bg-green-500/20', 'text-green-600', 'dark:text-green-400', 'border-green-500/30');
                     btn.classList.add('bg-gray-100', 'dark:bg-white/5', 'text-gray-500');
-                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg><span class="text-[10px] font-bold uppercase tracking-wider ml-1">Install</span>`;
+                    if (btn.querySelector('span')) btn.querySelector('span').textContent = 'Install';
                 }
             });
         }
@@ -86,10 +90,11 @@
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('.install-add-btn');
             if (btn) {
-                e.stopPropagation();
                 e.preventDefault();
                 const id = btn.getAttribute('data-plugin-id');
-                toggleInstallPlugin(id);
+                if (id) {
+                    toggleInstallPlugin(id);
+                }
             }
 
             if (e.target.id === 'clearInstall') {
