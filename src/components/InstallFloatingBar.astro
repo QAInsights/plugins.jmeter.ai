@@ -76,15 +76,23 @@
             document.querySelectorAll('.install-add-btn').forEach(btn => {
                 const id = btn.getAttribute('data-plugin-id');
                 const isSelected = installIds.includes(id);
+                const label = btn.querySelector('span:not(.sr-only):not(.install-btn-label):not(.pointer-events-none)')
+                    || btn.querySelector('span.install-btn-label')
+                    || btn.querySelector('span');
+                const plusIcon = btn.querySelector('.install-icon-plus');
+                const checkIcon = btn.querySelector('.install-icon-check');
 
                 if (isSelected) {
-                    btn.classList.add('bg-green-500/20', 'text-green-600', 'dark:text-green-400', 'border-green-500/30');
-                    btn.classList.remove('bg-gray-100', 'dark:bg-white/5', 'text-gray-500');
-                    if (btn.querySelector('span')) btn.querySelector('span').textContent = 'Added';
+                    btn.classList.add('bg-green-500/15', 'text-green-600', 'dark:text-green-400', 'border-green-500/40');
+                    btn.classList.remove('text-gray-400', 'dark:text-gray-500', 'text-gray-700', 'dark:text-white');
+                    if (plusIcon) plusIcon.classList.add('hidden');
+                    if (checkIcon) checkIcon.classList.remove('hidden');
+                    if (label && !label.classList.contains('sr-only')) label.textContent = 'Added';
                 } else {
-                    btn.classList.remove('bg-green-500/20', 'text-green-600', 'dark:text-green-400', 'border-green-500/30');
-                    btn.classList.add('bg-gray-100', 'dark:bg-white/5', 'text-gray-500');
-                    if (btn.querySelector('span')) btn.querySelector('span').textContent = 'Install';
+                    btn.classList.remove('bg-green-500/15', 'text-green-600', 'dark:text-green-400', 'border-green-500/40');
+                    if (plusIcon) plusIcon.classList.remove('hidden');
+                    if (checkIcon) checkIcon.classList.add('hidden');
+                    if (label && !label.classList.contains('sr-only')) label.textContent = 'Install';
                 }
             });
         }
@@ -136,44 +144,6 @@
         window.addEventListener('load', updateInstallUI);
         document.addEventListener('astro:after-swap', updateInstallUI);
         document.addEventListener('plugin:install-update', updateInstallUI);
-
-        // Keep the floating bar visible when <dialog> modals are opened.
-        // Native dialog.showModal() promotes the dialog to the top layer which
-        // visually hides any fixed-position elements outside it. Move the
-        // install bar into the open dialog so it joins the top layer too.
-        function relocateBarForModal() {
-            const bar = document.getElementById('installBar');
-            if (!bar) return;
-            const openDialog = document.querySelector('dialog[open]');
-            if (openDialog) {
-                if (bar.parentElement !== openDialog) {
-                    openDialog.appendChild(bar);
-                }
-            } else if (bar.parentElement !== document.body) {
-                // Always restore to body when no dialog is open — never leave
-                // the bar stranded inside a closed dialog.
-                document.body.appendChild(bar);
-            }
-        }
-
-        // Observe every dialog for `open` attribute changes (covers both
-        // showModal() and close()). This is more reliable than listening to
-        // the modal's custom event, which fires before showModal() is called.
-        function observeDialogs() {
-            document.querySelectorAll('dialog').forEach(dlg => {
-                if (dlg.__installBarObserved) return;
-                dlg.__installBarObserved = true;
-                const mo = new MutationObserver(relocateBarForModal);
-                mo.observe(dlg, { attributes: true, attributeFilter: ['open'] });
-            });
-        }
-        observeDialogs();
-        document.addEventListener('astro:after-swap', observeDialogs);
-        // Also keep listening for install-update (in case DOM added dialogs late)
-        document.addEventListener('plugin:install-update', () => {
-            observeDialogs();
-            relocateBarForModal();
-        });
 
         // Expose to cards that might be rendered dynamically
         window.refreshInstallUI = updateInstallUI;
