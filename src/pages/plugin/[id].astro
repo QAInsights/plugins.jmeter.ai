@@ -2,7 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import PluginCard from '../../components/PluginCard.astro';
 import pluginsData from '../../data/plugins_data.json';
+import { getRelatedPlugins, inferCategory } from '../../utils/plugin';
 
 // Make this a statically generated route
 export async function getStaticPaths() {
@@ -36,6 +38,11 @@ const url = `https://plugins.jmeter.ai/plugin/${plugin.id}`;
 const history = plugin.stats.history || {};
 const chartLabels = Object.keys(history).sort();
 const chartData = chartLabels.map(l => history[l]);
+
+// Related plugins (same vendor / same inferred category)
+const { sameVendor, sameCategory } = getRelatedPlugins(plugin, pluginsData, { limit: 3 });
+const relatedCategory = inferCategory(plugin);
+const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
 ---
 
 <Layout title={title} description={description} image={ogImage} url={url}>
@@ -135,6 +142,42 @@ const chartData = chartLabels.map(l => history[l]);
                             </div>
                         </div>
 
+                        {hasRelated && (
+                            <div class="border-t border-gray-100 dark:border-white/10 pt-10 mt-8">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Related Plugins</h3>
+
+                                {sameVendor.length > 0 && (
+                                    <div class="mb-8">
+                                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
+                                            More from {plugin.vendor}
+                                        </h4>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                            {sameVendor.map((rp) => (
+                                                <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
+                                                    <PluginCard plugin={rp} />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {sameCategory.length > 0 && (
+                                    <div>
+                                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
+                                            Similar {relatedCategory} plugins
+                                        </h4>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                            {sameCategory.map((rp) => (
+                                                <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
+                                                    <PluginCard plugin={rp} />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
                         <div class="border-t border-gray-100 dark:border-white/10 pt-10 mt-8">
                             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Community Discussions</h3>
                             <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-4 sm:p-6 border border-gray-100 dark:border-white/5 min-h-[250px]">
@@ -211,6 +254,18 @@ const chartData = chartLabels.map(l => history[l]);
                     }
                 }
             }
+
+            // Navigate when a related plugin card is clicked. Ignore clicks
+            // that originate from interactive controls inside the card so
+            // install/compare/copy-id buttons keep working.
+            document.querySelectorAll('.related-plugin-link').forEach((wrap) => {
+                wrap.addEventListener('click', (e) => {
+                    const target = e.target as HTMLElement | null;
+                    if (target && target.closest('button, input, label, a')) return;
+                    const href = wrap.getAttribute('data-href');
+                    if (href) window.location.href = href;
+                });
+            });
 
             const badgeContainer = document.getElementById('badgeContainer');
             const copyBtn = document.getElementById('copyBadgeBtn');

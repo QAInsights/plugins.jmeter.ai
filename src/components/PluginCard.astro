@@ -1,4 +1,6 @@
 ---
+import { inferCategory } from '../utils/plugin';
+
 const { plugin } = Astro.props;
 
 // Determine tags
@@ -7,18 +9,7 @@ if (plugin.isFeatured) tags.push('Featured');
 if (plugin.isAiReady) tags.push('AI Ready');
 if (plugin.sponsored) tags.push('Sponsored');
 
-// Try to infer a category from class names
-let category = 'Others';
-if (plugin.componentClasses) {
-  const classesStr = plugin.componentClasses.join(' ').toLowerCase();
-  // Using exact broader categories requested
-  if (classesStr.includes('assertion')) category = 'Assertions';
-  else if (classesStr.includes('listener') || classesStr.includes('visualizer')) category = 'Listeners';
-  else if (classesStr.includes('sampler')) category = 'Samplers';
-  else if (classesStr.includes('config')) category = 'Configs';
-  else if (classesStr.includes('timer')) category = 'Timers';
-  else if (classesStr.includes('processor')) category = 'Processors';
-}
+const category = inferCategory(plugin);
 
 const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
 ---
