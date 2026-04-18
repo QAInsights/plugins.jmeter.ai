@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { inferCategory, getRelatedPlugins, type PluginLike } from '../../src/utils/plugin';
+import {
+  inferCategory,
+  getRelatedPlugins,
+  hasChangelog,
+  getChangelogTimeline,
+  type PluginLike,
+} from '../../src/utils/plugin';
 
 const makePlugin = (overrides: Partial<PluginLike> & { id: string }): PluginLike => ({
   vendor: 'Acme',
@@ -191,5 +197,114 @@ describe('getRelatedPlugins', () => {
     ];
     const { sameVendor } = getRelatedPlugins(current, all);
     expect(sameVendor[0].id).toBe('v2');
+  });
+});
+
+describe('hasChangelog', () => {
+  it('returns false when versions only contains an empty-string key with a Maven template URL', () => {
+    expect(
+      hasChangelog({
+        versions: {
+          '': {
+            downloadUrl:
+              'https://search.maven.org/remotecontent?filepath=org/apache/jmeter/ApacheJMeter_ftp/%1$s/ApacheJMeter_ftp-%1$s.jar',
+          },
+        },
+      })
+    ).toBe(false);
+  });
+
+  it('returns false when versions is missing or empty', () => {
+    expect(hasChangelog({})).toBe(false);
+    expect(hasChangelog({ versions: {} })).toBe(false);
+  });
+
+  it('returns true when at least one version has a concrete downloadUrl', () => {
+    expect(
+      hasChangelog({
+        versions: {
+          '1.0.2': {
+            changes: 'Initial release',
+            downloadUrl: 'https://example.com/plugin-1.0.2.jar',
+          },
+        },
+      })
+    ).toBe(true);
+  });
+});
+
+describe('getChangelogTimeline', () => {
+  it('returns entries sorted newest-first with semver-aware ordering', () => {
+    const timeline = getChangelogTimeline({
+      versions: {
+        '1.2': { downloadUrl: 'https://example.com/1.2.jar' },
+        '1.10': { downloadUrl: 'https://example.com/1.10.jar' },
+        '1.9': { downloadUrl: 'https://example.com/1.9.jar' },
+      },
+    });
+    expect(timeline.map((e) => e.version)).toEqual(['1.10', '1.9', '1.2']);
+  });
+
+  it('skips empty-string version keys', () => {
+    const timeline = getChangelogTimeline({
+      versions: {
+        '': { downloadUrl: 'https://example.com/template/%1$s.jar' },
+        '2.0': { downloadUrl: 'https://example.com/2.0.jar' },
+      },
+    });
+    expect(timeline).toHaveLength(1);
+    expect(timeline[0].version).toBe('2.0');
+  });
+
+  it('normalizes libs to a sorted array and leaves changes as null when absent', () => {
+    const [entry] = getChangelogTimeline({
+      versions: {
+        '1.0': {
+          downloadUrl: 'https://example.com/1.0.jar',
+          libs: {
+            'z-lib': 'https://example.com/z.jar',
+            'a-lib': 'https://example.com/a.jar',
+          },
+        },
+      },
+    });
+    expect(entry.changes).toBeNull();
+    expect(entry.libs).toEqual([
+      { name: 'a-lib', url: 'https://example.com/a.jar' },
+      { name: 'z-lib', url: 'https://example.com/z.jar' },
+    ]);
+  });
+
+  it('marks Maven template URLs as isMavenTemplate and clears downloadUrl', () => {
+    const [entry] = getChangelogTimeline({
+      versions: {
+        '3.0': {
+          downloadUrl:
+            'https://search.maven.org/remotecontent?filepath=org/apache/jmeter/ApacheJMeter_foo/%1$s/ApacheJMeter_foo-%1$s.jar',
+          changes: 'Something',
+        },
+      },
+    });
+    expect(entry.isMavenTemplate).toBe(true);
+    expect(entry.downloadUrl).toBeNull();
+    expect(entry.changes).toBe('Something');
+  });
+
+  it('returns an empty array when versions is missing or not an object', () => {
+    expect(getChangelogTimeline({})).toEqual([]);
+    expect(getChangelogTimeline({ versions: undefined })).toEqual([]);
+    expect(getChangelogTimeline({ versions: null as any })).toEqual([]);
+  });
+
+  it('preserves non-empty changes text verbatim (trimmed)', () => {
+    const [entry] = getChangelogTimeline({
+      versions: {
+        '1.0': {
+          downloadUrl: 'https://example.com/1.0.jar',
+          changes: '   Fix a bug   ',
+        },
+      },
+    });
+    expect(entry.changes).toBe('Fix a bug');
   });
 });

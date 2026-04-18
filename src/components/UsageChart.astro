@@ -1,0 +1,80 @@
+---
+interface Props {
+    labels: string[];
+    data: number[];
+}
+
+const { labels, data } = Astro.props;
+---
+
+<div class="mb-10">
+    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">Usage History</h4>
+    <div
+        class="w-full h-64 bg-gray-50 dark:bg-transparent rounded-xl border border-gray-100 dark:border-white/5 relative p-4"
+        data-chart-labels={JSON.stringify(labels)}
+        data-chart-data={JSON.stringify(data)}
+    >
+        <canvas id="pluginUsageChart"></canvas>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const chartContainer = document.querySelector('[data-chart-labels]');
+        if (!chartContainer) return;
+        const labels = JSON.parse(chartContainer.getAttribute('data-chart-labels') || '[]');
+        const data = JSON.parse(chartContainer.getAttribute('data-chart-data') || '[]');
+
+        const canvas = document.getElementById('pluginUsageChart') as HTMLCanvasElement | null;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const isDark = document.documentElement.classList.contains('dark');
+        const chartColor = isDark ? '#ccff00' : '#b0d600';
+
+        // @ts-ignore
+        if (!window.Chart || !ctx) return;
+        // @ts-ignore
+        new window.Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    borderColor: chartColor,
+                    borderWidth: 2,
+                    backgroundColor: `${chartColor}20`,
+                    fill: true,
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: isDark ? '#18181b' : '#ffffff',
+                        titleColor: isDark ? '#ffffff' : '#000000',
+                        bodyColor: isDark ? '#a1a1aa' : '#4b5563',
+                        borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                        borderWidth: 1,
+                        padding: 12
+                    }
+                },
+                scales: {
+                    x: { display: false },
+                    y: {
+                        grid: { color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' },
+                        ticks: { color: isDark ? '#a1a1aa' : '#6b7280', maxTicksLimit: 6 },
+                        border: { display: false }
+                    }
+                },
+                interaction: { mode: 'nearest', axis: 'x', intersect: false }
+            }
+        });
+    });
+</script>

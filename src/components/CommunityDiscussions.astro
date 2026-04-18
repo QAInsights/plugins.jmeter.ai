@@ -1,0 +1,47 @@
+---
+// Utterances-powered GitHub-issue comment thread for plugin pages.
+---
+
+<div class="border-t border-gray-100 dark:border-white/10 pt-10 mt-8">
+    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Community Discussions</h3>
+    <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-4 sm:p-6 border border-gray-100 dark:border-white/5 min-h-[250px]">
+        <div id="utterances-container" class="w-full"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const utterancesContainer = document.getElementById('utterances-container');
+        if (!utterancesContainer) return;
+
+        const isDark = document.documentElement.classList.contains('dark');
+        const theme = isDark ? 'github-dark' : 'github-light';
+
+        const script = document.createElement('script');
+        script.src = 'https://utteranc.es/client.js';
+        script.setAttribute('repo', 'QAInsights/plugins.jmeter.ai');
+        script.setAttribute('issue-term', 'pathname');
+        script.setAttribute('label', 'comment');
+        script.setAttribute('theme', theme);
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+
+        utterancesContainer.appendChild(script);
+
+        // Listen for theme toggle to update Utterances theme dynamically.
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName !== 'class') return;
+                const isDarkNow = document.documentElement.classList.contains('dark');
+                const iframe = document.querySelector('.utterances-frame') as HTMLIFrameElement | null;
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage(
+                        { type: 'set-theme', theme: isDarkNow ? 'github-dark' : 'github-light' },
+                        'https://utteranc.es'
+                    );
+                }
+            });
+        });
+        observer.observe(document.documentElement, { attributes: true });
+    });
+</script>

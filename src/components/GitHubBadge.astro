@@ -1,0 +1,41 @@
+---
+interface Props {
+    url: string;
+}
+
+const { url } = Astro.props;
+const badgeMd = `[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](${url})`;
+---
+
+<div class="border-t border-gray-100 dark:border-white/10 pt-8 mt-4">
+    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide flex items-center gap-2">
+        <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+        Embed on GitHub
+    </h4>
+    <p class="text-sm text-gray-500 mb-4">Are you the author? Show off your plugin's listing on PerfAtlas by pasting this markdown badge in your README.md.</p>
+
+    <div class="flex items-center gap-2 group cursor-pointer" id="badgeContainer" data-badge={badgeMd}>
+        <div class="bg-gray-100 dark:bg-black/30 border border-gray-200 dark:border-white/10 rounded-lg p-3 w-full font-mono text-xs text-gray-600 dark:text-gray-300 overflow-x-auto whitespace-pre group-hover:bg-gray-200 dark:group-hover:bg-white/5 transition-colors">
+            {badgeMd}
+        </div>
+        <button id="copyBadgeBtn" class="p-3 bg-gray-200 dark:bg-white/10 group-hover:bg-primary group-hover:text-dark-bg transition-colors rounded-lg shrink-0 text-gray-600 dark:text-gray-300" title="Copy Markdown">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const badgeContainer = document.getElementById('badgeContainer');
+        const copyBtn = document.getElementById('copyBadgeBtn');
+        if (!badgeContainer || !copyBtn) return;
+        badgeContainer.addEventListener('click', () => {
+            const md = badgeContainer.getAttribute('data-badge') || '';
+            navigator.clipboard.writeText(md).then(() => {
+                const originalHtml = copyBtn.innerHTML;
+                copyBtn.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+                setTimeout(() => { copyBtn.innerHTML = originalHtml; }, 2000);
+            });
+        });
+    });
+</script>

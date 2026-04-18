@@ -2,9 +2,13 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import PluginCard from '../../components/PluginCard.astro';
+import UsageChart from '../../components/UsageChart.astro';
+import ChangelogTimeline from '../../components/ChangelogTimeline.astro';
+import GitHubBadge from '../../components/GitHubBadge.astro';
+import RelatedPluginsSection from '../../components/RelatedPluginsSection.astro';
+import CommunityDiscussions from '../../components/CommunityDiscussions.astro';
 import pluginsData from '../../data/plugins_data.json';
-import { getRelatedPlugins, inferCategory } from '../../utils/plugin';
+import { getRelatedPlugins, inferCategory, getChangelogTimeline, hasChangelog } from '../../utils/plugin';
 
 // Make this a statically generated route
 export async function getStaticPaths() {
@@ -22,7 +26,7 @@ const trendArrow = plugin.stats.trendingDelta > 0 ? '+' : '';
 const trendDelta = new Intl.NumberFormat('en-US').format(plugin.stats.trendingDelta);
 
 // Determine the active screenshot
-let sUrl = plugin.screenshotUrl || plugin.screenshotURL || '';
+let sUrl = plugin.screenshotUrl || '';
 if (sUrl && !sUrl.startsWith('http')) {
     sUrl = 'https://jmeter-plugins.org' + (sUrl.startsWith('/') ? '' : '/') + sUrl;
 }
@@ -35,17 +39,20 @@ const description = `Discover ${plugin.name} by ${plugin.vendor}. ${plugin.descr
 const url = `https://plugins.jmeter.ai/plugin/${plugin.id}`;
 
 // Prepare Chart Data
-const history = plugin.stats.history || {};
+const history = (plugin.stats.history || {}) as Record<string, number>;
 const chartLabels = Object.keys(history).sort();
 const chartData = chartLabels.map(l => history[l]);
 
 // Related plugins (same vendor / same inferred category)
 const { sameVendor, sameCategory } = getRelatedPlugins(plugin, pluginsData, { limit: 3 });
 const relatedCategory = inferCategory(plugin);
-const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
+
+// Release history / changelog timeline
+const changelog = getChangelogTimeline(plugin);
+const showChangelog = hasChangelog(plugin);
 ---
 
-<Layout title={title} description={description} image={ogImage} url={url}>
+<Layout title={title} description={description} image={ogImage}>
     <Header />
     <main class="flex-grow flex flex-col py-16 px-6">
         <div class="max-w-4xl mx-auto w-full">
@@ -108,12 +115,7 @@ const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
                             </div>
                         )}
 
-                        <div class="mb-10">
-                            <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">Usage History</h4>
-                            <div class="w-full h-64 bg-gray-50 dark:bg-transparent rounded-xl border border-gray-100 dark:border-white/5 relative p-4" data-chart-labels={JSON.stringify(chartLabels)} data-chart-data={JSON.stringify(chartData)}>
-                                <canvas id="pluginUsageChart"></canvas>
-                            </div>
-                        </div>
+                        <UsageChart labels={chartLabels} data={chartData} />
 
                         {plugin.componentClasses && plugin.componentClasses.length > 0 && (
                             <div class="mb-10">
@@ -124,66 +126,18 @@ const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
                             </div>
                         )}
                         
-                        {/* GitHub Badge Generator */}
-                        <div class="border-t border-gray-100 dark:border-white/10 pt-8 mt-4">
-                            <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide flex items-center gap-2">
-                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
-                                Embed on GitHub 
-                            </h4>
-                            <p class="text-sm text-gray-500 mb-4">Are you the author? Show off your plugin's listing on PerfAtlas by pasting this markdown badge in your README.md.</p>
-                            
-                            <div class="flex items-center gap-2 group cursor-pointer" id="badgeContainer" data-badge={`[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](${url})`}>
-                                <div class="bg-gray-100 dark:bg-black/30 border border-gray-200 dark:border-white/10 rounded-lg p-3 w-full font-mono text-xs text-gray-600 dark:text-gray-300 overflow-x-auto whitespace-pre group-hover:bg-gray-200 dark:group-hover:bg-white/5 transition-colors">
-                                    [![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)]({url})
-                                </div>
-                                <button id="copyBadgeBtn" class="p-3 bg-gray-200 dark:bg-white/10 group-hover:bg-primary group-hover:text-dark-bg transition-colors rounded-lg shrink-0 text-gray-600 dark:text-gray-300" title="Copy Markdown">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
+                        {showChangelog && <ChangelogTimeline entries={changelog} />}
 
-                        {hasRelated && (
-                            <div class="border-t border-gray-100 dark:border-white/10 pt-10 mt-8">
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Related Plugins</h3>
+                        <GitHubBadge url={url} />
 
-                                {sameVendor.length > 0 && (
-                                    <div class="mb-8">
-                                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
-                                            More from {plugin.vendor}
-                                        </h4>
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                            {sameVendor.map((rp) => (
-                                                <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
-                                                    <PluginCard plugin={rp} />
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+                        <RelatedPluginsSection
+                            sameVendor={sameVendor}
+                            sameCategory={sameCategory}
+                            vendor={plugin.vendor}
+                            category={relatedCategory}
+                        />
 
-                                {sameCategory.length > 0 && (
-                                    <div>
-                                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
-                                            Similar {relatedCategory} plugins
-                                        </h4>
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                            {sameCategory.map((rp) => (
-                                                <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
-                                                    <PluginCard plugin={rp} />
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-
-                        <div class="border-t border-gray-100 dark:border-white/10 pt-10 mt-8">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Community Discussions</h3>
-                            <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-4 sm:p-6 border border-gray-100 dark:border-white/5 min-h-[250px]">
-                                <div id="utterances-container" class="w-full"></div>
-                            </div>
-                        </div>
+                        <CommunityDiscussions />
 
                     </div>
                 </div>
@@ -192,125 +146,4 @@ const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
         </div>
     </main>
     <Footer />
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const chartContainer = document.querySelector('[data-chart-labels]');
-            if (chartContainer) {
-                const labels = JSON.parse(chartContainer.getAttribute('data-chart-labels') || '[]');
-                const data = JSON.parse(chartContainer.getAttribute('data-chart-data') || '[]');
-                
-                const canvas = document.getElementById('pluginUsageChart') as HTMLCanvasElement;
-                if(canvas) {
-                    const ctx = canvas.getContext('2d');
-                    const isDark = document.documentElement.classList.contains('dark');
-                    const chartColor = isDark ? '#ccff00' : '#b0d600'; 
-                    
-                    // @ts-ignore
-                    if (window.Chart && ctx) {
-                        // @ts-ignore
-                        new window.Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    data: data,
-                                    borderColor: chartColor,
-                                    borderWidth: 2,
-                                    backgroundColor: `${chartColor}20`,
-                                    fill: true,
-                                    pointRadius: 0,
-                                    pointHoverRadius: 6,
-                                    tension: 0.3
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    legend: { display: false },
-                                    tooltip: {
-                                        mode: 'index',
-                                        intersect: false,
-                                        backgroundColor: isDark ? '#18181b' : '#ffffff',
-                                        titleColor: isDark ? '#ffffff' : '#000000',
-                                        bodyColor: isDark ? '#a1a1aa' : '#4b5563',
-                                        borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                                        borderWidth: 1,
-                                        padding: 12
-                                    }
-                                },
-                                scales: {
-                                    x: { display: false },
-                                    y: {
-                                        grid: { color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' },
-                                        ticks: { color: isDark ? '#a1a1aa' : '#6b7280', maxTicksLimit: 6 },
-                                        border: { display: false }
-                                    }
-                                },
-                                interaction: { mode: 'nearest', axis: 'x', intersect: false }
-                            }
-                        });
-                    }
-                }
-            }
-
-            // Navigate when a related plugin card is clicked. Ignore clicks
-            // that originate from interactive controls inside the card so
-            // install/compare/copy-id buttons keep working.
-            document.querySelectorAll('.related-plugin-link').forEach((wrap) => {
-                wrap.addEventListener('click', (e) => {
-                    const target = e.target as HTMLElement | null;
-                    if (target && target.closest('button, input, label, a')) return;
-                    const href = wrap.getAttribute('data-href');
-                    if (href) window.location.href = href;
-                });
-            });
-
-            const badgeContainer = document.getElementById('badgeContainer');
-            const copyBtn = document.getElementById('copyBadgeBtn');
-            if (badgeContainer && copyBtn) {
-                badgeContainer.addEventListener('click', () => {
-                    const md = badgeContainer.getAttribute('data-badge') || '';
-                    navigator.clipboard.writeText(md).then(() => {
-                        const originalHtml = copyBtn.innerHTML;
-                        copyBtn.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
-                        setTimeout(() => { copyBtn.innerHTML = originalHtml; }, 2000);
-                    });
-                });
-            }
-
-            // Utterances Integration
-            const utterancesContainer = document.getElementById('utterances-container');
-            if (utterancesContainer) {
-                const isDark = document.documentElement.classList.contains('dark');
-                const theme = isDark ? 'github-dark' : 'github-light';
-
-                const script = document.createElement('script');
-                script.src = 'https://utteranc.es/client.js';
-                script.setAttribute('repo', 'QAInsights/plugins.jmeter.ai');
-                script.setAttribute('issue-term', 'pathname');
-                script.setAttribute('label', 'comment');
-                script.setAttribute('theme', theme);
-                script.setAttribute('crossorigin', 'anonymous');
-                script.async = true;
-
-                utterancesContainer.appendChild(script);
-
-                // Listen for theme toggle to update Utterances theme dynamically
-                const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        if (mutation.attributeName === 'class') {
-                            const isDarkNow = document.documentElement.classList.contains('dark');
-                            const iframe = document.querySelector('.utterances-frame');
-                            if (iframe && iframe.contentWindow) {
-                                iframe.contentWindow.postMessage({ type: 'set-theme', theme: isDarkNow ? 'github-dark' : 'github-light' }, 'https://utteranc.es');
-                            }
-                        }
-                    });
-                });
-                observer.observe(document.documentElement, { attributes: true });
-            }
-        });
-    </script>
 </Layout>

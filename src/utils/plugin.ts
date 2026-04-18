@@ -7,6 +7,13 @@ export interface PluginLike {
   };
 }
 
+// Intentionally loose — `plugins_data.json` infers per-key union types which
+// cannot be structurally narrowed to `Record<string, PluginVersionEntry>`.
+// Consumers access fields defensively at runtime.
+export interface ChangelogSource {
+  versions?: Record<string, unknown> | undefined;
+}
+
 export type PluginCategory =
   | 'Assertions'
   | 'Listeners'
@@ -84,4 +91,98 @@ export function getRelatedPlugins<T extends PluginLike>(
   }
 
   return { sameVendor, sameCategory };
+}
+
+export interface ChangelogEntry {
+  version: string;
+  changes: string | null;
+  downloadUrl: string | null;
+  libs: Array<{ name: string; url: string }>;
+  isMavenTemplate: boolean;
+}
+
+const MAVEN_TEMPLATE_MARKER = '%1$s';
+
+/**
+ * Returns true when the plugin has at least one meaningful release entry —
+ * i.e. a non-empty version key whose downloadUrl is a concrete URL rather
+ * than a Maven template placeholder.
+ */
+export function hasChangelog(plugin: ChangelogSource): boolean {
+  const versions = plugin?.versions;
+  if (!versions || typeof versions !== 'object') return false;
+  for (const key of Object.keys(versions)) {
+    if (!key) continue;
+    const entry = (versions as Record<string, any>)[key];
+    if (!entry) continue;
+    const url: string = entry.downloadUrl ?? '';
+    if (url && url.includes(MAVEN_TEMPLATE_MARKER)) continue;
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Semver-aware comparator that orders version strings descending (newest
+ * first). Numeric path segments compare numerically so `1.10` > `1.9`;
+ * non-numeric suffixes fall back to locale compare so labels such as
+ * `1.0-beta` remain deterministic.
+ */
+function compareVersionsDesc(a: string, b: string): number {
+  const aParts = a.split('.');
+  const bParts = b.split('.');
+  const len = Math.max(aParts.length, bParts.length);
+  for (let i = 0; i < len; i++) {
+    const ap = aParts[i] ?? '';
+    const bp = bParts[i] ?? '';
+    const an = Number(ap);
+    const bn = Number(bp);
+    const aIsNum = ap !== '' && Number.isFinite(an);
+    const bIsNum = bp !== '' && Number.isFinite(bn);
+    if (aIsNum && bIsNum) {
+      if (an !== bn) return bn - an;
+      continue;
+    }
+    if (aIsNum !== bIsNum) {
+      // Pure numeric segments sort as "newer" than mixed/suffix ones
+      // (e.g. `1.0` is considered newer than `1.0-beta`).
+      return aIsNum ? -1 : 1;
+    }
+    const cmp = bp.localeCompare(ap);
+    if (cmp !== 0) return cmp;
+  }
+  return 0;
+}
+
+/**
+ * Build a newest-first timeline of releases from a plugin's `versions` map.
+ * Skips empty-string version keys and normalises `libs` into a sorted array.
+ */
+export function getChangelogTimeline(plugin: ChangelogSource): ChangelogEntry[] {
+  const versions = plugin?.versions;
+  if (!versions || typeof versions !== 'object') return [];
+
+  const keys = Object.keys(versions).filter((k) => k !== '');
+  keys.sort(compareVersionsDesc);
+
+  const versionsAny = versions as Record<string, any>;
+
+  return keys.map((version) => {
+    const entry = versionsAny[version] ?? {};
+    const rawUrl: string = entry.downloadUrl ?? '';
+    const isMavenTemplate = typeof rawUrl === 'string' && rawUrl.includes(MAVEN_TEMPLATE_MARKER);
+    const downloadUrl = !rawUrl || isMavenTemplate ? null : rawUrl;
+
+    const changesText = (entry.changes ?? '').toString().trim();
+    const changes = changesText.length > 0 ? changesText : null;
+
+    const libsObj: Record<string, any> =
+      entry.libs && typeof entry.libs === 'object' ? entry.libs : {};
+    const libs = Object.keys(libsObj)
+      .filter((name) => typeof libsObj[name] === 'string' && libsObj[name])
+      .sort((a, b) => a.localeCompare(b))
+      .map((name) => ({ name, url: libsObj[name] as string }));
+
+    return { version, changes, downloadUrl, libs, isMavenTemplate };
+  });
 }

@@ -1,0 +1,117 @@
+---
+import type { ChangelogEntry } from '../utils/plugin';
+
+interface Props {
+    entries: ChangelogEntry[];
+    initialVisible?: number;
+}
+
+const { entries, initialVisible = 5 } = Astro.props;
+---
+
+<div class="mb-10">
+    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-wide">
+        Release History
+        <span class="text-gray-400 dark:text-gray-500 font-normal normal-case ml-1">({entries.length})</span>
+    </h4>
+    <ol
+        id="changelogTimeline"
+        class="changelog-timeline relative border-l-2 border-gray-200 dark:border-white/10 ml-2 pl-8 space-y-8"
+        data-initial-visible={initialVisible}
+        data-total={entries.length}
+    >
+        {entries.map((entry, i) => (
+            <li
+                class={`changelog-entry relative ${i >= initialVisible ? 'hidden' : ''}`}
+                data-index={i}
+            >
+                <span class="absolute -left-[42px] top-1 w-4 h-4 rounded-full border-2 border-primary bg-white dark:bg-dark-surface shadow ring-4 ring-primary/10"></span>
+                <div class="flex items-baseline gap-3 mb-2 flex-wrap">
+                    <span class="text-lg font-black text-gray-900 dark:text-white">v{entry.version}</span>
+                    {i === 0 && (
+                        <span class="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-primary/15 text-primary">Latest</span>
+                    )}
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
+                    {entry.changes ?? 'No release notes provided.'}
+                </p>
+                {(entry.downloadUrl || entry.libs.length > 0) && (
+                    <div class="flex flex-wrap items-center gap-4 text-xs">
+                        {entry.downloadUrl && (
+                            <a
+                                href={entry.downloadUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+                            >
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"></path></svg>
+                                Download JAR
+                            </a>
+                        )}
+                        {entry.libs.length > 0 && (
+                            <details class="group">
+                                <summary class="cursor-pointer text-gray-500 dark:text-gray-400 font-semibold hover:text-gray-900 dark:hover:text-white select-none">
+                                    {entry.libs.length} bundled {entry.libs.length === 1 ? 'library' : 'libraries'}
+                                </summary>
+                                <ul class="mt-2 ml-1 space-y-1 font-mono text-[11px] text-gray-500 dark:text-gray-400">
+                                    {entry.libs.map((l) => (
+                                        <li>
+                                            <span class="mr-1">&bull;</span>
+                                            <a class="hover:text-primary break-all" href={l.url} target="_blank" rel="noopener noreferrer">{l.name}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </details>
+                        )}
+                    </div>
+                )}
+            </li>
+        ))}
+    </ol>
+    {entries.length > initialVisible && (
+        <button
+            type="button"
+            id="toggleChangelog"
+            class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
+            data-expanded="false"
+            aria-expanded="false"
+            aria-controls="changelogTimeline"
+            data-total={entries.length}
+        >
+            <span class="label">Show all {entries.length} versions</span>
+            <svg class="w-4 h-4 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+    )}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('toggleChangelog');
+        if (!toggleBtn) return;
+        const timelineEl = document.getElementById('changelogTimeline');
+        const initialVisible = timelineEl
+            ? parseInt(timelineEl.getAttribute('data-initial-visible') || '5', 10)
+            : 5;
+        const total = parseInt(toggleBtn.getAttribute('data-total') || '0', 10);
+        const labelEl = toggleBtn.querySelector('.label');
+        const chevron = toggleBtn.querySelector('.chevron');
+        toggleBtn.addEventListener('click', () => {
+            const expanded = toggleBtn.getAttribute('data-expanded') === 'true';
+            const next = !expanded;
+            toggleBtn.setAttribute('data-expanded', String(next));
+            toggleBtn.setAttribute('aria-expanded', String(next));
+            document.querySelectorAll('.changelog-entry').forEach((el) => {
+                const idx = parseInt((el as HTMLElement).getAttribute('data-index') || '0', 10);
+                if (idx >= initialVisible) {
+                    el.classList.toggle('hidden', !next);
+                }
+            });
+            if (labelEl) {
+                labelEl.textContent = next ? 'Show latest only' : `Show all ${total} versions`;
+            }
+            if (chevron) {
+                chevron.classList.toggle('rotate-180', next);
+            }
+        });
+    });
+</script>

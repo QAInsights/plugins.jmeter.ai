@@ -1,0 +1,65 @@
+---
+import PluginCard from './PluginCard.astro';
+
+interface Props {
+    sameVendor: any[];
+    sameCategory: any[];
+    vendor?: string;
+    category: string;
+}
+
+const { sameVendor, sameCategory, vendor, category } = Astro.props;
+const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
+---
+
+{hasRelated && (
+    <div class="border-t border-gray-100 dark:border-white/10 pt-10 mt-8">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Related Plugins</h3>
+
+        {sameVendor.length > 0 && (
+            <div class="mb-8">
+                <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
+                    More from {vendor}
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {sameVendor.map((rp) => (
+                        <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
+                            <PluginCard plugin={rp} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+
+        {sameCategory.length > 0 && (
+            <div>
+                <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
+                    Similar {category} plugins
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {sameCategory.map((rp) => (
+                        <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
+                            <PluginCard plugin={rp} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+    </div>
+)}
+
+<script>
+    // Navigate when a related plugin card is clicked. Ignore clicks that
+    // originate from interactive controls inside the card so install /
+    // compare / copy-id buttons keep working.
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.related-plugin-link').forEach((wrap) => {
+            wrap.addEventListener('click', (e) => {
+                const target = e.target as HTMLElement | null;
+                if (target && target.closest('button, input, label, a')) return;
+                const href = wrap.getAttribute('data-href');
+                if (href) window.location.href = href;
+            });
+        });
+    });
+</script>
