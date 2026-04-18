@@ -1,7 +1,12 @@
 ---
 ---
-<div id="installBar" class="fixed bottom-8 right-8 z-[60] transform transition-all duration-500 translate-y-32 hidden">
-    <div class="bg-gray-900/90 dark:bg-dark-surface/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-4 flex flex-col gap-3 min-w-[320px] max-w-[400px]">
+<div id="installBar" class="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-8 sm:right-8 z-[60] transform transition-all duration-500 translate-y-32 hidden">
+    <style>
+        /* Stack install bar above compare bar when both are open.
+           Compare bar measures ~88px; add 1rem gap. */
+        #installBar.stacked { bottom: calc(88px + 1.25rem); }
+    </style>
+    <div class="bg-gray-900/90 dark:bg-dark-surface/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-3 sm:p-4 flex flex-col gap-3 w-full sm:min-w-[320px] sm:max-w-[400px]">
         <div class="flex items-center justify-between border-b border-white/10 pb-2">
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center border border-green-500/30 text-green-500">
@@ -66,6 +71,20 @@
                 if (bar) {
                     bar.classList.add('translate-y-32');
                     setTimeout(() => bar.classList.add('hidden'), 500);
+                }
+            }
+
+            // On mobile, stack the install bar above the compare bar when
+            // both are visible (compare bar sits bottom-center full-width).
+            if (bar) {
+                const compareBar = document.getElementById('compareBar');
+                const compareVisible = compareBar
+                    && !compareBar.classList.contains('hidden')
+                    && !compareBar.classList.contains('translate-y-32');
+                if (compareVisible && installIds.length > 0) {
+                    bar.classList.add('stacked');
+                } else {
+                    bar.classList.remove('stacked');
                 }
             }
 
@@ -144,6 +163,17 @@
         window.addEventListener('load', updateInstallUI);
         document.addEventListener('astro:after-swap', updateInstallUI);
         document.addEventListener('plugin:install-update', updateInstallUI);
+
+        // Re-stack whenever the compare bar's visibility classes change.
+        function observeCompareBar() {
+            const compareBar = document.getElementById('compareBar');
+            if (!compareBar || compareBar.__installBarObserved) return;
+            compareBar.__installBarObserved = true;
+            const mo = new MutationObserver(updateInstallUI);
+            mo.observe(compareBar, { attributes: true, attributeFilter: ['class'] });
+        }
+        observeCompareBar();
+        document.addEventListener('astro:after-swap', observeCompareBar);
 
         // Expose to cards that might be rendered dynamically
         window.refreshInstallUI = updateInstallUI;
