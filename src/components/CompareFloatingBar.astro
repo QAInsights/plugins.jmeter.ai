@@ -47,8 +47,37 @@
             selectedIds = [];
         }
 
+        function syncCompareCheckboxes() {
+            // Update all checkboxes on the page. Runs on every page — the
+            // checkbox reflects selection state regardless of whether the
+            // floating bar is rendered on this route.
+            document.querySelectorAll('.compare-checkbox').forEach(cb => {
+                const id = cb.getAttribute('data-plugin-id');
+                // Skip checkboxes without a valid plugin id — avoids
+                // selectedIds.includes(null) producing spurious matches.
+                if (!id) return;
+                cb.checked = selectedIds.includes(id);
+
+                // Disable other checkboxes if max reached
+                if (selectedIds.length >= MAX_COMPARE && !selectedIds.includes(id)) {
+                    cb.disabled = true;
+                    if (cb.parentElement) cb.parentElement.classList.add('opacity-30');
+                } else {
+                    cb.disabled = false;
+                    if (cb.parentElement) cb.parentElement.classList.remove('opacity-30');
+                }
+            });
+        }
+
         function updateCompareUI() {
+            // Always keep checkboxes in sync, even on pages without the bar
+            // (e.g. the /compare page that doesn't render CompareFloatingBar).
+            syncCompareCheckboxes();
+
             const bar = document.getElementById('compareBar');
+            // Compare bar is not rendered on every page — bail out safely
+            // after syncing checkboxes above.
+            if (!bar) return;
             const countEl = document.getElementById('compareCount');
             const statusEl = document.getElementById('compareStatus');
             const btn = document.getElementById('compareBtn');
@@ -63,45 +92,40 @@
                 setTimeout(() => bar.classList.add('hidden'), 500);
             }
 
-            countEl.textContent = selectedIds.length;
-            
+            if (countEl) countEl.textContent = selectedIds.length;
+
             if (selectedIds.length < 2) {
-                statusEl.textContent = 'Select ' + (2 - selectedIds.length) + ' more';
-                statusEl.classList.add('text-gray-400');
-                statusEl.classList.remove('text-[#ccff00]');
-                btn.classList.add('opacity-50', 'pointer-events-none');
-                btn.href = '#';
+                if (statusEl) {
+                    statusEl.textContent = 'Select ' + (2 - selectedIds.length) + ' more';
+                    statusEl.classList.add('text-gray-400');
+                    statusEl.classList.remove('text-[#ccff00]');
+                }
+                if (btn) {
+                    btn.classList.add('opacity-50', 'pointer-events-none');
+                    btn.href = '#';
+                }
             } else {
-                statusEl.textContent = 'Ready to Analyze';
-                statusEl.classList.remove('text-gray-400');
-                statusEl.classList.add('text-[#ccff00]');
-                btn.classList.remove('opacity-50', 'pointer-events-none');
-                btn.href = '/compare?ids=' + selectedIds.join(',');
+                if (statusEl) {
+                    statusEl.textContent = 'Ready to Analyze';
+                    statusEl.classList.remove('text-gray-400');
+                    statusEl.classList.add('text-[#ccff00]');
+                }
+                if (btn) {
+                    btn.classList.remove('opacity-50', 'pointer-events-none');
+                    btn.href = '/compare?ids=' + selectedIds.join(',');
+                }
             }
 
             // Update thumbnails
             // We only show the initials or ID since we don't want to fetch all data here
             // But on the directory page, we could sync names. For now, just show boxes.
-            thumbContainer.innerHTML = selectedIds.map(id => `
-                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[8px] font-black text-gray-500 uppercase p-1 text-center shrink-0">
-                    ${id.substring(0, 6)}
-                </div>
-            `).join('');
-
-            // Update all checkboxes on the page
-            document.querySelectorAll('.compare-checkbox').forEach(cb => {
-                const id = cb.getAttribute('data-plugin-id');
-                cb.checked = selectedIds.includes(id);
-                
-                // Disable other checkboxes if max reached
-                if (selectedIds.length >= MAX_COMPARE && !selectedIds.includes(id)) {
-                    cb.disabled = true;
-                    cb.parentElement.classList.add('opacity-30');
-                } else {
-                    cb.disabled = false;
-                    cb.parentElement.classList.remove('opacity-30');
-                }
-            });
+            if (thumbContainer) {
+                thumbContainer.innerHTML = selectedIds.map(id => `
+                    <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[8px] font-black text-gray-500 uppercase p-1 text-center shrink-0">
+                        ${id.substring(0, 6)}
+                    </div>
+                `).join('');
+            }
         }
 
         function togglePlugin(id) {
@@ -121,6 +145,7 @@
         document.addEventListener('change', (e) => {
             if (e.target.classList.contains('compare-checkbox')) {
                 const id = e.target.getAttribute('data-plugin-id');
+                if (!id) return;
                 togglePlugin(id);
             }
         });
