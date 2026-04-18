@@ -86,6 +86,32 @@ const minifiedPlugins = [...pluginsRaw]
         let isAnimating = false;
         let animationId: number;
 
+        // Meteors: transient streaks between two random nodes, like shooting stars.
+        // Coordinates are frozen at spawn time so the trajectory stays straight
+        // even if the source/target nodes drift during flight.
+        type Meteor = { sx: number; sy: number; ex: number; ey: number; progress: number; speed: number; life: number };
+        const meteors: Meteor[] = [];
+        const MAX_METEORS = 3;
+        const METEOR_SPAWN_CHANCE = 0.012; // per frame (~0.7/sec at 60fps)
+
+        function spawnMeteor() {
+            if (nodes.length < 2) return;
+            const a = Math.floor(Math.random() * nodes.length);
+            let b = Math.floor(Math.random() * nodes.length);
+            if (b === a) b = (b + 1) % nodes.length;
+            const from = nodes[a];
+            const to = nodes[b];
+            meteors.push({
+                sx: from.x,
+                sy: from.y,
+                ex: to.x,
+                ey: to.y,
+                progress: 0,
+                speed: Math.random() * 0.010, // per frame
+                life: 1,
+            });
+        }
+
         // Interaction
         container.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
@@ -207,6 +233,57 @@ const minifiedPlugins = [...pluginsRaw]
                         ctx.stroke();
                     }
                 }
+            }
+
+            // Spawn & Draw Meteors (shooting stars)
+            if (meteors.length < MAX_METEORS && Math.random() < METEOR_SPAWN_CHANCE) {
+                spawnMeteor();
+            }
+
+            const meteorColor = isDark ? '255, 255, 255' : '40, 40, 40';
+            for (let m = meteors.length - 1; m >= 0; m--) {
+                const meteor = meteors[m];
+                meteor.progress += meteor.speed;
+
+                if (meteor.progress >= 1) {
+                    meteor.life -= 0.08; // fade out after reaching target
+                    if (meteor.life <= 0) {
+                        meteors.splice(m, 1);
+                        continue;
+                    }
+                }
+
+                const p = Math.min(meteor.progress, 1);
+                const { sx, sy, ex, ey } = meteor;
+                const hx = sx + (ex - sx) * p;
+                const hy = sy + (ey - sy) * p;
+
+                // Trail: from a point behind the head back toward origin
+                const trailLen = 0.18; // fraction of the full path
+                const tStart = Math.max(0, p - trailLen);
+                const tx = sx + (ex - sx) * tStart;
+                const ty = sy + (ey - sy) * tStart;
+
+                const trailGrad = ctx.createLinearGradient(tx, ty, hx, hy);
+                trailGrad.addColorStop(0, `rgba(${meteorColor}, 0)`);
+                trailGrad.addColorStop(1, `rgba(${meteorColor}, ${0.7 * meteor.life})`);
+
+                ctx.strokeStyle = trailGrad;
+                ctx.lineWidth = 1.5;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(tx, ty);
+                ctx.lineTo(hx, hy);
+                ctx.stroke();
+
+                // Bright head
+                ctx.shadowColor = isDark ? '#ffffff' : '#222222';
+                ctx.shadowBlur = 8;
+                ctx.fillStyle = `rgba(${meteorColor}, ${meteor.life})`;
+                ctx.beginPath();
+                ctx.arc(hx, hy, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
             }
 
             // Handle Tooltip State
