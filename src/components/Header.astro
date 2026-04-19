@@ -24,6 +24,9 @@
             <a href="/vendor" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/vendor') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Vendors
             </a>
+            <a href="/collections" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/collections') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
+                Collections
+            </a>
             <a href="/blog" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/blog') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Blog
             </a>
@@ -63,6 +66,7 @@
         <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1 text-sm font-medium">
             <a href="/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname === '/' ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Home</a>
             <a href="/vendor" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/vendor') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Vendors</a>
+            <a href="/collections" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/collections') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Collections</a>
             <a href="/blog" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/blog') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Blog</a>
             <div class="flex items-center gap-4 px-3 py-3 border-t border-gray-100 dark:border-white/5 mt-1">
                 <a href="https://github.com/QAInsights/plugins.jmeter.ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" class="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">

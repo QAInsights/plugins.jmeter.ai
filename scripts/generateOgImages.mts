@@ -18,19 +18,24 @@ import {
     buildHomeOgSvg,
     buildBlogPostOgSvg,
     buildBlogIndexOgSvg,
+    buildCollectionOgSvg,
+    buildCollectionsIndexOgSvg,
     type OgPluginInput,
 } from '../src/utils/og.ts';
+import { getCollections } from '../src/utils/collection.ts';
 import { inferCategory } from '../src/utils/plugin.ts';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const DATA_PATH = path.join(ROOT, 'src', 'data', 'plugins_data.json');
+const COLLECTIONS_DATA_PATH = path.join(ROOT, 'src', 'data', 'collections.json');
 const BLOG_DIR = path.join(ROOT, 'src', 'content', 'blog');
 
 const OUT_PLUGIN_DIR = path.join(ROOT, 'public', 'og', 'plugin');
 const OUT_VENDOR_DIR = path.join(ROOT, 'public', 'og', 'vendor');
 const OUT_BLOG_DIR = path.join(ROOT, 'public', 'og', 'blog');
+const OUT_COLLECTIONS_DIR = path.join(ROOT, 'public', 'og', 'collections');
 const OUT_ROOT_DIR = path.join(ROOT, 'public', 'og');
 
 const FORCE = process.argv.includes('--force');
@@ -302,6 +307,47 @@ async function renderBlogIndexOg(): Promise<'written'> {
 }
 
 // ──────────────────────────────────────────────────────────────────────────
+// Collection OG images
+// ──────────────────────────────────────────────────────────────────────────
+
+async function renderCollectionOg(
+    col: { id: string; name: string; emoji: string; tagline: string; curator: { name: string; org: string }; pluginCount: number; totalDownloads: number }
+): Promise<'written' | 'skipped'> {
+    const outPath = path.join(OUT_COLLECTIONS_DIR, `${col.id}.png`);
+    if (!FORCE) {
+        // Collection OG images embed stats derived from plugins_data.json (pluginCount,
+        // totalDownloads) AND from collections.json (name, tagline, curator). The image
+        // must be regenerated when EITHER source file changes — whichever is newer wins.
+        const upToDateVsCollections = await fileExistsNewerThan(outPath, COLLECTIONS_DATA_PATH);
+        const upToDateVsPlugins = await fileExistsNewerThan(outPath, DATA_PATH);
+        if (upToDateVsCollections && upToDateVsPlugins) return 'skipped';
+    }
+    const svg = buildCollectionOgSvg(col);
+    const png = renderSvgToPng(svg);
+    await fs.writeFile(outPath, png);
+    return 'written';
+}
+
+async function renderCollectionsIndexOg(
+    collections: Array<{ pluginCount: number; totalDownloads: number }>
+): Promise<'written' | 'skipped'> {
+    const outPath = path.join(OUT_COLLECTIONS_DIR, 'index.png');
+    if (!FORCE) {
+        const upToDateVsCollections = await fileExistsNewerThan(outPath, COLLECTIONS_DATA_PATH);
+        const upToDateVsPlugins = await fileExistsNewerThan(outPath, DATA_PATH);
+        if (upToDateVsCollections && upToDateVsPlugins) return 'skipped';
+    }
+    const svg = buildCollectionsIndexOgSvg({
+        collectionCount: collections.length,
+        pluginCount: collections.reduce((s, c) => s + c.pluginCount, 0),
+        totalDownloads: collections.reduce((s, c) => s + c.totalDownloads, 0),
+    });
+    const png = renderSvgToPng(svg);
+    await fs.writeFile(outPath, png);
+    return 'written';
+}
+
+// ──────────────────────────────────────────────────────────────────────────
 // Home page OG image
 // ──────────────────────────────────────────────────────────────────────────
 
@@ -366,10 +412,21 @@ async function main() {
     // Aggregate vendor data
     const vendors = aggregateVendors(plugins);
 
+    // Read collection data
+    let rawCollections: any[] = [];
+    try {
+        const collectionsRaw = await fs.readFile(COLLECTIONS_DATA_PATH, 'utf8');
+        rawCollections = JSON.parse(collectionsRaw);
+    } catch {
+        console.warn('[og] collections.json not found or unreadable; skipping collection OG images');
+    }
+    const collections = getCollections(plugins as any[], rawCollections);
+
     // Ensure output directories exist
     await fs.mkdir(OUT_PLUGIN_DIR, { recursive: true });
     await fs.mkdir(OUT_VENDOR_DIR, { recursive: true });
     await fs.mkdir(OUT_BLOG_DIR, { recursive: true });
+    await fs.mkdir(OUT_COLLECTIONS_DIR, { recursive: true });
     await fs.mkdir(OUT_ROOT_DIR, { recursive: true });
 
     // ─────────────────────────────────────────────────────────────────────
@@ -410,6 +467,20 @@ async function main() {
     console.log('[og] blog index: written');
 
     // ─────────────────────────────────────────────────────────────────────
+    // Render collection OG images (parallel)
+    // ─────────────────────────────────────────────────────────────────────
+    console.log('[og] rendering collection images...');
+    const collectionResults = await runWithConcurrency(collections as any[], renderCollectionOg as any);
+    console.log(`[og] collections: ${collectionResults.written} written, ${collectionResults.skipped} skipped, ${collectionResults.failed} failed`);
+
+    // ─────────────────────────────────────────────────────────────────────
+    // Render collections index (singleton)
+    // ─────────────────────────────────────────────────────────────────────
+    console.log('[og] rendering collections index...');
+    const collectionsIndexResult = await renderCollectionsIndexOg(collections);
+    console.log(`[og] collections index: ${collectionsIndexResult}`);
+
+    // ─────────────────────────────────────────────────────────────────────
     // Render home page OG (singleton)
     // ─────────────────────────────────────────────────────────────────────
     console.log('[og] rendering home page...');
@@ -417,9 +488,11 @@ async function main() {
     console.log('[og] home page: written');
 
     const elapsed = ((Date.now() - start) / 1000).toFixed(1);
-    const totalWritten = pluginResults.written + vendorResults.written + blogResults.written + 3; // +3 for singletons
-    const totalSkipped = pluginResults.skipped + vendorResults.skipped + blogResults.skipped;
-    const totalFailed = pluginResults.failed + vendorResults.failed + blogResults.failed;
+    const collectionsIndexWritten = collectionsIndexResult === 'written' ? 1 : 0;
+    const collectionsIndexSkipped = collectionsIndexResult === 'skipped' ? 1 : 0;
+    const totalWritten = pluginResults.written + vendorResults.written + blogResults.written + collectionResults.written + collectionsIndexWritten + 3; // +3 for vendor-index, blog-index, home singletons
+    const totalSkipped = pluginResults.skipped + vendorResults.skipped + blogResults.skipped + collectionResults.skipped + collectionsIndexSkipped;
+    const totalFailed = pluginResults.failed + vendorResults.failed + blogResults.failed + collectionResults.failed;
 
     console.log(
         `[og] total: ${totalWritten} written, ${totalSkipped} skipped, ${totalFailed} failed in ${elapsed}s`

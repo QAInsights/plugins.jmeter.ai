@@ -585,3 +585,45 @@ export function buildBlogIndexOgSvg(): string {
     body: 'Field notes on performance engineering, AI-driven testing, and the tools that make JMeter a joy to use.',
   });
 }
+
+export interface OgCollectionInput {
+  id: string;
+  name: string;
+  emoji: string;
+  tagline: string;
+  curator: { name: string; org: string };
+  pluginCount: number;
+  totalDownloads: number;
+}
+
+export function buildCollectionOgSvg(input: OgCollectionInput): string {
+  return buildGenericOgSvg({
+    eyebrow: `${input.emoji}  Collection`,
+    title: input.name,
+    subtitle: `By ${input.curator.name}, ${input.curator.org}`,
+    body: input.tagline,
+    stats: [
+      { label: 'Plugins', value: String(input.pluginCount) },
+      { label: 'Downloads', value: formatDownloads(input.totalDownloads) },
+    ],
+  });
+}
+
+export interface OgCollectionsIndexInput {
+  collectionCount: number;
+  pluginCount: number;
+  totalDownloads: number;
+}
+
+export function buildCollectionsIndexOgSvg(input: OgCollectionsIndexInput): string {
+  return buildGenericOgSvg({
+    eyebrow: 'Collections',
+    title: 'Curated Plugin Stacks',
+    subtitle: 'Hand-picked JMeter plugin bundles for every use case',
+    stats: [
+      { label: 'Stacks', value: String(input.collectionCount) },
+      { label: 'Plugins', value: String(input.pluginCount) },
+      { label: 'Downloads', value: formatDownloads(input.totalDownloads) },
+    ],
+  });
+}

@@ -1,0 +1,66 @@
+---
+import type { CollectionSummary } from '../utils/collection';
+
+interface Props {
+  collection: CollectionSummary;
+}
+
+const { collection } = Astro.props;
+
+const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n);
+---
+
+<a
+  href={`/collections/${collection.id}`}
+  class="collection-card group relative flex flex-col rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-dark-surface p-6 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.1)]"
+  data-id={collection.id}
+  data-downloads={collection.totalDownloads}
+>
+  <div class="flex items-start justify-between gap-3 mb-4">
+    <div class="flex items-center gap-3">
+      <span class="text-3xl leading-none" aria-hidden="true">{collection.emoji}</span>
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white leading-snug group-hover:text-primary dark:group-hover:text-[#ccff00] transition-colors">
+        {collection.name}
+      </h3>
+    </div>
+    <span class="shrink-0 px-2.5 py-1 rounded-full text-[10px] font-bold bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 whitespace-nowrap">
+      {collection.pluginCount} plugins
+    </span>
+  </div>
+
+  <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-5 flex-grow">
+    {collection.tagline}
+  </p>
+
+  {collection.previewPlugins.length > 0 && (
+    <div class="flex flex-wrap gap-1.5 mb-5">
+      {collection.previewPlugins.map((p) => (
+        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-white/5">
+          {p.id}
+        </span>
+      ))}
+      {collection.pluginCount > 3 && (
+        <span class="px-2 py-0.5 rounded text-[10px] font-semibold text-gray-400 dark:text-gray-500">
+          +{collection.pluginCount - 3} more
+        </span>
+      )}
+    </div>
+  )}
+
+  <div class="mt-auto pt-4 border-t border-gray-100 dark:border-white/5 flex items-center justify-between">
+    <div class="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+      <svg class="w-3.5 h-3.5 text-primary dark:text-[#ccff00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+      </svg>
+      <span class="font-medium text-gray-700 dark:text-gray-300">{formatNumber(collection.totalDownloads)}</span>
+      <span>total downloads</span>
+    </div>
+
+    <span class="inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-[#ccff00] group-hover:gap-2 transition-all">
+      View Stack
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </span>
+  </div>
+</a>

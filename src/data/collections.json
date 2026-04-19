@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ci-cd-stack",
+    "name": "CI/CD Stack",
+    "emoji": "🚦",
+    "tagline": "Headless-friendly plugins for failing fast in pipelines.",
+    "description": "Everything you need to run JMeter in Jenkins, GitHub Actions, or GitLab CI — validate the test plan before the run, auto-stop the test when KPI thresholds breach, and emit a clean results report your pipeline already understands.",
+    "curator": {
+      "name": "NaveenKumar",
+      "org": "QAInsights",
+      "url": "https://qainsights.com"
+    },
+    "pluginIds": ["jpgc-plancheck", "jpgc-autostop", "jpgc-synthesis"],
+    "reasons": {
+      "jpgc-plancheck": "Validates the JMX before the run — fails fast on missing CSV datasets, undefined variables, or broken references before wasting CI minutes.",
+      "jpgc-autostop": "Kills the test automatically when error rate or response time crosses a configured threshold, preventing noisy long-running failures.",
+      "jpgc-synthesis": "Produces a compact Synthesis Report — a mix of Summary and Aggregate — that is easy to parse and artifact in CI pipelines."
+    },
+    "relatedIds": ["load-shaping-stack", "observability-stack"]
+  },
+  {
+    "id": "observability-stack",
+    "name": "Observability Stack",
+    "emoji": "📡",
+    "tagline": "Stream live metrics to your existing dashboards during tests.",
+    "description": "Push JMeter test results in real time to external monitoring backends so you can watch SLAs, latency, and throughput in the same dashboards your ops team already uses — no post-run data import required.",
+    "curator": {
+      "name": "NaveenKumar",
+      "org": "QAInsights",
+      "url": "https://qainsights.com"
+    },
+    "pluginIds": ["jpgc-perfmon", "jmeter-datadog-backend-listener", "jmeter.backendlistener.elasticsearch"],
+    "reasons": {
+      "jpgc-perfmon": "Collects server-side CPU, memory, disk I/O, and network metrics from target machines via ServerAgent — correlates infrastructure load with JMeter results.",
+      "jmeter-datadog-backend-listener": "Streams all sampler results to Datadog in real time so you can build dashboards and alerts using your existing Datadog infrastructure.",
+      "jmeter.backendlistener.elasticsearch": "Sends sample results to Elasticsearch for long-term storage, allowing rich Kibana dashboards and cross-run performance trend analysis."
+    },
+    "relatedIds": ["ci-cd-stack", "load-shaping-stack"]
+  },
+  {
+    "id": "load-shaping-stack",
+    "name": "Load Shaping Stack",
+    "emoji": "📈",
+    "tagline": "Precise ramp profiles, target RPS, and safe failure thresholds.",
+    "description": "Move beyond simple thread-count ramps. Control exact requests-per-second schedules, use concurrency-based thread groups that scale to demand, and back it all with an auto-stop listener so your tests never run away.",
+    "curator": {
+      "name": "NaveenKumar",
+      "org": "QAInsights",
+      "url": "https://qainsights.com"
+    },
+    "pluginIds": ["jpgc-casutg", "jpgc-tst", "jpgc-autostop"],
+    "reasons": {
+      "jpgc-casutg": "Replaces the default Thread Group with Concurrency and Arrivals Thread Groups — spawn threads on-demand to hit target concurrency rather than a fixed count.",
+      "jpgc-tst": "Sets a desired RPS (hits/s) schedule with precision ramp-up and hold phases — ideal for reproducing production traffic shapes.",
+      "jpgc-autostop": "Guards runaway tests: automatically stops execution when error rate or latency exceeds configurable thresholds during the load run."
+    },
+    "relatedIds": ["ci-cd-stack", "observability-stack"]
+  },
+  {
+    "id": "ai-ready-starter",
+    "name": "AI-Ready Starter",
+    "emoji": "🤖",
+    "tagline": "All AI-augmented plugins in one install.",
+    "description": "A curated selection of plugins that are AI-Ready — meaning they have been tested and validated for use with AI-assisted tooling and workflows. This collection is auto-populated from the AI-Ready registry and updates automatically as new plugins earn the badge.",
+    "curator": {
+      "name": "NaveenKumar",
+      "org": "QAInsights",
+      "url": "https://qainsights.com"
+    },
+    "pluginIds": ["auto:isAiReady"],
+    "reasons": {},
+    "relatedIds": ["ci-cd-stack", "load-shaping-stack"]
+  }
+]

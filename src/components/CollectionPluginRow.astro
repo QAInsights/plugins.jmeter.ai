@@ -1,0 +1,37 @@
+---
+import PluginCard from './PluginCard.astro';
+
+interface Props {
+  plugin: any;
+  reason?: string;
+}
+
+const { plugin, reason } = Astro.props;
+---
+
+<div class="collection-plugin-row">
+  <div class="related-plugin-link cursor-pointer" data-href={`/plugin/${plugin.id}`}>
+    <PluginCard plugin={plugin} />
+  </div>
+
+  {reason && (
+    <div class="mt-2 mx-1 px-4 py-2.5 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-lg">
+      <p class="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
+        <span class="font-bold">Why it's here: </span>{reason}
+      </p>
+    </div>
+  )}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.related-plugin-link').forEach((wrap) => {
+      wrap.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement | null;
+        if (target && target.closest('button, input, label, a')) return;
+        const href = wrap.getAttribute('data-href');
+        if (href) window.location.href = href;
+      });
+    });
+  });
+</script>

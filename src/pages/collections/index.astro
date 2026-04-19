@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CollectionCard from '../../components/CollectionCard.astro';
+import pluginsData from '../../data/plugins_data.json';
+import rawCollections from '../../data/collections.json';
+import { getCollections, getCollectionSummaries } from '../../utils/collection';
+
+const collections = getCollections(pluginsData as any[], rawCollections as any[]);
+const summaries = getCollectionSummaries(collections);
+
+const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n);
+
+const totalPluginsAcrossStacks = collections.reduce((sum, c) => sum + c.pluginCount, 0);
+const totalDownloadsAcrossStacks = collections.reduce((sum, c) => sum + c.totalDownloads, 0);
+
+const title = 'Collections | PerfAtlas';
+const description = `Curated JMeter plugin stacks for every use case. ${collections.length} hand-picked collections covering CI/CD, observability, load shaping, and AI-powered testing.`;
+---
+
+<Layout title={title} description={description} image="/og/collections/index.png">
+  <Header />
+  <main class="flex-grow flex flex-col py-12 md:py-16 px-6">
+    <div class="max-w-7xl mx-auto w-full">
+
+      {/* Back Link */}
+      <a href="/" class="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:hover:text-white mb-8 transition-colors text-sm font-semibold">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Back to Directory
+      </a>
+
+      {/* Hero */}
+      <div class="mb-12">
+        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Collections</p>
+        <h1 class="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight tracking-tighter mb-4">
+          Curated plugin stacks <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-[#ccff00]">for every use case</span>
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
+          Hand-picked groups of JMeter plugins that work better together. Each stack comes with an install command you can drop straight into your pipeline.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-10">
+          <div class="bg-white dark:bg-dark-surface rounded-xl p-5 border border-gray-200 dark:border-white/10">
+            <h4 class="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wide">Stacks</h4>
+            <p class="text-2xl md:text-3xl font-black text-gray-900 dark:text-white">{collections.length}</p>
+          </div>
+          <div class="bg-white dark:bg-dark-surface rounded-xl p-5 border border-gray-200 dark:border-white/10">
+            <h4 class="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wide">Plugins Covered</h4>
+            <p class="text-2xl md:text-3xl font-black text-gray-900 dark:text-white">{formatNumber(totalPluginsAcrossStacks)}</p>
+          </div>
+          <div class="col-span-2 md:col-span-1 bg-white dark:bg-dark-surface rounded-xl p-5 border border-gray-200 dark:border-white/10">
+            <h4 class="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wide">Total Downloads</h4>
+            <p class="text-2xl md:text-3xl font-black text-gray-900 dark:text-white">{formatNumber(totalDownloadsAcrossStacks)}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Collections Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {summaries.map((col) => (
+          <CollectionCard collection={col} />
+        ))}
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>
