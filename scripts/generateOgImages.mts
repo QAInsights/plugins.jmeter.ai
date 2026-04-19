@@ -285,7 +285,7 @@ async function renderBlogPostOg(post: { slug: string; ext: string; frontmatter: 
         title: post.frontmatter.title,
         description: post.frontmatter.description || '',
         author: post.frontmatter.author || 'PerfAtlas',
-        pubDate: post.frontmatter.pubDate || new Date(),
+        pubDate: post.frontmatter.pubDate || undefined,
         readingTime,
     });
     const png = renderSvgToPng(svg);

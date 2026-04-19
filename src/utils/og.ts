@@ -542,11 +542,12 @@ export interface OgBlogPostInput {
   title: string;
   description?: string;
   author: string;
-  pubDate: Date | string;
+  pubDate?: Date | string;
   readingTime?: string;
 }
 
-function formatPubDate(date: Date | string): string {
+function formatPubDate(date?: Date | string): string {
+  if (date == null) return '';
   const d = typeof date === 'string' ? new Date(date) : date;
   if (!(d instanceof Date) || Number.isNaN(d.getTime())) return '';
   // Format in UTC so the rendered date matches the authored `pubDate` rather
