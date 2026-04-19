@@ -4,7 +4,11 @@ export interface PluginLike {
   componentClasses?: string[];
   stats?: {
     absoluteDownloads?: number;
+    trendingDelta?: number;
   };
+  isAiReady?: boolean;
+  isFeatured?: boolean;
+  sponsored?: boolean;
 }
 
 // Intentionally loose — `plugins_data.json` infers per-key union types which
@@ -185,4 +189,123 @@ export function getChangelogTimeline(plugin: ChangelogSource): ChangelogEntry[] 
 
     return { version, changes, downloadUrl, libs, isMavenTemplate };
   });
+}
+
+/**
+ * Convert a free-form vendor name (e.g. "QAInsights.com", "JMeter-Plugins.org",
+ * "BlazeMeter Inc.") to a URL-safe slug suitable for `/vendor/[slug]` routes.
+ *
+ * Rules:
+ * - Lower-cased, ASCII-only (diacritics stripped via NFKD normalisation).
+ * - Any run of characters outside `[a-z0-9]` becomes a single `-`.
+ * - Leading / trailing `-` are trimmed.
+ * - Empty / whitespace-only input collapses to `"unknown-vendor"` so routes
+ *   remain valid even for pathological data.
+ */
+export function vendorSlug(vendor: string | undefined | null): string {
+  if (!vendor) return 'unknown-vendor';
+  const normalised = vendor
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '') // strip combining diacritics
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return normalised.length > 0 ? normalised : 'unknown-vendor';
+}
+
+export interface VendorSummary<T extends PluginLike> {
+  vendor: string;
+  slug: string;
+  plugins: T[];
+  totalDownloads: number;
+  totalTrending: number;
+  pluginCount: number;
+  aiReadyCount: number;
+  featuredCount: number;
+  categoryCounts: Record<PluginCategory, number>;
+  topPlugin: T | null;
+}
+
+/**
+ * Group plugins by vendor and compute per-vendor aggregates used by the
+ * vendor landing page. Plugins within each group are sorted by absolute
+ * downloads descending so the "top plugin" and grid ordering are stable.
+ *
+ * Slug collisions (two distinct vendor strings normalising to the same slug)
+ * are resolved deterministically by appending `-2`, `-3`, ... to the later
+ * entries — this keeps `getStaticPaths()` duplicate-free.
+ */
+export function getVendors<T extends PluginLike>(all: T[]): VendorSummary<T>[] {
+  if (!Array.isArray(all)) return [];
+
+  const groups = new Map<string, T[]>();
+  for (const p of all) {
+    if (!p || !p.vendor) continue;
+    const key = p.vendor;
+    const existing = groups.get(key);
+    if (existing) existing.push(p);
+    else groups.set(key, [p]);
+  }
+
+  const byDownloads = (a: T, b: T) =>
+    (b.stats?.absoluteDownloads ?? 0) - (a.stats?.absoluteDownloads ?? 0);
+
+  const usedSlugs = new Map<string, number>();
+  const summaries: VendorSummary<T>[] = [];
+
+  // Preserve deterministic ordering: vendors sorted by descending total downloads.
+  const orderedVendors = Array.from(groups.entries())
+    .map(([vendor, plugins]) => {
+      const totalDownloads = plugins.reduce(
+        (sum, p) => sum + (p.stats?.absoluteDownloads ?? 0),
+        0
+      );
+      return { vendor, plugins, totalDownloads };
+    })
+    .sort((a, b) => b.totalDownloads - a.totalDownloads || a.vendor.localeCompare(b.vendor));
+
+  for (const { vendor, plugins, totalDownloads } of orderedVendors) {
+    const baseSlug = vendorSlug(vendor);
+    const seen = usedSlugs.get(baseSlug) ?? 0;
+    const slug = seen === 0 ? baseSlug : `${baseSlug}-${seen + 1}`;
+    usedSlugs.set(baseSlug, seen + 1);
+
+    const sortedPlugins = plugins.slice().sort(byDownloads);
+
+    const categoryCounts: Record<PluginCategory, number> = {
+      Assertions: 0,
+      Listeners: 0,
+      Samplers: 0,
+      Configs: 0,
+      Timers: 0,
+      Processors: 0,
+      Others: 0,
+    };
+
+    let totalTrending = 0;
+    let aiReadyCount = 0;
+    let featuredCount = 0;
+
+    for (const p of sortedPlugins) {
+      totalTrending += p.stats?.trendingDelta ?? 0;
+      if (p.isAiReady) aiReadyCount++;
+      if (p.isFeatured) featuredCount++;
+      categoryCounts[inferCategory(p)]++;
+    }
+
+    summaries.push({
+      vendor,
+      slug,
+      plugins: sortedPlugins,
+      totalDownloads,
+      totalTrending,
+      pluginCount: sortedPlugins.length,
+      aiReadyCount,
+      featuredCount,
+      categoryCounts,
+      topPlugin: sortedPlugins[0] ?? null,
+    });
+  }
+
+  return summaries;
 }

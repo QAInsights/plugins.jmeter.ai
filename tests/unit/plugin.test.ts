@@ -4,6 +4,8 @@ import {
   getRelatedPlugins,
   hasChangelog,
   getChangelogTimeline,
+  vendorSlug,
+  getVendors,
   type PluginLike,
 } from '../../src/utils/plugin';
 
@@ -306,5 +308,129 @@ describe('getChangelogTimeline', () => {
       },
     });
     expect(entry.changes).toBe('Fix a bug');
+  });
+});
+
+describe('vendorSlug', () => {
+  it('lower-cases and hyphen-joins simple names', () => {
+    expect(vendorSlug('JMeter Core Team')).toBe('jmeter-core-team');
+  });
+
+  it('collapses dots and other punctuation into single hyphens', () => {
+    expect(vendorSlug('QAInsights.com')).toBe('qainsights-com');
+    expect(vendorSlug('JMeter-Plugins.org')).toBe('jmeter-plugins-org');
+  });
+
+  it('trims leading and trailing separators', () => {
+    expect(vendorSlug('  .BlazeMeter.  ')).toBe('blazemeter');
+  });
+
+  it('strips diacritics via NFKD normalisation', () => {
+    expect(vendorSlug('Café Testing')).toBe('cafe-testing');
+  });
+
+  it('returns "unknown-vendor" for empty, whitespace, null, or undefined input', () => {
+    expect(vendorSlug('')).toBe('unknown-vendor');
+    expect(vendorSlug('   ')).toBe('unknown-vendor');
+    expect(vendorSlug('!!!')).toBe('unknown-vendor');
+    expect(vendorSlug(null)).toBe('unknown-vendor');
+    expect(vendorSlug(undefined)).toBe('unknown-vendor');
+  });
+});
+
+describe('getVendors', () => {
+  it('groups plugins by vendor and sorts groups by total downloads desc', () => {
+    const all = [
+      makePlugin({ id: 'a', vendor: 'Acme', stats: { absoluteDownloads: 100 } }),
+      makePlugin({ id: 'b', vendor: 'Bravo', stats: { absoluteDownloads: 500 } }),
+      makePlugin({ id: 'c', vendor: 'Acme', stats: { absoluteDownloads: 50 } }),
+    ];
+    const vendors = getVendors(all);
+    expect(vendors.map((v) => v.vendor)).toEqual(['Bravo', 'Acme']);
+    expect(vendors[0].totalDownloads).toBe(500);
+    expect(vendors[1].totalDownloads).toBe(150);
+  });
+
+  it('sorts plugins within each group by downloads desc', () => {
+    const all = [
+      makePlugin({ id: 'a', vendor: 'Acme', stats: { absoluteDownloads: 100 } }),
+      makePlugin({ id: 'b', vendor: 'Acme', stats: { absoluteDownloads: 300 } }),
+      makePlugin({ id: 'c', vendor: 'Acme', stats: { absoluteDownloads: 200 } }),
+    ];
+    const [acme] = getVendors(all);
+    expect(acme.plugins.map((p) => p.id)).toEqual(['b', 'c', 'a']);
+    expect(acme.topPlugin?.id).toBe('b');
+  });
+
+  it('skips plugins with missing or empty vendors', () => {
+    const all = [
+      makePlugin({ id: 'a', vendor: 'Acme' }),
+      makePlugin({ id: 'b', vendor: undefined }),
+      makePlugin({ id: 'c', vendor: '' }),
+    ];
+    const vendors = getVendors(all);
+    expect(vendors).toHaveLength(1);
+    expect(vendors[0].vendor).toBe('Acme');
+  });
+
+  it('computes aggregate trending, AI-ready, and featured counts', () => {
+    const all = [
+      makePlugin({
+        id: 'a',
+        vendor: 'Acme',
+        stats: { absoluteDownloads: 10, trendingDelta: 5 },
+        isAiReady: true,
+      }),
+      makePlugin({
+        id: 'b',
+        vendor: 'Acme',
+        stats: { absoluteDownloads: 20, trendingDelta: -2 },
+        isFeatured: true,
+      }),
+    ];
+    const [acme] = getVendors(all);
+    expect(acme.totalTrending).toBe(3);
+    expect(acme.aiReadyCount).toBe(1);
+    expect(acme.featuredCount).toBe(1);
+    expect(acme.pluginCount).toBe(2);
+  });
+
+  it('tallies categoryCounts using inferCategory', () => {
+    const all = [
+      makePlugin({ id: 'a', vendor: 'Acme', componentClasses: ['com.foo.HttpSampler'] }),
+      makePlugin({ id: 'b', vendor: 'Acme', componentClasses: ['com.foo.MyAssertion'] }),
+      makePlugin({ id: 'c', vendor: 'Acme', componentClasses: ['com.foo.HttpSampler'] }),
+      makePlugin({ id: 'd', vendor: 'Acme', componentClasses: ['com.foo.Unknown'] }),
+    ];
+    const [acme] = getVendors(all);
+    expect(acme.categoryCounts.Samplers).toBe(2);
+    expect(acme.categoryCounts.Assertions).toBe(1);
+    expect(acme.categoryCounts.Others).toBe(1);
+    expect(acme.categoryCounts.Listeners).toBe(0);
+  });
+
+  it('assigns unique slugs when two vendor names collide after normalisation', () => {
+    const all = [
+      makePlugin({ id: 'a', vendor: 'QAInsights.com', stats: { absoluteDownloads: 100 } }),
+      makePlugin({ id: 'b', vendor: 'qainsights-com', stats: { absoluteDownloads: 50 } }),
+    ];
+    const vendors = getVendors(all);
+    const slugs = vendors.map((v) => v.slug);
+    expect(new Set(slugs).size).toBe(vendors.length);
+    expect(slugs).toContain('qainsights-com');
+    expect(slugs).toContain('qainsights-com-2');
+  });
+
+  it('returns an empty array when input is not an array', () => {
+    // @ts-expect-error intentional bad input
+    expect(getVendors(null)).toEqual([]);
+    // @ts-expect-error intentional bad input
+    expect(getVendors(undefined)).toEqual([]);
+  });
+
+  it('topPlugin is null when a vendor group is somehow empty', () => {
+    // Impossible via public API; this test guards the defensive branch.
+    const vendors = getVendors<PluginLike>([]);
+    expect(vendors).toEqual([]);
   });
 });

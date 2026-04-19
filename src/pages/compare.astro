@@ -61,6 +61,17 @@ import pluginsData from '../data/plugins_data.json';
 </Layout>
 
 <script is:inline define:vars={{ pluginsData }}>
+    function vendorSlug(vendor) {
+        if (!vendor) return 'unknown-vendor';
+        const s = String(vendor)
+            .normalize('NFKD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        return s || 'unknown-vendor';
+    }
+
     function initCompare() {
         const urlParams = new URLSearchParams(window.location.search);
         const ids = urlParams.get('ids')?.split(',').filter(Boolean) || [];
@@ -95,7 +106,7 @@ import pluginsData from '../data/plugins_data.json';
                 <div class="flex flex-col gap-2">
                     <span class="text-xs font-mono text-gray-400">${p.id}</span>
                     <h3 class="text-lg font-black text-gray-900 dark:text-white leading-tight">${p.name}</h3>
-                    <span class="text-[10px] uppercase font-bold text-primary">${p.vendor}</span>
+                    <a href="/vendor/${vendorSlug(p.vendor)}" class="text-[10px] uppercase font-bold text-primary hover:underline underline-offset-4">${p.vendor}</a>
                 </div>
             </th>`;
         });

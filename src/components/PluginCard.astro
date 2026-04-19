@@ -1,5 +1,5 @@
 ---
-import { inferCategory } from '../utils/plugin';
+import { inferCategory, vendorSlug } from '../utils/plugin';
 
 const { plugin } = Astro.props;
 
@@ -10,6 +10,7 @@ if (plugin.isAiReady) tags.push('AI Ready');
 if (plugin.sponsored) tags.push('Sponsored');
 
 const category = inferCategory(plugin);
+const vendorHref = plugin.vendor ? `/vendor/${vendorSlug(plugin.vendor)}` : null;
 
 const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
 ---
@@ -68,7 +69,15 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
         <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-[#ccff00] transition-colors leading-tight line-clamp-2">
           {plugin.name}
         </h3>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-wider font-semibold">By {plugin.vendor}</p>
+        {vendorHref ? (
+          <a
+            href={vendorHref}
+            class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-wider font-semibold hover:text-primary dark:hover:text-[#ccff00] transition-colors w-fit"
+            onclick="event.stopPropagation()"
+          >By {plugin.vendor}</a>
+        ) : (
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-wider font-semibold">By {plugin.vendor}</p>
+        )}
       </div>
 
       {tags.length > 0 && (
