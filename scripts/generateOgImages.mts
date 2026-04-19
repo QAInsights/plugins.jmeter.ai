@@ -239,7 +239,7 @@ function slugify(name: string): string {
         .replace(/^-+|-+$/g, '');
 }
 
-async function getBlogPosts(): Promise<Array<{ slug: string; frontmatter: BlogFrontmatter; body: string }>> {
+async function getBlogPosts(): Promise<Array<{ slug: string; ext: string; frontmatter: BlogFrontmatter; body: string }>> {
     try {
         const files = await fs.readdir(BLOG_DIR);
         const mdFiles = files.filter(f => f.endsWith('.md') || f.endsWith('.mdx'));
@@ -249,9 +249,11 @@ async function getBlogPosts(): Promise<Array<{ slug: string; frontmatter: BlogFr
                 const filePath = path.join(BLOG_DIR, file);
                 const content = await fs.readFile(filePath, 'utf8');
                 const { frontmatter, body } = parseFrontmatter(content);
-                const slug = path.basename(file, path.extname(file));
+                const ext = path.extname(file);
+                const slug = path.basename(file, ext);
                 return {
                     slug,
+                    ext,
                     frontmatter: {
                         title: frontmatter.title || slug,
                         description: frontmatter.description,
@@ -269,9 +271,9 @@ async function getBlogPosts(): Promise<Array<{ slug: string; frontmatter: BlogFr
     }
 }
 
-async function renderBlogPostOg(post: { slug: string; frontmatter: BlogFrontmatter; body: string }): Promise<'written' | 'skipped' | 'error'> {
+async function renderBlogPostOg(post: { slug: string; ext: string; frontmatter: BlogFrontmatter; body: string }): Promise<'written' | 'skipped' | 'error'> {
     const outPath = path.join(OUT_BLOG_DIR, `${post.slug}.png`);
-    const sourcePath = path.join(BLOG_DIR, `${post.slug}.md`);
+    const sourcePath = path.join(BLOG_DIR, `${post.slug}${post.ext}`);
 
     if (!FORCE && (await fileExistsNewerThan(outPath, sourcePath))) {
         return 'skipped';
