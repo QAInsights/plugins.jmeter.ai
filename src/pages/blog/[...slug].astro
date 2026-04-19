@@ -33,7 +33,7 @@ const { Content, headings } = await render(post);
     <main class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex-grow w-full">
         <div class="flex flex-col lg:flex-row gap-12">
             <!-- Sidebar TOC -->
-            <aside class="hidden lg:block w-64 shrink-0 order-1">
+            <aside class="hidden lg:block w-64 shrink-0 order-2">
                 <div class="sticky top-24">
                     <TableOfContents headings={headings} />
                     
@@ -57,7 +57,7 @@ const { Content, headings } = await render(post);
             </aside>
 
             <!-- Article Body -->
-            <article class="flex-1 min-w-0 order-2" data-pagefind-body>
+            <article class="flex-1 min-w-0 order-1" data-pagefind-body>
                 <header class="mb-10 text-center">
                     <div class="flex items-center justify-center gap-3 mb-6">
                         <time datetime={post.data.pubDate.toISOString()} class="text-sm font-medium text-gray-500 dark:text-gray-400">
