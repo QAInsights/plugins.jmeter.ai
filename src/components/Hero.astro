@@ -1,35 +1,35 @@
 ---
 import StarMap from './StarMap.astro';
 ---
-<section class="relative pt-16 pb-10 px-6 border-b border-gray-200 dark:border-white/5 overflow-hidden min-h-[500px]">
+<section class="relative pt-12 sm:pt-16 pb-10 px-4 sm:px-6 border-b border-gray-200 dark:border-white/5 overflow-hidden min-h-[500px]">
     <StarMap />
     <div class="max-w-4xl mx-auto text-center relative z-10">
-        <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight tracking-tight text-gray-900 dark:text-white">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 leading-tight tracking-tight text-gray-900 dark:text-white">
             Power up <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">JMeter</span> with AI.
         </h1>
-        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
             The ultimate directory for modern load testing. Search, discover, and track the velocity of the best plugins, completely synced daily.
         </p>
 
         <div class="relative max-w-2xl mx-auto group">
             <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur opacity-15 group-focus-within:opacity-40 transition duration-500"></div>
             <div class="relative flex items-center bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden shadow-xl">
-                <span class="pl-5 text-gray-400 dark:text-white/40 group-focus-within:text-primary transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <span class="pl-4 sm:pl-5 text-gray-400 dark:text-white/40 group-focus-within:text-primary transition-colors shrink-0">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </span>
                 <input 
                     type="text" 
                     id="searchInput"
-                    placeholder="Search plugins by name, description, or class..." 
-                    class="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 px-4 py-5 outline-none font-medium text-lg"
+                    placeholder="Search plugins by name, description..." 
+                    class="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 px-3 sm:px-4 py-4 sm:py-5 outline-none font-medium text-base sm:text-lg"
                 />
                 <button 
                     id="clearSearchBtn" 
                     type="button" 
                     aria-label="Clear search"
-                    class="hidden pr-5 pl-2 text-gray-400 hover:text-gray-600 dark:text-white/40 dark:hover:text-white transition-colors duration-200 focus:outline-none"
+                    class="hidden pr-4 sm:pr-5 pl-2 text-gray-400 hover:text-gray-600 dark:text-white/40 dark:hover:text-white transition-colors duration-200 focus:outline-none shrink-0"
                 >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
         </div>

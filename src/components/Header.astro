@@ -1,7 +1,7 @@
 ---
 ---
 <header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-white/10 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
             <a href="/" class="flex items-center gap-2 transition-transform hover:scale-105">
                 <svg class="w-9 h-9 text-green-600 dark:text-[#ccff00]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" aria-label="PerfAtlas" role="img">
@@ -16,7 +16,8 @@
             </a>
         </div>
 
-        <div class="flex items-center gap-2 sm:gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+        <!-- Desktop nav -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
             <a href="/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname === '/' ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Home
             </a>
@@ -26,7 +27,7 @@
             <a href="/blog" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/blog') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Blog
             </a>
-            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+            <div class="flex items-center gap-4 shrink-0">
                 <a href="https://github.com/QAInsights/plugins.jmeter.ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" class="hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
                 </a>
@@ -34,15 +35,48 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
                 </a>
             </div>
-            <a href="https://www.buymeacoffee.com/qainsights" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffea30] text-black px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg font-bold transition-transform hover:scale-105 shadow-md shadow-[#FFDD00]/20">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
-                <span class="hidden sm:inline">Donate</span>
+            <a href="https://www.buymeacoffee.com/qainsights" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffea30] text-black px-4 py-2 rounded-lg font-bold transition-transform hover:scale-105 shadow-md shadow-[#FFDD00]/20">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+                <span>Donate</span>
             </a>
             <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors">
                 <svg id="themeIconDark" class="w-4 h-4 hidden dark:block text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 <svg id="themeIconLight" class="w-4 h-4 block dark:hidden text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
             </button>
         </div>
+
+        <!-- Mobile right controls -->
+        <div class="flex md:hidden items-center gap-2">
+            <button id="themeToggleMobile" class="p-2 rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors">
+                <svg id="themeIconDarkMobile" class="w-4 h-4 hidden dark:block text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="themeIconLightMobile" class="w-4 h-4 block dark:hidden text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+            <button id="mobileMenuBtn" aria-label="Toggle menu" class="p-2 rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors">
+                <svg id="menuIconOpen" class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg id="menuIconClose" class="w-5 h-5 text-gray-700 dark:text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile menu drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-dark-bg/95 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1 text-sm font-medium">
+            <a href="/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname === '/' ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Home</a>
+            <a href="/vendor" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/vendor') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Vendors</a>
+            <a href="/blog" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/blog') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Blog</a>
+            <div class="flex items-center gap-4 px-3 py-3 border-t border-gray-100 dark:border-white/5 mt-1">
+                <a href="https://github.com/QAInsights/plugins.jmeter.ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" class="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+                </a>
+                <a href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new" target="_blank" rel="noopener noreferrer" aria-label="Provide Feedback" class="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                </a>
+                <a href="https://www.buymeacoffee.com/qainsights" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffea30] text-black px-3 py-1.5 rounded-lg font-bold transition-colors shadow-md">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+                    Donate
+                </a>
+            </div>
+        </nav>
     </div>
 </header>
 <script>
@@ -68,16 +102,37 @@
             }
         }
 
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            syncChartTheme();
+        }
+
         if(themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.theme = 'light';
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.theme = 'dark';
-                }
-                syncChartTheme();
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+
+        const themeToggleMobile = document.getElementById('themeToggleMobile');
+        if (themeToggleMobile) {
+            themeToggleMobile.addEventListener('click', toggleTheme);
+        }
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIconOpen = document.getElementById('menuIconOpen');
+        const menuIconClose = document.getElementById('menuIconClose');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden', isOpen);
+                menuIconOpen?.classList.toggle('hidden', !isOpen);
+                menuIconClose?.classList.toggle('hidden', isOpen);
             });
         }
     });

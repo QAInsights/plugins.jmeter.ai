@@ -101,14 +101,24 @@
                 const plusIcon = btn.querySelector('.install-icon-plus');
                 const checkIcon = btn.querySelector('.install-icon-check');
 
+                // Snapshot the button's default text-color classes once, before we ever mutate them
+                if (!btn.hasAttribute('data-default-colors')) {
+                    const defaultColors = [...btn.classList].filter(c =>
+                        c.startsWith('text-') || c.startsWith('dark:text-')
+                    );
+                    btn.setAttribute('data-default-colors', defaultColors.join(' '));
+                }
+                const defaultColors = (btn.getAttribute('data-default-colors') || '').split(' ').filter(Boolean);
+
                 if (isSelected) {
                     btn.classList.add('bg-green-500/15', 'text-green-600', 'dark:text-green-400', 'border-green-500/40');
-                    btn.classList.remove('text-gray-400', 'dark:text-gray-500', 'text-gray-700', 'dark:text-white');
+                    defaultColors.forEach(c => btn.classList.remove(c));
                     if (plusIcon) plusIcon.classList.add('hidden');
                     if (checkIcon) checkIcon.classList.remove('hidden');
                     if (label && !label.classList.contains('sr-only')) label.textContent = 'Added';
                 } else {
                     btn.classList.remove('bg-green-500/15', 'text-green-600', 'dark:text-green-400', 'border-green-500/40');
+                    defaultColors.forEach(c => btn.classList.add(c));
                     if (plusIcon) plusIcon.classList.remove('hidden');
                     if (checkIcon) checkIcon.classList.add('hidden');
                     if (label && !label.classList.contains('sr-only')) label.textContent = 'Install';
