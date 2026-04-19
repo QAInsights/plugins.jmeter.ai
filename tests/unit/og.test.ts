@@ -4,6 +4,12 @@ import {
   wrapText,
   formatDownloads,
   buildPluginOgSvg,
+  buildGenericOgSvg,
+  buildVendorOgSvg,
+  buildVendorIndexOgSvg,
+  buildHomeOgSvg,
+  buildBlogPostOgSvg,
+  buildBlogIndexOgSvg,
   stripHtml,
   OG_WIDTH,
   OG_HEIGHT,
@@ -193,7 +199,7 @@ describe('buildPluginOgSvg', () => {
     const svg = buildPluginOgSvg({ id: 'x', name: 'Minimal' });
     expect(svg).toContain('Minimal');
     expect(svg).toContain('By Unknown vendor');
-    expect(svg).toContain('PLUGIN &#183; 0 DOWNLOADS');
+    expect(svg).toContain('PLUGIN \u00B7 0 DOWNLOADS');
   });
 
   it('omits the description block when no description is supplied', () => {
@@ -264,5 +270,227 @@ describe('buildPluginOgSvg', () => {
       // Allow standard XML entities and numeric refs.
       expect(name).toMatch(/^(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+)$/);
     }
+  });
+});
+
+// Reusable validators for the new OG variants. Every generated SVG must:
+//   - be a well-formed 1200x630 document,
+//   - include the PerfAtlas brand + site footer,
+//   - escape every `&` as a valid XML entity.
+function expectWellFormedSvg(svg: string) {
+  expect(svg.startsWith('<?xml')).toBe(true);
+  expect(svg).toContain(`width="${OG_WIDTH}"`);
+  expect(svg).toContain(`height="${OG_HEIGHT}"`);
+  expect(svg).toContain('</svg>');
+  expect(svg).toContain('Perf');
+  expect(svg).toContain('Atlas');
+  expect(svg).toContain('plugins.jmeter.ai');
+  const ampersands = [...svg.matchAll(/&([^;\s<>]*?)(;|$)/g)];
+  for (const m of ampersands) {
+    expect(m[2]).toBe(';');
+    expect(m[1]).toMatch(/^(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+)$/);
+  }
+}
+
+describe('buildGenericOgSvg', () => {
+  it('renders title, subtitle, and eyebrow when provided', () => {
+    const svg = buildGenericOgSvg({
+      eyebrow: 'Leaderboard',
+      title: 'Vendors',
+      subtitle: '43 teams shipping 135 plugins',
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('LEADERBOARD');
+    expect(svg).toContain('Vendors');
+    expect(svg).toContain('43 teams shipping 135 plugins');
+  });
+
+  it('renders a bottom stats row when stats are supplied', () => {
+    const svg = buildGenericOgSvg({
+      title: 'Stats card',
+      stats: [
+        { label: 'A', value: '1' },
+        { label: 'B', value: '2' },
+      ],
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toMatch(/fill="#9ca3af"[^>]*>A</);
+    expect(svg).toMatch(/fill="#9ca3af"[^>]*>B</);
+  });
+
+  it('renders tag pills when supplied and no stats present', () => {
+    const svg = buildGenericOgSvg({
+      title: 'Tagged card',
+      tags: [{ label: 'Beta', color: '#ccff00', textColor: '#0b0b0d' }],
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('BETA');
+  });
+
+  it('escapes XML-hostile title and subtitle input', () => {
+    const svg = buildGenericOgSvg({
+      eyebrow: '<evil>',
+      title: '<script>alert("x")</script>',
+      subtitle: 'Tom & Jerry',
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).not.toContain('<script>');
+    expect(svg).toContain('&lt;script&gt;');
+    expect(svg).toContain('Tom &amp; Jerry');
+  });
+
+  it('strips HTML and decodes entities in the body paragraph', () => {
+    const svg = buildGenericOgSvg({
+      title: 'Hi',
+      body: '<p>Tom&nbsp;&amp;&nbsp;<b>Jerry</b></p>',
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('Tom &amp; Jerry');
+  });
+});
+
+describe('buildVendorOgSvg', () => {
+  it('surfaces vendor, plugin count, downloads, and flagship in the card', () => {
+    const svg = buildVendorOgSvg({
+      vendor: 'Acme Corp',
+      pluginCount: 5,
+      totalDownloads: 12_345,
+      totalTrending: 100,
+      aiReadyCount: 2,
+      topPluginName: 'Acme Flagship Sampler',
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('VENDOR');
+    expect(svg).toContain('Acme Corp');
+    expect(svg).toContain('5 PLUGINS');
+    expect(svg).toContain('12.3K DOWNLOADS');
+    expect(svg).toContain('Flagship: Acme Flagship Sampler');
+    expect(svg).toContain('+100');
+  });
+
+  it('uses singular "PLUGIN" suffix when the vendor has exactly one plugin', () => {
+    const svg = buildVendorOgSvg({
+      vendor: 'Solo',
+      pluginCount: 1,
+      totalDownloads: 10,
+      totalTrending: 0,
+      aiReadyCount: 0,
+    });
+    expect(svg).toContain('1 PLUGIN ');
+    expect(svg).not.toContain('1 PLUGINS');
+  });
+
+  it('formats negative trending with a leading minus sign', () => {
+    const svg = buildVendorOgSvg({
+      vendor: 'Declining',
+      pluginCount: 3,
+      totalDownloads: 100,
+      totalTrending: -42,
+      aiReadyCount: 0,
+    });
+    expect(svg).toContain('-42');
+  });
+
+  it('omits the flagship subtitle when topPluginName is missing', () => {
+    const svg = buildVendorOgSvg({
+      vendor: 'NoFlagship',
+      pluginCount: 2,
+      totalDownloads: 50,
+      totalTrending: 0,
+      aiReadyCount: 0,
+    });
+    expect(svg).not.toContain('Flagship:');
+  });
+});
+
+describe('buildVendorIndexOgSvg', () => {
+  it('renders the leaderboard title and aggregate stats', () => {
+    const svg = buildVendorIndexOgSvg({
+      vendorCount: 43,
+      pluginCount: 135,
+      totalDownloads: 5_200_000,
+      aiReadyCount: 8,
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('LEADERBOARD');
+    expect(svg).toContain('JMeter Plugin Vendors');
+    expect(svg).toContain('43 teams shipping 135 plugins');
+    expect(svg).toContain('5.2M');
+  });
+});
+
+describe('buildHomeOgSvg', () => {
+  it('renders the PerfAtlas hero card with ecosystem stats', () => {
+    const svg = buildHomeOgSvg({
+      pluginCount: 135,
+      vendorCount: 43,
+      totalDownloads: 5_200_000,
+      aiReadyCount: 8,
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('THE MODERN JMETER DIRECTORY');
+    expect(svg).toContain('PerfAtlas');
+    expect(svg).toContain('Discover, search, and track JMeter plugins');
+    // Stat labels should appear in the stats row.
+    expect(svg).toMatch(/PLUGINS/);
+    expect(svg).toMatch(/VENDORS/);
+  });
+});
+
+describe('buildBlogPostOgSvg', () => {
+  it('renders post title, subtitle line with author and date, and body', () => {
+    const svg = buildBlogPostOgSvg({
+      title: 'Best JMeter Plugins for 2026',
+      description: 'A field guide to the plugins that actually matter.',
+      author: 'NaveenKumar Namachivayam',
+      pubDate: new Date('2026-04-05'),
+    });
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('PERFATLAS BLOG');
+    // Title wraps to two tspans, so assert each visible line fragment separately.
+    expect(svg).toContain('Best JMeter Plugins');
+    expect(svg).toContain('for 2026');
+    expect(svg).toContain('By NaveenKumar Namachivayam');
+    expect(svg).toContain('Apr 5, 2026');
+    expect(svg).toContain('A field guide to the plugins that actually matter.');
+  });
+
+  it('accepts pubDate as an ISO string', () => {
+    const svg = buildBlogPostOgSvg({
+      title: 'Hi',
+      author: 'Anon',
+      pubDate: '2026-01-15T00:00:00.000Z',
+    });
+    expect(svg).toContain('Jan 15, 2026');
+  });
+
+  it('tolerates an invalid pubDate without crashing', () => {
+    const svg = buildBlogPostOgSvg({
+      title: 'Hi',
+      author: 'Anon',
+      pubDate: 'not-a-date',
+    });
+    expectWellFormedSvg(svg);
+    // Subtitle still includes the author even when date parsing fails.
+    expect(svg).toContain('By Anon');
+  });
+
+  it('appends reading time to the subtitle when provided', () => {
+    const svg = buildBlogPostOgSvg({
+      title: 'Hi',
+      author: 'Anon',
+      pubDate: new Date('2026-04-05'),
+      readingTime: '8 min read',
+    });
+    expect(svg).toContain('8 min read');
+  });
+});
+
+describe('buildBlogIndexOgSvg', () => {
+  it('renders the blog index hero', () => {
+    const svg = buildBlogIndexOgSvg();
+    expectWellFormedSvg(svg);
+    expect(svg).toContain('PERFATLAS BLOG');
+    expect(svg).toContain('JMeter Insights');
   });
 });

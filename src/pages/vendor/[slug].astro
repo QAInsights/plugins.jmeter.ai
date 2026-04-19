@@ -35,7 +35,7 @@ const trendingColor = summary.totalTrending > 0
         : 'text-gray-500 dark:text-gray-400';
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} image={`/og/vendor/${summary.slug}.png`}>
     <Header />
     <main class="flex-grow flex flex-col py-12 md:py-16 px-6">
         <div class="max-w-7xl mx-auto w-full">

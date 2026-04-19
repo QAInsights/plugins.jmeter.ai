@@ -24,7 +24,7 @@ const { Content, headings } = await render(post);
 <Layout 
     title={`${post.data.title} - PerfAtlas Blog`} 
     description={post.data.description}
-    image={post.data.image ? post.data.image.src : placeholderImg.src}
+    image={`/og/blog/${post.id}.png`}
     type="article"
     articleDate={post.data.pubDate.toISOString()}
     articleAuthor={post.data.author}
