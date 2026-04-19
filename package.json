@@ -8,7 +8,9 @@
   "scripts": {
     "predev": "node scripts/fetchData.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/fetchData.mjs",
+    "prebuild": "node scripts/fetchData.mjs && tsx scripts/generateOgImages.mts",
+    "og:generate": "tsx scripts/generateOgImages.mts",
+    "og:rebuild": "tsx scripts/generateOgImages.mts --force",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -35,8 +37,10 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@vitest/coverage-v8": "^4.1.4",
     "linkedom": "^0.18.12",
+    "tsx": "^4.21.0",
     "undici": "^8.1.0",
     "vitest": "^4.1.4"
   }

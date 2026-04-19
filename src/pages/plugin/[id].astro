@@ -32,8 +32,10 @@ if (sUrl && !sUrl.startsWith('http')) {
     sUrl = 'https://jmeter-plugins.org' + (sUrl.startsWith('/') ? '' : '/') + sUrl;
 }
 
-// Generate the OG Image
-const ogImage = sUrl || 'https://plugins.jmeter.ai/favicon.svg';
+// Prebuild (scripts/generateOgImages.mts) emits a card PNG per plugin into
+// /public/og/plugin/<id>.png. We always link to that generated asset so every
+// plugin gets a distinctive share preview on Twitter / LinkedIn / Slack etc.
+const ogImage = `/og/plugin/${plugin.id}.png`;
 
 const title = `${plugin.name} | PerfAtlas`;
 const description = `Discover ${plugin.name} by ${plugin.vendor}. ${plugin.description}`;
