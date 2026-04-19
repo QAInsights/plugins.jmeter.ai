@@ -208,9 +208,10 @@ export function buildPluginOgSvg(plugin: OgPluginInput): string {
     ? wrapText(rawDescription, DESC_MAX_CHARS_PER_LINE, effectiveDescMaxLines).map(escapeXml)
     : [];
 
-  const descY = descLines.length > 0
-    ? Math.max(descStartMin, descLastBaseline - (descLines.length - 1) * descLineHeight)
-    : 0;
+  // Flow description top-down immediately under the vendor line; clamping to
+  // `effectiveDescMaxLines` (above) already guarantees it cannot overflow into
+  // the tag row, and a short description no longer leaves a huge visual gap.
+  const descY = descLines.length > 0 ? descStartMin : 0;
 
   const nameTspans = nameLines
     .map((line, i) => `<tspan x="${pad}" dy="${i === 0 ? 0 : nameLineHeight}">${line}</tspan>`)
