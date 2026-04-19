@@ -2,13 +2,13 @@
 ---
 <dialog id="pluginModal" class="m-auto backdrop:bg-black/70 backdrop:backdrop-blur-sm bg-transparent p-4 md:p-6 w-full max-w-3xl border-none outline-none overflow-visible">
     <div class="relative bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
-        <div class="flex items-start justify-between p-6 border-b border-gray-100 dark:border-white/10 relative">
+        <div class="flex items-start gap-4 p-6 border-b border-gray-100 dark:border-white/10 relative">
             <div id="modalHeaderBg" class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary hidden"></div>
-            <div>
-                <h2 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white leading-tight pr-8"></h2>
+            <div class="flex-1 min-w-0">
+                <h2 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white leading-tight truncate"></h2>
                 <p id="modalVendor" class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-widest">By <a id="modalVendorLink" href="#" class="hover:text-primary dark:hover:text-[#ccff00] transition-colors underline-offset-4 hover:underline"></a></p>
             </div>
-            <div class="absolute top-6 right-6 flex items-center gap-2">
+            <div class="flex items-center gap-2 shrink-0">
                 <button
                     type="button"
                     id="modalFavBtn"
