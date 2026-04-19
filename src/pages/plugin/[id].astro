@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import UsageChart from '../../components/UsageChart.astro';
+import WeeklyHeatmap from '../../components/WeeklyHeatmap.astro';
 import ChangelogTimeline from '../../components/ChangelogTimeline.astro';
 import GitHubBadge from '../../components/GitHubBadge.astro';
 import RelatedPluginsSection from '../../components/RelatedPluginsSection.astro';
@@ -116,6 +117,8 @@ const showChangelog = hasChangelog(plugin);
                         )}
 
                         <UsageChart labels={chartLabels} data={chartData} />
+
+                        <WeeklyHeatmap history={history} />
 
                         {plugin.componentClasses && plugin.componentClasses.length > 0 && (
                             <div class="mb-10">

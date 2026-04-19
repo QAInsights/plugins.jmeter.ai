@@ -1,0 +1,252 @@
+---
+import { buildWeeklyHeatmap } from '../utils/heatmap';
+
+interface Props {
+    history: Record<string, number> | null | undefined;
+}
+
+const { history } = Astro.props;
+const heatmap = buildWeeklyHeatmap(history);
+
+const CELL = 12;
+const GAP = 3;
+const STRIDE = CELL + GAP;
+const YEAR_LABEL_WIDTH = 44;
+const MONTH_LABEL_HEIGHT = 18;
+const LEGEND_HEIGHT = 24;
+
+const gridWidth = heatmap.weeks * STRIDE - GAP;
+const gridHeight = heatmap.years.length * STRIDE - GAP;
+const svgWidth = YEAR_LABEL_WIDTH + gridWidth + 8;
+const svgHeight = MONTH_LABEL_HEIGHT + Math.max(gridHeight, 0) + LEGEND_HEIGHT + 8;
+
+// Approximate starting week for each month (Jan..Dec), used only for
+// reference labels along the top axis.
+const monthLabels = [
+    { label: 'Jan', week: 0 },
+    { label: 'Feb', week: 4 },
+    { label: 'Mar', week: 9 },
+    { label: 'Apr', week: 13 },
+    { label: 'May', week: 17 },
+    { label: 'Jun', week: 22 },
+    { label: 'Jul', week: 26 },
+    { label: 'Aug', week: 30 },
+    { label: 'Sep', week: 35 },
+    { label: 'Oct', week: 39 },
+    { label: 'Nov', week: 43 },
+    { label: 'Dec', week: 48 },
+];
+
+const hasData = heatmap.populatedWeeks > 0;
+
+const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n);
+
+// Human-readable threshold labels used in the legend tooltip hint line.
+const thresholdLabel = hasData
+    ? `Least active weeks ≤ ${formatNumber(heatmap.thresholds[0])} · Peak weeks up to ${formatNumber(heatmap.thresholds[3])}`
+    : '';
+---
+
+{hasData && (
+    <div class="mb-10">
+        <div class="flex items-start md:items-end justify-between gap-4 mb-4 flex-col md:flex-row">
+            <div>
+                <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide">Weekly Download Intensity</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {formatNumber(heatmap.populatedWeeks)} weeks of data &bull; {thresholdLabel}
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="weekly-heatmap rounded-xl border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-transparent p-4 overflow-x-auto relative"
+            data-total={heatmap.totalDownloads}
+        >
+            <svg
+                role="img"
+                aria-label={`Weekly download heatmap covering ${heatmap.years.length} year${heatmap.years.length === 1 ? '' : 's'}`}
+                width={svgWidth}
+                height={svgHeight}
+                viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+                class="block"
+            >
+                {/* Month labels */}
+                {monthLabels.map((m) => (
+                    <text
+                        x={YEAR_LABEL_WIDTH + m.week * STRIDE}
+                        y={MONTH_LABEL_HEIGHT - 6}
+                        class="heatmap-axis-label"
+                    >
+                        {m.label}
+                    </text>
+                ))}
+
+                {/* Year rows */}
+                {heatmap.years.map((year, yIdx) => (
+                    <g>
+                        <text
+                            x={YEAR_LABEL_WIDTH - 8}
+                            y={MONTH_LABEL_HEIGHT + yIdx * STRIDE + CELL - 2}
+                            text-anchor="end"
+                            class="heatmap-axis-label"
+                        >
+                            {year}
+                        </text>
+                        {heatmap.grid[yIdx].map((cell, wIdx) => (
+                            <rect
+                                x={YEAR_LABEL_WIDTH + wIdx * STRIDE}
+                                y={MONTH_LABEL_HEIGHT + yIdx * STRIDE}
+                                width={CELL}
+                                height={CELL}
+                                rx={2}
+                                ry={2}
+                                class={`heatmap-cell heatmap-level-${cell ? cell.level : 0}`}
+                                data-date={cell?.date ?? ''}
+                                data-downloads={cell ? String(cell.downloads) : ''}
+                                data-year={year}
+                                data-week={wIdx}
+                                tabindex={cell ? 0 : -1}
+                                aria-label={cell ? `Week of ${cell.date}: ${formatNumber(cell.downloads)} downloads` : ''}
+                            />
+                        ))}
+                    </g>
+                ))}
+
+                {/* Legend */}
+                <g transform={`translate(${YEAR_LABEL_WIDTH + gridWidth - 5 * STRIDE - 40}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}>
+                    <text x={-8} y={CELL - 2} text-anchor="end" class="heatmap-axis-label">Less</text>
+                    {[0, 1, 2, 3, 4].map((level, i) => (
+                        <rect
+                            x={i * STRIDE}
+                            y={0}
+                            width={CELL}
+                            height={CELL}
+                            rx={2}
+                            ry={2}
+                            class={`heatmap-cell heatmap-level-${level}`}
+                        />
+                    ))}
+                    <text x={5 * STRIDE + 4} y={CELL - 2} class="heatmap-axis-label">More</text>
+                </g>
+            </svg>
+
+            <div
+                class="heatmap-tooltip hidden absolute pointer-events-none px-3 py-2 rounded-lg text-xs font-medium shadow-xl border bg-white dark:bg-[#18181b] border-gray-200 dark:border-white/10 text-gray-800 dark:text-gray-100 whitespace-nowrap z-10"
+                role="tooltip"
+            ></div>
+        </div>
+    </div>
+)}
+
+<style>
+    .heatmap-axis-label {
+        font-family: 'Outfit', system-ui, sans-serif;
+        font-size: 10px;
+        fill: #6b7280;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+    }
+    :global(.dark) .heatmap-axis-label {
+        fill: #a1a1aa;
+    }
+
+    .heatmap-cell {
+        transition: transform 120ms ease, outline-color 120ms ease;
+        outline: 1px solid transparent;
+        outline-offset: 1px;
+    }
+    .heatmap-cell:hover,
+    .heatmap-cell:focus-visible {
+        outline-color: rgba(0, 0, 0, 0.35);
+        cursor: pointer;
+    }
+    :global(.dark) .heatmap-cell:hover,
+    :global(.dark) .heatmap-cell:focus-visible {
+        outline-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Light mode palette */
+    .heatmap-level-0 { fill: #ebedf0; }
+    .heatmap-level-1 { fill: #d4f4a8; }
+    .heatmap-level-2 { fill: #9be55d; }
+    .heatmap-level-3 { fill: #65c022; }
+    .heatmap-level-4 { fill: #b0d600; }
+
+    /* Dark mode palette */
+    :global(.dark) .heatmap-level-0 { fill: rgba(255, 255, 255, 0.06); }
+    :global(.dark) .heatmap-level-1 { fill: #163a00; }
+    :global(.dark) .heatmap-level-2 { fill: #4d7c0f; }
+    :global(.dark) .heatmap-level-3 { fill: #84cc16; }
+    :global(.dark) .heatmap-level-4 { fill: #ccff00; }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const containers = document.querySelectorAll<HTMLElement>('.weekly-heatmap');
+        containers.forEach((container) => {
+            const tooltip = container.querySelector<HTMLElement>('.heatmap-tooltip');
+            if (!tooltip) return;
+
+            const numberFormatter = new Intl.NumberFormat('en-US');
+            const dateFormatter = new Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+            });
+
+            const formatDate = (iso: string) => {
+                if (!iso) return '';
+                const [y, m, d] = iso.split('-').map(Number);
+                if (!y || !m || !d) return iso;
+                const date = new Date(Date.UTC(y, m - 1, d));
+                if (Number.isNaN(date.getTime())) return iso;
+                return dateFormatter.format(date);
+            };
+
+            const showTooltip = (cell: Element, clientX: number, clientY: number) => {
+                const date = (cell as HTMLElement).dataset.date;
+                const downloads = (cell as HTMLElement).dataset.downloads;
+                if (!date || downloads === undefined || downloads === '') {
+                    tooltip.classList.add('hidden');
+                    return;
+                }
+                const num = Number(downloads);
+                tooltip.innerHTML = `
+                    <div class="font-bold text-gray-900 dark:text-white">${numberFormatter.format(num)} downloads</div>
+                    <div class="text-gray-500 dark:text-gray-400">Week of ${formatDate(date)}</div>
+                `;
+                tooltip.classList.remove('hidden');
+                const bounds = container.getBoundingClientRect();
+                const offsetX = clientX - bounds.left;
+                const offsetY = clientY - bounds.top;
+                const tooltipWidth = tooltip.offsetWidth || 180;
+                const maxX = container.clientWidth - tooltipWidth - 8;
+                const x = Math.max(8, Math.min(maxX, offsetX + 12));
+                const y = Math.max(8, offsetY - tooltip.offsetHeight - 10);
+                tooltip.style.left = `${x}px`;
+                tooltip.style.top = `${y}px`;
+            };
+
+            const hideTooltip = () => tooltip.classList.add('hidden');
+
+            container.addEventListener('mousemove', (e) => {
+                const target = (e.target as Element).closest('.heatmap-cell');
+                if (target && (target as HTMLElement).dataset.date) {
+                    showTooltip(target, e.clientX, e.clientY);
+                } else {
+                    hideTooltip();
+                }
+            });
+
+            container.addEventListener('mouseleave', hideTooltip);
+
+            container.addEventListener('focusin', (e) => {
+                const target = (e.target as Element).closest('.heatmap-cell');
+                if (!target) return;
+                const rect = (target as SVGRectElement).getBoundingClientRect();
+                showTooltip(target, rect.left + rect.width / 2, rect.top);
+            });
+            container.addEventListener('focusout', hideTooltip);
+        });
+    });
+</script>
