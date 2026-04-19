@@ -107,7 +107,7 @@
         // @ts-ignore
         window.openPluginModal = (p: any) => {
             const titleEl = document.getElementById('modalTitle');
-            if(titleEl) titleEl.textContent = p.name;
+            if(titleEl) { titleEl.textContent = p.name; titleEl.setAttribute('title', p.name); }
             
             const vendorLinkEl = document.getElementById('modalVendorLink') as HTMLAnchorElement | null;
             if(vendorLinkEl) {

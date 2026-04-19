@@ -407,7 +407,13 @@ const categories = Array.from(categoriesSet);
                     const newSearch = params.toString();
                     history.replaceState(null, '', window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash);
                     const favsPill = document.querySelector('.favorites-pill') as HTMLElement | null;
-                    if (favsPill) favsPill.click();
+                    if (favsPill) {
+                        favsPill.click();
+                        requestAnimationFrame(() => {
+                            const filtersEl = document.getElementById('categoryFilters');
+                            if (filtersEl) filtersEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        });
+                    }
                 }
             })();
 
