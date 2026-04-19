@@ -196,4 +196,42 @@ describe('PluginCard', () => {
     const { html } = await render(plugin);
     expect(html).toContain('compare-checkbox');
   });
+
+  it('should render a favorite-btn button', async () => {
+    const plugin = makePlugin();
+    const { html } = await render(plugin);
+    expect(html).toContain('class="favorite-btn');
+  });
+
+  it('should set data-plugin-id on the favorite-btn matching the plugin id', async () => {
+    const plugin = makePlugin();
+    const { html } = await render(plugin);
+    // The favorite-btn must carry data-plugin-id="test-plugin"
+    expect(html).toMatch(/favorite-btn[^>]*data-plugin-id="test-plugin"/s);
+  });
+
+  it('should render fav-icon-outline inside the favorite-btn', async () => {
+    const plugin = makePlugin();
+    const { html } = await render(plugin);
+    expect(html).toContain('fav-icon-outline');
+  });
+
+  it('should render fav-icon-filled as hidden by default', async () => {
+    const plugin = makePlugin();
+    const { html } = await render(plugin);
+    expect(html).toContain('fav-icon-filled');
+    expect(html).toContain('fav-icon-filled w-4 h-4 hidden');
+  });
+
+  it('should set aria-label="Add to favorites" on the favorite-btn', async () => {
+    const plugin = makePlugin();
+    const { html } = await render(plugin);
+    expect(html).toContain('aria-label="Add to favorites"');
+  });
+
+  it('should include onclick="event.stopPropagation()" on the favorite-btn', async () => {
+    const plugin = makePlugin();
+    const { html } = await render(plugin);
+    expect(html).toContain('onclick="event.stopPropagation()"');
+  });
 });

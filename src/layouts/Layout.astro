@@ -3,6 +3,7 @@ import '../styles/global.css';
 import ScrollToTop from '../components/ScrollToTop.astro';
 import CompareFloatingBar from '../components/CompareFloatingBar.astro';
 import InstallFloatingBar from '../components/InstallFloatingBar.astro';
+import FavoritesManager from '../components/FavoritesManager.astro';
 import { SEO } from "astro-seo";
 
 interface Props {
@@ -108,5 +109,6 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
         <ScrollToTop />
         <CompareFloatingBar />
         <InstallFloatingBar />
+        <FavoritesManager />
     </body>
 </html>

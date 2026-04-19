@@ -53,6 +53,15 @@ const categories = Array.from(categoriesSet);
                         
                         {/* Filter Categories */}
                         <div class="flex flex-wrap gap-1.5 sm:gap-2" id="categoryFilters">
+                            <button
+                                data-filter="__favorites"
+                                class="filter-btn favorites-pill px-4 py-1.5 rounded-full text-sm font-semibold transition-all border bg-white dark:bg-dark-surface border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-yellow-400/70 flex items-center gap-1.5"
+                            >
+                                <svg class="w-3.5 h-3.5 fav-icon-outline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                                <svg class="w-3.5 h-3.5 fav-icon-filled hidden text-yellow-500" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                                <span>Favorites</span>
+                                <span id="favPillCount" class="hidden bg-yellow-400/20 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                            </button>
                             {categories.map((cat, index) => (
                                 <button 
                                     data-filter={cat.toLowerCase()} 
@@ -80,12 +89,23 @@ const categories = Array.from(categoriesSet);
                 </div>
 
                 <div id="noResults" class="hidden text-center py-20 border border-gray-200 dark:border-white/5 rounded-2xl bg-gray-50 dark:bg-white/[0.01]">
-                    <h3 class="text-xl text-gray-500 dark:text-gray-400">No plugins found matching your criteria.</h3>
+                    <h3 id="noResultsMsg" class="text-xl text-gray-500 dark:text-gray-400">No plugins found matching your criteria.</h3>
+                </div>
+
+                {/* Share favorites bar — shown when Favorites filter is active with ≥1 item */}
+                <div id="favShareBar" class="hidden mb-6 flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-yellow-300/40 bg-yellow-50 dark:bg-yellow-400/5 dark:border-yellow-400/20">
+                    <p class="text-sm text-yellow-800 dark:text-yellow-300 font-semibold">Share your favorites list</p>
+                    <button id="favShareBtn" class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-yellow-400/20 hover:bg-yellow-400/40 text-yellow-900 dark:text-yellow-300 transition-colors">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                        <span id="favShareBtnLabel">Copy share link</span>
+                    </button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="pluginGrid">
                     {pluginsData.map((plugin, index) => (
                         <div class={`plugin-wrapper flex flex-col ${index >= 24 ? 'hidden' : ''}`} 
+                             data-plugin-id={plugin.id}
+                             data-fav="0"
                              data-name={plugin.name.toLowerCase()} 
                              data-desc={plugin.description.toLowerCase()} 
                              data-vendor={plugin.vendor.toLowerCase()}
@@ -137,6 +157,7 @@ const categories = Array.from(categoriesSet);
             
             let currentSearchTerm = '';
             let currentCategory = 'all';
+            let favoritesActive = false;
 
             const ITEMS_PER_PAGE = 24;
             let displayLimit = ITEMS_PER_PAGE;
@@ -151,6 +172,7 @@ const categories = Array.from(categoriesSet);
                     desc: wrapper.getAttribute('data-desc') || '',
                     vendor: wrapper.getAttribute('data-vendor') || '',
                     cat: wrapper.getAttribute('data-category') || '',
+                    pluginId: wrapper.getAttribute('data-plugin-id') || '',
                     downloads: parseInt(wrapper.getAttribute('data-downloads') || '0', 10),
                     trending: parseInt(wrapper.getAttribute('data-trending') || '0', 10),
                     aiReady: parseInt(wrapper.getAttribute('data-ai') || '0', 10),
@@ -202,9 +224,14 @@ const categories = Array.from(categoriesSet);
                         }
                     }
 
+                    // Sync fav state from window.__favorites if available
+                    const favApi = (window as any).__favorites;
                     sortedPlugins.forEach(item => {
                         const matchesSearch = currentSearchTerm === '' || item.name.includes(currentSearchTerm) || item.desc.includes(currentSearchTerm) || item.vendor.includes(currentSearchTerm);
-                        const matchesCategory = currentCategory === 'all' || item.cat === currentCategory;
+                        const isFav = favApi ? favApi.has(item.pluginId) : item.element.getAttribute('data-fav') === '1';
+                        const matchesCategory = currentCategory === '__favorites'
+                            ? isFav
+                            : currentCategory === 'all' || item.cat === currentCategory;
                         const isMatched = matchesSearch && matchesCategory;
 
                         if (isMatched) {
@@ -236,8 +263,23 @@ const categories = Array.from(categoriesSet);
                     if (noResults) {
                         if (matchedCount === 0) {
                             noResults.classList.remove('hidden');
+                            const noResultsMsg = document.getElementById('noResultsMsg');
+                            if (noResultsMsg) {
+                                noResultsMsg.textContent = currentCategory === '__favorites'
+                                    ? 'No favorites yet — click the ★ on any plugin to save it here.'
+                                    : 'No plugins found matching your criteria.';
+                            }
                         } else {
                             noResults.classList.add('hidden');
+                        }
+                    }
+
+                    const favShareBar = document.getElementById('favShareBar');
+                    if (favShareBar) {
+                        if (currentCategory === '__favorites' && matchedCount > 0) {
+                            favShareBar.classList.remove('hidden');
+                        } else {
+                            favShareBar.classList.add('hidden');
                         }
                     }
                     
@@ -280,22 +322,96 @@ const categories = Array.from(categoriesSet);
                 });
             }
 
+            function updateFavPill() {
+                const favApi = (window as any).__favorites;
+                const count = favApi ? favApi.list().length : 0;
+                const favPillCount = document.getElementById('favPillCount');
+                const favsPill = document.querySelector('.favorites-pill') as HTMLElement | null;
+                if (favPillCount) {
+                    if (count > 0) {
+                        favPillCount.textContent = String(count);
+                        favPillCount.classList.remove('hidden');
+                    } else {
+                        favPillCount.classList.add('hidden');
+                    }
+                }
+                if (favsPill) {
+                    const outline = favsPill.querySelector('.fav-icon-outline') as HTMLElement | null;
+                    const filled  = favsPill.querySelector('.fav-icon-filled') as HTMLElement | null;
+                    if (count > 0) {
+                        outline?.classList.add('hidden');
+                        filled?.classList.remove('hidden');
+                    } else {
+                        outline?.classList.remove('hidden');
+                        filled?.classList.add('hidden');
+                    }
+                }
+            }
+
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     filterBtns.forEach(b => {
-                        b.classList.remove('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
+                        b.classList.remove('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md',
+                            'bg-yellow-400/20', 'border-yellow-400', 'text-yellow-900', 'dark:text-yellow-300');
                         b.classList.add('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
                     });
                     
                     const target = e.currentTarget as HTMLElement;
                     target.classList.remove('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
-                    target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
+                    const filter = target.getAttribute('data-filter') || 'all';
 
-                    currentCategory = target.getAttribute('data-filter') || 'all';
+                    if (filter === '__favorites') {
+                        target.classList.add('bg-yellow-400/20', 'border-yellow-400', 'text-yellow-900', 'dark:text-yellow-300', 'shadow-md');
+                        favoritesActive = true;
+                    } else {
+                        target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
+                        favoritesActive = false;
+                    }
+
+                    currentCategory = filter;
                     displayLimit = ITEMS_PER_PAGE;
                     updateGrid();
                 });
             });
+
+            // Share link button
+            const favShareBtn = document.getElementById('favShareBtn');
+            if (favShareBtn) {
+                favShareBtn.addEventListener('click', () => {
+                    const favApi = (window as any).__favorites;
+                    if (!favApi) return;
+                    const ids = favApi.list().slice(0, 100);
+                    const shareUrl = `${location.origin}/?favs=${ids.join(',')}`;
+                    const labelEl = document.getElementById('favShareBtnLabel');
+                    navigator.clipboard.writeText(shareUrl).then(() => {
+                        if (labelEl) {
+                            const orig = labelEl.textContent;
+                            labelEl.textContent = 'Copied!';
+                            setTimeout(() => { labelEl.textContent = orig; }, 2000);
+                        }
+                    });
+                });
+            }
+
+            // React to favorites changes (star toggled anywhere on page)
+            document.addEventListener('favorites:update', () => {
+                updateFavPill();
+                if (currentCategory === '__favorites') updateGrid();
+            });
+
+            // Auto-activate Favorites pill if ?fav=1 is present
+            (() => {
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('fav') === '1') {
+                    params.delete('fav');
+                    const newSearch = params.toString();
+                    history.replaceState(null, '', window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash);
+                    const favsPill = document.querySelector('.favorites-pill') as HTMLElement | null;
+                    if (favsPill) favsPill.click();
+                }
+            })();
+
+            updateFavPill();
 
             // Initialize Grid State
             updateGrid();

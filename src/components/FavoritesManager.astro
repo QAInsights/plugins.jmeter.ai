@@ -1,0 +1,187 @@
+---
+---
+{/* Invisible component — owns all client-side favorites state. */}
+{/* Include once in Layout.astro so every page gets the same behaviour. */}
+
+{/* Import toast banner markup — shown when /?favs= is present in the URL */}
+<div
+  id="favImportBanner"
+  class="hidden fixed top-20 left-1/2 -translate-x-1/2 z-[200] bg-gray-900/95 dark:bg-dark-surface/95 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl px-6 py-4 flex flex-col gap-3 min-w-[300px] max-w-sm text-white"
+  role="dialog"
+  aria-live="polite"
+>
+  <p id="favImportMsg" class="text-sm font-semibold">Import shared favorites?</p>
+  <div class="flex gap-2">
+    <button id="favImportMerge" class="flex-1 py-1.5 rounded-lg bg-primary text-gray-900 text-xs font-bold hover:brightness-110 transition-all">Merge</button>
+    <button id="favImportDismiss" class="flex-1 py-1.5 rounded-lg bg-white/10 text-gray-300 text-xs font-bold hover:bg-white/20 transition-all">Dismiss</button>
+  </div>
+</div>
+
+<script is:inline>
+(function () {
+    /** @type {string[]} */
+    var favoriteIds = [];
+    var STORAGE_KEY = 'favoriteIds';
+    var SHARE_CAP   = 100;
+
+    try {
+        favoriteIds = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (!Array.isArray(favoriteIds)) favoriteIds = [];
+    } catch (_) {
+        favoriteIds = [];
+    }
+
+    /** Persist the current list. */
+    function persist() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(favoriteIds)); } catch (_) {}
+    }
+
+    /** Dispatch a custom event so every UI piece can react. */
+    function notify() {
+        document.dispatchEvent(new CustomEvent('favorites:update', { detail: { ids: favoriteIds.slice() } }));
+    }
+
+    /** Public API exposed on window.__favorites */
+    var api = {
+        has: function (id) { return favoriteIds.indexOf(id) > -1; },
+        list: function () { return favoriteIds.slice(); },
+        toggle: function (id) {
+            var idx = favoriteIds.indexOf(id);
+            if (idx > -1) { favoriteIds.splice(idx, 1); }
+            else { favoriteIds.push(id); }
+            persist();
+            notify();
+        },
+        clear: function () {
+            favoriteIds = [];
+            persist();
+            notify();
+        },
+        importIds: function (ids) {
+            if (!Array.isArray(ids)) return;
+            ids.forEach(function (id) {
+                if (id && favoriteIds.indexOf(id) === -1) favoriteIds.push(id);
+            });
+            persist();
+            notify();
+        }
+    };
+
+    // @ts-ignore
+    window.__favorites = api;
+
+    /* ---- Sync all .favorite-btn icons on the page ---- */
+    function syncButtons() {
+        document.querySelectorAll('.favorite-btn[data-plugin-id]').forEach(function (btn) {
+            var id   = btn.getAttribute('data-plugin-id');
+            var isFav = id ? api.has(id) : false;
+            var starOutline = btn.querySelector('.fav-icon-outline');
+            var starFilled  = btn.querySelector('.fav-icon-filled');
+            if (isFav) {
+                btn.classList.add('is-fav');
+                if (starOutline) starOutline.classList.add('hidden');
+                if (starFilled)  starFilled.classList.remove('hidden');
+                btn.setAttribute('aria-pressed', 'true');
+                btn.setAttribute('aria-label', 'Remove from favorites');
+                btn.setAttribute('title', 'Remove from favorites');
+            } else {
+                btn.classList.remove('is-fav');
+                if (starOutline) starOutline.classList.remove('hidden');
+                if (starFilled)  starFilled.classList.add('hidden');
+                btn.setAttribute('aria-pressed', 'false');
+                btn.setAttribute('aria-label', 'Add to favorites');
+                btn.setAttribute('title', 'Add to favorites');
+            }
+        });
+
+        /* Update data-fav on every .plugin-wrapper (used by index.astro filter) */
+        document.querySelectorAll('.plugin-wrapper[data-plugin-id]').forEach(function (wrapper) {
+            var id = wrapper.getAttribute('data-plugin-id');
+            wrapper.setAttribute('data-fav', id && api.has(id) ? '1' : '0');
+        });
+
+        /* Update header indicators (desktop + mobile) */
+        var count = favoriteIds.length;
+        [
+            { indicator: 'favHeaderIndicator',       counter: 'favHeaderCount' },
+            { indicator: 'favHeaderIndicatorMobile', counter: 'favHeaderCountMobile' }
+        ].forEach(function (pair) {
+            var indicator = document.getElementById(pair.indicator);
+            var counter   = document.getElementById(pair.counter);
+            if (!indicator) return;
+            if (count > 0) {
+                indicator.classList.remove('hidden');
+                indicator.classList.add('flex');
+                if (counter) counter.textContent = String(count);
+            } else {
+                indicator.classList.add('hidden');
+                indicator.classList.remove('flex');
+            }
+        });
+    }
+
+    /* ---- Handle /?favs= import ---- */
+    function checkShareParam() {
+        var params = new URLSearchParams(window.location.search);
+        var raw = params.get('favs');
+        if (!raw) return;
+
+        var incoming = raw.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+        if (incoming.length === 0) return;
+
+        /* Strip ?favs from the URL immediately so a reload doesn't re-trigger */
+        params.delete('favs');
+        var newSearch = params.toString();
+        var newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash;
+        history.replaceState(null, '', newUrl);
+
+        var banner = document.getElementById('favImportBanner');
+        var msgEl  = document.getElementById('favImportMsg');
+        if (!banner) return;
+
+        if (msgEl) msgEl.textContent = 'Import ' + incoming.length + ' shared favorite' + (incoming.length !== 1 ? 's' : '') + '?';
+        banner.classList.remove('hidden');
+
+        var mergeBtn   = document.getElementById('favImportMerge');
+        var dismissBtn = document.getElementById('favImportDismiss');
+
+        function hideBanner() { banner.classList.add('hidden'); }
+
+        if (mergeBtn) {
+            mergeBtn.onclick = function () {
+                api.importIds(incoming);
+                hideBanner();
+            };
+        }
+        if (dismissBtn) {
+            dismissBtn.onclick = hideBanner;
+        }
+    }
+
+    /* ---- Global click handler for .favorite-btn (capture phase) ---- */
+    document.addEventListener('click', function (e) {
+        var btn = e.target && e.target.closest && e.target.closest('.favorite-btn[data-plugin-id]');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var id = btn.getAttribute('data-plugin-id');
+        if (id) api.toggle(id);
+    }, true);
+
+    /* ---- React to state changes ---- */
+    document.addEventListener('favorites:update', syncButtons);
+
+    /* ---- Init ---- */
+    function init() {
+        syncButtons();
+        checkShareParam();
+    }
+
+    window.addEventListener('load', init);
+    document.addEventListener('astro:after-swap', init);
+
+    /* Expose refresh for components that render buttons dynamically */
+    // @ts-ignore
+    window.refreshFavoritesUI = syncButtons;
+})();
+</script>
