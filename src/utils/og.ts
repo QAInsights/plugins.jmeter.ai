@@ -227,18 +227,18 @@ export function buildPluginOgSvg(plugin: OgPluginInput): string {
   const inner = `
   ${renderTopRight(`${category.toUpperCase()} ${DOT} ${downloads} DOWNLOADS`)}
 
-  <text x="${pad}" y="${nameY}" font-family="Arial, Helvetica, sans-serif"
+  <text x="${pad}" y="${nameY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         font-size="80" font-weight="800" fill="#ffffff" letter-spacing="-1.5">
     ${nameTspans}
   </text>
 
-  <text x="${pad}" y="${vendorY}" font-family="Arial, Helvetica, sans-serif"
+  <text x="${pad}" y="${vendorY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         font-size="28" font-weight="600" fill="#ccff00" letter-spacing="0.5">
     By ${vendor}
   </text>
 
   ${descLines.length > 0 ? `
-  <text x="${pad}" y="${descY}" font-family="Arial, Helvetica, sans-serif"
+  <text x="${pad}" y="${descY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         font-size="26" font-weight="400" fill="#d4d4d8">
     ${descTspans}
   </text>` : ''}
@@ -290,7 +290,7 @@ function renderBrand(): string {
   return `<g transform="translate(${PAD}, ${PAD})">
     <circle cx="18" cy="18" r="18" fill="#ccff00" />
     <circle cx="18" cy="18" r="6" fill="#0b0b0d" />
-    <text x="56" y="26" font-family="Arial, Helvetica, sans-serif"
+    <text x="56" y="26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
           font-size="28" font-weight="800" fill="#ffffff" letter-spacing="-0.5">
       Perf<tspan fill="#ccff00">Atlas</tspan>
     </text>
@@ -300,14 +300,14 @@ function renderBrand(): string {
 function renderTopRight(text: string | undefined): string {
   if (!text) return '';
   return `<g transform="translate(${OG_WIDTH - PAD}, ${PAD + 18})">
-    <text font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600"
+    <text font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="600"
           fill="#9ca3af" text-anchor="end" letter-spacing="1.5">${text}</text>
   </g>`;
 }
 
 function renderFooter(): string {
   return `<text x="${OG_WIDTH - PAD}" y="${OG_HEIGHT - 64}"
-          font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600"
+          font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600"
           fill="#6b7280" text-anchor="end" letter-spacing="1">plugins.jmeter.ai</text>`;
 }
 
@@ -325,7 +325,7 @@ function renderTagPills(tags: Pill[], startX: number, y: number): string {
       const approxWidth = tag.label.length * 13 + pillPadX * 2;
       const pill = `<g transform="translate(${x}, ${y})">
         <rect x="0" y="0" rx="20" ry="20" width="${approxWidth}" height="44" fill="${tag.color}" />
-        <text x="${approxWidth / 2}" y="28" font-family="Arial, Helvetica, sans-serif"
+        <text x="${approxWidth / 2}" y="28" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
               font-size="18" font-weight="700" fill="${tag.textColor}"
               text-anchor="middle" letter-spacing="1.2">${tag.label.toUpperCase()}</text>
       </g>`;
@@ -354,9 +354,9 @@ function renderStats(stats: StatItem[], baseY: number): string {
       // Apply `toUpperCase` BEFORE escaping; otherwise `<` → `&lt;` →
       // `&LT;` which is not a valid XML entity name.
       return `<g transform="translate(${x}, ${baseY})">
-        <text font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700"
+        <text font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700"
               fill="#9ca3af" letter-spacing="2">${escapeXml(stat.label.toUpperCase())}</text>
-        <text y="44" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800"
+        <text y="44" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="40" font-weight="800"
               fill="#ffffff" letter-spacing="-0.5">${escapeXml(stat.value)}</text>
       </g>`;
     })
@@ -423,7 +423,7 @@ export function buildGenericOgSvg(input: OgGenericInput): string {
     : [];
 
   const eyebrowSvg = input.eyebrow
-    ? `<text x="${PAD}" y="${eyebrowY}" font-family="Arial, Helvetica, sans-serif"
+    ? `<text x="${PAD}" y="${eyebrowY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
             font-size="22" font-weight="700" fill="#ccff00" letter-spacing="3">${escapeXml(input.eyebrow.toUpperCase())}</text>`
     : '';
 
@@ -431,16 +431,16 @@ export function buildGenericOgSvg(input: OgGenericInput): string {
     .map((line, i) => `<tspan x="${PAD}" dy="${i === 0 ? 0 : titleLineHeight}">${line}</tspan>`)
     .join('');
 
-  const titleSvg = `<text x="${PAD}" y="${titleY}" font-family="Arial, Helvetica, sans-serif"
+  const titleSvg = `<text x="${PAD}" y="${titleY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
           font-size="84" font-weight="800" fill="#ffffff" letter-spacing="-1.5">${titleTspans}</text>`;
 
   const subtitleSvg = input.subtitle
-    ? `<text x="${PAD}" y="${subtitleY}" font-family="Arial, Helvetica, sans-serif"
+    ? `<text x="${PAD}" y="${subtitleY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
             font-size="30" font-weight="600" fill="#ccff00" letter-spacing="0.3">${escapeXml(input.subtitle)}</text>`
     : '';
 
   const bodySvg = bodyLines.length > 0
-    ? `<text x="${PAD}" y="${bodyStartY}" font-family="Arial, Helvetica, sans-serif"
+    ? `<text x="${PAD}" y="${bodyStartY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
             font-size="26" font-weight="400" fill="#d4d4d8">${
               bodyLines.map((line, i) => `<tspan x="${PAD}" dy="${i === 0 ? 0 : 42}">${line}</tspan>`).join('')
             }</text>`
