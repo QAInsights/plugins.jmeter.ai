@@ -46,7 +46,7 @@ const chartData = chartLabels.map(l => history[l]);
 // Related plugins (same vendor / same inferred category)
 const { sameVendor, sameCategory } = getRelatedPlugins(plugin, pluginsData, { limit: 3 });
 const relatedCategory = inferCategory(plugin);
-
+                         
 // Release history / changelog timeline
 const changelog = getChangelogTimeline(plugin);
 const showChangelog = hasChangelog(plugin);
