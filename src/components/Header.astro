@@ -20,6 +20,9 @@
             <a href="/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname === '/' ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Home
             </a>
+            <a href="/vendor" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/vendor') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
+                Vendors
+            </a>
             <a href="/blog" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/blog') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Blog
             </a>
