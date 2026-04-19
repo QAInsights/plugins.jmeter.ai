@@ -210,6 +210,37 @@ describe('buildPluginOgSvg', () => {
     expect(svg).toContain('plugins.jmeter.ai');
   });
 
+  it('regression: never positions the description above the vendor line when the name wraps to two lines', () => {
+    // Pathological case: a plugin like "Atakama Variabilization Plugin" with
+    // a two-line name plus a long description must not render the description
+    // lines on top of (or above) the "By <vendor>" line.
+    const svg = buildPluginOgSvg({
+      id: 'atakama',
+      name: 'Atakama Variabilization Plugin',
+      vendor: 'Atakama Technologies',
+      description:
+        'Variabilization plugin for jmeter: You can request a trial by following this link: https://example.com/trial',
+      category: 'Samplers',
+      downloads: 10,
+    });
+
+    // Parse the absolute y-coordinate of the vendor line: `<text x="64" y="NN"`
+    // (the vendor text element uses the #ccff00 fill color).
+    const vendorYMatch = svg.match(/<text\s+x="\d+"\s+y="(\d+)"[^>]*fill="#ccff00"/);
+    expect(vendorYMatch, 'vendor text element must exist').not.toBeNull();
+    const vendorY = parseInt(vendorYMatch![1], 10);
+
+    // The description text element (identified by its body fill color).
+    const descYMatch = svg.match(/<text\s+x="\d+"\s+y="(\d+)"[^>]*fill="#d4d4d8"/);
+    if (descYMatch) {
+      const descY = parseInt(descYMatch[1], 10);
+      // Description first line baseline must sit strictly below the vendor baseline.
+      expect(descY).toBeGreaterThan(vendorY);
+    }
+    // Otherwise description was clamped to zero lines — also acceptable, the
+    // card just shows name + vendor + tags (no overlap by construction).
+  });
+
   it('regression: produces well-formed SVG even when description contains raw HTML and long URL tokens', () => {
     // Real-world pathological case observed in `jpgc-casutg` and `couchbase`:
     // the description contains <ul><li><a href=https://...> markup where the

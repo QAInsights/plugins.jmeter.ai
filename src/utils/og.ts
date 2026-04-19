@@ -171,31 +171,45 @@ export function buildPluginOgSvg(plugin: OgPluginInput): string {
   // (`<ul><li><a href=...>`). Strip to plain text before wrapping so the
   // card body reads naturally instead of showing literal tags.
   const rawDescription = stripHtml(plugin.description || '');
-
-  const nameLines = wrapText(rawName, NAME_MAX_CHARS_PER_LINE, NAME_MAX_LINES).map(escapeXml);
-  const descLines = rawDescription
-    ? wrapText(rawDescription, DESC_MAX_CHARS_PER_LINE, DESC_MAX_LINES).map(escapeXml)
-    : [];
+  const nameLinesRaw = wrapText(rawName, NAME_MAX_CHARS_PER_LINE, NAME_MAX_LINES);
 
   const vendor = escapeXml(plugin.vendor || 'Unknown vendor');
   const category = escapeXml(plugin.category || 'Plugin');
   const downloads = formatDownloads(plugin.downloads);
 
-  // Layout anchors (px). The card flows top-down for the name/vendor and
-  // bottom-up for the description/tags so tags are always anchored to the
-  // bottom regardless of how the name wraps.
+  // Layout anchors (px). The card flows top-down for the name / vendor, and
+  // the description grows upward from a bottom-anchored tag row. The number
+  // of description lines is clamped to whatever actually fits below the
+  // vendor line so a long name never collides with the description.
   const pad = 64;
-  const nameY = 240;
+  const nameY = 200;
   const nameLineHeight = 92;
   const descLineHeight = 42;
-  const vendorY = nameY + (nameLines.length - 1) * nameLineHeight + 84;
+  const vendorFontSize = 28;
+  const vendorGap = 70; // gap from last name baseline to vendor baseline
+  const vendorY = nameY + (nameLinesRaw.length - 1) * nameLineHeight + vendorGap;
 
   const tags = buildTags(plugin);
-  const tagY = OG_HEIGHT - 160; // rect top; bottom ≈ 514, footer @ 566
-  // Description last line baseline must land well above the tag row top.
+  const tagY = OG_HEIGHT - 140; // rect top; bottom ≈ 534, footer @ 566
   const descLastBaseline = tagY - 28;
+
+  // Approximate bottom of the vendor line (text descent ≈ 30% of font size),
+  // then reserve a breathing gap before the description may start.
+  const vendorBottom = vendorY + Math.ceil(vendorFontSize * 0.35);
+  const descStartMin = vendorBottom + 28;
+  const availableDescPx = descLastBaseline - descStartMin;
+  const maxDescLinesThatFit = availableDescPx >= 0
+    ? Math.floor(availableDescPx / descLineHeight) + 1
+    : 0;
+  const effectiveDescMaxLines = Math.min(DESC_MAX_LINES, Math.max(0, maxDescLinesThatFit));
+
+  const nameLines = nameLinesRaw.map(escapeXml);
+  const descLines = rawDescription && effectiveDescMaxLines > 0
+    ? wrapText(rawDescription, DESC_MAX_CHARS_PER_LINE, effectiveDescMaxLines).map(escapeXml)
+    : [];
+
   const descY = descLines.length > 0
-    ? descLastBaseline - (descLines.length - 1) * descLineHeight
+    ? Math.max(descStartMin, descLastBaseline - (descLines.length - 1) * descLineHeight)
     : 0;
 
   const nameTspans = nameLines
