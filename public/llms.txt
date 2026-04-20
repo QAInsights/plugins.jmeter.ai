@@ -1,0 +1,53 @@
+# PerfAtlas
+
+> The modern directory for JMeter plugins — search, discover, compare, and track the velocity of load testing extensions, with AI-ready plugin highlights. Data synced nightly from canonical JMeter plugin repositories.
+
+PerfAtlas (https://plugins.jmeter.ai) is a high-performance static site built with Astro that aggregates JMeter plugin data, tracks daily and weekly download trends, and curates collections of plugins for common load testing scenarios. It is maintained by NaveenKumar Namachivayam (QAInsights).
+
+## Core Features
+
+- Plugin directory with full-text search and tag filtering
+- Side-by-side plugin comparison
+- Weekly download heatmap and historical usage charts
+- AI-Ready plugin badge — marks plugins validated for AI-assisted workflows
+- One-click install command generation for JMeter Plugin Manager
+- Favorites system (localStorage-persisted, shareable via URL)
+- Curated Collections: CI/CD Stack, Observability Stack, Load Shaping Stack, AI-Ready Starter
+- Vendor pages listing plugins by author/organization
+- Blog with JMeter plugin guides and tutorials
+
+## Pages
+
+- [Home](https://plugins.jmeter.ai/): Plugin directory, search, compare, statistics, AI-ready section, and one-click install.
+- [Vendors](https://plugins.jmeter.ai/vendor): Browse plugins grouped by vendor/organization.
+- [Collections](https://plugins.jmeter.ai/collections): Curated plugin stacks for specific testing scenarios.
+- [Blog](https://plugins.jmeter.ai/blog): Tutorials and guides for JMeter plugins and load testing.
+- [RSS Feed](https://plugins.jmeter.ai/rss.xml): Blog RSS feed.
+- [Sitemap](https://plugins.jmeter.ai/sitemap-index.xml): Full site sitemap.
+
+## Collections
+
+- [CI/CD Stack](https://plugins.jmeter.ai/collections/ci-cd-stack): jpgc-plancheck, jpgc-autostop, jpgc-synthesis — headless-friendly plugins for CI pipelines.
+- [Observability Stack](https://plugins.jmeter.ai/collections/observability-stack): jpgc-perfmon, jmeter-datadog-backend-listener, elasticsearch listener — real-time metrics streaming to Datadog, Elasticsearch, and more.
+- [Load Shaping Stack](https://plugins.jmeter.ai/collections/load-shaping-stack): jpgc-casutg, jpgc-tst, jpgc-autostop — precise RPS schedules and concurrency-based thread groups.
+- [AI-Ready Starter](https://plugins.jmeter.ai/collections/ai-ready-starter): All plugins with the AI-Ready badge, auto-populated from the registry.
+
+## Blog Posts
+
+- [Best JMeter Plugins for API Testing in 2026](https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026)
+- [How to Install JMeter Plugins with Plugin Manager](https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger)
+- [What's New in PerfAtlas](https://plugins.jmeter.ai/blog/new-in-perfatlas)
+
+## Data & Integrations
+
+- Plugin data fetched from the official JMeter Plugins registry via `scripts/fetchData.mjs`
+- GitHub Actions workflow syncs data nightly
+- AI-Ready flags and custom metadata managed in `src/data/overrides.json`
+- Collections defined in `src/data/collections.json`
+
+## External Links
+
+- GitHub: https://github.com/QAInsights/plugins.jmeter.ai
+- JMeter.ai: https://jmeter.ai
+- QAInsights: https://qainsights.com
+- Support: https://www.buymeacoffee.com/qainsights

@@ -78,7 +78,7 @@ import DiscoverMenu from './DiscoverMenu.astro';
             <div>
                 <button id="mobileDiscoverToggle" type="button" class="w-full flex items-center justify-between px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
                     <span>Discover</span>
-                    <svg id="mobileDiscoverChevron" class="w-4 h-4 transition-transform duration-200 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                    <svg id="mobileDiscoverChevron" class="w-4 h-4 transition-transform duration-200 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div id="mobileDiscoverMenu" class="hidden flex flex-col gap-0.5 pl-3 pb-1">
                     <a href="/#search" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
@@ -187,7 +187,7 @@ import DiscoverMenu from './DiscoverMenu.astro';
             mobileDiscoverToggle.addEventListener('click', () => {
                 mobileDiscoverMenu.classList.toggle('hidden');
                 const nowOpen = !mobileDiscoverMenu.classList.contains('hidden');
-                mobileDiscoverChevron?.classList.toggle('rotate-90', nowOpen);
+                mobileDiscoverChevron?.classList.toggle('rotate-180', nowOpen);
             });
         }
     });
