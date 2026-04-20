@@ -65,7 +65,7 @@ const schema = {
     applicationSubCategory: 'Load Testing',
     operatingSystem: 'Windows, macOS, Linux',
     url: url,
-    ...(plugin.helpUrl?.trim() ? { softwareHelp: plugin.helpUrl } : {}),
+    ...(plugin.helpUrl?.trim() ? { softwareHelp: plugin.helpUrl.trim() } : {}),
     author: {
         '@type': 'Organization',
         name: plugin.vendor,
