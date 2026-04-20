@@ -13,6 +13,11 @@
 @layer base {
   html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  #search, #statistics, #compare, #ai-ready, #install {
+    scroll-margin-top: 72px;
   }
 
   body {
