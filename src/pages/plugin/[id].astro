@@ -53,9 +53,40 @@ const relatedCategory = inferCategory(plugin);
 // Release history / changelog timeline
 const changelog = getChangelogTimeline(plugin);
 const showChangelog = hasChangelog(plugin);
+
+// SoftwareApplication schema — enables rich results in Google, Bing, and AI search
+const siteBase = 'https://plugins.jmeter.ai';
+const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: plugin.name,
+    description: plugin.description,
+    applicationCategory: 'DeveloperApplication',
+    applicationSubCategory: 'Load Testing',
+    operatingSystem: 'Windows, macOS, Linux',
+    url: url,
+    ...(plugin.helpUrl?.trim() ? { softwareHelp: plugin.helpUrl } : {}),
+    author: {
+        '@type': 'Organization',
+        name: plugin.vendor,
+    },
+    offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+    },
+    image: `${siteBase}${ogImage}`,
+    ...(plugin.stats.absoluteDownloads > 0 && {
+        interactionStatistic: {
+            '@type': 'InteractionCounter',
+            interactionType: 'https://schema.org/DownloadAction',
+            userInteractionCount: plugin.stats.absoluteDownloads,
+        },
+    }),
+};
 ---
 
-<Layout title={title} description={description} image={ogImage}>
+<Layout title={title} description={description} image={ogImage} schema={schema}>
     <Header />
     <main class="flex-grow flex flex-col py-8 sm:py-16 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto w-full">

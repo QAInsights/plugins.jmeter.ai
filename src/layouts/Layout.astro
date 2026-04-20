@@ -13,6 +13,7 @@ interface Props {
     type?: "website" | "article";
     articleDate?: string;
     articleAuthor?: string;
+    schema?: Record<string, unknown>;
 }
 
 const { 
@@ -21,7 +22,8 @@ const {
     image = "/favicon.svg",
     type = "website",
     articleDate,
-    articleAuthor
+    articleAuthor,
+    schema,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://plugins.jmeter.ai');
@@ -100,6 +102,10 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
         
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
+
+        {schema && (
+            <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+        )}
 
         {/* Cloudflare Web Analytics */}
         <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>        
