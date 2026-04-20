@@ -3,8 +3,6 @@ title: "How to Find and Install the Best JMeter Plugins for Load Testing in 2026
 description: "Learn about the latest features and improvements in PerfAtlas"
 pubDate: 2026-04-18T15:00:00Z
 author: "NaveenKumar Namachivayam"
-image: "../../assets/blog/new-in-perfatlas-featured.png"
-imageAlt: "What's new in PerfAtlas?"
 tags: ["PerfAtlas", "JMeter", "Plugins", "Load Testing", "AI Performance"]
 featured: true
 ---
