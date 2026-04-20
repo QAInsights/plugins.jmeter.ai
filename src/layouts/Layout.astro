@@ -5,6 +5,7 @@ import CompareFloatingBar from '../components/CompareFloatingBar.astro';
 import InstallFloatingBar from '../components/InstallFloatingBar.astro';
 import FavoritesManager from '../components/FavoritesManager.astro';
 import { SEO } from "astro-seo";
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
 	title: string;
@@ -108,7 +109,10 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
         )}
 
         {/* Cloudflare Web Analytics */}
-        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>        
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>
+        
+        {/* Vercel Web Analytics */}
+        <Analytics />
 	</head>
 	<body class="min-h-screen flex flex-col font-sans antialiased overflow-x-hidden selection:bg-primary dark:selection:bg-[#ccff00] selection:text-white dark:selection:text-dark-bg">
         <slot />
