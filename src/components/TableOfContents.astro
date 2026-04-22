@@ -1,9 +1,10 @@
 ---
 interface Props {
   headings: { depth: number; slug: string; text: string }[];
+  isMobile?: boolean;
 }
 
-const { headings } = Astro.props;
+const { headings, isMobile = false } = Astro.props;
 
 // Filter to only show h2 and h3 for a clean ToC
 const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
@@ -11,15 +12,16 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
 
 {toc.length > 0 && (
   <nav class="toc-container">
-    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-4 border-b border-gray-200 dark:border-white/10 pb-2">
+    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-4 border-b border-gray-200 dark:border-white/10 pb-2 flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       On this page
     </h3>
-    <ul class="space-y-3">
+    <ul class={`toc-list space-y-3 ${isMobile ? '' : 'max-h-[calc(100vh-250px)] overflow-y-auto pr-2 pb-4'} scroll-smooth`}>
       {toc.map((heading) => (
         <li class={`${heading.depth === 3 ? 'ml-4' : ''}`}>
           <a
             href={`#${heading.slug}`}
-            class="toc-link text-sm text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-all line-clamp-2 leading-snug"
+            class="toc-link block text-sm text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-all line-clamp-2 leading-snug"
             data-slug={heading.slug}
           >
             {heading.text}
@@ -43,34 +45,73 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
     color: #ccff00; /* dark:text-[#ccff00] */
     border-color: #ccff00;
   }
+
+  /* Custom thin scrollbar for TOC */
+  .toc-list::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .toc-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .toc-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  :is(.dark .toc-list)::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+  }
 </style>
 
 <script>
   function observeHeadings() {
     const observerOptions = {
       root: null,
-      rootMargin: '0px 0px -80% 0px',
+      rootMargin: '-5% 0px -75% 0px',
       threshold: 0,
     };
 
     const tocLinks = document.querySelectorAll('.toc-link');
+    const tocList = document.querySelector('.toc-list');
     const headings = Array.from(tocLinks).map(link => 
       document.getElementById(link.getAttribute('href')?.replace('#', '') || '')
     ).filter(Boolean);
 
+    let isInitial = true;
+
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          tocLinks.forEach((link) => {
-            if (link.getAttribute('href') === `#${id}`) {
-              link.classList.add('active');
-            } else {
-              link.classList.remove('active');
+      // Find the first heading that is entering the "active" zone
+      const intersecting = entries.find(entry => entry.isIntersecting);
+      
+      if (intersecting) {
+        const id = intersecting.target.id;
+        tocLinks.forEach((link) => {
+          const href = link.getAttribute('href');
+          if (href === `#${id}`) {
+            link.classList.add('active');
+            
+            // Scroll the TOC list to keep the active item in view
+            if (tocList) {
+              const linkElement = link as HTMLElement;
+              const containerHeight = tocList.clientHeight;
+              const linkOffsetTop = linkElement.offsetTop;
+              const linkHeight = linkElement.clientHeight;
+              
+              const targetScrollTop = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
+              
+              tocList.scrollTo({
+                top: Math.max(0, targetScrollTop),
+                behavior: isInitial ? 'auto' : 'smooth'
+              });
             }
-          });
-        }
-      });
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        isInitial = false;
+      }
     }, observerOptions);
 
     headings.forEach((heading) => {

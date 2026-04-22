@@ -12,12 +12,12 @@
 
 @layer base {
   html {
-    overflow-x: hidden;
+    overflow-x: clip;
     scroll-behavior: smooth;
   }
 
-  #search, #statistics, #compare, #ai-ready, #install {
-    scroll-margin-top: 72px;
+  #search, #statistics, #compare, #ai-ready, #install, .prose h2, .prose h3, .prose h4 {
+    scroll-margin-top: 100px;
   }
 
   body {
