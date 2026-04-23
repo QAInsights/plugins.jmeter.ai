@@ -227,8 +227,7 @@ step(10, 100, 10, 1h) # add 10 RPS every 6 minutes
 
 ## Using AI to Optimize Your Shaping Timer
 
-If you are using plugins.JMeter.ai, you can describe your load target in plain language and get back a validated schedule suggestion. For example, asking "optimize my shaping timer for 500 RPS peak with a two-minute ramp" will produce a schedule table with the thread math already calculated.
-Inside the Feather Wand plugin from QAInsights, the same workflow is available with an added correlation context: it will suggest the feedback function parameters alongside the thread pool sizing, so you do not have to calculate the ceiling manually.
+Inside the [Feather Wand](https://jmeter.ai) plugin from QAInsights, you can ask the AI to create a load profile for you in plain language. The AI will then generate a schedule table with the thread math already calculated, so you do not have to calculate the ceiling manually.
 
 ## Summary
 
