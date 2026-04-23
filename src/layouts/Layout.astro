@@ -14,6 +14,7 @@ interface Props {
     articleDate?: string;
     articleAuthor?: string;
     schema?: Record<string, unknown>;
+    canonicalURL?: string | URL;
 }
 
 const { 
@@ -24,9 +25,18 @@ const {
     articleDate,
     articleAuthor,
     schema,
+    canonicalURL,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://plugins.jmeter.ai');
+// Determine canonical URL: fallback to current pathname
+let defaultPathname = Astro.url.pathname;
+// Ensure no trailing slash for consistent canonicals (unless it's root)
+if (defaultPathname.length > 1 && defaultPathname.endsWith('/')) {
+    defaultPathname = defaultPathname.slice(0, -1);
+}
+const resolvedCanonicalURL = canonicalURL
+    ? typeof canonicalURL === 'string' ? canonicalURL : canonicalURL.toString()
+    : new URL(defaultPathname, Astro.site || 'https://plugins.jmeter.ai').toString();
 const socialImageURL = new URL(image, Astro.site || 'https://plugins.jmeter.ai');
 
 // Best-effort MIME hint so crawlers can pick the image without HEAD-probing.
@@ -57,13 +67,13 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
         <SEO
             title={title}
             description={description}
-            canonical={canonicalURL.toString()}
+            canonical={resolvedCanonicalURL}
             openGraph={{
                 basic: {
                     title: title,
                     type: type,
                     image: socialImageURL.toString(),
-                    url: canonicalURL.toString(),
+                    url: resolvedCanonicalURL,
                 },
                 article: type === 'article' ? {
                     publishedTime: articleDate,
@@ -79,7 +89,7 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
             }}
             extend={{
                 meta: [
-                    { name: "twitter:url", content: canonicalURL.toString() },
+                    { name: "twitter:url", content: resolvedCanonicalURL },
                     ...(isGeneratedOg ? [
                         { property: "og:image:width", content: "1200" },
                         { property: "og:image:height", content: "630" },
