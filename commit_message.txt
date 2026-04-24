@@ -1,0 +1,5 @@
+feat(blog): add JMeter LocalStack blog post
+
+Adds a new blog post titled "Testing AWS SQS and Kinesis with JMeter + LocalStack".
+The post details how to mock an AWS environment locally with zero cloud costs
+to test SQS and Kinesis using JMeter.
