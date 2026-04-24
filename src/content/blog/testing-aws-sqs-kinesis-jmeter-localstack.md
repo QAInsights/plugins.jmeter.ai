@@ -3,8 +3,8 @@ title: "Testing AWS SQS and Kinesis with JMeter + LocalStack"
 description: "Run Your Entire AWS Test Environment Locally — Zero Cloud Costs"
 pubDate: 2026-04-24T12:00:00Z
 author: "NaveenKumar Namachivayam"
-image: "../../assets/blog/placeholder.png"
-imageAlt: "Testing AWS SQS and Kinesis with JMeter + LocalStack"
+image: "../../assets/blog/aws-sqs-kinesis-jmeter-localstack.png"
+imageAlt: "Abstract illustration of AWS SQS, Kinesis, and JMeter testing with LocalStack"
 tags: ["JMeter", "AWS", "LocalStack", "SQS", "Kinesis"]
 featured: false
 ---
