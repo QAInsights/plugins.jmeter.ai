@@ -59,8 +59,15 @@ import UserMenu from './UserMenu.astro';
         $userStore.subscribe((user)  => updateUI(user, !!$clerkStore.get()));
     }
 
-    // Initialize every AuthButton instance independently (desktop + mobile)
-    document.querySelectorAll('.auth-wrapper').forEach(initInstance);
+    // Wait for DOM to be ready before initializing AuthButton instances
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.auth-wrapper').forEach(initInstance);
+        });
+    } else {
+        // DOM is already ready, initialize immediately
+        document.querySelectorAll('.auth-wrapper').forEach(initInstance);
+    }
 </script>
 
 <style>
