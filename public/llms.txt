@@ -22,6 +22,7 @@ PerfAtlas (https://plugins.jmeter.ai) is a high-performance static site built wi
 - [Vendors](https://plugins.jmeter.ai/vendor): Browse plugins grouped by vendor/organization.
 - [Collections](https://plugins.jmeter.ai/collections): Curated plugin stacks for specific testing scenarios.
 - [Blog](https://plugins.jmeter.ai/blog): Tutorials and guides for JMeter plugins and load testing.
+- [Settings](https://plugins.jmeter.ai/settings): Protected user account settings page (requires authentication via Clerk).
 - [RSS Feed](https://plugins.jmeter.ai/rss.xml): Blog RSS feed.
 - [Sitemap](https://plugins.jmeter.ai/sitemap-index.xml): Full site sitemap.
 

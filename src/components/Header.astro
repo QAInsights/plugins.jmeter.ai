@@ -1,5 +1,6 @@
 ---
 import DiscoverMenu from './DiscoverMenu.astro';
+import AuthButton from './AuthButton.astro';
 ---
 <header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-white/10 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -48,7 +49,8 @@ import DiscoverMenu from './DiscoverMenu.astro';
                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
                 <span>Donate</span>
             </a>
-            <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors">
+            <AuthButton />
+            <button id="themeToggle" class="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors flex-shrink-0">
                 <svg id="themeIconDark" class="w-4 h-4 hidden dark:block text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 <svg id="themeIconLight" class="w-4 h-4 block dark:hidden text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
             </button>
@@ -118,6 +120,11 @@ import DiscoverMenu from './DiscoverMenu.astro';
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
                     Donate
                 </a>
+            </div>
+            <div class="px-3 py-2 border-t border-gray-100 dark:border-white/5">
+                <div class="mobile-auth-wrapper">
+                    <AuthButton />
+                </div>
             </div>
         </nav>
     </div>

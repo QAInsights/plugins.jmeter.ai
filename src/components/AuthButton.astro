@@ -1,0 +1,141 @@
+---
+/**
+ * AuthButton Component
+ * 
+ * Displays Sign In button for logged-out users, profile picture with dropdown
+ * for logged-in users. Integrates with Clerk authentication.
+ */
+
+import { SignInButton } from '@clerk/astro/components';
+import UserMenu from './UserMenu.astro';
+---
+
+<div class="auth-wrapper">
+    {/* Loading skeleton */}
+    <div class="auth-slot auth-loading">
+        <div class="skel"></div>
+    </div>
+
+    {/* Signed-out: Sign In button */}
+    <div class="auth-slot signed-out-view">
+        <SignInButton asChild>
+            <button class="sign-in-btn">
+                Sign In
+            </button>
+        </SignInButton>
+    </div>
+
+    {/* Signed-in: User avatar menu */}
+    <div class="auth-slot signed-in-view">
+        <UserMenu />
+    </div>
+</div>
+
+<script>
+    import { $userStore, $clerkStore } from '@clerk/astro/client';
+
+    const loading   = document.querySelector('.auth-loading');
+    const signedOut = document.querySelector('.signed-out-view');
+    const signedIn  = document.querySelector('.signed-in-view');
+
+    function show(el: Element | null) {
+        el?.classList.remove('is-hidden');
+        el?.classList.add('visible');
+    }
+    function hide(el: Element | null) {
+        el?.classList.remove('visible');
+        el?.classList.add('is-hidden');
+    }
+
+    function updateUI(user: any, ready: boolean) {
+        if (!ready) return;
+        hide(loading);
+        if (user) { hide(signedOut); show(signedIn); }
+        else       { show(signedOut); hide(signedIn); }
+    }
+
+    $clerkStore.subscribe((clerk) => updateUI($userStore.get(), !!clerk));
+    $userStore.subscribe((user)  => updateUI(user, !!$clerkStore.get()));
+</script>
+
+<style>
+    /* Grid stacking: all slots occupy the same cell so wrapper
+       auto-sizes to the widest/tallest visible child.             */
+    .auth-wrapper {
+        display: grid;
+        height: 36px;
+        align-items: center;
+    }
+
+    .auth-slot {
+        grid-area: 1 / 1;          /* all slots overlap in cell 1,1 */
+        display: flex;
+        align-items: center;
+        visibility: hidden;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.15s;
+    }
+
+    /* loading is the only slot shown before JS fires */
+    .auth-loading {
+        visibility: visible;
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    /* explicit hide wins over .auth-loading defaults */
+    .auth-slot.is-hidden {
+        visibility: hidden !important;
+        pointer-events: none !important;
+        opacity: 0 !important;
+    }
+
+    .auth-slot.visible {
+        visibility: visible;
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    .skel {
+        width: 80px;
+        height: 36px;
+        border-radius: 0.5rem;
+        background: rgba(128,128,128,0.15);
+        animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50%       { opacity: 0.4; }
+    }
+
+    .sign-in-btn {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        gap: 0.375rem;
+        padding: 0 1rem;
+        height: 36px;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.15s;
+    }
+    .sign-in-btn:hover {
+        background: #15803d;
+        transform: scale(1.04);
+    }
+
+    :global(.dark) .sign-in-btn {
+        background: #ccff00;
+        color: #000;
+    }
+    :global(.dark) .sign-in-btn:hover {
+        background: #b8e600;
+    }
+</style>
