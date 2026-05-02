@@ -44,6 +44,9 @@ import UserMenu from './UserMenu.astro';
     }
 
     function initInstance(wrapper: Element) {
+        // Mark as initialized to prevent duplicate initialization
+        wrapper.setAttribute('data-initialized', 'true');
+        
         const loading   = wrapper.querySelector('.auth-loading');
         const signedOut = wrapper.querySelector('.signed-out-view');
         const signedIn  = wrapper.querySelector('.signed-in-view');
@@ -59,14 +62,35 @@ import UserMenu from './UserMenu.astro';
         $userStore.subscribe((user)  => updateUI(user, !!$clerkStore.get()));
     }
 
-    // Wait for DOM to be ready before initializing AuthButton instances
+    // Capture the auth-wrapper reference synchronously while document.currentScript is valid
+    const currentScript = document.currentScript;
+    let targetWrapper: Element | null = null;
+    
+    if (currentScript) {
+        targetWrapper = currentScript.closest('.auth-wrapper');
+    }
+
+    function initializeCurrentInstance() {
+        // Use the captured wrapper reference if available
+        if (targetWrapper) {
+            initInstance(targetWrapper);
+            return;
+        }
+        
+        // Fallback: find the first uninitialized auth-wrapper
+        const uninitializedWrappers = Array.from(document.querySelectorAll('.auth-wrapper'))
+            .filter(w => !w.hasAttribute('data-initialized'));
+        if (uninitializedWrappers.length > 0) {
+            initInstance(uninitializedWrappers[0]);
+        }
+    }
+
+    // Wait for DOM to be ready before initializing
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.auth-wrapper').forEach(initInstance);
-        });
+        document.addEventListener('DOMContentLoaded', initializeCurrentInstance);
     } else {
         // DOM is already ready, initialize immediately
-        document.querySelectorAll('.auth-wrapper').forEach(initInstance);
+        initializeCurrentInstance();
     }
 </script>
 
