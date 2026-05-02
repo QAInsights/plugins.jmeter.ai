@@ -34,10 +34,6 @@ import UserMenu from './UserMenu.astro';
 <script>
     import { $userStore, $clerkStore } from '@clerk/astro/client';
 
-    const loading   = document.querySelector('.auth-loading');
-    const signedOut = document.querySelector('.signed-out-view');
-    const signedIn  = document.querySelector('.signed-in-view');
-
     function show(el: Element | null) {
         el?.classList.remove('is-hidden');
         el?.classList.add('visible');
@@ -47,15 +43,24 @@ import UserMenu from './UserMenu.astro';
         el?.classList.add('is-hidden');
     }
 
-    function updateUI(user: any, ready: boolean) {
-        if (!ready) return;
-        hide(loading);
-        if (user) { hide(signedOut); show(signedIn); }
-        else       { show(signedOut); hide(signedIn); }
+    function initInstance(wrapper: Element) {
+        const loading   = wrapper.querySelector('.auth-loading');
+        const signedOut = wrapper.querySelector('.signed-out-view');
+        const signedIn  = wrapper.querySelector('.signed-in-view');
+
+        function updateUI(user: any, ready: boolean) {
+            if (!ready) return;
+            hide(loading);
+            if (user) { hide(signedOut); show(signedIn); }
+            else       { show(signedOut); hide(signedIn); }
+        }
+
+        $clerkStore.subscribe((clerk) => updateUI($userStore.get(), !!clerk));
+        $userStore.subscribe((user)  => updateUI(user, !!$clerkStore.get()));
     }
 
-    $clerkStore.subscribe((clerk) => updateUI($userStore.get(), !!clerk));
-    $userStore.subscribe((user)  => updateUI(user, !!$clerkStore.get()));
+    // Initialize every AuthButton instance independently (desktop + mobile)
+    document.querySelectorAll('.auth-wrapper').forEach(initInstance);
 </script>
 
 <style>
