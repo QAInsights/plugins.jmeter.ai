@@ -28,7 +28,7 @@ export default defineConfig({
         'remove-comments': true,
       },
       Image: false, // We use Astro's built-in image optimization
-      JavaScript: true,
+      JavaScript: false,
       SVG: true,
     }),
     clerk()
