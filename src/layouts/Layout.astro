@@ -28,15 +28,13 @@ const {
     canonicalURL,
 } = Astro.props;
 
-// Determine canonical URL: fallback to current pathname
-let defaultPathname = Astro.url.pathname;
-// Ensure no trailing slash for consistent canonicals (unless it's root)
-if (defaultPathname.length > 1 && defaultPathname.endsWith('/')) {
-    defaultPathname = defaultPathname.slice(0, -1);
-}
+// Determine canonical URL: fallback to current pathname.
+// Keep trailing slashes as-is — Astro static output serves pages via
+// directory/index.html, so the canonical must match the trailing-slash form
+// that browsers and crawlers actually receive.
 const resolvedCanonicalURL = canonicalURL
     ? typeof canonicalURL === 'string' ? canonicalURL : canonicalURL.toString()
-    : new URL(defaultPathname, Astro.site || 'https://plugins.jmeter.ai').toString();
+    : new URL(Astro.url.pathname, Astro.site || 'https://plugins.jmeter.ai').toString();
 const socialImageURL = new URL(image, Astro.site || 'https://plugins.jmeter.ai');
 
 // Best-effort MIME hint so crawlers can pick the image without HEAD-probing.

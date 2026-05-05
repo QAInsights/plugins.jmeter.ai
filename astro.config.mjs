@@ -10,6 +10,7 @@ import clerk from '@clerk/astro';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://plugins.jmeter.ai',
+  trailingSlash: 'always',
   integrations: [
     expressiveCode({
       themes: ['dracula'],
