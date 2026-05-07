@@ -1,7 +1,7 @@
 ---
 title: "JMeter KLoadGen Plugin for Kafka Load Testing with AVRO and Protobuf Schemas - 2026 Practical Guide"
 description: "Explore the top JMeter KLoadGen plugin for Kafka load testing with AVRO and Protobuf schemas in 2026, featuring realistic workload modeling, protocol-specific enhancements like HTTP/2, and real-time observability."
-pubDate: 2026-04-16T12:00:00Z
+pubDate: 2026-05-07T11:00:00Z
 author: "NaveenKumar Namachivayam"
 image: "../../assets/blog/jmeter-kloadgen-plugin-kafka-load-testing-avro-protobuf-schemas-2026-practical-guide.png"
 imageAlt: "Featured image for JMeter KLoadGen Plugin for Kafka Load Testing with AVRO and Protobuf Schemas - 2026 Practical Guide"
