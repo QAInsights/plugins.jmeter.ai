@@ -4,21 +4,32 @@
 
 PerfAtlas (https://plugins.jmeter.ai) is a high-performance static site built with Astro that aggregates JMeter plugin data, tracks daily and weekly download trends, and curates collections of plugins for common load testing scenarios. It is maintained by NaveenKumar Namachivayam (QAInsights).
 
+## What PerfAtlas Does
+
+PerfAtlas is a free, community-driven directory of Apache JMeter plugins. It indexes 100+ plugins sourced from the official JMeter Plugins registry (https://jmeter-plugins.org), provides real-time download statistics, and surfaces trending plugins by weekly delta. Data is refreshed nightly via GitHub Actions. The site does not sell plugins — all listed plugins are free and open source.
+
+## Who Maintains This
+
+PerfAtlas is built and maintained by NaveenKumar Namachivayam, a performance engineering consultant and author at QAInsights (https://qainsights.com). His expertise covers Apache JMeter, Gatling, k6, and AI-assisted performance testing. He can be found on Twitter/X at @qainsights and GitHub at github.com/QAInsights.
+
 ## Core Features
 
-- Plugin directory with full-text search and tag filtering
-- Side-by-side plugin comparison
-- Weekly download heatmap and historical usage charts
-- AI-Ready plugin badge — marks plugins validated for AI-assisted workflows
-- One-click install command generation for JMeter Plugin Manager
-- Favorites system (localStorage-persisted, shareable via URL)
+- Plugin directory with full-text search and tag filtering — search by name, description, or vendor
+- Side-by-side plugin comparison — compare up to 4 plugins across downloads, AI-readiness, license, GitHub stars, and category
+- Weekly download heatmap and historical usage charts — 52-week trend visualization per plugin
+- AI-Ready plugin badge — marks plugins validated for AI-assisted workflows (e.g., usable with AI agents, have predictable APIs, well-documented)
+- One-click install command generation for JMeter Plugin Manager — generates the exact command to paste in JMeter's plugin manager
+- Favorites system — localStorage-persisted favorites with shareable URL
 - Curated Collections: CI/CD Stack, Observability Stack, Load Shaping Stack, AI-Ready Starter
 - Vendor pages listing plugins by author/organization
 - Blog with JMeter plugin guides and tutorials
+- RSS feed at https://plugins.jmeter.ai/rss.xml
 
 ## Pages
 
 - [Home](https://plugins.jmeter.ai/): Plugin directory, search, compare, statistics, AI-ready section, and one-click install.
+- [Plugin Detail](https://plugins.jmeter.ai/plugin/{plugin-id}/): Individual plugin page with downloads, trend chart, weekly heatmap, component classes, changelog, and related plugins. Replace {plugin-id} with a valid plugin ID such as `jpgc-perfmon`.
+- [Compare](https://plugins.jmeter.ai/compare/): Side-by-side comparison table. Add ?ids=jpgc-perfmon,jpgc-casutg to pre-select plugins.
 - [Vendors](https://plugins.jmeter.ai/vendor/): Browse plugins grouped by vendor/organization.
 - [Collections](https://plugins.jmeter.ai/collections/): Curated plugin stacks for specific testing scenarios.
 - [Blog](https://plugins.jmeter.ai/blog/): Tutorials and guides for JMeter plugins and load testing.
@@ -33,11 +44,24 @@ PerfAtlas (https://plugins.jmeter.ai) is a high-performance static site built wi
 - [Load Shaping Stack](https://plugins.jmeter.ai/collections/load-shaping-stack/): jpgc-casutg, jpgc-tst, jpgc-autostop — precise RPS schedules and concurrency-based thread groups.
 - [AI-Ready Starter](https://plugins.jmeter.ai/collections/ai-ready-starter/): All plugins with the AI-Ready badge, auto-populated from the registry.
 
+## Most Downloaded Plugins (Top 5 by absolute downloads, as of 2026)
+
+1. Custom Thread Groups (jpgc-casutg) — 1,850,000+ total downloads. Adds Stepping, Ultimate, Concurrency, and Arrivals Thread Groups for realistic traffic modeling.
+2. PerfMon Server Performance Monitoring (jpgc-perfmon) — 1,400,000+ downloads. Streams CPU, memory, and network metrics from target servers in real time during load tests.
+3. 5 Additional Graphs (jpgc-graphs-basic) — 1,350,000+ downloads. Renders Response Codes, Bytes Throughput, Connect Times, Latency, and Hits/s charts in GUI mode.
+4. Dummy Sampler (jpgc-dummy) — 1,200,000+ downloads. Generates synthetic results for script debugging with 0ms processing time.
+5. Throughput Shaping Timer (jpgc-tst) — 1,150,000+ downloads. Controls exact requests-per-second (RPS) schedules with less than 1% variance.
+
 ## Blog Posts
 
-- [Best JMeter Plugins for API Testing in 2026](https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026/)
-- [How to Install JMeter Plugins with Plugin Manager](https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger/)
-- [What's New in PerfAtlas](https://plugins.jmeter.ai/blog/new-in-perfatlas/)
+- [Best JMeter Plugins for API Load Testing in 2026](https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026/) — Curated list with download stats and benchmarks for the top JMeter plugins for API testing.
+- [How to Install JMeter Plugins with Plugin Manager](https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger/) — Step-by-step guide for installing plugins via JMeter Plugin Manager.
+- [What's New in PerfAtlas](https://plugins.jmeter.ai/blog/new-in-perfatlas/) — Changelog and feature announcements for the PerfAtlas platform.
+- [How to Load Test gRPC Microservices with the JMeter gRPC Plugin](https://plugins.jmeter.ai/blog/how-to-load-test-gRPC-microservices-with-the-jmeter-gRPC-plugin/) — Practical guide for gRPC load testing using the JMeter gRPC Request plugin.
+- [How to Load Test WebSocket Applications Using JMeter Plugins](https://plugins.jmeter.ai/blog/How-to-Load-Test-WebSocket-Applications-Using-JMeter-Plugins/) — Covers WebSocket load testing setup and scenarios.
+- [How to Use JMeter Throughput Shaping Timer for Realistic Load Tests](https://plugins.jmeter.ai/blog/how-to-use-jmeter-throughput-shaping-timer-for-realistic-load-tests/) — Deep dive into RPS-based scheduling with jpgc-tst.
+- [JMeter Plugins for Distributed Load Testing](https://plugins.jmeter.ai/blog/jmeter-plugins-for-distributed-load-testing/) — Best plugins for running JMeter in distributed/controller-worker mode.
+- [JMeter vs Gatling Plugin Support in 2026](https://plugins.jmeter.ai/blog/jmeter-vs-gatling-plugin-support-2026/) — Comparison of plugin ecosystems between JMeter and Gatling.
 
 ## Data & Integrations
 
@@ -52,3 +76,8 @@ PerfAtlas (https://plugins.jmeter.ai) is a high-performance static site built wi
 - JMeter.ai: https://jmeter.ai
 - QAInsights: https://qainsights.com
 - Support: https://www.buymeacoffee.com/qainsights
+- Twitter/X: https://twitter.com/qainsights
+
+## Pricing
+
+PerfAtlas is free to use. All plugins listed in the directory are free and open source. There are no paid tiers, no API keys required for browsing, and no paywalled content. The site is supported by the community.

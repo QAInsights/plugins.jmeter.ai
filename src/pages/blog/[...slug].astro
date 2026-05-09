@@ -27,6 +27,7 @@ const { Content, headings } = await render(post);
     image={`/og/blog/${post.id}.png`}
     type="article"
     articleDate={post.data.pubDate.toISOString()}
+    articleModifiedDate={post.data.updatedDate ? post.data.updatedDate.toISOString() : post.data.pubDate.toISOString()}
     articleAuthor={post.data.author}
 >
     <Header />

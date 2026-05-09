@@ -20,7 +20,43 @@ export default defineConfig({
       }
     }),
     mdx(),
-    sitemap(),
+    sitemap({
+      // Exclude auth-protected pages — AI agents shouldn't index these
+      filter: (page) => !page.includes('/settings'),
+      // Per-URL changefreq and priority — freshness signals for AI crawlers
+      customPages: [],
+      serialize(item) {
+        // Home page — nightly data sync, highest priority
+        if (item.url === 'https://plugins.jmeter.ai/') {
+          return { ...item, changefreq: 'daily', priority: 1.0 };
+        }
+        // Blog index
+        if (item.url === 'https://plugins.jmeter.ai/blog/') {
+          return { ...item, changefreq: 'weekly', priority: 0.9 };
+        }
+        // Compare tool
+        if (item.url === 'https://plugins.jmeter.ai/compare/') {
+          return { ...item, changefreq: 'weekly', priority: 0.8 };
+        }
+        // Individual plugin pages — data refreshed nightly
+        if (item.url.includes('/plugin/')) {
+          return { ...item, changefreq: 'daily', priority: 0.8 };
+        }
+        // Blog posts
+        if (item.url.includes('/blog/') && item.url !== 'https://plugins.jmeter.ai/blog/') {
+          return { ...item, changefreq: 'monthly', priority: 0.7 };
+        }
+        // Vendor pages
+        if (item.url.includes('/vendor/')) {
+          return { ...item, changefreq: 'weekly', priority: 0.6 };
+        }
+        // Collections
+        if (item.url.includes('/collections/')) {
+          return { ...item, changefreq: 'monthly', priority: 0.6 };
+        }
+        return { ...item, changefreq: 'weekly', priority: 0.5 };
+      },
+    }),
     pagefind(),
     compress({
       CSS: true,

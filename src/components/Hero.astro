@@ -13,14 +13,18 @@ import StarMap from './StarMap.astro';
 
         <div class="relative max-w-2xl mx-auto group">
             <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur opacity-15 group-focus-within:opacity-40 transition duration-500"></div>
-            <div class="relative flex items-center bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden shadow-xl">
+            <div role="search" class="relative flex items-center bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden shadow-xl">
                 <span class="pl-4 sm:pl-5 text-gray-400 dark:text-white/40 group-focus-within:text-primary transition-colors shrink-0">
                     <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </span>
                 <input 
-                    type="text" 
+                    type="search" 
                     id="searchInput"
+                    name="q"
                     placeholder="Search plugins by name, description..." 
+                    aria-label="Search JMeter plugins"
+                    autocomplete="off"
+                    spellcheck="false"
                     class="w-full bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 px-3 sm:px-4 py-4 sm:py-5 outline-none font-medium text-base sm:text-lg"
                 />
                 <button 

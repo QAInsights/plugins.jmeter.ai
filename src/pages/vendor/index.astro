@@ -122,9 +122,12 @@ const description = `Browse ${vendors.length} JMeter plugin vendors on PerfAtlas
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </span>
                     <input
-                        type="text"
+                        type="search"
                         id="vendorSearch"
+                        name="q"
                         placeholder="Search vendors..."
+                        aria-label="Search vendors"
+                        autocomplete="off"
                         class="w-full bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-lg pl-12 pr-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 outline-none focus:border-primary/50 transition-colors"
                     />
                 </div>

@@ -31,9 +31,62 @@ pluginsData.forEach(p => {
 });
 categoriesSet.add('Others');
 const categories = Array.from(categoriesSet);
+
+// FAQPage schema — high-value for AI agent citation (agents surface FAQ answers directly)
+const homeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+        {
+            '@type': 'Question',
+            name: 'What is PerfAtlas?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'PerfAtlas is a free, community-driven directory of Apache JMeter plugins. It indexes 100+ plugins from the official JMeter Plugins registry, tracks daily and weekly download trends, and curates collections for common load testing scenarios like CI/CD, Observability, and Load Shaping.',
+            },
+        },
+        {
+            '@type': 'Question',
+            name: 'What are the most popular JMeter plugins?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'The most downloaded JMeter plugins are: (1) Custom Thread Groups (jpgc-casutg) with 1.85 million+ downloads, (2) PerfMon Server Monitoring (jpgc-perfmon) with 1.4 million+ downloads, (3) 5 Additional Graphs (jpgc-graphs-basic) with 1.35 million+ downloads, (4) Dummy Sampler (jpgc-dummy) with 1.2 million+ downloads, and (5) Throughput Shaping Timer (jpgc-tst) with 1.15 million+ downloads.',
+            },
+        },
+        {
+            '@type': 'Question',
+            name: 'How do I install JMeter plugins?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'To install JMeter plugins, download the JMeter Plugin Manager JAR from https://jmeter-plugins.org/install/Install/ and place it in your JMeter lib/ext directory. Then restart JMeter and use the Plugin Manager (Options > Plugins Manager) to search and install any plugin. PerfAtlas generates the exact install command for each plugin.',
+            },
+        },
+        {
+            '@type': 'Question',
+            name: 'What are AI-Ready JMeter plugins?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'AI-Ready plugins on PerfAtlas are JMeter plugins validated for use in AI-assisted workflows. They have predictable APIs, are well-documented, and can be reliably invoked or configured by AI agents and automation tools. They are marked with a special badge in the directory.',
+            },
+        },
+        {
+            '@type': 'Question',
+            name: 'How can I compare JMeter plugins?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'PerfAtlas provides a side-by-side plugin comparison tool at https://plugins.jmeter.ai/compare/. Select up to 4 plugins from the directory and click Compare to see a full breakdown of total downloads, weekly trend, AI-readiness, GitHub stars, license, and category.',
+            },
+        },
+    ],
+};
 ---
 
-<Layout title="PerfAtlas - The Modern JMeter Directory" image="/og/home.png">
+<Layout 
+    title="PerfAtlas - The Modern JMeter Plugin Directory" 
+    description="Discover, compare, and track 100+ JMeter plugins. Search by category, see weekly download trends, find AI-ready plugins, and generate install commands — all free, synced nightly."
+    image="/og/home.png" 
+    schema={homeSchema}
+>
     <Header />
     
     <main class="flex-grow flex flex-col">

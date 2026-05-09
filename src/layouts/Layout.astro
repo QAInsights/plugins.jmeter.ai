@@ -12,6 +12,7 @@ interface Props {
     image?: string;
     type?: "website" | "article";
     articleDate?: string;
+    articleModifiedDate?: string;
     articleAuthor?: string;
     schema?: Record<string, unknown>;
     canonicalURL?: string | URL;
@@ -23,6 +24,7 @@ const {
     image = "/favicon.svg",
     type = "website",
     articleDate,
+    articleModifiedDate,
     articleAuthor,
     schema,
     canonicalURL,
@@ -48,6 +50,71 @@ const socialImageType = /\.png($|\?)/i.test(socialImageURL.pathname)
                 ? 'image/svg+xml'
                 : undefined;
 const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageURL.pathname.endsWith('.png');
+
+// --- Global JSON-LD schemas ---
+
+// Organization schema: establishes entity authority for AI agents
+const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'PerfAtlas by QAInsights',
+    url: 'https://plugins.jmeter.ai',
+    logo: 'https://plugins.jmeter.ai/favicon.svg',
+    sameAs: [
+        'https://github.com/QAInsights/plugins.jmeter.ai',
+        'https://qainsights.com',
+        'https://twitter.com/qainsights',
+    ],
+    founder: {
+        '@type': 'Person',
+        name: 'NaveenKumar Namachivayam',
+        url: 'https://qainsights.com',
+        sameAs: ['https://twitter.com/qainsights', 'https://github.com/QAInsights'],
+    },
+};
+
+// WebSite schema with SearchAction — tells agents how to search the site
+const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'PerfAtlas — JMeter Plugin Directory',
+    url: 'https://plugins.jmeter.ai',
+    description: 'The modern directory for JMeter plugins — search, discover, compare, and track the velocity of load testing extensions, with AI-ready plugin highlights.',
+    potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+            '@type': 'EntryPoint',
+            urlTemplate: 'https://plugins.jmeter.ai/?q={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+    },
+};
+
+// Article schema for blog posts
+const articleSchema = type === 'article' ? {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    image: socialImageURL.toString(),
+    url: resolvedCanonicalURL,
+    ...(articleDate ? { datePublished: articleDate } : {}),
+    ...(articleModifiedDate ? { dateModified: articleModifiedDate } : articleDate ? { dateModified: articleDate } : {}),
+    author: {
+        '@type': 'Person',
+        name: articleAuthor || 'NaveenKumar Namachivayam',
+        url: 'https://qainsights.com',
+    },
+    publisher: {
+        '@type': 'Organization',
+        name: 'PerfAtlas by QAInsights',
+        url: 'https://plugins.jmeter.ai',
+        logo: {
+            '@type': 'ImageObject',
+            url: 'https://plugins.jmeter.ai/favicon.svg',
+        },
+    },
+} : null;
 ---
 
 <html lang="en" class="dark">
@@ -56,6 +123,8 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        {/* Machine-readable site description for AI agents and LLMs */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site description" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -74,9 +143,10 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
                     url: resolvedCanonicalURL,
                 },
                 article: type === 'article' ? {
-                    publishedTime: articleDate,
-                    authors: [articleAuthor || 'NaveenKumar Namachivayam'],
-                } : undefined
+                publishedTime: articleDate,
+                modifiedTime: articleModifiedDate || articleDate,
+                authors: [articleAuthor || 'NaveenKumar Namachivayam'],
+            } : undefined
             }}
             twitter={{
                 creator: "@qainsights",
@@ -111,6 +181,15 @@ const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageU
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
 
+        {/* Global Organization schema on every page */}
+        <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+        {/* Global WebSite schema with SearchAction on every page */}
+        <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+        {/* Article schema for blog posts */}
+        {articleSchema && (
+            <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+        )}
+        {/* Page-specific schema (SoftwareApplication, etc.) */}
         {schema && (
             <script type="application/ld+json" set:html={JSON.stringify(schema)} />
         )}

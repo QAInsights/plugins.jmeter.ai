@@ -5,6 +5,9 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-User
+Allow: /
+
 # OpenAI
 User-agent: GPTBot
 Allow: /
@@ -15,11 +18,15 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-# Google AI (Gemini / Vertex)
+# Google AI (Gemini / Vertex / AI Mode)
 User-agent: Google-Extended
 Allow: /
 
 User-agent: GoogleOther
+Allow: /
+
+# Google-Agent (used by Google AI Mode and Gemini agents)
+User-agent: Google-Agent
 Allow: /
 
 # Perplexity
@@ -58,7 +65,15 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+# iAsk.ai
+User-agent: iaskspider
+Allow: /
+
+# Timpi
+User-agent: Timpibot
+Allow: /
+
 Sitemap: https://plugins.jmeter.ai/sitemap-index.xml
 
-# AI context file
+# Machine-readable LLM context file for AI agents and language models
 # https://plugins.jmeter.ai/llms.txt

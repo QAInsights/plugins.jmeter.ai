@@ -66,6 +66,7 @@ const schema = {
     operatingSystem: 'Windows, macOS, Linux',
     url: url,
     ...(plugin.helpUrl?.trim() ? { softwareHelp: plugin.helpUrl.trim() } : {}),
+    ...(plugin.helpUrl?.trim() ? { downloadUrl: plugin.helpUrl.trim() } : {}),
     author: {
         '@type': 'Organization',
         name: plugin.vendor,
@@ -83,6 +84,19 @@ const schema = {
             userInteractionCount: plugin.stats.absoluteDownloads,
         },
     }),
+    // PotentialAction — tells AI agents HOW to act on this page
+    potentialAction: [
+        {
+            '@type': 'ViewAction',
+            name: `View ${plugin.name} details`,
+            target: url,
+        },
+        ...(plugin.helpUrl?.trim() ? [{
+            '@type': 'InstallAction',
+            name: `Install ${plugin.name}`,
+            target: plugin.helpUrl.trim(),
+        }] : []),
+    ],
 };
 ---
 
