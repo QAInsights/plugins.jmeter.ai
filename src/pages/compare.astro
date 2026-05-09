@@ -58,9 +58,10 @@ import pluginsData from '../data/plugins_data.json';
     </main>
 
     <Footer />
-</Layout>
 
-<script is:inline define:vars={{ pluginsData }}>
+    <script type="application/json" id="plugins-data" set:html={JSON.stringify(pluginsData)}></script>
+
+    <script is:inline>
     function vendorSlug(vendor) {
         if (!vendor) return 'unknown-vendor';
         const s = String(vendor)
@@ -73,6 +74,8 @@ import pluginsData from '../data/plugins_data.json';
     }
 
     function initCompare() {
+        const dataEl = document.getElementById('plugins-data');
+        const pluginsData = dataEl ? JSON.parse(dataEl.textContent || '[]') : [];
         const urlParams = new URLSearchParams(window.location.search);
         const ids = urlParams.get('ids')?.split(',').filter(Boolean) || [];
         
@@ -106,7 +109,7 @@ import pluginsData from '../data/plugins_data.json';
                 <div class="flex flex-col gap-2">
                     <span class="text-xs font-mono text-gray-400">${p.id}</span>
                     <h3 class="text-lg font-black text-gray-900 dark:text-white leading-tight">${p.name}</h3>
-                    <a href={`/vendor/${vendorSlug(p.vendor)}/`} class="text-[10px] uppercase font-bold text-primary hover:underline underline-offset-4">${p.vendor}</a>
+                    <a href="/vendor/${vendorSlug(p.vendor)}/" class="text-[10px] uppercase font-bold text-primary hover:underline underline-offset-4">${p.vendor}</a>
                 </div>
             </th>`;
         });
@@ -206,6 +209,8 @@ import pluginsData from '../data/plugins_data.json';
         }
     }
 
-    document.addEventListener('DOMContentLoaded', initCompare);
     document.addEventListener('astro:after-swap', initCompare);
-</script>
+    // Call directly since DOMContentLoaded has already fired when define:vars IIFE executes
+    initCompare();
+    </script>
+</Layout>
