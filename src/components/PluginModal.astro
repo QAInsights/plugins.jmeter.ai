@@ -118,7 +118,7 @@
                     .toLowerCase()
                     .replace(/[^a-z0-9]+/g, '-')
                     .replace(/^-+|-+$/g, '');
-                vendorLinkEl.href = `/vendor/${slug || 'unknown-vendor'}`;
+                vendorLinkEl.href = `/vendor/${slug || 'unknown-vendor'}/`;
             }
             
             const descEl = document.getElementById('modalDescription');

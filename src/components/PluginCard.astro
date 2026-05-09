@@ -10,7 +10,7 @@ if (plugin.isAiReady) tags.push('AI Ready');
 if (plugin.sponsored) tags.push('Sponsored');
 
 const category = inferCategory(plugin);
-const vendorHref = plugin.vendor ? `/vendor/${vendorSlug(plugin.vendor)}` : null;
+const vendorHref = plugin.vendor ? `/vendor/${vendorSlug(plugin.vendor)}/` : null;
 
 const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
 ---

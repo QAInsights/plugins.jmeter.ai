@@ -68,7 +68,7 @@ const description = `Browse ${vendors.length} JMeter plugin vendors on PerfAtlas
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {podium.map((v, i) => (
                             <a
-                                href={`/vendor/${v.slug}`}
+                                href={`/vendor/${v.slug}/`}
                                 class={`group relative flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
                                     ${i === 0
                                         ? 'bg-white dark:bg-dark-surface border-primary/50 dark:border-[#ccff00]/30 shadow-lg shadow-primary/10 dark:shadow-[0_0_25px_rgba(204,255,0,0.1)]'
@@ -149,7 +149,7 @@ const description = `Browse ${vendors.length} JMeter plugin vendors on PerfAtlas
             <div id="vendorIndexGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {vendors.map((v, index) => (
                     <a
-                        href={`/vendor/${v.slug}`}
+                        href={`/vendor/${v.slug}/`}
                         class="vendor-card group relative flex flex-col rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-dark-surface p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
                         data-name={v.vendor.toLowerCase()}
                         data-downloads={v.totalDownloads}
