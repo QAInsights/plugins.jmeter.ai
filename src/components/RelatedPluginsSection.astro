@@ -23,7 +23,7 @@ const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
                 </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {sameVendor.map((rp) => (
-                        <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
+                        <div class="related-plugin-link" data-href={`/plugin/${rp.id}/`}>
                             <PluginCard plugin={rp} />
                         </div>
                     ))}
@@ -38,7 +38,7 @@ const hasRelated = sameVendor.length > 0 || sameCategory.length > 0;
                 </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {sameCategory.map((rp) => (
-                        <div class="related-plugin-link" data-href={`/plugin/${rp.id}`}>
+                        <div class="related-plugin-link" data-href={`/plugin/${rp.id}/`}>
                             <PluginCard plugin={rp} />
                         </div>
                     ))}

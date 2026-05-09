@@ -125,22 +125,23 @@
   {
     "id": "swagger-postman-importer",
     "name": "Swagger / Postman Importer",
-    "description": "Imports Swagger/OpenAPI 2.0 and 3.0 specs (JSON and YAML) and Postman Collection v2.0/v2.1 files into a JMeter test plan. Supports all body modes (raw, urlencoded, formdata, GraphQL), Bearer, Basic, API Key and OAuth2 auth, nested folders with collection-level auth inheritance, and generates HTTP Header Managers per request.",
+    "description": "JMeter plugin for importing Swagger/OpenAPI specifications and Postman collections to automatically generate JMeter test plans. Supports both JSON and YAML formats with automatic HTTP sampler generation and parameter extraction.",
     "screenshotUrl": "",
     "helpUrl": "https://github.com/bakthava/swagger-postman-importer",
-    "vendor": "bakthava",
+    "vendor": "Bakthavachalam",
     "markerClass": "com.example.jmeter.importer.SwaggerPostmanImporterAction",
     "componentClasses": [
       "com.example.jmeter.importer.SwaggerPostmanImporterAction",
       "com.example.jmeter.importer.SwaggerPostmanImporterMenuCreator"
     ],
     "versions": {
+      "1.1": {
+        "changes": "Updated JMeter dependencies to 5.6.3; upgraded JSON library; optimized for Java 1.8+ compatibility; improved JAR shading and removed unused dependencies",
+        "downloadUrl": "https://github.com/bakthava/swagger-postman-importer/releases/download/v1.1/swagger-postman-importer-1.1.jar"
+      },
       "1.0": {
-        "downloadUrl": "https://github.com/bakthava/swagger-postman-importer/releases/download/v1.0/swagger-postman-importer-1.0.jar",
-        "changes": "Initial release: Swagger/OpenAPI and Postman Collection importer.",
-        "depends": [
-          "jmeter-core"
-        ]
+        "changes": "Initial release - Support for Swagger/OpenAPI and Postman collection imports with automatic test plan generation",
+        "downloadUrl": "https://github.com/bakthava/swagger-postman-importer/releases/download/v1.0/swagger-postman-importer-1.0.jar"
       }
     },
     "sponsored": false,
@@ -155,6 +156,38 @@
         "2026-04-13": 91,
         "2026-04-20": 124,
         "2026-04-27": 193
+      }
+    }
+  },
+  {
+    "id": "io.github.sagaraggarwal86-jmx-version-control-system",
+    "name": "JVCS — JMX Version Control System",
+    "description": "A lightweight local version control plugin for Apache JMeter test plans (.jmx files). Auto-snapshots on every save with SHA-256 deduplication, manual checkpoints with notes, one-click rollback with safety net, version freezing, configurable retention with FIFO pruning, periodic auto-checkpoint, selective deletion, export to .jmx, audit trail, lock file mechanism, dirty state indicator, self-healing index, toolbar integration, keyboard shortcuts (Ctrl+K, Ctrl+H) — no Git, no SVN, no external tools required.",
+    "screenshotUrl": "https://raw.githubusercontent.com/sagaraggarwal86/jmx-version-control-system/main/docs/Image.jpeg",
+    "helpUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system/blob/main/README.md",
+    "vendor": "Sagar Aggarwal",
+    "markerClass": "io.github.sagaraggarwal86.jmeter.scm.ui.ScmMenuCreator",
+    "componentClasses": [
+      "io.github.sagaraggarwal86.jmeter.scm.ui.ScmMenuCreator",
+      "io.github.sagaraggarwal86.jmeter.scm.core.SaveCommandWrapper",
+      "io.github.sagaraggarwal86.jmeter.scm.core.ScmOpenListener"
+    ],
+    "versions": {
+      "1.1.0": {
+        "changes": "Initial release — auto-snapshot on save, manual checkpoint, version history panel, one-click restore, freeze/unfreeze, retention pruning, auto-checkpoint, selective deletion, export, audit log, lock management, dirty indicator, toolbar buttons, settings dialog, self-healing index, storage migration",
+        "downloadUrl": "https://repo1.maven.org/maven2/io/github/sagaraggarwal86/jmx-version-control-system/v1.1.0/jmx-version-control-system-v1.1.0.jar"
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 65,
+      "absoluteDownloads": 89,
+      "history": {
+        "2026-04-13": 12,
+        "2026-04-20": 24,
+        "2026-04-27": 89
       }
     }
   },
@@ -1244,6 +1277,35 @@
     }
   },
   {
+    "id": "io.github.sagaraggarwal86-jmxauditor",
+    "name": "JMXAuditor — JMX Static Analyser",
+    "description": "A JMeter GUI-mode plugin that performs static analysis on .jmx test plans. Surfaces findings across six quality categories (Correctness, Security, Scalability, Realism, Maintainability, Observability) with 25 read-only rules. HTML & JSON Report Export, with zero impact on test execution.",
+    "screenshotUrl": "https://raw.githubusercontent.com/sagaraggarwal86/JMXAuditor-jmeter-plugin/main/docs/Image.jpg",
+    "helpUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin/blob/main/README.md",
+    "vendor": "Sagar Aggarwal",
+    "markerClass": "io.github.sagaraggarwal86.jmeter.jmxauditor.ui.action.JMXAuditorMenuCreator",
+    "componentClasses": [
+      "io.github.sagaraggarwal86.jmeter.jmxauditor.ui.action.JMXAuditorMenuCreator"
+    ],
+    "versions": {
+      "0.6.0": {
+        "changes": "Initial public release",
+        "downloadUrl": "https://repo1.maven.org/maven2/io/github/sagaraggarwal86/jmxauditor-jmeter-plugin/0.6.0/jmxauditor-jmeter-plugin-0.6.0.jar"
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 10,
+      "absoluteDownloads": 12,
+      "history": {
+        "2026-04-20": 2,
+        "2026-04-27": 12
+      }
+    }
+  },
+  {
     "id": "jmeter-rapi-plugin",
     "name": "Rapi JMeter Plugins",
     "description": "This plugin can run Rapi Runner for front-end load testing while using JMeter and can parse .csv results to generate front-end load reports.",
@@ -1465,20 +1527,19 @@
   {
     "id": "llm-metrics-visualizer",
     "name": "LLM Metrics Visualizer",
-    "description": "A JMeter listener plugin for monitoring LLM (Large Language Model) performance metrics in real time. Captures TTFT (Time to First Token), TPOT (Time per Output Token), RPS, input/output tokens per request and per minute, and response time percentiles — grouped by sampler name.",
-    "screenshotUrl": "",
+    "description": "A JMeter Listener plugin for load testing LLM APIs. Captures real-time metrics including TTFT (Time To First Token), TPOT (Time Per Output Token), RPS, input/output token throughput, and 90th percentile response times. Rows are grouped by HTTP sampler name.",
+    "screenshotUrl": "https://github.com/bakthava/LLM-Metrics-Visualizer/raw/main/screenshot.png",
     "helpUrl": "https://github.com/bakthava/LLM-Metrics-Visualizer",
     "vendor": "bakthava",
     "markerClass": "com.example.jmeter.LLMMetricsVisualizer",
-    "componentClasses": [
-      "com.example.jmeter.LLMMetricsVisualizer"
-    ],
     "versions": {
+      "0.2": {
+        "changes": "JDK 8 Compatibility - Compiled with Java 8 target, bytecode version 52, compatible with JDK 8 and later",
+        "downloadUrl": "https://github.com/bakthava/LLM-Metrics-Visualizer/releases/download/v0.2/LLM_Metrics_Visualizer-0.2.jar"
+      },
       "0.1": {
-        "downloadUrl": "https://github.com/bakthava/LLM-Metrics-Visualizer/releases/download/v0.1/LLM_Metrics_Visualizer-0.1.jar",
-        "depends": [
-          "jmeter-core"
-        ]
+        "changes": "Initial release - TTFT, TPOT, RPS metrics with token counting and percentile analysis",
+        "downloadUrl": "https://github.com/bakthava/LLM-Metrics-Visualizer/releases/download/v0.1/LLM_Metrics_Visualizer-0.1.jar"
       }
     },
     "sponsored": false,
@@ -1586,6 +1647,72 @@
         "2026-04-13": 76,
         "2026-04-20": 56,
         "2026-04-27": 61
+      }
+    }
+  },
+  {
+    "id": "jmeter-sse-sampler",
+    "name": "JMeter SSE Sampler",
+    "description": "High-performance Server-Sent Events (SSE) sampler for load testing real-time streaming HTTP endpoints. Supports custom authentication headers, configurable listen duration, HTTP error detection, and accurate JMeter metrics.",
+    "screenshotUrl": "",
+    "helpUrl": "https://github.com/cuneytcakir/jmeter-sse-sampler",
+    "vendor": "Cüneyt Çakır",
+    "markerClass": "com.jmeter.sse.SSESampler",
+    "componentClasses": [
+      "com.jmeter.sse.SSESamplerGui"
+    ],
+    "versions": {
+      "2.0.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/github/cuneytcakir/jmeter-sse-sampler/2.0.0/jmeter-sse-sampler-2.0.0.jar",
+        "changes": "Maven Central release preparations and Maven groupId updates."
+      },
+      "1.0.0": {
+        "downloadUrl": "https://github.com/cuneytcakir/jmeter-sse-sampler/releases/download/v1.0.0/jmeter-sse-sampler-1.0.0.jar",
+        "changes": "Initial release."
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 2,
+      "absoluteDownloads": 45,
+      "history": {
+        "2026-04-13": 26,
+        "2026-04-20": 43,
+        "2026-04-27": 45
+      }
+    }
+  },
+  {
+    "id": "io.github.sagaraggarwal86-bpm-jmeter-plugin",
+    "name": "BPM — Browser Performance Metrics",
+    "description": "A live JMeter listener plugin for capturing browser rendering metrics via Chrome DevTools Protocol. Features include Core Web Vitals (LCP, FCP, CLS, TTFB), Network & Console capture, Composite Performance Score, SLA Threshold Highlighting, Improvement Area Detection, Filter by Start/End Offset & Transaction Names with RegEx support, CLI Headless Mode, Chart Interval Control, HTML Performance Report, and Excel Export — with minimal impact on JMeter thread performance.",
+    "screenshotUrl": "https://raw.githubusercontent.com/sagaraggarwal86/BPM-jmeter-plugin/v1.0.1/docs/Image.jpg",
+    "helpUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin/blob/v1.0.1/README.md",
+    "vendor": "Sagar Aggarwal",
+    "markerClass": "io.github.sagaraggarwal86.jmeter.bpm.core.BpmListener",
+    "componentClasses": [
+      "io.github.sagaraggarwal86.jmeter.bpm.core.BpmListener",
+      "io.github.sagaraggarwal86.jmeter.bpm.gui.BpmListenerGui"
+    ],
+    "versions": {
+      "1.0.1": {
+        "changes": "Initial release",
+        "downloadUrl": "https://repo1.maven.org/maven2/io/github/sagaraggarwal86/bpm-jmeter-plugin/v1.0.1/bpm-jmeter-plugin-v1.0.1.jar"
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 28,
+      "history": {
+        "2026-04-06": 6,
+        "2026-04-13": 23,
+        "2026-04-20": 28,
+        "2026-04-27": 28
       }
     }
   },
@@ -1849,6 +1976,34 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 0,
+      "history": {}
+    }
+  },
+  {
+    "id": "perfsage-slo-reporter",
+    "name": "PerfSage SLO Reporter",
+    "description": "A JMeter plugin by PerfSage for SLO-based reporting and performance analysis.",
+    "screenshotUrl": "https://raw.githubusercontent.com/perfsage/perfsage-slo-reporter/main/blog/images/perfsage-slo-report-sample.png",
+    "helpUrl": "https://github.com/perfsage/perfsage-slo-reporter/blob/main/README.md",
+    "vendor": "perfsage.com",
+    "markerClass": "com.perfsage.jmeter.SLOAnalysisListener",
+    "componentClasses": [
+      "com.perfsage.jmeter.SLOAnalysisListener"
+    ],
+    "versions": {
+      "0.1.0": {
+        "changes": "Initial public release",
+        "downloadUrl": "https://github.com/perfsage/perfsage-slo-reporter/releases/download/v0.1.0/perfsage-slo-reporter-0.1.0.jar",
+        "libs": {},
+        "depends": []
       }
     },
     "sponsored": false,
@@ -2480,6 +2635,10 @@
     "versions": {
       "1.0.0": {
         "downloadUrl": "https://github.com/rishavsawarn/jmeter-jtl-xls-report-plugin/releases/download/v1.0.0/jtl-xls-plugin-1.0.jar"
+      },
+      "2.0.0": {
+        "changes": "Added headless CLI mode for CI/CD pipelines and GitHub Actions. Added P95 metric column. Auto-creates output directory if missing. Empty prefix now includes all transactions.",
+        "downloadUrl": "https://github.com/rishavsawarn/jmeter-jtl-xls-report-plugin/releases/download/v2.0.0/jmeter-jtl-xls-report-plugin-2.0.0-jar-with-dependencies.jar"
       }
     },
     "sponsored": false,
@@ -4194,19 +4353,27 @@
   {
     "id": "io.github.sagaraggarwal86-configurable-aggregate-report",
     "name": "JAAR — JTL AI Analysis & Reporting",
-    "description": "A file-based Apache JMeter listener plugin for post-test JTL analysis. Provides a filterable aggregate table with features like Filter Results using Start/End Offset & Transaction Names with RegEx support, Dynamic Percentile & Table Columns, SLA Threshold Highlighting, CLI Headless Mode, Chart Interval Control, AI-Analyzed HTML Performance Report, Export AI Report in Excel Format — with zero runtime overhead.",
+    "description": "A file-based Apache JMeter listener plugin for post-test JTL analysis. Provides a filterable aggregate table with features like Filter Results using Start/End Offset & Transaction Names with RegEx support, Dynamic Percentile & Table Columns, SLA Threshold Highlighting (Error %, Response Time & TPS), CLI Headless Mode, Chart Interval Control, AI-Analyzed HTML Performance Report, Data-Only HTML Report (no AI required), Export Report in Excel & PDF Format, Performance Charts, Dark Mode — with zero runtime overhead.",
     "screenshotUrl": "https://raw.githubusercontent.com/sagaraggarwal86/jaar-jmeter-plugin/main/docs/Image.jpg",
     "helpUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin/blob/main/README.md",
     "vendor": "Sagar Aggarwal",
-    "markerClass": "com.personal.jmeter.listener.gui.ListenerCollector",
+    "markerClass": "io.github.sagaraggarwal86.jmeter.listener.gui.ListenerCollector",
     "componentClasses": [
-      "com.personal.jmeter.listener.gui.ListenerCollector",
-      "com.personal.jmeter.listener.gui.ListenerGUI"
+      "io.github.sagaraggarwal86.jmeter.listener.gui.ListenerCollector",
+      "io.github.sagaraggarwal86.jmeter.listener.gui.ListenerGUI"
     ],
     "versions": {
       "5.0.1": {
         "changes": "fixed marker class and component class, removed old deprecated versions and kept only relevant meaningful version",
         "downloadUrl": "https://repo1.maven.org/maven2/io/github/sagaraggarwal86/jaar-jmeter-plugin/5.0.1/jaar-jmeter-plugin-5.0.1.jar"
+      },
+      "5.5.0": {
+        "changes": "performance improvement on listener gui and prompt for report generation",
+        "downloadUrl": "https://repo1.maven.org/maven2/io/github/sagaraggarwal86/jaar-jmeter-plugin/5.5.0/jaar-jmeter-plugin-5.5.0.jar"
+      },
+      "6.0.0": {
+        "changes": "TPS SLA threshold, data-only HTML report (no AI required), performance charts with configurable interval, Excel & PDF export, dark mode, pagination & search in HTML report transaction metrics, CLI fallback to data-only report on AI failure",
+        "downloadUrl": "https://repo1.maven.org/maven2/io/github/sagaraggarwal86/jaar-jmeter-plugin/6.0.0/jaar-jmeter-plugin-6.0.0.jar"
       }
     },
     "sponsored": false,
@@ -12690,6 +12857,30 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "2.0.4": {
+        "changes": "ADD: Donate button; FIXES: Minor; NEW: Support for Ollama models. For more details, check out our documentation:",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v2.0.4/jmeter-agent-2.0.4.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
+      },
+      "2.0.5": {
+        "changes": "NEW: Streaming responses; Fix: Supports chinese characters.",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v2.0.5/jmeter-agent-2.0.5.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
+      },
+      "2.0.6": {
+        "changes": "NEW: Support for Claude Code, Codex, Gemini, and OpenCode. Response sound/chime in chat. ",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v2.0.6/jmeter-agent-2.0.6.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -16998,8 +17189,8 @@
     "name": "JMeter gRPC Request",
     "description": "Send gRPC request",
     "screenshotUrl": "https://user-images.githubusercontent.com/15891411/93206727-121f3400-f784-11ea-890f-0ba6c6aaee9e.png",
-    "helpUrl": "https://github.com/zalopay-oss/jmeter-grpc-request",
-    "vendor": "Datadog",
+    "helpUrl": "https://github.com/bakthava/jmeter-grpc-request",
+    "vendor": "bakthava",
     "markerClass": "vn.zalopay.benchmark.GRPCSamplerGui",
     "componentClasses": [
       "vn.zalopay.benchmarkGRPCSampler"
@@ -17042,6 +17233,27 @@
       "1.2.6": {
         "changes": "Prints exceptions that occur before the request is initiated; setEndTime must be called after setStartTime; allow run plugin with M1 ARM chip; ...",
         "downloadUrl": "https://github.com/zalopay-oss/jmeter-grpc-request/releases/download/v1.2.6/jmeter-grpc-request.jar",
+        "depends": [
+          "jmeter-core"
+        ]
+      },
+      "2.0.0": {
+        "changes": "Continuation of the archived zalopay-oss/jmeter-grpc-request project. Security: fixed 18 CVEs — xstream 1.4.21 (CVE-2022-41966, CVE-2022-40151, CVE-2024-47072), jackson-databind 2.17.2 (CVE-2022-42004, CVE-2022-42003), excluded EOL log4j 1.x (CVE-2019-17571 CRITICAL), json-smart 2.5.2 (CVE-2023-1370, CVE-2024-57699), batik 1.17 (CVE-2022-44729), bouncycastle 1.70 (14+ CVEs), Netty 4.1.132.Final, gRPC 1.68.1, protobuf 3.25.5. New feature: Mutual TLS (mTLS) support. JDK 8 compatible (bytecode 52).",
+        "downloadUrl": "https://github.com/bakthava/jmeter-grpc-request/releases/download/v2.0.0/jmeter-grpc-request.2.0.0.jar",
+        "depends": [
+          "jmeter-core"
+        ]
+      },
+      "2.0.1": {
+        "changes": "Java 21 Compatibility: Consolidated fix for Java 21 support ensuring all build checks pass. Maintains security improvements from v2.0.0 (commons-io 2.14.0, TestNG 7.5.1). mTLS support and JDK 8+ compatibility included.",
+        "downloadUrl": "https://github.com/bakthava/jmeter-grpc-request/releases/download/v2.0.1/jmeter-grpc-request.2.0.1.jar",
+        "depends": [
+          "jmeter-core"
+        ]
+      },
+      "2.0.2": {
+        "changes": "Dependency updates: lombok 1.18.44, gson 2.13.2, fastjson 2.0.61, mockito-core 5.23.0, jacoco-maven-plugin 0.8.14, jmeter-plugins-emulators 0.5",
+        "downloadUrl": "https://github.com/bakthava/jmeter-grpc-request/releases/download/v2.0.2/jmeter-grpc-request.2.0.2.jar",
         "depends": [
           "jmeter-core"
         ]
@@ -17472,6 +17684,26 @@
           "stax2-api>=4.2": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.2.1/stax2-api-4.2.jar",
           "woodstox-core>=6.0.1": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.2.1/woodstox-core-6.0.1.jar",
           "jmeter-bzm-commons>=0.2.3": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.2.1/jmeter-bzm-commons-0.2.3.jar"
+        },
+        "depends": [
+          "jmeter-http"
+        ]
+      },
+      "3.3.0": {
+        "changes": "HLS live-edge playback; DASH dynamic MPD refresh & timeline precision",
+        "downloadUrl": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jmeter-bzm-hls-3.3.0.jar",
+        "libs": {
+          "hlsparserj>=1.0.1": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/hlsparserj-1.0.1.jar",
+          "jackson-annotations>=2.11.0": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jackson-annotations-2.11.0.jar",
+          "jackson-core>=2.10.0": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jackson-core-2.10.0.jar",
+          "jackson-databind>=2.11.0": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jackson-databind-2.11.0.jar",
+          "jackson-dataformat-xml>=2.10.0": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jackson-dataformat-xml-2.10.0.jar",
+          "jackson-module-jaxb-annotations>=2.10.0": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jackson-module-jaxb-annotations-2.10.0.jar",
+          "jaxb-api>=2.3.1": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jaxb-api-2.3.1.jar",
+          "jmeter-bzm-commons>=0.2.3": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/jmeter-bzm-commons-0.2.3.jar",
+          "mpd-tools>=release-0.8-jdk8": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/mpd-tools-release-0.8-jdk8.jar",
+          "stax2-api>=4.2": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/stax2-api-4.2.jar",
+          "woodstox-core>=6.0.1": "https://github.com/Blazemeter/HLSPlugin/releases/download/v3.3.0/woodstox-core-6.0.1.jar"
         },
         "depends": [
           "jmeter-http"

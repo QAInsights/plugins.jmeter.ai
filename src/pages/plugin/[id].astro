@@ -39,7 +39,7 @@ const ogImage = `/og/plugin/${plugin.id}.png`;
 
 const title = `${plugin.name} | PerfAtlas`;
 const description = `Discover ${plugin.name} by ${plugin.vendor}. ${plugin.description}`;
-const url = `https://plugins.jmeter.ai/plugin/${plugin.id}`;
+const url = `https://plugins.jmeter.ai/plugin/${plugin.id}/`;
 
 // Prepare Chart Data
 const history = (plugin.stats.history || {}) as Record<string, number>;

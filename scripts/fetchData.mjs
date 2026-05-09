@@ -2,14 +2,14 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const REPOS = [
-    'https://jmeter-plugins.org/repo/blazemeter.json',
-    'https://jmeter-plugins.org/repo/jmeter.json',
-    'https://jmeter-plugins.org/repo/jpgc-graphs.json',
-    'https://jmeter-plugins.org/repo/jpgc-plugins.json',
-    'https://jmeter-plugins.org/repo/jpgc-sets.json',
-    'https://jmeter-plugins.org/repo/jpgc-tools.json',
-    'https://jmeter-plugins.org/repo/self.json',
-    'https://jmeter-plugins.org/repo/various.json'
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/blazemeter.json',
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/jmeter.json',
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/jpgc-graphs.json',
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/jpgc-plugins.json',
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/jpgc-sets.json',
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/jpgc-tools.json',
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/self.json',
+    'https://raw.githubusercontent.com/undera/jmeter-plugins/master/site/dat/repo/various.json'
 ];
 
 const STATS_URL = 'https://jmeter-plugins.org/dat/stats/plugins_usage_history.json';

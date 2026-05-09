@@ -128,7 +128,7 @@
             if(linkEl) linkEl.href = p.helpUrl;
             
             const deepLinkEl = document.getElementById('modalDeepLink') as HTMLAnchorElement;
-            if(deepLinkEl) deepLinkEl.href = `/plugin/${p.id}`;
+            if(deepLinkEl) deepLinkEl.href = `/plugin/${p.id}/`;
             
             const modalInstallBtn = document.getElementById('modalInstallBtn');
             if(modalInstallBtn) {
@@ -147,7 +147,7 @@
             const badgeContainer = document.getElementById('modalBadgeContainer');
             const badgeCode = document.getElementById('modalBadgeCode');
             if(badgeContainer && badgeCode) {
-                const badgeMd = `[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://plugins.jmeter.ai/plugin/${p.id})`;
+                const badgeMd = `[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://plugins.jmeter.ai/plugin/${p.id}/)`;
                 badgeContainer.setAttribute('data-badge', badgeMd);
                 badgeCode.textContent = badgeMd;
             }

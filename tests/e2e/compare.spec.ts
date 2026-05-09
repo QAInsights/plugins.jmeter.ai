@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Compare page', () => {
   test('should load the compare page', async ({ page }) => {
-    await page.goto('/compare');
+    await page.goto('/compare/');
     // Page should render — check for some content
     const body = page.locator('body');
     await expect(body).toBeVisible();
@@ -18,7 +18,7 @@ test.describe('Compare page', () => {
       const id1 = await cards.nth(0).locator('[data-plugin-id]').first().getAttribute('data-plugin-id');
       const id2 = await cards.nth(1).locator('[data-plugin-id]').first().getAttribute('data-plugin-id');
       if (id1 && id2) {
-        await page.goto(`/compare?ids=${id1},${id2}`);
+        await page.goto(`/compare/?ids=${id1},${id2}`);
         const table = page.locator('table');
         await expect(table).toBeVisible({ timeout: 10000 });
       }

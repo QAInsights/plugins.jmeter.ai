@@ -18,7 +18,7 @@ const tags = [...new Set(posts.map((post) => post.data.tags || []).flat())].sort
         <div class="flex flex-wrap justify-center gap-4">
             {tags.map((tag) => (
                 <a 
-                    href={`/blog/tags/${tag}`} 
+                    href={`/blog/tags/${tag}/`} 
                     class="px-6 py-3 rounded-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-bold hover:border-primary/50 dark:hover:border-primary/50 hover:bg-green-50 dark:hover:bg-[#ccff00]/5 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md"
                 >
                     {tag}
@@ -27,7 +27,7 @@ const tags = [...new Set(posts.map((post) => post.data.tags || []).flat())].sort
         </div>
         
         <div class="mt-20">
-            <a href="/blog" class="text-green-600 dark:text-[#ccff00] font-bold hover:underline">
+            <a href="/blog/" class="text-green-600 dark:text-[#ccff00] font-bold hover:underline">
                 &larr; Back to all posts
             </a>
         </div>

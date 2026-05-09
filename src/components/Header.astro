@@ -23,13 +23,13 @@ import AuthButton from './AuthButton.astro';
             <a href="/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname === '/' ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Home
             </a>
-            <a href="/vendor" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/vendor') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
+            <a href="/vendor/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/vendor') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Vendors
             </a>
-            <a href="/collections" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/collections') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
+            <a href="/collections/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/collections') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Collections
             </a>
-            <a href="/blog" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/blog') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
+            <a href="/blog/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/blog') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
                 Blog
             </a>
             <DiscoverMenu />
@@ -73,9 +73,9 @@ import AuthButton from './AuthButton.astro';
     <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-dark-bg/95 backdrop-blur-md">
         <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1 text-sm font-medium">
             <a href="/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname === '/' ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Home</a>
-            <a href="/vendor" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/vendor') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Vendors</a>
-            <a href="/collections" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/collections') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Collections</a>
-            <a href="/blog" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/blog') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Blog</a>
+            <a href="/vendor/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/vendor') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Vendors</a>
+            <a href="/collections/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/collections') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Collections</a>
+            <a href="/blog/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/blog') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Blog</a>
             <!-- Mobile Discover accordion -->
             <div>
                 <button id="mobileDiscoverToggle" type="button" class="w-full flex items-center justify-between px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
