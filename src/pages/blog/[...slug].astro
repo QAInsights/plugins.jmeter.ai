@@ -42,9 +42,7 @@ const { Content, headings } = await render(post);
             <!-- Sidebar TOC -->
             <aside class="hidden md:block w-64 shrink-0 order-2 relative z-20">
                 <div class="sticky top-28 h-fit">
-                    <TableOfContents headings={headings} />
-                    
-                    <div class="mt-12 p-6 rounded-2xl bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 shadow-sm relative overflow-hidden group/sidebar">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 shadow-sm relative overflow-hidden group/sidebar">
                         <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover/sidebar:bg-primary/10 transition-colors duration-500"></div>
                         
                         <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
@@ -99,6 +97,10 @@ const { Content, headings } = await render(post);
                                 </a>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <TableOfContents headings={headings} />
                     </div>
 
                     <a href="/blog/" class="mt-8 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 text-gray-500 hover:text-green-600 dark:hover:text-[#ccff00] transition-all text-xs font-bold uppercase tracking-widest">
