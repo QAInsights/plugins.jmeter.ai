@@ -303,29 +303,8 @@ Check the plugin's GitHub README for the JMeter version compatibility matrix. Us
 
 Add extra_hosts: ["host.docker.internal:host-gateway"] to the Prometheus service in your Docker Compose file.
 
-
 ## Wrapping Up
 
 In this blog post, we set up end-to-end real-time visibility for JMeter tests using the Prometheus Backend Listener plugin and a Grafana dashboard running in Docker Compose.
 
-To recap what we covered.
-
-### Why the built-in JMeter listeners fall short for continuous performance testing
-
-The pull-based Prometheus architecture and how it differs from the InfluxDB path
-
-Installing and configuring the jmeter-prometheus-plugin
-
-Running Prometheus and Grafana with Docker Compose
-
-Watching live metrics update during a test run
-
-Practical tips on cardinality, alerting, and CI/CD integration
-
-The full source for the Docker Compose stack and a sample test plan is available on the QAInsights GitHub.
-
-If your team is already running a Prometheus and Grafana stack for infrastructure monitoring, this integration is a natural fit. You get JMeter test metrics in the same place as your CPU, memory, and service health dashboards. That is a win for everyone on the team.
-
 Happy Testing!
-
-What observability stack are you using with JMeter right now? Drop it in the comments below.
