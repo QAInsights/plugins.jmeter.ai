@@ -52987,6 +52987,32 @@
     }
   },
   {
+    "id": "readme-config-element",
+    "name": "README Config Element",
+    "description": "A JMeter config element that lets you embed Markdown documentation directly inside your test plan with a live GitHub-style preview and deep-link navigation to tree nodes.",
+    "screenshotUrl": "https://raw.githubusercontent.com/QAInsights/jmeter-readme-config/refs/heads/main/images/Markdown.png",
+    "helpUrl": "https://github.com/QAInsights/jmeter-readme-config",
+    "vendor": "QAInsights.com",
+    "markerClass": "com.qainsights.jmeter.readme.readme.ReadMeConfigElement",
+    "componentClasses": [
+      "com.qainsights.jmeter.readme.gui.ReadMeConfigElementGui"
+    ],
+    "versions": {
+      "0.0.1": {
+        "changes": "NEW: README Config Element for documentation. Dark mode support. JMeter Deep link.",
+        "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/readme-config-element/0.0.1/readme-config-element-0.0.1-jar-with-dependencies.jar"
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 0,
+      "history": {}
+    }
+  },
+  {
     "id": "jmeter-rapi-plugin",
     "name": "Rapi JMeter Plugins",
     "description": "This plugin can run Rapi Runner for front-end load testing while using JMeter and can parse .csv results to generate front-end load reports.",
