@@ -74,7 +74,9 @@ Head to github.com/johrstrom/jmeter-prometheus-plugin/releases and download the 
 
 Copy the JAR into your JMeter lib/ext/ folder, as shown below.
 
-bashcp jmeter-prometheus-plugin-*.jar $JMETER_HOME/lib/ext/
+```bash
+cp jmeter-prometheus-plugin-*.jar $JMETER_HOME/lib/ext/
+```
 
 Restart JMeter.
 
@@ -96,11 +98,12 @@ In the Backend Listener implementation dropdown, select com.github.johrstrom.lis
 
 The listener exposes several configuration parameters. Here is what each one does.
 
-Parameter | Default | What It Does
-prometheus.ip | 127.0.0.1 | IP the HTTP server binds to. Use 0.0.0.0 for Docker or remote access.
-prometheus.port | 9270 | Port where /metrics is exposed.
-prometheus.delay_seconds | 0 | Delay before the endpoint is available.
-save.assertions | true | Whether to include assertion results in metrics.
+| Parameter | Default | What It Does |
+|-----------|---------|----------------|
+| prometheus.ip | 127.0.0.1 | IP the HTTP server binds to. Use 0.0.0.0 for Docker or remote access. |
+| prometheus.port | 9270 | Port where /metrics is exposed. |
+| prometheus.delay_seconds | 0 | Delay before the endpoint is available. |
+| save.assertions | true | Whether to include assertion results in metrics. |
 
 For a typical local setup, the defaults work fine. For Docker or CI environments, change prometheus.ip to 0.0.0.0 so the host machine can reach the endpoint.
 
@@ -133,6 +136,7 @@ scrape_configs:
     static_configs:
       - targets: ['host.docker.internal:9270']
 ```
+
 Note: host.docker.internal is the hostname Docker uses on Mac and Windows to reach the host machine. On Linux, replace it with your host's actual IP address (e.g. 172.17.0.1).
 
 `docker-compose.yml` (Prometheus section)
@@ -292,7 +296,7 @@ Verify the Prometheus target is UP before checking Grafana.
 
 ### Backend Listener implementation not showing in dropdown
 
-The JAR is in the wrong folder. It must be in lib/ext/, not lib/.
+The JAR is in the wrong folder. It must be in `lib/ext/`, not `lib/`.
 JMeter was not restarted after copying the JAR.
 
 ### Plugin JAR version mismatch
@@ -301,7 +305,7 @@ Check the plugin's GitHub README for the JMeter version compatibility matrix. Us
 
 ### host.docker.internal not resolving on Linux
 
-Add extra_hosts: ["host.docker.internal:host-gateway"] to the Prometheus service in your Docker Compose file.
+Add `extra_hosts: ["host.docker.internal:host-gateway"]` to the Prometheus service in your Docker Compose file.
 
 ## Wrapping Up
 
