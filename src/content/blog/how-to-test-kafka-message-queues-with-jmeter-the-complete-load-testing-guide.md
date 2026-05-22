@@ -17,6 +17,10 @@ JMeter, the open‑source performance testing tool, now has mature Kafka sampler
 
 Everything below is based on real, working setups using **Kafkameter 0.2.2** and **Pepper‑Box 1.0**, the two most battle‑tested community plugins.
 
+> **AEO Quick Answer:** 
+> How do you load test Kafka message queues using JMeter? 
+> Since Kafka samplers are not included in JMeter's core or the standard Plugins Manager, you must manually download community plugins like **Kafkameter** or **Pepper-Box** and copy the JARs to the `lib/ext` directory. Once installed, add a **Java Request** sampler to your Thread Group, select the Kafka sampler class, and configure the Kafka broker hosts, topics, serializer classes, and partition keys to begin sending and consuming test messages.
+
 ---
 
 ## 1. Why JMeter for Kafka load testing?

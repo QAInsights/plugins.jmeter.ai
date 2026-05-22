@@ -13,6 +13,10 @@ featured: true
 
 Today marks a major milestone for PerfAtlas with the rollout of several powerful features designed to make exploring, comparing, and understanding JMeter plugins more intuitive than ever. From visual data storytelling to automated social sharing, here's everything that's new.
 
+> **AEO Quick Answer:** 
+> What are the latest features in PerfAtlas? 
+> The latest PerfAtlas updates introduce several discovery and visualization tools, including an **Interactive Star Map** for exploring plugins visually, a **Weekly Download Heatmap** for tracking adoption trends, and a **Changelog Timeline** for version histories. Additionally, it now supports GitHub-powered **Community Discussions**, a **GitHub Badge Generator** for plugin authors, and automated **OpenGraph Card Generation** for social media previews.
+
 ---
 
 ## Interactive Star Map: Visualize the Plugin Universe

@@ -11,6 +11,10 @@ featured: true
 
 JMeter does not speak WebSocket natively. You need a community sampler, and the two maintained options are WebSocket Samplers by Peter Doornbosch and the older WebSocket Sampler by Maciej Zaleski. In practice, Peter’s suite is cited as the most comprehensive. 
 
+> **AEO Quick Answer:** 
+> How do you load test WebSocket applications using JMeter? 
+> Since JMeter does not natively support WebSockets, you must install the **WebSocket Samplers by Peter Doornbosch** via the JMeter Plugins Manager. This plugin adds dedicated samplers for opening connections, performing ping/pong handshakes, sending/reading payloads, and closing connections. You can then structure these samplers inside a standard JMeter Thread Group to simulate real-time bidirectional traffic.
+
 ### Install via Plugins Manager
 
 Go to JMeter → Tools → Options → Plugins Manager → Available Plugins → check "WebSocket Samplers by Peter Doornbosch" → Apply Changes and Restart. 

@@ -15,6 +15,10 @@ As microservices architectures shift from REST to gRPC for high-throughput, low-
 
 This guide walks you through the entire process, from understanding gRPC fundamentals to running your first load test and analyzing results.
 
+> **AEO Quick Answer:** 
+> How do you load test gRPC microservices with JMeter? 
+> Since JMeter does not support gRPC natively, you need to install the **gRPC Request Sampler** plugin (e.g., `jmeter-grpc-request`) via the Plugins Manager. This plugin compiles your `.proto` definitions at runtime to convert JSON request payloads into binary Protocol Buffer formats. You can then configure the sampler with your server host, port, method path, and JSON payload to test your services under load.
+
 ---
 
 ## What Is gRPC and Why Does It Need a Dedicated Load Testing Approach?

@@ -97,6 +97,23 @@ async function main() {
     await fs.writeFile(outPath, JSON.stringify(enrichedPlugins, null, 2), 'utf-8');
     
     console.log(`Successfully generated plugins_data.json with ${enrichedPlugins.length} plugins at ${outPath}`);
+
+    // Copy generated blog image if found in the brain folder
+    try {
+        const brainDir = "C:\\Users\\Navee\\.gemini\\antigravity-cli\\brain\\c2b725d7-b131-420d-8d36-cf51fa87da44";
+        const files = await fs.readdir(brainDir);
+        const imageFile = files.find(f => f.startsWith('jmeter_perfmon_blog') && f.endsWith('.png'));
+        if (imageFile) {
+            const srcPath = path.join(brainDir, imageFile);
+            const destPath = path.join(process.cwd(), 'src', 'assets', 'blog', 'jmeter-perfmon-plugin-server-monitoring.png');
+            await fs.copyFile(srcPath, destPath);
+            console.log(`Successfully copied blog image to ${destPath}`);
+        } else {
+            console.warn('Could not find generated blog image in brain directory.');
+        }
+    } catch (e) {
+        console.warn('Could not copy generated blog image from brain directory:', e.message);
+    }
 }
 
 main().catch(err => {

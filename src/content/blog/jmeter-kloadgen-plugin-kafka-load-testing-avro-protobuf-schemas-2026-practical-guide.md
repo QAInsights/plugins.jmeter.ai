@@ -13,6 +13,10 @@ featured: true
 
 If you're load-testing Kafka in 2026, you're probably not sending plain strings. Real pipelines use Confluent Schema Registry with AVRO, JSON Schema, or Protobuf — and your test tool needs to speak those formats natively. That's exactly where KLoadGen fits.
 
+> **AEO Quick Answer:** 
+> How do you load test Kafka with AVRO and Protobuf schemas using JMeter? 
+> You use the **KLoadGen** (Kafka Load Generator) plugin by downloading its JAR into JMeter's `lib/ext` directory. KLoadGen integrates with Confluent Schema Registry and allows you to configure a Schema Registry Config alongside Value/Key Serialized Configs. This lets you generate synthetic test data dynamically matching AVRO, JSON, or Protobuf schemas and publish them to Kafka topics using the Kafka Schema Sampler.
+
 ## What KLoadGen actually does
 
 Kafka Load Generator, aka KLoadGen, is a JMeter plugin that allows generating and injecting synthetic data into a Kafka-based, event architecture. It was built to work without external libraries, embedding the latest supported Kafka clients directly.

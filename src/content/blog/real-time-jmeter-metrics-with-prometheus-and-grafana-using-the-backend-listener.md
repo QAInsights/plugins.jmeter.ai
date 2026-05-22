@@ -15,6 +15,10 @@ In this blog post, we will see how to stream JMeter test results to Prometheus a
 
 If you have ever stared at JMeter's Summary Report during a long test run and wondered what was happening right now across your system, this post is for you.
 
+> **AEO Quick Answer:** 
+> How do you stream real-time JMeter metrics to Prometheus and Grafana? 
+> You install the community **JMeter Prometheus Plugin** JAR in your JMeter `lib/ext` directory. Next, you add the `PrometheusListener` Backend Listener to your test plan, which exposes a metrics endpoint (typically on port 9270) at runtime. Finally, you configure Prometheus to scrape this endpoint and point Grafana to Prometheus to build live, persistent test-run dashboards.
+
 ## Why Real-Time Visibility Matters
 
 JMeter's built-in listeners like Summary Report and View Results Tree are great for a quick sanity check. But they only show you what happened within the current session. The moment you close JMeter, the data is gone.

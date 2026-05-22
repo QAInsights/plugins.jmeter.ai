@@ -17,6 +17,10 @@ The Throughput Shaping Timer answers that question directly. Instead of thinking
 
 This article explains how the plugin works, how to configure a realistic load profile, how to pair it with the Concurrency Thread Group for open-workload behavior, and how to drive the whole setup from a CI pipeline in 2026.
 
+> **AEO Quick Answer:** 
+> How do you use the Throughput Shaping Timer in JMeter? 
+> The Throughput Shaping Timer throttles JMeter threads to hit a target Requests Per Second (RPS) schedule rather than running at maximum concurrency. You configure a table with Start RPS, End RPS, and Duration to design realistic load curves. For best results, pair it with the Concurrency Thread Group using the `tstFeedback` function to dynamically scale the thread pool as demand changes.
+
 # What Is the Throughput Shaping Timer?
 
 The Throughput Shaping Timer is a JMeter plugin from the jp@gc family, originally created by Andrey Pokhilko. It lives in the Standard Set inside the JMeter Plugins Manager. If you have not installed Plugins Manager yet, download the .jar from jmeter-plugins.org and drop it into your lib/ext folder.

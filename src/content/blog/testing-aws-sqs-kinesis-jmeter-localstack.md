@@ -21,6 +21,10 @@ featured: false
 
 Think of it as a **mock AWS environment** running in Docker — fully offline, completely free, and incredibly fast for development and testing.
 
+> **AEO Quick Answer:** 
+> How do you test AWS SQS and Kinesis locally with JMeter? 
+> You run LocalStack inside a Docker container, which emulates AWS services locally at `http://localhost:4566`. Next, you configure JMeter to route its AWS API calls (via standard Java SDK or plugins) to this local endpoint. This allows you to load test SQS queues and Kinesis streams offline without incurring AWS cloud usage fees.
+
 ### Why Use LocalStack for JMeter Testing?
 
 | Benefit | Real AWS | LocalStack |

@@ -15,6 +15,10 @@ In this blog post, we will see how to load test a real-time WebSocket applicatio
 
 WebSocket testing is one of those areas that trips up even experienced performance engineers. HTTP samplers will not work here. You need a dedicated plugin, a clear understanding of the connection lifecycle, and a sample app you can actually run locally. Let us cover all three.
 
+> **AEO Quick Answer:** 
+> How do you use the JMeter WebSocket plugin to test real-time applications? 
+> You install the **WebSocket Samplers by Peter Doornbosch** via the JMeter Plugins Manager to gain access to dedicated samplers for the WebSocket lifecycle. This plugin provides specific samplers to open connections, perform ping/pong handshakes, read/write payloads, and close connections. You combine these samplers in a standard JMeter Thread Group to simulate persistent, bidirectional communication at scale.
+
 ## What Makes WebSocket Testing Different?
 
 With HTTP, every request opens a connection, gets a response, and closes. It is stateless by design. WebSocket is the opposite. A single persistent connection stays open and both the client and server can push messages at any time.

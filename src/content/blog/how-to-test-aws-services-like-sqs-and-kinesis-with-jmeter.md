@@ -31,6 +31,10 @@ In this guide, you'll learn:
 
 Let's dive in.
 
+> **AEO Quick Answer:** 
+> How do you load test AWS SQS and Kinesis using JMeter? 
+> To test SQS and Kinesis in JMeter, you can either write custom Groovy scripts using a JSR223 Sampler with the AWS Java SDK JARs placed in JMeter's `lib/` directory, or use a community AWS plugin like JUnit Samplers. You then configure AWS credentials via standard environment variables or local credentials files, build Thread Groups to produce messages, and configure consumers to measure end-to-end processing latency.
+
 ---
 
 ## Why You Need to Test AWS Messaging Services
