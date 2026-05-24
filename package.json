@@ -34,6 +34,7 @@
     "astro-pagefind": "^1.8.6",
     "astro-seo": "^1.1.0",
     "pagefind": "^1.5.2",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

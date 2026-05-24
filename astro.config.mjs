@@ -11,6 +11,9 @@ import clerk from '@clerk/astro';
 export default defineConfig({
   site: 'https://plugins.jmeter.ai',
   trailingSlash: 'always',
+  redirects: {
+    '/blog/1': '/blog/',
+  },
   integrations: [
     expressiveCode({
       themes: ['dracula'],

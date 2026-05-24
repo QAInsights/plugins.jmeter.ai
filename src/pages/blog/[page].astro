@@ -7,8 +7,9 @@ import { Image } from 'astro:assets';
 import { sortPosts, filterDrafts, getReadingTime } from '../../utils/blog';
 import Search from 'astro-pagefind/components/Search';
 import placeholderImg from '../../assets/blog/placeholder.png';
+import type { GetStaticPathsOptions } from 'astro';
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const allPosts = await getCollection('blog');
     const posts = sortPosts(filterDrafts(allPosts));
     // We only want paths for 2, 3, 4... since index.astro handles page 1
@@ -133,7 +134,7 @@ const uniqueTags = Array.from(new Set(allSortedPosts.flatMap(p => p.data.tags ||
                 <!-- Pagination Controls -->
                 <nav class="mt-16 flex items-center justify-center gap-4">
                     {page.url.prev && (
-                        <a href={page.url.prev === '/blog/1' ? '/blog/' : page.url.prev} class="px-6 py-3 rounded-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white font-bold hover:bg-gray-100 dark:hover:bg-white/5 transition-all text-sm shadow-sm hover:shadow-md">
+                        <a href={(page.url.prev === '/blog/1' || page.url.prev === '/blog/1/') ? '/blog/' : page.url.prev} class="px-6 py-3 rounded-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white font-bold hover:bg-gray-100 dark:hover:bg-white/5 transition-all text-sm shadow-sm hover:shadow-md">
                             ← Previous
                         </a>
                     )}
