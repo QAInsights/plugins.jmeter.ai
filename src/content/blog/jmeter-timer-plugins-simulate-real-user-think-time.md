@@ -149,11 +149,13 @@ It uses a Poisson distribution to spread requests across the test duration, whic
 
 Here is a quick decision guide:
 
-- **Script debugging / smoke test** -- Constant Timer
-- **Quick load test with basic variability** -- Uniform Random Timer
-- **Web app user journey with realistic pacing** -- Gaussian Random Timer
-- **Throughput-driven load with explicit ramp profiles** -- Throughput Shaping Timer
-- **Long-duration soak with organic traffic distribution** -- Precise Throughput Timer
+| Use Case | Timer Recommendation |
+|-----------|----------------------|
+| **Script debugging / smoke test** | Constant Timer |
+| **Quick load test with basic variability** | Uniform Random Timer |
+| **Web app user journey with realistic pacing** | Gaussian Random Timer |
+| **Throughput-driven load with explicit ramp profiles** | Throughput Shaping Timer |
+| **Long-duration soak with organic traffic distribution** | Precise Throughput Timer |
 
 You can also combine timers. For example, add a Gaussian Random Timer at the Thread Group level for user think time, and a Throughput Shaping Timer at the Test Plan level to cap the overall RPS. JMeter applies all in-scope timers cumulatively.
 
