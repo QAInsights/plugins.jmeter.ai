@@ -11,6 +11,7 @@
     "prebuild": "node scripts/fetchData.mjs && tsx scripts/generateOgImages.mts",
     "og:generate": "tsx scripts/generateOgImages.mts",
     "og:rebuild": "tsx scripts/generateOgImages.mts --force",
+    "crop:featured": "node scripts/cropBlogFeatured.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
