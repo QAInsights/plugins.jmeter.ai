@@ -24,7 +24,7 @@ const tags = [...new Set(posts.map((post) => post.data.tags || []).flat())].sort
       {
         tags.map((tag) => (
           <a
-            href={`/blog/tags/${encodeURIComponent(tag)}/`}
+            href={`/blog/tags/${tag}/`}
             class="hover:border-primary/50 dark:hover:border-primary/50 rounded-full border border-gray-200 bg-white px-6 py-3 font-bold text-gray-700 shadow-sm transition-all hover:-translate-y-1 hover:bg-green-50 hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:bg-[#ccff00]/5"
           >
             {tag}
