@@ -14,13 +14,16 @@ const { plugin, reason } = Astro.props;
     <PluginCard plugin={plugin} />
   </div>
 
-  {reason && (
-    <div class="mt-2 mx-1 px-4 py-2.5 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-lg">
-      <p class="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
-        <span class="font-bold">Why it's here: </span>{reason}
-      </p>
-    </div>
-  )}
+  {
+    reason && (
+      <div class="mx-1 mt-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5 dark:border-amber-500/20 dark:bg-amber-500/10">
+        <p class="text-xs leading-relaxed text-amber-800 dark:text-amber-300">
+          <span class="font-bold">Why it's here: </span>
+          {reason}
+        </p>
+      </div>
+    )
+  }
 </div>
 
 <script>

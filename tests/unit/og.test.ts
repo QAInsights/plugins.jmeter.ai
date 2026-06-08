@@ -18,7 +18,7 @@ import {
 describe('escapeXml', () => {
   it('escapes the five XML special characters', () => {
     expect(escapeXml(`<tag attr="v">O'Brien & co</tag>`)).toBe(
-      '&lt;tag attr=&quot;v&quot;&gt;O&apos;Brien &amp; co&lt;/tag&gt;'
+      '&lt;tag attr=&quot;v&quot;&gt;O&apos;Brien &amp; co&lt;/tag&gt;',
     );
   });
 
@@ -98,11 +98,9 @@ describe('stripHtml', () => {
 
   it('strips long real-world description markup into readable text', () => {
     const out = stripHtml(
-      'Adds new Thread Groups: <ul><li><a href=https://example.com/wiki/Stepping>Stepping Thread Group</a></li><li><a href=https://example.com/wiki/Ultimate>Ultimate Thread Group</a></li></ul>'
+      'Adds new Thread Groups: <ul><li><a href=https://example.com/wiki/Stepping>Stepping Thread Group</a></li><li><a href=https://example.com/wiki/Ultimate>Ultimate Thread Group</a></li></ul>',
     );
-    expect(out).toBe(
-      'Adds new Thread Groups: Stepping Thread Group Ultimate Thread Group'
-    );
+    expect(out).toBe('Adds new Thread Groups: Stepping Thread Group Ultimate Thread Group');
   });
 
   it('preserves unknown entities rather than dropping them silently', () => {

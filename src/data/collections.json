@@ -29,7 +29,11 @@
       "org": "QAInsights",
       "url": "https://qainsights.com"
     },
-    "pluginIds": ["jpgc-perfmon", "jmeter-datadog-backend-listener", "jmeter.backendlistener.elasticsearch"],
+    "pluginIds": [
+      "jpgc-perfmon",
+      "jmeter-datadog-backend-listener",
+      "jmeter.backendlistener.elasticsearch"
+    ],
     "reasons": {
       "jpgc-perfmon": "Collects server-side CPU, memory, disk I/O, and network metrics from target machines via ServerAgent — correlates infrastructure load with JMeter results.",
       "jmeter-datadog-backend-listener": "Streams all sampler results to Datadog in real time so you can build dashboards and alerts using your existing Datadog infrastructure.",

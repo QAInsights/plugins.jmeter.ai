@@ -14,7 +14,11 @@ function calculateTrending(historyData: Record<string, number> | undefined): num
   return currentDownloads - previousDownloads;
 }
 
-function enrichPlugins(pluginsMeta: any[], pluginsStats: Record<string, Record<string, number>>, overrides: { sponsored?: string[]; aiReady?: string[]; featured?: string[] } = {}) {
+function enrichPlugins(
+  pluginsMeta: any[],
+  pluginsStats: Record<string, Record<string, number>>,
+  overrides: { sponsored?: string[]; aiReady?: string[]; featured?: string[] } = {},
+) {
   const { sponsored = [], aiReady = [], featured = [] } = overrides;
 
   // Deduplicate by ID (mirrors the Map logic in fetchData.mjs)
@@ -158,11 +162,15 @@ describe('enrichPlugins (pipeline logic)', () => {
 
   it('should ignore override ids that do not match any plugin', () => {
     const plugins = [makePlugin('exists')];
-    const result = enrichPlugins(plugins, {}, {
-      sponsored: ['nonexistent'],
-      aiReady: ['nonexistent'],
-      featured: ['nonexistent'],
-    });
+    const result = enrichPlugins(
+      plugins,
+      {},
+      {
+        sponsored: ['nonexistent'],
+        aiReady: ['nonexistent'],
+        featured: ['nonexistent'],
+      },
+    );
     expect(result[0].sponsored).toBe(false);
     expect(result[0].isAiReady).toBe(false);
     expect(result[0].isFeatured).toBe(false);

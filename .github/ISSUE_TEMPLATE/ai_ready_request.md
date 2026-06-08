@@ -7,12 +7,13 @@ assignees: ''
 ---
 
 **Plugin details**
-- Plugin Name: 
-- Plugin ID (from JMeter Plugins Manager): 
+
+- Plugin Name:
+- Plugin ID (from JMeter Plugins Manager):
 - GitHub Repository URL:
 
-**Why is this plugin AI Ready?**
-*Please provide details on how this plugin integrates with AI, LLMs, or modern heuristic testing methodologies.*
+**Why is this plugin AI Ready?** _Please provide details on how this plugin integrates with AI,
+LLMs, or modern heuristic testing methodologies._
 
-**Evidence**
-*Provide links to documentation, examples, or screenshots demonstrating the AI capabilities.*
+**Evidence** _Provide links to documentation, examples, or screenshots demonstrating the AI
+capabilities._

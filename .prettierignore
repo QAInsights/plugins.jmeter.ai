@@ -1,0 +1,8 @@
+dist/
+.astro/
+node_modules/
+public/og/
+playwright-report/
+test-results/
+src/data/plugins_data.json
+*.lock

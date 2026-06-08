@@ -17,33 +17,40 @@ featured: false
 
 ## What Is LocalStack?
 
-**LocalStack** is an open-source tool that emulates AWS cloud services entirely on your local machine. Instead of making real API calls to AWS, your applications and tests hit a **local endpoint** (`http://localhost:4566`) that behaves just like AWS.
+**LocalStack** is an open-source tool that emulates AWS cloud services entirely on your local
+machine. Instead of making real API calls to AWS, your applications and tests hit a **local
+endpoint** (`http://localhost:4566`) that behaves just like AWS.
 
-Think of it as a **mock AWS environment** running in Docker — fully offline, completely free, and incredibly fast for development and testing.
+Think of it as a **mock AWS environment** running in Docker — fully offline, completely free, and
+incredibly fast for development and testing.
 
-> **AEO Quick Answer:** 
-> How do you test AWS SQS and Kinesis locally with JMeter? 
-> You run LocalStack inside a Docker container, which emulates AWS services locally at `http://localhost:4566`. Next, you configure JMeter to route its AWS API calls (via standard Java SDK or plugins) to this local endpoint. This allows you to load test SQS queues and Kinesis streams offline without incurring AWS cloud usage fees.
+> **AEO Quick Answer:** How do you test AWS SQS and Kinesis locally with JMeter? You run LocalStack
+> inside a Docker container, which emulates AWS services locally at `http://localhost:4566`. Next,
+> you configure JMeter to route its AWS API calls (via standard Java SDK or plugins) to this local
+> endpoint. This allows you to load test SQS queues and Kinesis streams offline without incurring
+> AWS cloud usage fees.
 
 ### Why Use LocalStack for JMeter Testing?
 
-| Benefit | Real AWS | LocalStack |
-|--------|----------|------------|
-| Cost | Paid per request | Free |
-| Setup time | Minutes | Seconds |
-| Internet required | Yes | No |
-| Data privacy | Cloud-stored | Fully local |
-| CI/CD friendly | Requires credentials | No credentials needed |
-| Speed | Network latency | Near-zero latency |
-| Realistic throttling | Yes | Configurable |
+| Benefit              | Real AWS             | LocalStack            |
+| -------------------- | -------------------- | --------------------- |
+| Cost                 | Paid per request     | Free                  |
+| Setup time           | Minutes              | Seconds               |
+| Internet required    | Yes                  | No                    |
+| Data privacy         | Cloud-stored         | Fully local           |
+| CI/CD friendly       | Requires credentials | No credentials needed |
+| Speed                | Network latency      | Near-zero latency     |
+| Realistic throttling | Yes                  | Configurable          |
 
 LocalStack is **ideal for**:
+
 - Development and unit testing
 - CI/CD pipeline validation
 - Demos and workshops
 - Exploratory testing without AWS costs
 
 It's **not ideal for**:
+
 - Final production load benchmarks (use real AWS for that)
 - Testing actual AWS throttling behavior
 - Multi-region scenarios
@@ -141,7 +148,8 @@ You should see:
 
 ## Step 2: Configure AWS CLI for LocalStack
 
-LocalStack accepts **any** fake credentials — it doesn't validate them. Configure a dedicated profile:
+LocalStack accepts **any** fake credentials — it doesn't validate them. Configure a dedicated
+profile:
 
 ```bash
 aws configure --profile localstack
@@ -188,6 +196,7 @@ awslocal sqs get-queue-url --queue-name jmeter-local-queue
 ```
 
 Output:
+
 ```json
 {
   "QueueUrl": "http://localhost:4566/000000000000/jmeter-local-queue"
@@ -213,32 +222,35 @@ awslocal kinesis describe-stream \
 
 ## Step 4: Configure JMeter to Point to LocalStack
 
-This is the **key step** — you need to tell the JMeter AWS plugin to use LocalStack's endpoint instead of real AWS.
+This is the **key step** — you need to tell the JMeter AWS plugin to use LocalStack's endpoint
+instead of real AWS.
 
 ### 4.1 — Update User Defined Variables
 
 In your JMeter test plan, update the **User Defined Variables** config:
 
-| Variable | Real AWS Value | LocalStack Value |
-|----------|---------------|-----------------|
-| `AWS_ACCESS_KEY` | Your real key | `test` |
-| `AWS_SECRET_KEY` | Your real secret | `test` |
-| `AWS_REGION` | `us-east-1` | `us-east-1` |
-| `AWS_ENDPOINT_URL` | *(empty)* | `http://localhost:4566` |
-| `SQS_QUEUE_URL` | Real SQS URL | `http://localhost:4566/000000000000/jmeter-local-queue` |
-| `KINESIS_STREAM` | Real stream name | `jmeter-local-stream` |
+| Variable           | Real AWS Value   | LocalStack Value                                        |
+| ------------------ | ---------------- | ------------------------------------------------------- |
+| `AWS_ACCESS_KEY`   | Your real key    | `test`                                                  |
+| `AWS_SECRET_KEY`   | Your real secret | `test`                                                  |
+| `AWS_REGION`       | `us-east-1`      | `us-east-1`                                             |
+| `AWS_ENDPOINT_URL` | _(empty)_        | `http://localhost:4566`                                 |
+| `SQS_QUEUE_URL`    | Real SQS URL     | `http://localhost:4566/000000000000/jmeter-local-queue` |
+| `KINESIS_STREAM`   | Real stream name | `jmeter-local-stream`                                   |
 
 ---
 
 ### 4.2 — Configure the Plugin Endpoint
 
-Most AWS JMeter plugins have an **Endpoint URL** or **Custom Endpoint** field in the sampler. Set it to:
+Most AWS JMeter plugins have an **Endpoint URL** or **Custom Endpoint** field in the sampler. Set it
+to:
 
 ```
 http://localhost:4566
 ```
 
-If your plugin doesn't have a GUI field for the endpoint, you can configure it via the **AWS SDK system property** in JMeter's startup:
+If your plugin doesn't have a GUI field for the endpoint, you can configure it via the **AWS SDK
+system property** in JMeter's startup:
 
 Edit `bin/jmeter` (Linux/Mac) or `bin/jmeter.bat` (Windows) and add:
 
@@ -299,7 +311,8 @@ def kinesisClient = KinesisClient.builder()
 
 ## Step 5: Run the SQS Test Against LocalStack
 
-With LocalStack running and JMeter configured, your test plan is **identical** to the real AWS version — just pointing at `localhost:4566`.
+With LocalStack running and JMeter configured, your test plan is **identical** to the real AWS
+version — just pointing at `localhost:4566`.
 
 ### Verify Messages Are Being Sent
 
@@ -357,7 +370,8 @@ You should see your JMeter-generated records in the output.
 
 ## Step 7: Automate with a LocalStack Init Script
 
-For CI/CD or team setups, automate resource creation with an **init script** that runs when LocalStack starts.
+For CI/CD or team setups, automate resource creation with an **init script** that runs when
+LocalStack starts.
 
 Create `localstack-init/init-aws.sh`:
 
@@ -396,13 +410,15 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
 ```
 
-Now every time LocalStack starts, your SQS queues and Kinesis streams are automatically created — no manual setup needed.
+Now every time LocalStack starts, your SQS queues and Kinesis streams are automatically created — no
+manual setup needed.
 
 ---
 
 ## Step 8: Integrate LocalStack + JMeter in CI/CD
 
-This is where LocalStack truly shines. Run your entire AWS messaging test suite in **GitHub Actions**, **GitLab CI**, or **Jenkins** — no AWS credentials needed.
+This is where LocalStack truly shines. Run your entire AWS messaging test suite in **GitHub
+Actions**, **GitLab CI**, or **Jenkins** — no AWS credentials needed.
 
 ### GitHub Actions Example
 
@@ -574,23 +590,26 @@ awslocal kinesis describe-stream \
 
 ### Plugin Can't Connect to LocalStack
 
-Make sure the plugin's endpoint field is set — some plugins default to the real AWS endpoint and ignore system properties. Check the plugin's documentation for the exact field name (`Custom Endpoint`, `Endpoint URL`, `Service Endpoint`).
+Make sure the plugin's endpoint field is set — some plugins default to the real AWS endpoint and
+ignore system properties. Check the plugin's documentation for the exact field name
+(`Custom Endpoint`, `Endpoint URL`, `Service Endpoint`).
 
 ---
 
 ## LocalStack Free vs Pro
 
-| Feature | LocalStack Free | LocalStack Pro |
-|---------|----------------|----------------|
-| SQS | ✅ Full support | ✅ Full support |
-| Kinesis | ✅ Basic support | ✅ Enhanced support |
-| Persistence | ✅ Basic | ✅ Advanced |
-| CloudWatch Metrics | ❌ | ✅ |
-| Multi-region | ❌ | ✅ |
-| CI/CD integrations | ✅ | ✅ |
-| Price | Free | Paid |
+| Feature            | LocalStack Free  | LocalStack Pro      |
+| ------------------ | ---------------- | ------------------- |
+| SQS                | ✅ Full support  | ✅ Full support     |
+| Kinesis            | ✅ Basic support | ✅ Enhanced support |
+| Persistence        | ✅ Basic         | ✅ Advanced         |
+| CloudWatch Metrics | ❌               | ✅                  |
+| Multi-region       | ❌               | ✅                  |
+| CI/CD integrations | ✅               | ✅                  |
+| Price              | Free             | Paid                |
 
-For most JMeter testing use cases — including SQS and Kinesis — **the free tier is more than enough**.
+For most JMeter testing use cases — including SQS and Kinesis — **the free tier is more than
+enough**.
 
 ---
 
@@ -610,4 +629,5 @@ The recommended workflow is:
 LocalStack (Dev/CI) → Real AWS Staging → Real AWS Production
 ```
 
-Build and validate your JMeter test plans on LocalStack, run final load benchmarks on real AWS staging, and you'll catch performance issues long before they reach production.
+Build and validate your JMeter test plans on LocalStack, run final load benchmarks on real AWS
+staging, and you'll catch performance issues long before they reach production.

@@ -27,3 +27,11 @@ preview.log
 # jetbrains setting folder
 .idea/
 scripts/generateIcons.mjs
+
+# Coverage
+coverage/
+
+# Linting / formatting cache
+.eslintcache
+.prettiercache
+.aider*

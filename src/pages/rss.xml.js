@@ -5,7 +5,8 @@ export async function GET(context) {
   const blog = await getCollection('blog');
   return rss({
     title: 'PerfAtlas Blog',
-    description: 'Insights, tutorials, and updates on the best JMeter plugins and performance engineering techniques.',
+    description:
+      'Insights, tutorials, and updates on the best JMeter plugins and performance engineering techniques.',
     site: context.site,
     items: blog.map((post) => ({
       title: post.data.title,

@@ -9,12 +9,12 @@ assignees: ''
 > Free Plugin Only
 
 **Plugin details**
-- Plugin Name: 
-- Plugin ID (from JMeter Plugins Manager): 
+
+- Plugin Name:
+- Plugin ID (from JMeter Plugins Manager):
 - GitHub Repository URL:
 
-**Why should this plugin be featured?**
-*Please provide details on what makes this plugin special, and why it benefits the JMeter community.*
+**Why should this plugin be featured?** _Please provide details on what makes this plugin special,
+and why it benefits the JMeter community._
 
-**Additional Context**
-*Add any other context, such as recent major releases or community impact.*
+**Additional Context** _Add any other context, such as recent major releases or community impact._

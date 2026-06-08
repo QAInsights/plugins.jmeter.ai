@@ -1,305 +1,452 @@
 ---
----
-<dialog id="pluginModal" class="m-auto backdrop:bg-black/70 backdrop:backdrop-blur-sm bg-transparent p-4 md:p-6 w-full max-w-3xl border-none outline-none overflow-visible">
-    <div class="relative bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
-        <div class="flex items-start gap-4 p-6 border-b border-gray-100 dark:border-white/10 relative">
-            <div id="modalHeaderBg" class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary hidden"></div>
-            <div class="flex-1 min-w-0">
-                <h2 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white leading-tight truncate"></h2>
-                <p id="modalVendor" class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-widest">By <a id="modalVendorLink" href="#" class="hover:text-primary dark:hover:text-[#ccff00] transition-colors underline-offset-4 hover:underline"></a></p>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-                <button
-                    type="button"
-                    id="modalFavBtn"
-                    class="favorite-btn p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400 hover:bg-yellow-500/10 transition-colors"
-                    data-plugin-id=""
-                    aria-label="Add to favorites"
-                    aria-pressed="false"
-                    title="Add to favorites"
-                >
-                    <svg class="fav-icon-outline w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                    <svg class="fav-icon-filled w-5 h-5 hidden text-yellow-500 dark:text-yellow-400" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                </button>
-                <button id="modalClose" class="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-        </div>
-        <div class="p-6 overflow-y-auto flex-grow flex flex-col gap-6 text-gray-700 dark:text-gray-300">
-            <p id="modalDescription" class="text-base leading-relaxed"></p>
-            
-            <img id="modalScreenshot" src="" alt="Plugin Screenshot" class="w-full h-auto max-h-[400px] object-contain rounded-lg border border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-black/20 hidden" loading="lazy">
 
-            <div id="modalClassesWrapper">
-                <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">Component Classes</h4>
-                <div id="modalClasses" class="bg-gray-50 dark:bg-black/20 rounded-lg p-4 font-mono text-xs overflow-x-auto border border-gray-100 dark:border-white/5 max-h-48 overflow-y-auto leading-loose whitespace-pre"></div>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-gray-50 dark:bg-black/20 rounded-lg p-4 border border-gray-100 dark:border-white/5">
-                    <h4 class="text-xs font-bold text-gray-500 uppercase mb-1">Total Downloads</h4>
-                    <p id="modalDownloads" class="text-xl font-bold text-gray-900 dark:text-white"></p>
-                </div>
-                <div class="bg-gray-50 dark:bg-black/20 rounded-lg p-4 border border-gray-100 dark:border-white/5">
-                    <h4 class="text-xs font-bold text-gray-500 uppercase mb-1">Downloads This Week</h4>
-                    <p id="modalTrending" class="text-xl font-bold"></p>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">Usage History</h4>
-                <div class="w-full h-48 bg-gray-50 dark:bg-black/20 rounded-lg p-4 border border-gray-100 dark:border-white/5 relative">
-                    <canvas id="usageChart"></canvas>
-                </div>
-            </div>
-            
-            {/* GitHub Badge Generator */}
-            <div class="border-t border-gray-100 dark:border-white/10 pt-6 mt-2">
-                <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 uppercase tracking-wide flex items-center gap-2">
-                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
-                    Embed on GitHub
-                </h4>
-                <p class="text-xs text-gray-500 mb-3">Add this plugin's PerfAtlas badge to your repository's README.md.</p>
-                <div class="flex items-center gap-2 group cursor-pointer" id="modalBadgeContainer">
-                    <div id="modalBadgeCode" class="bg-gray-100 dark:bg-black/30 border border-gray-200 dark:border-white/10 rounded-lg p-3 w-full font-mono text-[10px] sm:text-xs text-gray-600 dark:text-gray-300 overflow-x-auto whitespace-pre group-hover:bg-gray-200 dark:group-hover:bg-white/5 transition-colors"></div>
-                    <button id="modalCopyBadgeBtn" class="p-3 bg-gray-200 dark:bg-white/10 group-hover:bg-primary group-hover:text-dark-bg transition-colors rounded-lg shrink-0 text-gray-600 dark:text-gray-300" title="Copy Markdown">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                    </button>
-                </div>
-            </div>
-            
-        </div>
-        <div class="p-4 sm:p-6 border-t border-gray-100 dark:border-white/10 flex flex-row gap-2 sm:gap-4 bg-gray-50 dark:bg-white/[0.02]">
-            <button type="button" id="modalInstallBtn" class="install-add-btn flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-white font-bold hover:bg-gray-300 dark:hover:bg-white/20 transition-colors flex items-center justify-center gap-2 border border-transparent">
-                <svg class="w-4 h-4 install-icon-plus" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                <svg class="w-4 h-4 install-icon-check hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                <span>Install</span>
-            </button>
-            <a id="modalDeepLink" href="#" class="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 font-bold hover:bg-gray-300 dark:hover:bg-white/20 transition-colors shadow-sm flex items-center justify-center gap-2">
-                Stats Page
-                <svg class="w-4 h-4 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-            </a>
-            <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-dark-bg font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center gap-2">
-                Repository
-                <svg class="w-4 h-4 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-        </div>
+---
+
+<dialog
+  id="pluginModal"
+  class="m-auto w-full max-w-3xl overflow-visible border-none bg-transparent p-4 outline-none backdrop:bg-black/70 backdrop:backdrop-blur-sm md:p-6"
+>
+  <div
+    class="dark:bg-dark-surface relative flex max-h-[90vh] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-white/10"
+  >
+    <div class="relative flex items-start gap-4 border-b border-gray-100 p-6 dark:border-white/10">
+      <div
+        id="modalHeaderBg"
+        class="from-primary to-secondary absolute top-0 left-0 hidden h-1 w-full bg-gradient-to-r"
+      >
+      </div>
+      <div class="min-w-0 flex-1">
+        <h2
+          id="modalTitle"
+          class="truncate text-2xl leading-tight font-bold text-gray-900 dark:text-white"
+        >
+        </h2>
+        <p
+          id="modalVendor"
+          class="mt-1 text-sm font-semibold tracking-widest text-gray-500 uppercase dark:text-gray-400"
+        >
+          By <a
+            id="modalVendorLink"
+            href="#"
+            class="hover:text-primary underline-offset-4 transition-colors hover:underline dark:hover:text-[#ccff00]"
+          ></a>
+        </p>
+      </div>
+      <div class="flex shrink-0 items-center gap-2">
+        <button
+          type="button"
+          id="modalFavBtn"
+          class="favorite-btn rounded-lg bg-gray-100 p-2 text-gray-400 transition-colors hover:bg-yellow-500/10 hover:text-yellow-500 dark:bg-white/5 dark:hover:text-yellow-400"
+          data-plugin-id=""
+          aria-label="Add to favorites"
+          aria-pressed="false"
+          title="Add to favorites"
+        >
+          <svg
+            class="fav-icon-outline h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+            ></path></svg
+          >
+          <svg
+            class="fav-icon-filled hidden h-5 w-5 text-yellow-500 dark:text-yellow-400"
+            fill="currentColor"
+            stroke="none"
+            viewBox="0 0 24 24"
+            ><path
+              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+            ></path></svg
+          >
+        </button>
+        <button
+          id="modalClose"
+          class="rounded-lg bg-gray-100 p-2 text-gray-500 transition-colors hover:bg-gray-200 hover:text-gray-900 dark:bg-white/5 dark:hover:bg-white/10 dark:hover:text-white"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path></svg
+          >
+        </button>
+      </div>
     </div>
+    <div class="flex flex-grow flex-col gap-6 overflow-y-auto p-6 text-gray-700 dark:text-gray-300">
+      <p id="modalDescription" class="text-base leading-relaxed"></p>
+
+      <img
+        id="modalScreenshot"
+        src=""
+        alt="Plugin Screenshot"
+        class="hidden h-auto max-h-[400px] w-full rounded-lg border border-gray-200 bg-gray-50 object-contain dark:border-white/5 dark:bg-black/20"
+        loading="lazy"
+      />
+
+      <div id="modalClassesWrapper">
+        <h4 class="mb-2 text-sm font-bold tracking-wide text-gray-900 uppercase dark:text-white">
+          Component Classes
+        </h4>
+        <div
+          id="modalClasses"
+          class="max-h-48 overflow-x-auto overflow-y-auto rounded-lg border border-gray-100 bg-gray-50 p-4 font-mono text-xs leading-loose whitespace-pre dark:border-white/5 dark:bg-black/20"
+        >
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div
+          class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
+        >
+          <h4 class="mb-1 text-xs font-bold text-gray-500 uppercase">Total Downloads</h4>
+          <p id="modalDownloads" class="text-xl font-bold text-gray-900 dark:text-white"></p>
+        </div>
+        <div
+          class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
+        >
+          <h4 class="mb-1 text-xs font-bold text-gray-500 uppercase">Downloads This Week</h4>
+          <p id="modalTrending" class="text-xl font-bold"></p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="mb-2 text-sm font-bold tracking-wide text-gray-900 uppercase dark:text-white">
+          Usage History
+        </h4>
+        <div
+          class="relative h-48 w-full rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
+        >
+          <canvas id="usageChart"></canvas>
+        </div>
+      </div>
+
+      {/* GitHub Badge Generator */}
+      <div class="mt-2 border-t border-gray-100 pt-6 dark:border-white/10">
+        <h4
+          class="mb-3 flex items-center gap-2 text-sm font-bold tracking-wide text-gray-900 uppercase dark:text-white"
+        >
+          <svg class="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24"
+            ><path
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+            ></path></svg
+          >
+          Embed on GitHub
+        </h4>
+        <p class="mb-3 text-xs text-gray-500">
+          Add this plugin's PerfAtlas badge to your repository's README.md.
+        </p>
+        <div class="group flex cursor-pointer items-center gap-2" id="modalBadgeContainer">
+          <div
+            id="modalBadgeCode"
+            class="w-full overflow-x-auto rounded-lg border border-gray-200 bg-gray-100 p-3 font-mono text-[10px] whitespace-pre text-gray-600 transition-colors group-hover:bg-gray-200 sm:text-xs dark:border-white/10 dark:bg-black/30 dark:text-gray-300 dark:group-hover:bg-white/5"
+          >
+          </div>
+          <button
+            id="modalCopyBadgeBtn"
+            class="group-hover:bg-primary group-hover:text-dark-bg shrink-0 rounded-lg bg-gray-200 p-3 text-gray-600 transition-colors dark:bg-white/10 dark:text-gray-300"
+            title="Copy Markdown"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+              ></path></svg
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-row gap-2 border-t border-gray-100 bg-gray-50 p-4 sm:gap-4 sm:p-6 dark:border-white/10 dark:bg-white/[0.02]"
+    >
+      <button
+        type="button"
+        id="modalInstallBtn"
+        class="install-add-btn flex flex-1 items-center justify-center gap-2 rounded-lg border border-transparent bg-gray-200 px-4 py-2.5 font-bold text-gray-700 transition-colors hover:bg-gray-300 sm:flex-none sm:px-6 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+      >
+        <svg class="install-icon-plus h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"
+          ></path></svg
+        >
+        <svg
+          class="install-icon-check hidden h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M5 13l4 4L19 7"></path></svg
+        >
+        <span>Install</span>
+      </button>
+      <a
+        id="modalDeepLink"
+        href="#"
+        class="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-200 px-4 py-2.5 font-bold text-gray-700 shadow-sm transition-colors hover:bg-gray-300 sm:flex-none sm:px-6 dark:bg-white/10 dark:text-gray-300 dark:hover:bg-white/20"
+      >
+        Stats Page
+        <svg class="hidden h-4 w-4 md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+          ></path></svg
+        >
+      </a>
+      <a
+        id="modalLink"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="dark:text-dark-bg flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-2.5 font-bold text-white shadow-lg transition-colors hover:bg-gray-800 sm:flex-none sm:px-6 dark:bg-white dark:hover:bg-gray-100"
+      >
+        Repository
+        <svg class="hidden h-4 w-4 md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          ></path></svg
+        >
+      </a>
+    </div>
+  </div>
 </dialog>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('pluginModal') as HTMLDialogElement;
-        const closeBtn = document.getElementById('modalClose');
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('pluginModal') as HTMLDialogElement;
+    const closeBtn = document.getElementById('modalClose');
 
-        if(closeBtn && modal) {
-            closeBtn.addEventListener('click', () => modal.close());
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.close();
-            });
-            
-            modal.addEventListener('close', () => {
-                document.body.style.overflow = 'auto'; // restore scrolling
-            });
+    if (closeBtn && modal) {
+      closeBtn.addEventListener('click', () => modal.close());
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.close();
+      });
+
+      modal.addEventListener('close', () => {
+        document.body.style.overflow = 'auto'; // restore scrolling
+      });
+    }
+
+    // Expose function globally for the Star Map and other components
+    // @ts-ignore
+    window.openPluginModal = (p: any) => {
+      const titleEl = document.getElementById('modalTitle');
+      if (titleEl) {
+        titleEl.textContent = p.name;
+        titleEl.setAttribute('title', p.name);
+      }
+
+      const vendorLinkEl = document.getElementById('modalVendorLink') as HTMLAnchorElement | null;
+      if (vendorLinkEl) {
+        vendorLinkEl.textContent = p.vendor || 'Unknown vendor';
+        const slug = (p.vendor || '')
+          .normalize('NFKD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+        vendorLinkEl.href = `/vendor/${slug || 'unknown-vendor'}/`;
+      }
+
+      const descEl = document.getElementById('modalDescription');
+      if (descEl) descEl.textContent = p.description;
+
+      const linkEl = document.getElementById('modalLink') as HTMLAnchorElement;
+      if (linkEl) linkEl.href = p.helpUrl;
+
+      const deepLinkEl = document.getElementById('modalDeepLink') as HTMLAnchorElement;
+      if (deepLinkEl) deepLinkEl.href = `/plugin/${p.id}/`;
+
+      const modalInstallBtn = document.getElementById('modalInstallBtn');
+      if (modalInstallBtn) {
+        modalInstallBtn.setAttribute('data-plugin-id', p.id);
+        // Trigger event to refresh Install UI without referencing window directly in Astro build
+        document.dispatchEvent(new CustomEvent('plugin:install-update'));
+      }
+
+      const modalFavBtn = document.getElementById('modalFavBtn');
+      if (modalFavBtn) {
+        modalFavBtn.setAttribute('data-plugin-id', p.id);
+        // Trigger favorites UI sync so icon reflects current state
+        document.dispatchEvent(new CustomEvent('favorites:update'));
+      }
+
+      const badgeContainer = document.getElementById('modalBadgeContainer');
+      const badgeCode = document.getElementById('modalBadgeCode');
+      if (badgeContainer && badgeCode) {
+        const badgeMd = `[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://plugins.jmeter.ai/plugin/${p.id}/)`;
+        badgeContainer.setAttribute('data-badge', badgeMd);
+        badgeCode.textContent = badgeMd;
+      }
+
+      // Screenshot Logic
+      const screenshotEl = document.getElementById('modalScreenshot') as HTMLImageElement;
+      let sUrl = p.screenshotUrl || p.screenshotURL;
+      if (screenshotEl) {
+        if (sUrl) {
+          if (!sUrl.startsWith('http')) {
+            sUrl = 'https://jmeter-plugins.org' + (sUrl.startsWith('/') ? '' : '/') + sUrl;
+          }
+          screenshotEl.src = sUrl;
+          screenshotEl.classList.remove('hidden');
+        } else {
+          screenshotEl.src = '';
+          screenshotEl.classList.add('hidden');
         }
+      }
 
-        // Expose function globally for the Star Map and other components
+      const classWrapper = document.getElementById('modalClassesWrapper');
+      const classContainer = document.getElementById('modalClasses');
+      if (classWrapper && classContainer) {
+        if (p.componentClasses && p.componentClasses.length) {
+          classContainer.textContent = p.componentClasses.join('\n');
+          classWrapper.style.display = 'block';
+        } else {
+          classWrapper.style.display = 'none';
+        }
+      }
+
+      const dlEl = document.getElementById('modalDownloads');
+      if (dlEl)
+        dlEl.textContent = new Intl.NumberFormat('en-US').format(p.stats?.absoluteDownloads || 0);
+
+      const trendEl = document.getElementById('modalTrending');
+      if (trendEl) {
+        const arrow = (p.stats?.trendingDelta || 0) > 0 ? '+' : '';
+        trendEl.textContent = `${arrow}${new Intl.NumberFormat('en-US').format(p.stats?.trendingDelta || 0)}`;
+        trendEl.className = `text-xl font-bold ${(p.stats?.trendingDelta || 0) > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`;
+      }
+
+      const headerBg = document.getElementById('modalHeaderBg');
+      if (headerBg) {
+        if (p.isFeatured || p.sponsored) {
+          headerBg.classList.remove('hidden');
+        } else {
+          headerBg.classList.add('hidden');
+        }
+      }
+
+      // Chart Rendering
+      const canvas = document.getElementById('usageChart') as HTMLCanvasElement;
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
         // @ts-ignore
-        window.openPluginModal = (p: any) => {
-            const titleEl = document.getElementById('modalTitle');
-            if(titleEl) { titleEl.textContent = p.name; titleEl.setAttribute('title', p.name); }
-            
-            const vendorLinkEl = document.getElementById('modalVendorLink') as HTMLAnchorElement | null;
-            if(vendorLinkEl) {
-                vendorLinkEl.textContent = p.vendor || 'Unknown vendor';
-                const slug = (p.vendor || '')
-                    .normalize('NFKD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-+|-+$/g, '');
-                vendorLinkEl.href = `/vendor/${slug || 'unknown-vendor'}/`;
-            }
-            
-            const descEl = document.getElementById('modalDescription');
-            if(descEl) descEl.textContent = p.description;
-            
-            const linkEl = document.getElementById('modalLink') as HTMLAnchorElement;
-            if(linkEl) linkEl.href = p.helpUrl;
-            
-            const deepLinkEl = document.getElementById('modalDeepLink') as HTMLAnchorElement;
-            if(deepLinkEl) deepLinkEl.href = `/plugin/${p.id}/`;
-            
-            const modalInstallBtn = document.getElementById('modalInstallBtn');
-            if(modalInstallBtn) {
-                modalInstallBtn.setAttribute('data-plugin-id', p.id);
-                // Trigger event to refresh Install UI without referencing window directly in Astro build
-                document.dispatchEvent(new CustomEvent('plugin:install-update'));
-            }
-
-            const modalFavBtn = document.getElementById('modalFavBtn');
-            if (modalFavBtn) {
-                modalFavBtn.setAttribute('data-plugin-id', p.id);
-                // Trigger favorites UI sync so icon reflects current state
-                document.dispatchEvent(new CustomEvent('favorites:update'));
-            }
-
-            const badgeContainer = document.getElementById('modalBadgeContainer');
-            const badgeCode = document.getElementById('modalBadgeCode');
-            if(badgeContainer && badgeCode) {
-                const badgeMd = `[![PerfAtlas](https://img.shields.io/badge/PerfAtlas-View_Plugin-b0d600?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://plugins.jmeter.ai/plugin/${p.id}/)`;
-                badgeContainer.setAttribute('data-badge', badgeMd);
-                badgeCode.textContent = badgeMd;
-            }
-            
-            // Screenshot Logic
-            const screenshotEl = document.getElementById('modalScreenshot') as HTMLImageElement;
-            let sUrl = p.screenshotUrl || p.screenshotURL;
-            if (screenshotEl) {
-                if (sUrl) {
-                    if (!sUrl.startsWith('http')) {
-                        sUrl = 'https://jmeter-plugins.org' + (sUrl.startsWith('/') ? '' : '/') + sUrl;
-                    }
-                    screenshotEl.src = sUrl;
-                    screenshotEl.classList.remove('hidden');
-                } else {
-                    screenshotEl.src = '';
-                    screenshotEl.classList.add('hidden');
-                }
-            }
-
-            const classWrapper = document.getElementById('modalClassesWrapper');
-            const classContainer = document.getElementById('modalClasses');
-            if (classWrapper && classContainer) {
-                if (p.componentClasses && p.componentClasses.length) {
-                    classContainer.textContent = p.componentClasses.join('\n');
-                    classWrapper.style.display = 'block';
-                } else {
-                    classWrapper.style.display = 'none';
-                }
-            }
-
-            const dlEl = document.getElementById('modalDownloads');
-            if(dlEl) dlEl.textContent = new Intl.NumberFormat('en-US').format(p.stats?.absoluteDownloads || 0);
-            
-            const trendEl = document.getElementById('modalTrending');
-            if(trendEl) {
-                const arrow = (p.stats?.trendingDelta || 0) > 0 ? '+' : '';
-                trendEl.textContent = `${arrow}${new Intl.NumberFormat('en-US').format(p.stats?.trendingDelta || 0)}`;
-                trendEl.className = `text-xl font-bold ${(p.stats?.trendingDelta || 0) > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`;
-            }
-
-            const headerBg = document.getElementById('modalHeaderBg');
-            if(headerBg) {
-                if (p.isFeatured || p.sponsored) {
-                    headerBg.classList.remove('hidden');
-                } else {
-                    headerBg.classList.add('hidden');
-                }
-            }
-
-            // Chart Rendering
-            const canvas = document.getElementById('usageChart') as HTMLCanvasElement;
-            if(canvas) {
-                const ctx = canvas.getContext('2d');
-                // @ts-ignore
-                if (window.usageChartInstance) {
-                    // @ts-ignore
-                    window.usageChartInstance.destroy();
-                }
-                
-                const history = p.stats?.history || {};
-                const labels = Object.keys(history).sort();
-                const data = labels.map(l => history[l]);
-                
-                const isDark = document.documentElement.classList.contains('dark');
-                const chartColor = isDark ? '#ccff00' : '#b0d600'; 
-                
-                // @ts-ignore
-                if (window.Chart && ctx) {
-                    // @ts-ignore
-                    window.usageChartInstance = new window.Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                data: data,
-                                borderColor: chartColor,
-                                borderWidth: 2,
-                                backgroundColor: `${chartColor}20`,
-                                fill: true,
-                                pointRadius: 0,
-                                pointHoverRadius: 6,
-                                tension: 0.3
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: false },
-                                tooltip: {
-                                    mode: 'index',
-                                    intersect: false,
-                                    backgroundColor: isDark ? '#18181b' : '#ffffff',
-                                    titleColor: isDark ? '#ffffff' : '#000000',
-                                    bodyColor: isDark ? '#a1a1aa' : '#4b5563',
-                                    borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                                    borderWidth: 1,
-                                    padding: 12
-                                }
-                            },
-                            scales: {
-                                x: { display: false },
-                                y: {
-                                    grid: { color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' },
-                                    ticks: { color: isDark ? '#a1a1aa' : '#6b7280', maxTicksLimit: 6 },
-                                    border: { display: false }
-                                }
-                            },
-                            interaction: { mode: 'nearest', axis: 'x', intersect: false }
-                        }
-                    });
-                }
-            }
-
-            document.body.style.overflow = 'hidden';
-            if(modal) modal.showModal();
-        };
-
-        document.querySelectorAll('.plugin-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const pluginAttr = card.getAttribute('data-plugin');
-                if(!pluginAttr) return;
-                // @ts-ignore
-                window.openPluginModal(JSON.parse(pluginAttr));
-            });
-        });
-
-        document.querySelectorAll('.copy-id-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const id = btn.getAttribute('data-plugin-id');
-                if(!id) return;
-                navigator.clipboard.writeText(id).then(() => {
-                    const originalHtml = btn.innerHTML;
-                    btn.innerHTML = `<svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
-                    setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
-                });
-            });
-        });
-
-        const modalBadgeContainer = document.getElementById('modalBadgeContainer');
-        const modalCopyBadgeBtn = document.getElementById('modalCopyBadgeBtn');
-        if (modalBadgeContainer && modalCopyBadgeBtn) {
-            modalBadgeContainer.addEventListener('click', () => {
-                const md = modalBadgeContainer.getAttribute('data-badge') || '';
-                navigator.clipboard.writeText(md).then(() => {
-                    const originalHtml = modalCopyBadgeBtn.innerHTML;
-                    modalCopyBadgeBtn.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
-                    setTimeout(() => { modalCopyBadgeBtn.innerHTML = originalHtml; }, 2000);
-                });
-            });
+        if (window.usageChartInstance) {
+          // @ts-ignore
+          window.usageChartInstance.destroy();
         }
+
+        const history = p.stats?.history || {};
+        const labels = Object.keys(history).sort();
+        const data = labels.map((l) => history[l]);
+
+        const isDark = document.documentElement.classList.contains('dark');
+        const chartColor = isDark ? '#ccff00' : '#b0d600';
+
+        // @ts-ignore
+        if (window.Chart && ctx) {
+          // @ts-ignore
+          window.usageChartInstance = new window.Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  data: data,
+                  borderColor: chartColor,
+                  borderWidth: 2,
+                  backgroundColor: `${chartColor}20`,
+                  fill: true,
+                  pointRadius: 0,
+                  pointHoverRadius: 6,
+                  tension: 0.3,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  mode: 'index',
+                  intersect: false,
+                  backgroundColor: isDark ? '#18181b' : '#ffffff',
+                  titleColor: isDark ? '#ffffff' : '#000000',
+                  bodyColor: isDark ? '#a1a1aa' : '#4b5563',
+                  borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                  borderWidth: 1,
+                  padding: 12,
+                },
+              },
+              scales: {
+                x: { display: false },
+                y: {
+                  grid: { color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' },
+                  ticks: { color: isDark ? '#a1a1aa' : '#6b7280', maxTicksLimit: 6 },
+                  border: { display: false },
+                },
+              },
+              interaction: { mode: 'nearest', axis: 'x', intersect: false },
+            },
+          });
+        }
+      }
+
+      document.body.style.overflow = 'hidden';
+      if (modal) modal.showModal();
+    };
+
+    document.querySelectorAll('.plugin-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const pluginAttr = card.getAttribute('data-plugin');
+        if (!pluginAttr) return;
+        // @ts-ignore
+        window.openPluginModal(JSON.parse(pluginAttr));
+      });
     });
+
+    document.querySelectorAll('.copy-id-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-plugin-id');
+        if (!id) return;
+        navigator.clipboard.writeText(id).then(() => {
+          const originalHtml = btn.innerHTML;
+          btn.innerHTML = `<svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+          setTimeout(() => {
+            btn.innerHTML = originalHtml;
+          }, 2000);
+        });
+      });
+    });
+
+    const modalBadgeContainer = document.getElementById('modalBadgeContainer');
+    const modalCopyBadgeBtn = document.getElementById('modalCopyBadgeBtn');
+    if (modalBadgeContainer && modalCopyBadgeBtn) {
+      modalBadgeContainer.addEventListener('click', () => {
+        const md = modalBadgeContainer.getAttribute('data-badge') || '';
+        navigator.clipboard.writeText(md).then(() => {
+          const originalHtml = modalCopyBadgeBtn.innerHTML;
+          modalCopyBadgeBtn.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+          setTimeout(() => {
+            modalCopyBadgeBtn.innerHTML = originalHtml;
+          }, 2000);
+        });
+      });
+    }
+  });
 </script>

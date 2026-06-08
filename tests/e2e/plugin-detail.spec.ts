@@ -6,7 +6,9 @@ test.describe('Plugin detail page', () => {
     await page.goto('/');
     const firstCard = page.locator('.plugin-card').first();
     await expect(firstCard).toBeVisible({ timeout: 15000 });
-    const pluginId = await firstCard.getAttribute('data-plugin-id') || await firstCard.locator('[data-plugin-id]').first().getAttribute('data-plugin-id');
+    const pluginId =
+      (await firstCard.getAttribute('data-plugin-id')) ||
+      (await firstCard.locator('[data-plugin-id]').first().getAttribute('data-plugin-id'));
     if (pluginId) {
       await page.goto(`/plugin/${pluginId}/`);
       const heading = page.locator('h1, h2').first();

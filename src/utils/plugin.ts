@@ -32,7 +32,7 @@ export type PluginCategory =
  * Kept in sync with the taxonomy displayed on PluginCard.
  */
 export function inferCategory(plugin: PluginLike): PluginCategory {
-  if (!plugin || !plugin.componentClasses || plugin.componentClasses.length === 0) {
+  if (!plugin?.componentClasses || plugin.componentClasses.length === 0) {
     return 'Others';
   }
   const classesStr = plugin.componentClasses.join(' ').toLowerCase();
@@ -63,7 +63,7 @@ export interface RelatedPluginsResult<T extends PluginLike> {
 export function getRelatedPlugins<T extends PluginLike>(
   current: T,
   all: T[],
-  options: RelatedPluginsOptions = {}
+  options: RelatedPluginsOptions = {},
 ): RelatedPluginsResult<T> {
   const limit = options.limit ?? 3;
   if (!current || !Array.isArray(all)) {
@@ -235,7 +235,7 @@ export interface VendorSummary<T extends PluginLike> {
  * are resolved deterministically by appending `-2`, `-3`, ... to the later
  * entries — this keeps `getStaticPaths()` duplicate-free.
  */
-export function getVendors<T extends PluginLike>(all: T[]): VendorSummary<T>[] {
+export function getVendors<T extends PluginLike>(all: T[]): Array<VendorSummary<T>> {
   if (!Array.isArray(all)) return [];
 
   const groups = new Map<string, T[]>();
@@ -251,15 +251,12 @@ export function getVendors<T extends PluginLike>(all: T[]): VendorSummary<T>[] {
     (b.stats?.absoluteDownloads ?? 0) - (a.stats?.absoluteDownloads ?? 0);
 
   const usedSlugs = new Map<string, number>();
-  const summaries: VendorSummary<T>[] = [];
+  const summaries: Array<VendorSummary<T>> = [];
 
   // Preserve deterministic ordering: vendors sorted by descending total downloads.
   const orderedVendors = Array.from(groups.entries())
     .map(([vendor, plugins]) => {
-      const totalDownloads = plugins.reduce(
-        (sum, p) => sum + (p.stats?.absoluteDownloads ?? 0),
-        0
-      );
+      const totalDownloads = plugins.reduce((sum, p) => sum + (p.stats?.absoluteDownloads ?? 0), 0);
       return { vendor, plugins, totalDownloads };
     })
     .sort((a, b) => b.totalDownloads - a.totalDownloads || a.vendor.localeCompare(b.vendor));

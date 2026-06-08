@@ -10,27 +10,38 @@ const { headings, isMobile = false } = Astro.props;
 const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
 ---
 
-{toc.length > 0 && (
-  <nav class="toc-container">
-    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-4 border-b border-gray-200 dark:border-white/10 pb-2 flex items-center gap-2">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-      On this page
-    </h3>
-    <ul class={`toc-list space-y-3 ${isMobile ? '' : 'max-h-[calc(100vh-250px)] overflow-y-auto pr-2 pb-4'} scroll-smooth`}>
-      {toc.map((heading) => (
-        <li class={`${heading.depth === 3 ? 'ml-4' : ''}`}>
-          <a
-            href={`#${heading.slug}`}
-            class="toc-link block text-sm text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-all line-clamp-2 leading-snug"
-            data-slug={heading.slug}
-          >
-            {heading.text}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
-)}
+{
+  toc.length > 0 && (
+    <nav class="toc-container">
+      <h3 class="mb-4 flex items-center gap-2 border-b border-gray-200 pb-2 text-xs font-bold tracking-widest text-gray-500 uppercase dark:border-white/10 dark:text-gray-400">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+        On this page
+      </h3>
+      <ul
+        class={`toc-list space-y-3 ${isMobile ? '' : 'max-h-[calc(100vh-250px)] overflow-y-auto pr-2 pb-4'} scroll-smooth`}
+      >
+        {toc.map((heading) => (
+          <li class={`${heading.depth === 3 ? 'ml-4' : ''}`}>
+            <a
+              href={`#${heading.slug}`}
+              class="toc-link line-clamp-2 block text-sm leading-snug text-gray-500 transition-all hover:text-green-600 dark:text-gray-400 dark:hover:text-[#ccff00]"
+              data-slug={heading.slug}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
 
 <style>
   .toc-link.active {
@@ -50,16 +61,16 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
   .toc-list::-webkit-scrollbar {
     width: 3px;
   }
-  
+
   .toc-list::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   .toc-list::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
   }
-  
+
   :is(.dark .toc-list)::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
   }
@@ -75,35 +86,35 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
 
     const tocLinks = document.querySelectorAll('.toc-link');
     const tocList = document.querySelector('.toc-list');
-    const headings = Array.from(tocLinks).map(link => 
-      document.getElementById(link.getAttribute('href')?.replace('#', '') || '')
-    ).filter(Boolean);
+    const headings = Array.from(tocLinks)
+      .map((link) => document.getElementById(link.getAttribute('href')?.replace('#', '') || ''))
+      .filter(Boolean);
 
     let isInitial = true;
 
     const observer = new IntersectionObserver((entries) => {
       // Find the first heading that is entering the "active" zone
-      const intersecting = entries.find(entry => entry.isIntersecting);
-      
+      const intersecting = entries.find((entry) => entry.isIntersecting);
+
       if (intersecting) {
         const id = intersecting.target.id;
         tocLinks.forEach((link) => {
           const href = link.getAttribute('href');
           if (href === `#${id}`) {
             link.classList.add('active');
-            
+
             // Scroll the TOC list to keep the active item in view
             if (tocList) {
               const linkElement = link as HTMLElement;
               const containerHeight = tocList.clientHeight;
               const linkOffsetTop = linkElement.offsetTop;
               const linkHeight = linkElement.clientHeight;
-              
-              const targetScrollTop = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
-              
+
+              const targetScrollTop = linkOffsetTop - containerHeight / 2 + linkHeight / 2;
+
               tocList.scrollTo({
                 top: Math.max(0, targetScrollTop),
-                behavior: isInitial ? 'auto' : 'smooth'
+                behavior: isInitial ? 'auto' : 'smooth',
               });
             }
           } else {

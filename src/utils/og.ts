@@ -70,11 +70,11 @@ export function stripHtml(input: string): string {
   const withBreaks = input.replace(/<(br|\/li|\/p|\/div|\/h[1-6])\b[^>]*>/gi, ' ');
   const stripped = withBreaks.replace(/<[^>]+>/g, '');
   const decoded = stripped
-    .replace(/&#(\d+);/g, (_, n) => {
+    .replace(/&#(\d+);/g, (_match, n: string) => {
       const code = parseInt(n, 10);
       return Number.isFinite(code) ? String.fromCodePoint(code) : '';
     })
-    .replace(/&#x([0-9a-fA-F]+);/g, (_, n) => {
+    .replace(/&#x([0-9a-fA-F]+);/g, (_match, n: string) => {
       const code = parseInt(n, 16);
       return Number.isFinite(code) ? String.fromCodePoint(code) : '';
     })
@@ -198,15 +198,15 @@ export function buildPluginOgSvg(plugin: OgPluginInput): string {
   const vendorBottom = vendorY + Math.ceil(vendorFontSize * 0.35);
   const descStartMin = vendorBottom + 28;
   const availableDescPx = descLastBaseline - descStartMin;
-  const maxDescLinesThatFit = availableDescPx >= 0
-    ? Math.floor(availableDescPx / descLineHeight) + 1
-    : 0;
+  const maxDescLinesThatFit =
+    availableDescPx >= 0 ? Math.floor(availableDescPx / descLineHeight) + 1 : 0;
   const effectiveDescMaxLines = Math.min(DESC_MAX_LINES, Math.max(0, maxDescLinesThatFit));
 
   const nameLines = nameLinesRaw.map(escapeXml);
-  const descLines = rawDescription && effectiveDescMaxLines > 0
-    ? wrapText(rawDescription, DESC_MAX_CHARS_PER_LINE, effectiveDescMaxLines).map(escapeXml)
-    : [];
+  const descLines =
+    rawDescription && effectiveDescMaxLines > 0
+      ? wrapText(rawDescription, DESC_MAX_CHARS_PER_LINE, effectiveDescMaxLines).map(escapeXml)
+      : [];
 
   // Flow description top-down immediately under the vendor line; clamping to
   // `effectiveDescMaxLines` (above) already guarantees it cannot overflow into
@@ -218,10 +218,7 @@ export function buildPluginOgSvg(plugin: OgPluginInput): string {
     .join('');
 
   const descTspans = descLines
-    .map(
-      (line, i) =>
-        `<tspan x="${pad}" dy="${i === 0 ? 0 : descLineHeight}">${line}</tspan>`
-    )
+    .map((line, i) => `<tspan x="${pad}" dy="${i === 0 ? 0 : descLineHeight}">${line}</tspan>`)
     .join('');
 
   const inner = `
@@ -237,11 +234,15 @@ export function buildPluginOgSvg(plugin: OgPluginInput): string {
     By ${vendor}
   </text>
 
-  ${descLines.length > 0 ? `
+  ${
+    descLines.length > 0
+      ? `
   <text x="${pad}" y="${descY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         font-size="26" font-weight="400" fill="#d4d4d8">
     ${descTspans}
-  </text>` : ''}
+  </text>`
+      : ''
+  }
 
   ${renderTagPills(tags, pad, tagY)}`;
 
@@ -390,8 +391,11 @@ const GENERIC_TITLE_MAX_LINES = 2;
 const GENERIC_BODY_MAX_CHARS = 58;
 
 export function buildGenericOgSvg(input: OgGenericInput): string {
-  const titleLines = wrapText(input.title || 'PerfAtlas', GENERIC_TITLE_MAX_CHARS, GENERIC_TITLE_MAX_LINES)
-    .map(escapeXml);
+  const titleLines = wrapText(
+    input.title || 'PerfAtlas',
+    GENERIC_TITLE_MAX_CHARS,
+    GENERIC_TITLE_MAX_LINES,
+  ).map(escapeXml);
 
   // Layout anchors — eyebrow sits above title with enough breathing room
   // so the large title (84px) doesn't visually collide with the eyebrow.
@@ -415,12 +419,11 @@ export function buildGenericOgSvg(input: OgGenericInput): string {
 
   const bodyText = stripHtml(input.body || '');
   const availableBodyPx = bodyBottomLimit - bodyStartY;
-  const maxBodyLines = availableBodyPx >= 0
-    ? Math.min(3, Math.floor(availableBodyPx / 42) + 1)
-    : 0;
-  const bodyLines = bodyText && maxBodyLines > 0
-    ? wrapText(bodyText, GENERIC_BODY_MAX_CHARS, maxBodyLines).map(escapeXml)
-    : [];
+  const maxBodyLines = availableBodyPx >= 0 ? Math.min(3, Math.floor(availableBodyPx / 42) + 1) : 0;
+  const bodyLines =
+    bodyText && maxBodyLines > 0
+      ? wrapText(bodyText, GENERIC_BODY_MAX_CHARS, maxBodyLines).map(escapeXml)
+      : [];
 
   const eyebrowSvg = input.eyebrow
     ? `<text x="${PAD}" y="${eyebrowY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
@@ -439,18 +442,20 @@ export function buildGenericOgSvg(input: OgGenericInput): string {
             font-size="30" font-weight="600" fill="#ccff00" letter-spacing="0.3">${escapeXml(input.subtitle)}</text>`
     : '';
 
-  const bodySvg = bodyLines.length > 0
-    ? `<text x="${PAD}" y="${bodyStartY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-            font-size="26" font-weight="400" fill="#d4d4d8">${
-              bodyLines.map((line, i) => `<tspan x="${PAD}" dy="${i === 0 ? 0 : 42}">${line}</tspan>`).join('')
-            }</text>`
-    : '';
-
-  const bottomSvg = input.stats && input.stats.length > 0
-    ? renderStats(input.stats, statsBaseY)
-    : input.tags && input.tags.length > 0
-      ? renderTagPills(input.tags, PAD, tagY)
+  const bodySvg =
+    bodyLines.length > 0
+      ? `<text x="${PAD}" y="${bodyStartY}" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+            font-size="26" font-weight="400" fill="#d4d4d8">${bodyLines
+              .map((line, i) => `<tspan x="${PAD}" dy="${i === 0 ? 0 : 42}">${line}</tspan>`)
+              .join('')}</text>`
       : '';
+
+  const bottomSvg =
+    input.stats && input.stats.length > 0
+      ? renderStats(input.stats, statsBaseY)
+      : input.tags && input.tags.length > 0
+        ? renderTagPills(input.tags, PAD, tagY)
+        : '';
 
   const inner = `
   ${renderTopRight(input.topRight)}
@@ -477,11 +482,12 @@ export interface OgVendorInput {
 }
 
 export function buildVendorOgSvg(input: OgVendorInput): string {
-  const trending = input.totalTrending > 0
-    ? `+${formatDownloads(input.totalTrending)}`
-    : input.totalTrending < 0
-      ? `-${formatDownloads(Math.abs(input.totalTrending))}`
-      : '0';
+  const trending =
+    input.totalTrending > 0
+      ? `+${formatDownloads(input.totalTrending)}`
+      : input.totalTrending < 0
+        ? `-${formatDownloads(Math.abs(input.totalTrending))}`
+        : '0';
   return buildGenericOgSvg({
     eyebrow: 'Vendor',
     topRight: `${input.pluginCount} PLUGIN${input.pluginCount === 1 ? '' : 'S'} ${DOT} ${formatDownloads(input.totalDownloads)} DOWNLOADS`,

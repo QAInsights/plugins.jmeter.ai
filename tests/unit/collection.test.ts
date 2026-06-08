@@ -24,7 +24,11 @@ function makePlugin(id: string, overrides: Partial<CollectionPlugin> = {}): Coll
   };
 }
 
-function makeCollection(id: string, pluginIds: string[] = [], overrides: Partial<CollectionRaw> = {}): CollectionRaw {
+function makeCollection(
+  id: string,
+  pluginIds: string[] = [],
+  overrides: Partial<CollectionRaw> = {},
+): CollectionRaw {
   return {
     id,
     name: `Collection ${id}`,
@@ -93,7 +97,10 @@ describe('getCollections', () => {
 
   it('auto-populates AI-ready plugins when sentinel is present', () => {
     const plugins = [
-      makePlugin('ai-1', { isAiReady: true, stats: { absoluteDownloads: 3000, trendingDelta: 10 } }),
+      makePlugin('ai-1', {
+        isAiReady: true,
+        stats: { absoluteDownloads: 3000, trendingDelta: 10 },
+      }),
       makePlugin('ai-2', { isAiReady: true, stats: { absoluteDownloads: 1000, trendingDelta: 5 } }),
       makePlugin('regular', { isAiReady: false }),
     ];
@@ -240,7 +247,7 @@ describe('buildInstallCommand', () => {
 
   it('should join multiple ids with commas', () => {
     expect(buildInstallCommand(['jpgc-plancheck', 'jpgc-autostop', 'jpgc-synthesis'])).toBe(
-      'jpgc-plancheck,jpgc-autostop,jpgc-synthesis'
+      'jpgc-plancheck,jpgc-autostop,jpgc-synthesis',
     );
   });
 });
@@ -257,17 +264,20 @@ describe('validateCollectionIds (sync-conflict safety)', () => {
   it('all plugin IDs in collections.json must exist in plugins_data.json', () => {
     const missing = validateCollectionIds(
       pluginsData as CollectionPlugin[],
-      rawCollectionsData as CollectionRaw[]
+      rawCollectionsData as CollectionRaw[],
     );
 
     if (missing.length > 0) {
       const details = missing
-        .map(({ collectionId, pluginId }) => `  collection "${collectionId}" → missing plugin "${pluginId}"`)
+        .map(
+          ({ collectionId, pluginId }) =>
+            `  collection "${collectionId}" → missing plugin "${pluginId}"`,
+        )
         .join('\n');
       throw new Error(
         `collections.json references plugin IDs that no longer exist in plugins_data.json.\n` +
-        `This may be caused by the daily sync job removing or renaming upstream plugins.\n` +
-        `Update collections.json to use valid IDs:\n${details}`
+          `This may be caused by the daily sync job removing or renaming upstream plugins.\n` +
+          `Update collections.json to use valid IDs:\n${details}`,
       );
     }
 

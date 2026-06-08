@@ -62,10 +62,7 @@ function quantile(sorted: number[], p: number): number {
   return sorted[idx];
 }
 
-function levelFor(
-  value: number,
-  thresholds: [number, number, number, number]
-): HeatmapLevel {
+function levelFor(value: number, thresholds: [number, number, number, number]): HeatmapLevel {
   if (value <= 0) return 0;
   if (value <= thresholds[0]) return 1;
   if (value <= thresholds[1]) return 2;
@@ -74,7 +71,7 @@ function levelFor(
 }
 
 export function buildWeeklyHeatmap(
-  history: Record<string, number> | null | undefined
+  history: Record<string, number> | null | undefined,
 ): HeatmapGrid {
   const empty: HeatmapGrid = {
     years: [],
@@ -124,18 +121,19 @@ export function buildWeeklyHeatmap(
     .filter((d) => d > 0)
     .sort((a, b) => a - b);
 
-  const thresholds: [number, number, number, number] = nonZero.length === 0
-    ? [0, 0, 0, 0]
-    : [
-        quantile(nonZero, 0.25),
-        quantile(nonZero, 0.5),
-        quantile(nonZero, 0.75),
-        quantile(nonZero, 1),
-      ];
+  const thresholds: [number, number, number, number] =
+    nonZero.length === 0
+      ? [0, 0, 0, 0]
+      : [
+          quantile(nonZero, 0.25),
+          quantile(nonZero, 0.5),
+          quantile(nonZero, 0.75),
+          quantile(nonZero, 1),
+        ];
 
   // Allocate grid.
   const grid: Array<Array<HeatmapCell | null>> = years.map(() =>
-    new Array<HeatmapCell | null>(HEATMAP_WEEKS).fill(null)
+    new Array<HeatmapCell | null>(HEATMAP_WEEKS).fill(null),
   );
   const yearToIndex = new Map<number, number>();
   years.forEach((y, i) => yearToIndex.set(y, i));

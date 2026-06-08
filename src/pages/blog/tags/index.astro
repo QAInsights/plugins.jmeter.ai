@@ -8,29 +8,36 @@ const posts = await getCollection('blog');
 const tags = [...new Set(posts.map((post) => post.data.tags || []).flat())].sort();
 ---
 
-<Layout title="All Tags - PerfAtlas Blog" description="Browse all topics covered in the PerfAtlas blog.">
-    <Header />
-    <main class="max-w-4xl mx-auto px-6 py-12 md:py-20 flex-grow w-full text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-12">
-            Browse by <span class="text-green-600 dark:text-[#ccff00]">Topic</span>
-        </h1>
+<Layout
+  title="All Tags - PerfAtlas Blog"
+  description="Browse all topics covered in the PerfAtlas blog."
+>
+  <Header />
+  <main class="mx-auto w-full max-w-4xl flex-grow px-6 py-12 text-center md:py-20">
+    <h1
+      class="mb-12 text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl dark:text-white"
+    >
+      Browse by <span class="text-green-600 dark:text-[#ccff00]">Topic</span>
+    </h1>
 
-        <div class="flex flex-wrap justify-center gap-4">
-            {tags.map((tag) => (
-                <a 
-                    href={`/blog/tags/${encodeURIComponent(tag)}/`} 
-                    class="px-6 py-3 rounded-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-bold hover:border-primary/50 dark:hover:border-primary/50 hover:bg-green-50 dark:hover:bg-[#ccff00]/5 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md"
-                >
-                    {tag}
-                </a>
-            ))}
-        </div>
-        
-        <div class="mt-20">
-            <a href="/blog/" class="text-green-600 dark:text-[#ccff00] font-bold hover:underline">
-                &larr; Back to all posts
-            </a>
-        </div>
-    </main>
-    <Footer />
+    <div class="flex flex-wrap justify-center gap-4">
+      {
+        tags.map((tag) => (
+          <a
+            href={`/blog/tags/${encodeURIComponent(tag)}/`}
+            class="hover:border-primary/50 dark:hover:border-primary/50 rounded-full border border-gray-200 bg-white px-6 py-3 font-bold text-gray-700 shadow-sm transition-all hover:-translate-y-1 hover:bg-green-50 hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:bg-[#ccff00]/5"
+          >
+            {tag}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="mt-20">
+      <a href="/blog/" class="font-bold text-green-600 hover:underline dark:text-[#ccff00]">
+        &larr; Back to all posts
+      </a>
+    </div>
+  </main>
+  <Footer />
 </Layout>

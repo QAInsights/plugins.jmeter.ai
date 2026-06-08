@@ -12,7 +12,7 @@ if (!imagePath) {
 async function run() {
   try {
     const resolvedPath = path.resolve(imagePath);
-    
+
     // Check if file exists
     try {
       await fs.access(resolvedPath);
@@ -22,14 +22,14 @@ async function run() {
     }
 
     const tempPath = resolvedPath.replace(/\.(png|jpg|jpeg)$/i, (match) => `-temp${match}`);
-    
+
     await sharp(resolvedPath)
       .resize(1200, 628, {
         fit: 'cover',
-        position: 'center'
+        position: 'center',
       })
       .toFile(tempPath);
-      
+
     await fs.rename(tempPath, resolvedPath);
     console.log(`[crop] Successfully cropped image to 1200x628: ${resolvedPath}`);
   } catch (error) {

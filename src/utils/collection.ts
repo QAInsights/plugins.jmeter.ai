@@ -81,7 +81,7 @@ const AI_READY_CAP = 12;
  */
 function resolvePlugins(
   raw: CollectionRaw,
-  pluginIndex: Map<string, CollectionPlugin>
+  pluginIndex: Map<string, CollectionPlugin>,
 ): CollectionPlugin[] {
   if (raw.pluginIds.includes(AI_READY_SENTINEL)) {
     const byDownloads = (a: CollectionPlugin, b: CollectionPlugin) =>
@@ -96,7 +96,7 @@ function resolvePlugins(
     const found = pluginIndex.get(id);
     if (!found) {
       console.warn(
-        `[collections] Plugin ID "${id}" referenced in collection "${raw.id}" was not found in plugins_data.json. It may have been removed from the upstream registry. Remove or update the entry in collections.json.`
+        `[collections] Plugin ID "${id}" referenced in collection "${raw.id}" was not found in plugins_data.json. It may have been removed from the upstream registry. Remove or update the entry in collections.json.`,
       );
       return acc;
     }
@@ -115,7 +115,7 @@ function resolvePlugins(
  */
 export function getCollections(
   allPlugins: CollectionPlugin[],
-  rawCollections: CollectionRaw[]
+  rawCollections: CollectionRaw[],
 ): Collection[] {
   if (!Array.isArray(allPlugins) || !Array.isArray(rawCollections)) return [];
 
@@ -124,14 +124,8 @@ export function getCollections(
   return rawCollections.map((raw) => {
     const plugins = resolvePlugins(raw, pluginIndex);
 
-    const totalDownloads = plugins.reduce(
-      (sum, p) => sum + (p.stats?.absoluteDownloads ?? 0),
-      0
-    );
-    const totalTrending = plugins.reduce(
-      (sum, p) => sum + (p.stats?.trendingDelta ?? 0),
-      0
-    );
+    const totalDownloads = plugins.reduce((sum, p) => sum + (p.stats?.absoluteDownloads ?? 0), 0);
+    const totalTrending = plugins.reduce((sum, p) => sum + (p.stats?.trendingDelta ?? 0), 0);
     const aiReadyCount = plugins.filter((p) => p.isAiReady).length;
 
     return {
@@ -172,10 +166,7 @@ export function getCollectionSummaries(collections: Collection[]): CollectionSum
 /**
  * Look up a single resolved collection by ID. Returns `undefined` if not found.
  */
-export function getCollectionById(
-  id: string,
-  collections: Collection[]
-): Collection | undefined {
+export function getCollectionById(id: string, collections: Collection[]): Collection | undefined {
   return collections.find((c) => c.id === id);
 }
 
@@ -187,7 +178,7 @@ export function getCollectionById(
 export function getRelatedCollections(
   self: Collection,
   all: Collection[],
-  limit = 3
+  limit = 3,
 ): Collection[] {
   const others = all.filter((c) => c.id !== self.id);
 
@@ -227,7 +218,7 @@ export function buildInstallCommand(ids: string[]): string {
  */
 export function validateCollectionIds(
   allPlugins: CollectionPlugin[],
-  rawCollections: CollectionRaw[]
+  rawCollections: CollectionRaw[],
 ): Array<{ collectionId: string; pluginId: string }> {
   const knownIds = new Set(allPlugins.map((p) => p.id));
   const missing: Array<{ collectionId: string; pluginId: string }> = [];

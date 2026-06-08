@@ -19,50 +19,50 @@ const makePlugin = (overrides: Partial<PluginLike> & { id: string }): PluginLike
 describe('inferCategory', () => {
   it('returns Assertions when a component class references an assertion', () => {
     expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.MyAssertionGui'] }))
+      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.MyAssertionGui'] })),
     ).toBe('Assertions');
   });
 
   it('returns Listeners when a component class references a listener', () => {
     expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.ResultListener'] }))
+      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.ResultListener'] })),
     ).toBe('Listeners');
   });
 
   it('returns Listeners when a component class references a visualizer', () => {
     expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.GraphVisualizer'] }))
+      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.GraphVisualizer'] })),
     ).toBe('Listeners');
   });
 
   it('returns Samplers when a component class references a sampler', () => {
-    expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.HttpSampler'] }))
-    ).toBe('Samplers');
+    expect(inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.HttpSampler'] }))).toBe(
+      'Samplers',
+    );
   });
 
   it('returns Configs when a component class references a config element', () => {
     expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.HeaderConfigGui'] }))
+      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.HeaderConfigGui'] })),
     ).toBe('Configs');
   });
 
   it('returns Timers when a component class references a timer', () => {
     expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.ConstantTimer'] }))
+      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.ConstantTimer'] })),
     ).toBe('Timers');
   });
 
   it('returns Processors when a component class references a processor', () => {
-    expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.PreProcessor'] }))
-    ).toBe('Processors');
+    expect(inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.PreProcessor'] }))).toBe(
+      'Processors',
+    );
   });
 
   it('returns Others when no keyword matches', () => {
-    expect(
-      inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.Thingamajig'] }))
-    ).toBe('Others');
+    expect(inferCategory(makePlugin({ id: 'a', componentClasses: ['com.foo.Thingamajig'] }))).toBe(
+      'Others',
+    );
   });
 
   it('returns Others when componentClasses is missing', () => {
@@ -79,8 +79,8 @@ describe('inferCategory', () => {
         makePlugin({
           id: 'a',
           componentClasses: ['com.foo.HttpSampler', 'com.foo.ResponseAssertion'],
-        })
-      )
+        }),
+      ),
     ).toBe('Assertions');
   });
 });
@@ -212,7 +212,7 @@ describe('hasChangelog', () => {
               'https://search.maven.org/remotecontent?filepath=org/apache/jmeter/ApacheJMeter_ftp/%1$s/ApacheJMeter_ftp-%1$s.jar',
           },
         },
-      })
+      }),
     ).toBe(false);
   });
 
@@ -230,7 +230,7 @@ describe('hasChangelog', () => {
             downloadUrl: 'https://example.com/plugin-1.0.2.jar',
           },
         },
-      })
+      }),
     ).toBe(true);
   });
 });

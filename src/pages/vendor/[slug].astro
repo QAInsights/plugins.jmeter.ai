@@ -8,11 +8,11 @@ import pluginsData from '../../data/plugins_data.json';
 import { getVendors, type PluginCategory } from '../../utils/plugin';
 
 export async function getStaticPaths() {
-    const vendors = getVendors(pluginsData as any[]);
-    return vendors.map((summary) => ({
-        params: { slug: summary.slug },
-        props: { summary },
-    }));
+  const vendors = getVendors(pluginsData as any[]);
+  return vendors.map((summary) => ({
+    params: { slug: summary.slug },
+    props: { summary },
+  }));
 }
 
 const { summary } = Astro.props;
@@ -20,205 +20,282 @@ const { summary } = Astro.props;
 const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n);
 
 const categoryEntries = (Object.entries(summary.categoryCounts) as [PluginCategory, number][])
-    .filter(([, count]) => count > 0)
-    .sort((a, b) => b[1] - a[1]);
+  .filter(([, count]) => count > 0)
+  .sort((a, b) => b[1] - a[1]);
 
 const title = `${summary.vendor} Plugins | PerfAtlas`;
 const description = `${summary.vendor} maintains ${summary.pluginCount} JMeter plugin${summary.pluginCount === 1 ? '' : 's'} on PerfAtlas with ${formatNumber(summary.totalDownloads)} total downloads. Browse the full catalog, usage trends, and AI-ready tools.`;
 
 const trendingArrow = summary.totalTrending > 0 ? '+' : '';
 const trendingText = `${trendingArrow}${formatNumber(summary.totalTrending)}`;
-const trendingColor = summary.totalTrending > 0
+const trendingColor =
+  summary.totalTrending > 0
     ? 'text-green-600 dark:text-green-400'
     : summary.totalTrending < 0
-        ? 'text-red-500'
-        : 'text-gray-500 dark:text-gray-400';
+      ? 'text-red-500'
+      : 'text-gray-500 dark:text-gray-400';
 ---
 
 <Layout title={title} description={description} image={`/og/vendor/${summary.slug}.png`}>
-    <Header />
-    <main class="flex-grow flex flex-col py-12 md:py-16 px-6">
-        <div class="max-w-7xl mx-auto w-full">
+  <Header />
+  <main class="flex flex-grow flex-col px-6 py-12 md:py-16">
+    <div class="mx-auto w-full max-w-7xl">
+      {/* Back Link */}
+      <a
+        href="/"
+        class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 dark:hover:text-white"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+        >
+        Back to Directory
+      </a>
 
-            {/* Back Link */}
-            <a href="/" class="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:hover:text-white mb-8 transition-colors text-sm font-semibold">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Back to Directory
-            </a>
-
-            {/* Vendor Hero Card */}
-            <div class="relative bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden mb-10">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-70"></div>
-                <div class="p-8 md:p-12">
-                    <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Vendor</p>
-                    <h1 class="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight tracking-tighter mb-4">
-                        {summary.vendor}
-                    </h1>
-                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed mb-10">
-                        {summary.pluginCount} plugin{summary.pluginCount === 1 ? '' : 's'} from <strong>{summary.vendor}</strong> are indexed on PerfAtlas. Explore the full catalog below; ranked by total downloads and filterable by category.
-                    </p>
-
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                        <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-5 border border-gray-100 dark:border-white/5">
-                            <h4 class="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wide">Plugins</h4>
-                            <p class="text-2xl md:text-3xl font-black text-gray-900 dark:text-white">{formatNumber(summary.pluginCount)}</p>
-                        </div>
-                        <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-5 border border-gray-100 dark:border-white/5">
-                            <h4 class="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wide">Total Downloads</h4>
-                            <p class="text-2xl md:text-3xl font-black text-gray-900 dark:text-white">{formatNumber(summary.totalDownloads)}</p>
-                        </div>
-                        <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-5 border border-gray-100 dark:border-white/5">
-                            <h4 class="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wide">This Week</h4>
-                            <p class={`text-2xl md:text-3xl font-black ${trendingColor}`}>{trendingText}</p>
-                        </div>
-                        <div class="bg-gray-50 dark:bg-black/20 rounded-xl p-5 border border-gray-100 dark:border-white/5">
-                            <h4 class="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wide">AI Ready</h4>
-                            <p class="text-2xl md:text-3xl font-black text-gray-900 dark:text-white">
-                                {formatNumber(summary.aiReadyCount)}
-                                <span class="text-sm font-semibold text-gray-400 dark:text-gray-500">/ {summary.pluginCount}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Category + Sort Controls */}
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold dark:text-white mb-4">Catalog</h2>
-                    <div class="flex flex-wrap gap-2" id="vendorCategoryFilters">
-                        <button
-                            data-filter="all"
-                            class="vendor-filter-btn px-4 py-1.5 rounded-full text-sm font-semibold transition-all border bg-primary border-primary text-gray-900 shadow-md"
-                        >
-                            All
-                            <span class="ml-1 text-[10px] opacity-70">{summary.pluginCount}</span>
-                        </button>
-                        {categoryEntries.map(([cat, count]) => (
-                            <button
-                                data-filter={cat.toLowerCase()}
-                                class="vendor-filter-btn px-4 py-1.5 rounded-full text-sm font-semibold transition-all border bg-white dark:bg-dark-surface border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-primary/50"
-                            >
-                                {cat}
-                                <span class="ml-1 text-[10px] opacity-70">{count}</span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 mt-4 md:mt-0 w-full md:w-auto">
-                    <select id="vendorSortSelect" class="w-full sm:w-auto bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary/50 cursor-pointer shadow-sm appearance-none">
-                        <option value="downloads-desc">Downloads: High to Low</option>
-                        <option value="trending-desc">Trending: High to Low</option>
-                        <option value="name-asc">Name: A to Z</option>
-                        <option value="ai-ready">AI Ready First</option>
-                    </select>
-                    <span class="w-full sm:w-auto text-center text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-white/10 px-3 py-1.5 rounded-lg text-sm font-bold truncate shrink-0" id="vendorResultCount">{summary.pluginCount} plugin{summary.pluginCount === 1 ? '' : 's'}</span>
-                </div>
-            </div>
-
-            <div id="vendorNoResults" class="hidden text-center py-20 border border-gray-200 dark:border-white/5 rounded-2xl bg-gray-50 dark:bg-white/[0.01]">
-                <h3 class="text-xl text-gray-500 dark:text-gray-400">No plugins match this category.</h3>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="vendorPluginGrid">
-                {summary.plugins.map((plugin) => (
-                    <div
-                        class="vendor-plugin-wrapper flex flex-col"
-                        data-name={plugin.name.toLowerCase()}
-                        data-downloads={plugin.stats?.absoluteDownloads ?? 0}
-                        data-trending={plugin.stats?.trendingDelta ?? 0}
-                        data-ai={plugin.isAiReady ? 1 : 0}
-                    >
-                        <PluginCard plugin={plugin} />
-                    </div>
-                ))}
-            </div>
-
+      {/* Vendor Hero Card */}
+      <div
+        class="dark:bg-dark-surface relative mb-10 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl dark:border-white/10"
+      >
+        <div
+          class="from-primary to-secondary absolute top-0 left-0 h-1 w-full bg-gradient-to-r opacity-70"
+        >
         </div>
-    </main>
-    <Footer />
-    <PluginModal />
+        <div class="p-8 md:p-12">
+          <p
+            class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >
+            Vendor
+          </p>
+          <h1
+            class="mb-4 text-4xl leading-tight font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white"
+          >
+            {summary.vendor}
+          </h1>
+          <p class="mb-10 max-w-3xl text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+            {summary.pluginCount} plugin{summary.pluginCount === 1 ? '' : 's'} from <strong
+              >{summary.vendor}</strong
+            > are indexed on PerfAtlas. Explore the full catalog below; ranked by total downloads and
+            filterable by category.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+            <div
+              class="rounded-xl border border-gray-100 bg-gray-50 p-5 dark:border-white/5 dark:bg-black/20"
+            >
+              <h4 class="mb-2 text-xs font-bold tracking-wide text-gray-500 uppercase">Plugins</h4>
+              <p class="text-2xl font-black text-gray-900 md:text-3xl dark:text-white">
+                {formatNumber(summary.pluginCount)}
+              </p>
+            </div>
+            <div
+              class="rounded-xl border border-gray-100 bg-gray-50 p-5 dark:border-white/5 dark:bg-black/20"
+            >
+              <h4 class="mb-2 text-xs font-bold tracking-wide text-gray-500 uppercase">
+                Total Downloads
+              </h4>
+              <p class="text-2xl font-black text-gray-900 md:text-3xl dark:text-white">
+                {formatNumber(summary.totalDownloads)}
+              </p>
+            </div>
+            <div
+              class="rounded-xl border border-gray-100 bg-gray-50 p-5 dark:border-white/5 dark:bg-black/20"
+            >
+              <h4 class="mb-2 text-xs font-bold tracking-wide text-gray-500 uppercase">
+                This Week
+              </h4>
+              <p class={`text-2xl md:text-3xl font-black ${trendingColor}`}>{trendingText}</p>
+            </div>
+            <div
+              class="rounded-xl border border-gray-100 bg-gray-50 p-5 dark:border-white/5 dark:bg-black/20"
+            >
+              <h4 class="mb-2 text-xs font-bold tracking-wide text-gray-500 uppercase">AI Ready</h4>
+              <p class="text-2xl font-black text-gray-900 md:text-3xl dark:text-white">
+                {formatNumber(summary.aiReadyCount)}
+                <span class="text-sm font-semibold text-gray-400 dark:text-gray-500"
+                  >/ {summary.pluginCount}</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Category + Sort Controls */}
+      <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <h2 class="mb-4 text-2xl font-bold dark:text-white">Catalog</h2>
+          <div class="flex flex-wrap gap-2" id="vendorCategoryFilters">
+            <button
+              data-filter="all"
+              class="vendor-filter-btn bg-primary border-primary rounded-full border px-4 py-1.5 text-sm font-semibold text-gray-900 shadow-md transition-all"
+            >
+              All
+              <span class="ml-1 text-[10px] opacity-70">{summary.pluginCount}</span>
+            </button>
+            {
+              categoryEntries.map(([cat, count]) => (
+                <button
+                  data-filter={cat.toLowerCase()}
+                  class="vendor-filter-btn dark:bg-dark-surface hover:border-primary/50 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-semibold text-gray-600 transition-all dark:border-white/10 dark:text-gray-300"
+                >
+                  {cat}
+                  <span class="ml-1 text-[10px] opacity-70">{count}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <div
+          class="mt-4 flex w-full shrink-0 flex-col items-center gap-3 sm:flex-row md:mt-0 md:w-auto"
+        >
+          <select
+            id="vendorSortSelect"
+            class="dark:bg-dark-surface focus:border-primary/50 w-full cursor-pointer appearance-none rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-semibold text-gray-700 shadow-sm focus:outline-none sm:w-auto dark:border-white/10 dark:text-gray-300"
+          >
+            <option value="downloads-desc">Downloads: High to Low</option>
+            <option value="trending-desc">Trending: High to Low</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="ai-ready">AI Ready First</option>
+          </select>
+          <span
+            class="w-full shrink-0 truncate rounded-lg bg-gray-100 px-3 py-1.5 text-center text-sm font-bold text-gray-500 sm:w-auto dark:bg-white/10 dark:text-gray-400"
+            id="vendorResultCount"
+            >{summary.pluginCount} plugin{summary.pluginCount === 1 ? '' : 's'}</span
+          >
+        </div>
+      </div>
+
+      <div
+        id="vendorNoResults"
+        class="hidden rounded-2xl border border-gray-200 bg-gray-50 py-20 text-center dark:border-white/5 dark:bg-white/[0.01]"
+      >
+        <h3 class="text-xl text-gray-500 dark:text-gray-400">No plugins match this category.</h3>
+      </div>
+
+      <div
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        id="vendorPluginGrid"
+      >
+        {
+          summary.plugins.map((plugin) => (
+            <div
+              class="vendor-plugin-wrapper flex flex-col"
+              data-name={plugin.name.toLowerCase()}
+              data-downloads={plugin.stats?.absoluteDownloads ?? 0}
+              data-trending={plugin.stats?.trendingDelta ?? 0}
+              data-ai={plugin.isAiReady ? 1 : 0}
+            >
+              <PluginCard plugin={plugin} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+  <Footer />
+  <PluginModal />
 </Layout>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const grid = document.getElementById('vendorPluginGrid');
-        const filterBtns = document.querySelectorAll('.vendor-filter-btn');
-        const sortSelect = document.getElementById('vendorSortSelect') as HTMLSelectElement | null;
-        const resultCount = document.getElementById('vendorResultCount');
-        const noResults = document.getElementById('vendorNoResults');
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('vendorPluginGrid');
+    const filterBtns = document.querySelectorAll('.vendor-filter-btn');
+    const sortSelect = document.getElementById('vendorSortSelect') as HTMLSelectElement | null;
+    const resultCount = document.getElementById('vendorResultCount');
+    const noResults = document.getElementById('vendorNoResults');
 
-        if (!grid) return;
+    if (!grid) return;
 
-        const wrappers = Array.from(grid.querySelectorAll('.vendor-plugin-wrapper')) as HTMLElement[];
-        const cache = wrappers.map((el, index) => ({
-            el,
-            index,
-            name: el.getAttribute('data-name') || '',
-            downloads: parseInt(el.getAttribute('data-downloads') || '0', 10),
-            trending: parseInt(el.getAttribute('data-trending') || '0', 10),
-            aiReady: parseInt(el.getAttribute('data-ai') || '0', 10),
-            category: (el.querySelector('[data-category]')?.getAttribute('data-category') || 'others').toLowerCase(),
-        }));
+    const wrappers = Array.from(grid.querySelectorAll('.vendor-plugin-wrapper')) as HTMLElement[];
+    const cache = wrappers.map((el, index) => ({
+      el,
+      index,
+      name: el.getAttribute('data-name') || '',
+      downloads: parseInt(el.getAttribute('data-downloads') || '0', 10),
+      trending: parseInt(el.getAttribute('data-trending') || '0', 10),
+      aiReady: parseInt(el.getAttribute('data-ai') || '0', 10),
+      category: (
+        el.querySelector('[data-category]')?.getAttribute('data-category') || 'others'
+      ).toLowerCase(),
+    }));
 
-        let currentCategory = 'all';
+    let currentCategory = 'all';
 
-        function applySort() {
-            if (!sortSelect) return;
-            const value = sortSelect.value;
-            const sorted = cache.slice().sort((a, b) => {
-                if (value === 'name-asc') return a.name.localeCompare(b.name);
-                if (value === 'trending-desc') return b.trending - a.trending;
-                if (value === 'ai-ready') {
-                    const diff = b.aiReady - a.aiReady;
-                    return diff !== 0 ? diff : b.downloads - a.downloads;
-                }
-                // downloads-desc is the default
-                return b.downloads - a.downloads;
-            });
-            requestAnimationFrame(() => {
-                sorted.forEach((item, i) => { item.el.style.order = String(i); });
-            });
+    function applySort() {
+      if (!sortSelect) return;
+      const value = sortSelect.value;
+      const sorted = cache.slice().sort((a, b) => {
+        if (value === 'name-asc') return a.name.localeCompare(b.name);
+        if (value === 'trending-desc') return b.trending - a.trending;
+        if (value === 'ai-ready') {
+          const diff = b.aiReady - a.aiReady;
+          return diff !== 0 ? diff : b.downloads - a.downloads;
         }
-
-        function applyFilter() {
-            let matched = 0;
-            cache.forEach((item) => {
-                const isMatch = currentCategory === 'all' || item.category === currentCategory;
-                if (isMatch) {
-                    matched++;
-                    item.el.classList.remove('hidden');
-                } else {
-                    item.el.classList.add('hidden');
-                }
-            });
-            if (resultCount) {
-                resultCount.textContent = `${matched} plugin${matched !== 1 ? 's' : ''}`;
-            }
-            if (noResults) {
-                noResults.classList.toggle('hidden', matched !== 0);
-            }
-        }
-
-        filterBtns.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-                filterBtns.forEach((b) => {
-                    b.classList.remove('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
-                    b.classList.add('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
-                });
-                const target = e.currentTarget as HTMLElement;
-                target.classList.remove('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
-                target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
-                currentCategory = target.getAttribute('data-filter') || 'all';
-                applyFilter();
-            });
+        // downloads-desc is the default
+        return b.downloads - a.downloads;
+      });
+      requestAnimationFrame(() => {
+        sorted.forEach((item, i) => {
+          item.el.style.order = String(i);
         });
+      });
+    }
 
-        if (sortSelect) {
-            sortSelect.addEventListener('change', applySort);
+    function applyFilter() {
+      let matched = 0;
+      cache.forEach((item) => {
+        const isMatch = currentCategory === 'all' || item.category === currentCategory;
+        if (isMatch) {
+          matched++;
+          item.el.classList.remove('hidden');
+        } else {
+          item.el.classList.add('hidden');
         }
+      });
+      if (resultCount) {
+        resultCount.textContent = `${matched} plugin${matched !== 1 ? 's' : ''}`;
+      }
+      if (noResults) {
+        noResults.classList.toggle('hidden', matched !== 0);
+      }
+    }
 
-        applySort();
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        filterBtns.forEach((b) => {
+          b.classList.remove('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
+          b.classList.add(
+            'bg-white',
+            'dark:bg-dark-surface',
+            'border-gray-200',
+            'dark:border-white/10',
+            'text-gray-600',
+            'dark:text-gray-300',
+          );
+        });
+        const target = e.currentTarget as HTMLElement;
+        target.classList.remove(
+          'bg-white',
+          'dark:bg-dark-surface',
+          'border-gray-200',
+          'dark:border-white/10',
+          'text-gray-600',
+          'dark:text-gray-300',
+        );
+        target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
+        currentCategory = target.getAttribute('data-filter') || 'all';
         applyFilter();
+      });
     });
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', applySort);
+    }
+
+    applySort();
+    applyFilter();
+  });
 </script>

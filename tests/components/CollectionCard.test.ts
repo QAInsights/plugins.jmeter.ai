@@ -4,7 +4,12 @@ import CollectionCard from '../../src/components/CollectionCard.astro';
 import type { CollectionSummary } from '../../src/utils/collection';
 
 function makePlugin(id: string, name?: string) {
-  return { id, name: name ?? `Plugin ${id}`, vendor: 'TestVendor', stats: { absoluteDownloads: 1000, trendingDelta: 10 } };
+  return {
+    id,
+    name: name ?? `Plugin ${id}`,
+    vendor: 'TestVendor',
+    stats: { absoluteDownloads: 1000, trendingDelta: 10 },
+  };
 }
 
 function makeSummary(overrides: Partial<CollectionSummary> = {}): CollectionSummary {
@@ -14,7 +19,11 @@ function makeSummary(overrides: Partial<CollectionSummary> = {}): CollectionSumm
     emoji: '🚦',
     tagline: 'Headless-friendly plugins for pipelines.',
     pluginCount: 3,
-    previewPlugins: [makePlugin('jpgc-plancheck'), makePlugin('jpgc-autostop'), makePlugin('jpgc-synthesis')],
+    previewPlugins: [
+      makePlugin('jpgc-plancheck'),
+      makePlugin('jpgc-autostop'),
+      makePlugin('jpgc-synthesis'),
+    ],
     totalDownloads: 123456,
     aiReadyCount: 0,
     ...overrides,
@@ -53,7 +62,12 @@ describe('CollectionCard', () => {
   });
 
   it('renders +N more badge when pluginCount > 3', async () => {
-    const { html } = await render(makeSummary({ pluginCount: 7, previewPlugins: [makePlugin('a'), makePlugin('b'), makePlugin('c')] }));
+    const { html } = await render(
+      makeSummary({
+        pluginCount: 7,
+        previewPlugins: [makePlugin('a'), makePlugin('b'), makePlugin('c')],
+      }),
+    );
     expect(html).toContain('+4 more');
   });
 

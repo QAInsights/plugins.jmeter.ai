@@ -27,13 +27,17 @@ test.describe('Favorites / Bookmarks', () => {
     await firstFavBtn.click();
 
     // Verify it is now in localStorage
-    const storedIds = await page.evaluate(() => JSON.parse(localStorage.getItem('favoriteIds') || '[]'));
+    const storedIds = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('favoriteIds') || '[]'),
+    );
     expect(storedIds).toContain(pluginId);
 
     // Reload and verify persistence
     await page.reload();
     await expect(page.locator('.plugin-card').first()).toBeVisible({ timeout: 15000 });
-    const storedAfterReload = await page.evaluate(() => JSON.parse(localStorage.getItem('favoriteIds') || '[]'));
+    const storedAfterReload = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('favoriteIds') || '[]'),
+    );
     expect(storedAfterReload).toContain(pluginId);
   });
 
@@ -67,7 +71,9 @@ test.describe('Favorites / Bookmarks', () => {
     expect(visibleId).toBe(pluginId);
   });
 
-  test('should show empty-state message when Favorites pill is active with no favorites', async ({ page }) => {
+  test('should show empty-state message when Favorites pill is active with no favorites', async ({
+    page,
+  }) => {
     await page.goto('/');
     await page.locator('.favorites-pill').click();
     await page.waitForTimeout(300);
@@ -104,7 +110,9 @@ test.describe('Favorites / Bookmarks', () => {
     await page.goto('/?favs=jpgc-graphs-additional');
     await expect(page.locator('#favImportBanner')).toBeVisible({ timeout: 10000 });
     await page.locator('#favImportMerge').click();
-    const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('favoriteIds') || '[]'));
+    const stored = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('favoriteIds') || '[]'),
+    );
     expect(stored).toContain('jpgc-graphs-additional');
     await expect(page.locator('#favImportBanner')).toBeHidden();
   });
@@ -114,7 +122,9 @@ test.describe('Favorites / Bookmarks', () => {
     await expect(page.locator('#favImportBanner')).toBeVisible({ timeout: 10000 });
     await page.locator('#favImportDismiss').click();
     await expect(page.locator('#favImportBanner')).toBeHidden();
-    const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('favoriteIds') || '[]'));
+    const stored = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('favoriteIds') || '[]'),
+    );
     expect(stored).not.toContain('jpgc-graphs-additional');
   });
 });

@@ -15,123 +15,237 @@ const vendorHref = plugin.vendor ? `/vendor/${vendorSlug(plugin.vendor)}/` : nul
 const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
 ---
 
-<div tabindex="0" role="button"
-   class={`plugin-card text-left group relative flex flex-col rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 w-full cursor-pointer ${
-     plugin.isAiReady
-       ? 'ai-glow-wrapper shadow-md dark:shadow-[0_0_15px_rgba(155,114,203,0.1)] hover:shadow-xl dark:hover:shadow-[0_0_25px_rgba(66,133,244,0.3)]'
-       : 'bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)]'
-   }`}
-   data-category={category.toLowerCase()}
-   data-plugin={JSON.stringify(plugin)}
+<div
+  tabindex="0"
+  role="button"
+  class={`plugin-card text-left group relative flex flex-col rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 w-full cursor-pointer ${
+    plugin.isAiReady
+      ? 'ai-glow-wrapper shadow-md dark:shadow-[0_0_15px_rgba(155,114,203,0.1)] hover:shadow-xl dark:hover:shadow-[0_0_25px_rgba(66,133,244,0.3)]'
+      : 'bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)]'
+  }`}
+  data-category={category.toLowerCase()}
+  data-plugin={JSON.stringify(plugin)}
 >
-  
-  <div class={`flex flex-col h-full w-full relative z-10 ${plugin.isAiReady ? 'bg-white dark:bg-dark-surface rounded-[10px]' : ''}`}>
+  <div
+    class={`flex flex-col h-full w-full relative z-10 ${plugin.isAiReady ? 'bg-white dark:bg-dark-surface rounded-[10px]' : ''}`}
+  >
     {/* Sponsored / Featured Highlight */}
-    {(plugin.sponsored || plugin.isFeatured) && (
-      <div class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary z-20 ${plugin.isAiReady ? 'rounded-t-[10px]' : ''}`}></div>
-    )}
+    {
+      (plugin.sponsored || plugin.isFeatured) && (
+        <div
+          class={`from-primary to-secondary absolute top-0 left-0 z-20 h-1 w-full bg-gradient-to-r ${plugin.isAiReady ? 'rounded-t-[10px]' : ''}`}
+        />
+      )
+    }
 
-    <div class="p-6 flex flex-col h-full">
-    
-    <div class="flex items-center justify-between mb-2 relative z-10">
-      <div class="flex items-center gap-2">
-        <span class="text-[10px] font-mono text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/5 py-0.5 px-1.5 rounded">{plugin.id}</span>
-        <button type="button" class="copy-id-btn p-1 -ml-1 text-gray-400 hover:text-primary dark:hover:text-[#ccff00] transition-colors" data-plugin-id={plugin.id} title="Copy ID">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-        </button>
-      </div>
-      
-      <div class="flex items-center gap-1">
-        <button
-          type="button"
-          class="favorite-btn relative flex items-center justify-center w-7 h-7 rounded-md text-gray-400 dark:text-gray-500 hover:text-yellow-500 dark:hover:text-yellow-400 hover:bg-yellow-500/10 border border-transparent hover:border-yellow-500/30 transition-all z-20"
-          data-plugin-id={plugin.id}
-          aria-label="Add to favorites"
-          aria-pressed="false"
-          title="Add to favorites"
-          onclick="event.stopPropagation()"
-        >
-          <svg class="fav-icon-outline w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-          <svg class="fav-icon-filled w-4 h-4 hidden text-yellow-500 dark:text-yellow-400" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-        </button>
-        <button
-          type="button"
-          class="install-add-btn group/install relative flex items-center justify-center w-7 h-7 rounded-md text-gray-400 dark:text-gray-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-500/10 border border-transparent hover:border-green-500/30 transition-all z-20"
-          data-plugin-id={plugin.id}
-          aria-label="Add to install list"
-          title="Add to install list"
-          onclick="event.stopPropagation()"
-        >
-          <svg class="w-4 h-4 install-icon-plus" fill="none" stroke="currentColor" stroke-width="2.25" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
-          <svg class="w-4 h-4 install-icon-check hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-          <span class="sr-only install-btn-label">Install</span>
-        </button>
-        <label class="flex items-center cursor-pointer group/compare w-10 h-7 justify-center rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors" onclick="event.stopPropagation()" title="Add to compare" aria-label="Add to compare">
-          <input type="checkbox" class="compare-checkbox sr-only peer" data-plugin-id={plugin.id}>
-          <div class="relative w-8 h-4 bg-gray-300 dark:bg-white/20 peer-focus:outline-none rounded-full peer-checked:after:translate-x-4 rtl:peer-checked:after:-translate-x-4 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary dark:peer-checked:bg-[#ccff00]"></div>
-        </label>
-      </div>
-    </div>
-
-    <div class="flex justify-between items-start mb-4">
-      <div class="flex flex-col">
-        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-[#ccff00] transition-colors leading-tight line-clamp-2">
-          {plugin.name}
-        </h3>
-        {vendorHref ? (
-          <a
-            href={vendorHref}
-            class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-wider font-semibold hover:text-primary dark:hover:text-[#ccff00] transition-colors w-fit"
-            onclick="event.stopPropagation()"
-          >By {plugin.vendor}</a>
-        ) : (
-          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 uppercase tracking-wider font-semibold">By {plugin.vendor}</p>
-        )}
-      </div>
-
-      {tags.length > 0 && (
-        <div class="flex flex-col gap-2 items-end shrink-0 pl-3">
-          {tags.map(tag => (
-            <span class={`px-2 py-1 text-[9px] uppercase font-bold rounded-sm whitespace-nowrap
-              ${tag === 'AI Ready' ? 'bg-primary/20 text-primary-dark dark:text-[#ccff00] border border-primary/50' : ''}
-              ${tag === 'Sponsored' ? 'bg-secondary/10 text-secondary border border-secondary/30' : ''}
-              ${tag === 'Featured' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 border border-purple-300 dark:border-purple-500/50' : ''}
-            `}>
-              {tag}
-            </span>
-          ))}
+    <div class="flex h-full flex-col p-6">
+      <div class="relative z-10 mb-2 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span
+            class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] text-gray-400 dark:bg-white/5 dark:text-gray-500"
+            >{plugin.id}</span
+          >
+          <button
+            type="button"
+            class="copy-id-btn hover:text-primary -ml-1 p-1 text-gray-400 transition-colors dark:hover:text-[#ccff00]"
+            data-plugin-id={plugin.id}
+            title="Copy ID"
+          >
+            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+              ></path></svg
+            >
+          </button>
         </div>
-      )}
-    </div>
 
-    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 flex-grow line-clamp-3">
-      {plugin.description}
-    </p>
-
-    <div class="mt-auto pt-4 border-t border-gray-100 dark:border-white/5 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-      <div class="flex items-center gap-2">
-        <span class="flex items-center gap-1" title="Total Downloads">
-          <svg class="w-4 h-4 text-primary dark:text-[#ccff00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-          <span class="font-medium text-gray-700 dark:text-gray-300">{formatNumber(plugin.stats.absoluteDownloads)}</span>
-        </span>
+        <div class="flex items-center gap-1">
+          <button
+            type="button"
+            class="favorite-btn relative z-20 flex h-7 w-7 items-center justify-center rounded-md border border-transparent text-gray-400 transition-all hover:border-yellow-500/30 hover:bg-yellow-500/10 hover:text-yellow-500 dark:text-gray-500 dark:hover:text-yellow-400"
+            data-plugin-id={plugin.id}
+            aria-label="Add to favorites"
+            aria-pressed="false"
+            title="Add to favorites"
+            onclick="event.stopPropagation()"
+          >
+            <svg
+              class="fav-icon-outline h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+              ></path></svg
+            >
+            <svg
+              class="fav-icon-filled hidden h-4 w-4 text-yellow-500 dark:text-yellow-400"
+              fill="currentColor"
+              stroke="none"
+              viewBox="0 0 24 24"
+              ><path
+                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+              ></path></svg
+            >
+          </button>
+          <button
+            type="button"
+            class="install-add-btn group/install relative z-20 flex h-7 w-7 items-center justify-center rounded-md border border-transparent text-gray-400 transition-all hover:border-green-500/30 hover:bg-green-500/10 hover:text-green-600 dark:text-gray-500 dark:hover:text-green-400"
+            data-plugin-id={plugin.id}
+            aria-label="Add to install list"
+            title="Add to install list"
+            onclick="event.stopPropagation()"
+          >
+            <svg
+              class="install-icon-plus h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.25"
+              viewBox="0 0 24 24"
+              ><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg
+            >
+            <svg
+              class="install-icon-check hidden h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+              ><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="install-btn-label sr-only">Install</span>
+          </button>
+          <label
+            class="group/compare flex h-7 w-10 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-white/5"
+            onclick="event.stopPropagation()"
+            title="Add to compare"
+            aria-label="Add to compare"
+          >
+            <input
+              type="checkbox"
+              class="compare-checkbox peer sr-only"
+              data-plugin-id={plugin.id}
+            />
+            <div
+              class="peer-checked:bg-primary relative h-4 w-8 rounded-full bg-gray-300 peer-focus:outline-none after:absolute after:start-[2px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-4 peer-checked:after:border-white rtl:peer-checked:after:-translate-x-4 dark:bg-white/20 dark:peer-checked:bg-[#ccff00]"
+            >
+            </div>
+          </label>
+        </div>
       </div>
-      
-      <div class="flex items-center gap-3">
-        {plugin.stats.trendingDelta > 0 && (
-          <span class="flex items-center gap-1 text-green-600 dark:text-green-400" title="Downloads this week">
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-            +{formatNumber(plugin.stats.trendingDelta)}
+
+      <div class="mb-4 flex items-start justify-between">
+        <div class="flex flex-col">
+          <h3
+            class="group-hover:text-primary line-clamp-2 text-xl leading-tight font-bold text-gray-900 transition-colors dark:text-gray-100 dark:group-hover:text-[#ccff00]"
+          >
+            {plugin.name}
+          </h3>
+          {
+            vendorHref ? (
+              <a
+                href={vendorHref}
+                class="hover:text-primary mt-1 w-fit text-xs font-semibold tracking-wider text-gray-500 uppercase transition-colors dark:text-gray-400 dark:hover:text-[#ccff00]"
+                onclick="event.stopPropagation()"
+              >
+                By {plugin.vendor}
+              </a>
+            ) : (
+              <p class="mt-1 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                By {plugin.vendor}
+              </p>
+            )
+          }
+        </div>
+
+        {
+          tags.length > 0 && (
+            <div class="flex shrink-0 flex-col items-end gap-2 pl-3">
+              {tags.map((tag) => (
+                <span
+                  class={`rounded-sm px-2 py-1 text-[9px] font-bold whitespace-nowrap uppercase ${tag === 'AI Ready' ? 'bg-primary/20 text-primary-dark border-primary/50 border dark:text-[#ccff00]' : ''} ${tag === 'Sponsored' ? 'bg-secondary/10 text-secondary border-secondary/30 border' : ''} ${tag === 'Featured' ? 'border border-purple-300 bg-purple-100 text-purple-600 dark:border-purple-500/50 dark:bg-purple-900/30 dark:text-purple-400' : ''} `}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      <p
+        class="mb-6 line-clamp-3 flex-grow text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+      >
+        {plugin.description}
+      </p>
+
+      <div
+        class="mt-auto flex items-center justify-between border-t border-gray-100 pt-4 text-xs text-gray-500 dark:border-white/5 dark:text-gray-400"
+      >
+        <div class="flex items-center gap-2">
+          <span class="flex items-center gap-1" title="Total Downloads">
+            <svg
+              class="text-primary h-4 w-4 dark:text-[#ccff00]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg
+            >
+            <span class="font-medium text-gray-700 dark:text-gray-300"
+              >{formatNumber(plugin.stats.absoluteDownloads)}</span
+            >
           </span>
-        )}
-        {plugin.stats.trendingDelta < 0 && (
-          <span class="flex items-center gap-1 text-red-500" title="Downloads this week">
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6"></path></svg>
-            {formatNumber(plugin.stats.trendingDelta)}
+        </div>
+
+        <div class="flex items-center gap-3">
+          {
+            plugin.stats.trendingDelta > 0 && (
+              <span
+                class="flex items-center gap-1 text-green-600 dark:text-green-400"
+                title="Downloads this week"
+              >
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                  />
+                </svg>
+                +{formatNumber(plugin.stats.trendingDelta)}
+              </span>
+            )
+          }
+          {
+            plugin.stats.trendingDelta < 0 && (
+              <span class="flex items-center gap-1 text-red-500" title="Downloads this week">
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6"
+                  />
+                </svg>
+                {formatNumber(plugin.stats.trendingDelta)}
+              </span>
+            )
+          }
+          <span
+            class="rounded bg-gray-100 px-2 py-1 text-gray-600 dark:bg-white/5 dark:text-gray-400"
+          >
+            {category}
           </span>
-        )}
-        <span class="bg-gray-100 dark:bg-white/5 px-2 py-1 rounded text-gray-600 dark:text-gray-400">
-          {category}
-        </span>
+        </div>
       </div>
     </div>
   </div>

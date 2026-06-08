@@ -16,12 +16,13 @@ const trendingPlugins = [...pluginsData]
 
 // Extract Unique Categories for Filters
 const categoriesSet = new Set(['All']);
-pluginsData.forEach(p => {
+pluginsData.forEach((p) => {
   let cat = 'Others';
   if (p.componentClasses) {
     const classesStr = p.componentClasses.join(' ').toLowerCase();
     if (classesStr.includes('assertion')) cat = 'Assertions';
-    else if (classesStr.includes('listener') || classesStr.includes('visualizer')) cat = 'Listeners';
+    else if (classesStr.includes('listener') || classesStr.includes('visualizer'))
+      cat = 'Listeners';
     else if (classesStr.includes('sampler')) cat = 'Samplers';
     else if (classesStr.includes('config')) cat = 'Configs';
     else if (classesStr.includes('timer')) cat = 'Timers';
@@ -34,450 +35,559 @@ const categories = Array.from(categoriesSet);
 
 // FAQPage schema — high-value for AI agent citation (agents surface FAQ answers directly)
 const homeSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-        {
-            '@type': 'Question',
-            name: 'What is PerfAtlas?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'PerfAtlas is a free, community-driven directory of Apache JMeter plugins. It indexes 100+ plugins from the official JMeter Plugins registry, tracks daily and weekly download trends, and curates collections for common load testing scenarios like CI/CD, Observability, and Load Shaping.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'What are the most popular JMeter plugins?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'The most downloaded JMeter plugins are: (1) Custom Thread Groups (jpgc-casutg) with 1.85 million+ downloads, (2) PerfMon Server Monitoring (jpgc-perfmon) with 1.4 million+ downloads, (3) 5 Additional Graphs (jpgc-graphs-basic) with 1.35 million+ downloads, (4) Dummy Sampler (jpgc-dummy) with 1.2 million+ downloads, and (5) Throughput Shaping Timer (jpgc-tst) with 1.15 million+ downloads.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'How do I install JMeter plugins?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'To install JMeter plugins, download the JMeter Plugin Manager JAR from https://jmeter-plugins.org/install/Install/ and place it in your JMeter lib/ext directory. Then restart JMeter and use the Plugin Manager (Options > Plugins Manager) to search and install any plugin. PerfAtlas generates the exact install command for each plugin.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'What are AI-Ready JMeter plugins?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'AI-Ready plugins on PerfAtlas are JMeter plugins validated for use in AI-assisted workflows. They have predictable APIs, are well-documented, and can be reliably invoked or configured by AI agents and automation tools. They are marked with a special badge in the directory.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'How can I compare JMeter plugins?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'PerfAtlas provides a side-by-side plugin comparison tool at https://plugins.jmeter.ai/compare/. Select up to 4 plugins from the directory and click Compare to see a full breakdown of total downloads, weekly trend, AI-readiness, GitHub stars, license, and category.',
-            },
-        },
-    ],
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is PerfAtlas?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'PerfAtlas is a free, community-driven directory of Apache JMeter plugins. It indexes 100+ plugins from the official JMeter Plugins registry, tracks daily and weekly download trends, and curates collections for common load testing scenarios like CI/CD, Observability, and Load Shaping.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are the most popular JMeter plugins?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The most downloaded JMeter plugins are: (1) Custom Thread Groups (jpgc-casutg) with 1.85 million+ downloads, (2) PerfMon Server Monitoring (jpgc-perfmon) with 1.4 million+ downloads, (3) 5 Additional Graphs (jpgc-graphs-basic) with 1.35 million+ downloads, (4) Dummy Sampler (jpgc-dummy) with 1.2 million+ downloads, and (5) Throughput Shaping Timer (jpgc-tst) with 1.15 million+ downloads.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I install JMeter plugins?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'To install JMeter plugins, download the JMeter Plugin Manager JAR from https://jmeter-plugins.org/install/Install/ and place it in your JMeter lib/ext directory. Then restart JMeter and use the Plugin Manager (Options > Plugins Manager) to search and install any plugin. PerfAtlas generates the exact install command for each plugin.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are AI-Ready JMeter plugins?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'AI-Ready plugins on PerfAtlas are JMeter plugins validated for use in AI-assisted workflows. They have predictable APIs, are well-documented, and can be reliably invoked or configured by AI agents and automation tools. They are marked with a special badge in the directory.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can I compare JMeter plugins?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'PerfAtlas provides a side-by-side plugin comparison tool at https://plugins.jmeter.ai/compare/. Select up to 4 plugins from the directory and click Compare to see a full breakdown of total downloads, weekly trend, AI-readiness, GitHub stars, license, and category.',
+      },
+    },
+  ],
 };
 ---
 
-<Layout 
-    title="PerfAtlas - The Modern JMeter Plugin Directory" 
-    description="Discover, compare, and track 100+ JMeter plugins. Search by category, see weekly download trends, find AI-ready plugins, and generate install commands — all free, synced nightly."
-    image="/og/home.png" 
-    schema={homeSchema}
+<Layout
+  title="PerfAtlas - The Modern JMeter Plugin Directory"
+  description="Discover, compare, and track 100+ JMeter plugins. Search by category, see weekly download trends, find AI-ready plugins, and generate install commands — all free, synced nightly."
+  image="/og/home.png"
+  schema={homeSchema}
 >
-    <Header />
-    
-    <main class="flex-grow flex flex-col">
-        <Hero />
-        
-        <div id="statistics">
-            <FeaturedTrending trendingPlugins={trendingPlugins} />
-        </div>
-        
-        <BadgesPromotion />
+  <Header />
 
-        {/* All Plugins Grid with Filters */}
-        <section id="compare" class="py-8 sm:py-10 px-4 sm:px-6 flex-grow">
-            <div class="max-w-7xl mx-auto">
-                
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
-                    <div>
-                        <h2 class="text-2xl font-bold dark:text-white mb-4">All Directory Plugins</h2>
-                        
-                        {/* Filter Categories */}
-                        <span id="ai-ready" class="block" aria-hidden="true"></span>
-                        <div class="flex flex-wrap gap-1.5 sm:gap-2" id="categoryFilters">
-                            <button
-                                data-filter="__favorites"
-                                class="filter-btn favorites-pill px-4 py-1.5 rounded-full text-sm font-semibold transition-all border bg-white dark:bg-dark-surface border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-yellow-400/70 flex items-center gap-1.5"
-                            >
-                                <svg class="w-3.5 h-3.5 fav-icon-outline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                                <svg class="w-3.5 h-3.5 fav-icon-filled hidden text-yellow-500" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                                <span>Favorites</span>
-                                <span id="favPillCount" class="hidden bg-yellow-400/20 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
-                            </button>
-                            {categories.map((cat, index) => (
-                                <button 
-                                    data-filter={cat.toLowerCase()} 
-                                    class={`filter-btn px-4 py-1.5 rounded-full text-sm font-semibold transition-all border
-                                    ${index === 0 
-                                        ? 'bg-primary border-primary text-gray-900 shadow-md' 
-                                        : 'bg-white dark:bg-dark-surface border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-primary/50'
-                                    }`}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                    <div class="flex flex-row items-center gap-2 sm:gap-3 shrink-0 mt-2 md:mt-0 w-full md:w-auto">
-                        <select id="sortSelect" class="flex-1 sm:flex-none sm:w-auto bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary/50 cursor-pointer shadow-sm appearance-none">
-                            <option value="relevance">Sort by: Relevance</option>
-                            <option value="downloads-desc">Downloads: High to Low</option>
-                            <option value="trending-desc">Trending: High to Low</option>
-                            <option value="name-asc">Name: A to Z</option>
-                            <option value="ai-ready">AI Ready First</option>
-                        </select>
-                        <span class="w-auto text-center text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-white/10 px-3 py-1.5 rounded-lg text-sm font-bold truncate shrink-0" id="resultCount">{pluginsData.length} plugins</span>
-                    </div>
-                </div>
+  <main class="flex flex-grow flex-col">
+    <Hero />
 
-                <div id="noResults" class="hidden text-center py-20 border border-gray-200 dark:border-white/5 rounded-2xl bg-gray-50 dark:bg-white/[0.01]">
-                    <h3 id="noResultsMsg" class="text-xl text-gray-500 dark:text-gray-400">No plugins found matching your criteria.</h3>
-                </div>
+    <div id="statistics">
+      <FeaturedTrending trendingPlugins={trendingPlugins} />
+    </div>
 
-                {/* Share favorites bar — shown when Favorites filter is active with ≥1 item */}
-                <div id="favShareBar" class="hidden mb-6 flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-yellow-300/40 bg-yellow-50 dark:bg-yellow-400/5 dark:border-yellow-400/20">
-                    <p class="text-sm text-yellow-800 dark:text-yellow-300 font-semibold">Share your favorites list</p>
-                    <button id="favShareBtn" class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-yellow-400/20 hover:bg-yellow-400/40 text-yellow-900 dark:text-yellow-300 transition-colors">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                        <span id="favShareBtnLabel">Copy share link</span>
-                    </button>
-                </div>
+    <BadgesPromotion />
 
-                <span id="install" class="block" aria-hidden="true"></span>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="pluginGrid">
-                    {pluginsData.map((plugin, index) => (
-                        <div class={`plugin-wrapper flex flex-col ${index >= 24 ? 'hidden' : ''}`} 
-                             data-plugin-id={plugin.id}
-                             data-fav="0"
-                             data-name={plugin.name.toLowerCase()} 
-                             data-desc={plugin.description.toLowerCase()} 
-                             data-vendor={plugin.vendor.toLowerCase()}
-                             data-downloads={plugin.stats.absoluteDownloads || 0}
-                             data-trending={plugin.stats.trendingDelta || 0}
-                             data-ai={plugin.isAiReady ? 1 : 0}
-                             data-category={
-                                (() => {
-                                    let c = 'others';
-                                    if (plugin.componentClasses) {
-                                        const str = plugin.componentClasses.join(' ').toLowerCase();
-                                        if (str.includes('assertion')) c = 'assertions';
-                                        else if (str.includes('listener') || str.includes('visualizer')) c = 'listeners';
-                                        else if (str.includes('sampler')) c = 'samplers';
-                                        else if (str.includes('config')) c = 'configs';
-                                        else if (str.includes('timer')) c = 'timers';
-                                        else if (str.includes('processor')) c = 'processors';
-                                    }
-                                    return c;
-                                })()
-                             }
-                        >
-                            <PluginCard plugin={plugin} />
-                        </div>
-                    ))}
-                </div>
+    {/* All Plugins Grid with Filters */}
+    <section id="compare" class="flex-grow px-4 py-8 sm:px-6 sm:py-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-6 flex flex-col justify-between gap-4 sm:mb-8 md:flex-row md:items-end">
+          <div>
+            <h2 class="mb-4 text-2xl font-bold dark:text-white">All Directory Plugins</h2>
 
-                <div id="scrollSentinel" class="hidden py-10 flex justify-center w-full">
-                    <div class="w-8 h-8 rounded-full border-4 border-gray-200 dark:border-white/10 border-t-primary animate-spin"></div>
-                </div>
+            {/* Filter Categories */}
+            <span id="ai-ready" class="block" aria-hidden="true"></span>
+            <div class="flex flex-wrap gap-1.5 sm:gap-2" id="categoryFilters">
+              <button
+                data-filter="__favorites"
+                class="filter-btn favorites-pill dark:bg-dark-surface flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-semibold text-gray-600 transition-all hover:border-yellow-400/70 dark:border-white/10 dark:text-gray-300"
+              >
+                <svg
+                  class="fav-icon-outline h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                  ></path></svg
+                >
+                <svg
+                  class="fav-icon-filled hidden h-3.5 w-3.5 text-yellow-500"
+                  fill="currentColor"
+                  stroke="none"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                  ></path></svg
+                >
+                <span>Favorites</span>
+                <span
+                  id="favPillCount"
+                  class="hidden rounded-full bg-yellow-400/20 px-1.5 py-0.5 text-[10px] font-bold text-yellow-700 dark:text-yellow-400"
+                  >0</span
+                >
+              </button>
+              {
+                categories.map((cat, index) => (
+                  <button
+                    data-filter={cat.toLowerCase()}
+                    class={`filter-btn rounded-full border px-4 py-1.5 text-sm font-semibold transition-all ${
+                      index === 0
+                        ? 'bg-primary border-primary text-gray-900 shadow-md'
+                        : 'dark:bg-dark-surface hover:border-primary/50 border-gray-200 bg-white text-gray-600 dark:border-white/10 dark:text-gray-300'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))
+              }
             </div>
-        </section>
-    </main>
+          </div>
+          <div
+            class="mt-2 flex w-full shrink-0 flex-row items-center gap-2 sm:gap-3 md:mt-0 md:w-auto"
+          >
+            <select
+              id="sortSelect"
+              class="dark:bg-dark-surface focus:border-primary/50 flex-1 cursor-pointer appearance-none rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-semibold text-gray-700 shadow-sm focus:outline-none sm:w-auto sm:flex-none dark:border-white/10 dark:text-gray-300"
+            >
+              <option value="relevance">Sort by: Relevance</option>
+              <option value="downloads-desc">Downloads: High to Low</option>
+              <option value="trending-desc">Trending: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="ai-ready">AI Ready First</option>
+            </select>
+            <span
+              class="w-auto shrink-0 truncate rounded-lg bg-gray-100 px-3 py-1.5 text-center text-sm font-bold text-gray-500 dark:bg-white/10 dark:text-gray-400"
+              id="resultCount">{pluginsData.length} plugins</span
+            >
+          </div>
+        </div>
 
-    <Footer />
-    <PluginModal />
+        <div
+          id="noResults"
+          class="hidden rounded-2xl border border-gray-200 bg-gray-50 py-20 text-center dark:border-white/5 dark:bg-white/[0.01]"
+        >
+          <h3 id="noResultsMsg" class="text-xl text-gray-500 dark:text-gray-400">
+            No plugins found matching your criteria.
+          </h3>
+        </div>
 
-    {/* Local client logic for Grid Searching & Filtering */}
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput') as HTMLInputElement;
-            const pluginWrappers = document.querySelectorAll('.plugin-wrapper');
-            const noResults = document.getElementById('noResults');
-            const resultCount = document.getElementById('resultCount');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const sortSelect = document.getElementById('sortSelect') as HTMLSelectElement;
-            const featuredTrendingSection = document.getElementById('featuredTrendingSection');
-            const scrollSentinel = document.getElementById('scrollSentinel');
-            
-            let currentSearchTerm = '';
-            let currentCategory = 'all';
-            let favoritesActive = false;
+        {/* Share favorites bar — shown when Favorites filter is active with ≥1 item */}
+        <div
+          id="favShareBar"
+          class="mb-6 flex hidden items-center justify-between gap-3 rounded-xl border border-yellow-300/40 bg-yellow-50 px-4 py-3 dark:border-yellow-400/20 dark:bg-yellow-400/5"
+        >
+          <p class="text-sm font-semibold text-yellow-800 dark:text-yellow-300">
+            Share your favorites list
+          </p>
+          <button
+            id="favShareBtn"
+            class="flex items-center gap-1.5 rounded-lg bg-yellow-400/20 px-3 py-1.5 text-xs font-bold text-yellow-900 transition-colors hover:bg-yellow-400/40 dark:text-yellow-300"
+          >
+            <svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+              ></path></svg
+            >
+            <span id="favShareBtnLabel">Copy share link</span>
+          </button>
+        </div>
 
-            const ITEMS_PER_PAGE = 24;
-            let displayLimit = ITEMS_PER_PAGE;
+        <span id="install" class="block" aria-hidden="true"></span>
+        <div
+          class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          id="pluginGrid"
+        >
+          {
+            pluginsData.map((plugin, index) => (
+              <div
+                class={`plugin-wrapper flex flex-col ${index >= 24 ? 'hidden' : ''}`}
+                data-plugin-id={plugin.id}
+                data-fav="0"
+                data-name={plugin.name.toLowerCase()}
+                data-desc={plugin.description.toLowerCase()}
+                data-vendor={plugin.vendor.toLowerCase()}
+                data-downloads={plugin.stats.absoluteDownloads || 0}
+                data-trending={plugin.stats.trendingDelta || 0}
+                data-ai={plugin.isAiReady ? 1 : 0}
+                data-category={(() => {
+                  let c = 'others';
+                  if (plugin.componentClasses) {
+                    const str = plugin.componentClasses.join(' ').toLowerCase();
+                    if (str.includes('assertion')) c = 'assertions';
+                    else if (str.includes('listener') || str.includes('visualizer'))
+                      c = 'listeners';
+                    else if (str.includes('sampler')) c = 'samplers';
+                    else if (str.includes('config')) c = 'configs';
+                    else if (str.includes('timer')) c = 'timers';
+                    else if (str.includes('processor')) c = 'processors';
+                  }
+                  return c;
+                })()}
+              >
+                <PluginCard plugin={plugin} />
+              </div>
+            ))
+          }
+        </div>
 
-            // Cache attributes into memory for much faster filtering/sorting
-            // reading from DOM is slow, memory is fast.
-            const pluginsCache = Array.from(pluginWrappers).map((wrapper, index) => {
-                return {
-                    element: wrapper as HTMLElement,
-                    index: index,
-                    name: wrapper.getAttribute('data-name') || '',
-                    desc: wrapper.getAttribute('data-desc') || '',
-                    vendor: wrapper.getAttribute('data-vendor') || '',
-                    cat: wrapper.getAttribute('data-category') || '',
-                    pluginId: wrapper.getAttribute('data-plugin-id') || '',
-                    downloads: parseInt(wrapper.getAttribute('data-downloads') || '0', 10),
-                    trending: parseInt(wrapper.getAttribute('data-trending') || '0', 10),
-                    aiReady: parseInt(wrapper.getAttribute('data-ai') || '0', 10),
-                    isHidden: index >= 24
-                };
-            });
-            
-            let sortedPlugins = [...pluginsCache];
+        <div id="scrollSentinel" class="flex hidden w-full justify-center py-10">
+          <div
+            class="border-t-primary h-8 w-8 animate-spin rounded-full border-4 border-gray-200 dark:border-white/10"
+          >
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            function applySort() {
-                if(!sortSelect) return;
-                const sortValue = sortSelect.value;
-                
-                sortedPlugins.sort((a, b) => {
-                    if (sortValue === 'name-asc') {
-                        return a.name.localeCompare(b.name);
-                    } else if (sortValue === 'downloads-desc') {
-                        return b.downloads - a.downloads;
-                    } else if (sortValue === 'trending-desc') {
-                        return b.trending - a.trending;
-                    } else if (sortValue === 'ai-ready') {
-                        const aiDiff = b.aiReady - a.aiReady;
-                        if (aiDiff === 0) return b.downloads - a.downloads;
-                        return aiDiff;
-                    }
-                    return a.index - b.index;
-                });
-                
-                requestAnimationFrame(() => {
-                    sortedPlugins.forEach((item, index) => {
-                        item.element.style.order = String(index);
-                    });
-                    
-                    displayLimit = ITEMS_PER_PAGE;
-                    updateGrid();
-                });
-            }
+  <Footer />
+  <PluginModal />
 
-            function updateGrid() {
-                let matchedCount = 0;
-                let renderedCount = 0;
+  {/* Local client logic for Grid Searching & Filtering */}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+      const pluginWrappers = document.querySelectorAll('.plugin-wrapper');
+      const noResults = document.getElementById('noResults');
+      const resultCount = document.getElementById('resultCount');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const sortSelect = document.getElementById('sortSelect') as HTMLSelectElement;
+      const featuredTrendingSection = document.getElementById('featuredTrendingSection');
+      const scrollSentinel = document.getElementById('scrollSentinel');
 
-                requestAnimationFrame(() => {
-                    if (featuredTrendingSection) {
-                        if (currentSearchTerm !== '') {
-                            featuredTrendingSection.classList.add('hidden');
-                        } else {
-                            featuredTrendingSection.classList.remove('hidden');
-                        }
-                    }
+      let currentSearchTerm = '';
+      let currentCategory = 'all';
+      let favoritesActive = false;
 
-                    // Sync fav state from window.__favorites if available
-                    const favApi = (window as any).__favorites;
-                    sortedPlugins.forEach(item => {
-                        const matchesSearch = currentSearchTerm === '' || item.name.includes(currentSearchTerm) || item.desc.includes(currentSearchTerm) || item.vendor.includes(currentSearchTerm);
-                        const isFav = favApi ? favApi.has(item.pluginId) : item.element.getAttribute('data-fav') === '1';
-                        const matchesCategory = currentCategory === '__favorites'
-                            ? isFav
-                            : currentCategory === 'all' || item.cat === currentCategory;
-                        const isMatched = matchesSearch && matchesCategory;
+      const ITEMS_PER_PAGE = 24;
+      let displayLimit = ITEMS_PER_PAGE;
 
-                        if (isMatched) {
-                            matchedCount++;
-                            if (renderedCount < displayLimit) {
-                                renderedCount++;
-                                if (item.isHidden) {
-                                    item.element.classList.remove('hidden');
-                                    item.isHidden = false;
-                                }
-                            } else {
-                                if (!item.isHidden) {
-                                    item.element.classList.add('hidden');
-                                    item.isHidden = true;
-                                }
-                            }
-                        } else {
-                            if (!item.isHidden) {
-                                item.element.classList.add('hidden');
-                                item.isHidden = true;
-                            }
-                        }
-                    });
+      // Cache attributes into memory for much faster filtering/sorting
+      // reading from DOM is slow, memory is fast.
+      const pluginsCache = Array.from(pluginWrappers).map((wrapper, index) => {
+        return {
+          element: wrapper as HTMLElement,
+          index: index,
+          name: wrapper.getAttribute('data-name') || '',
+          desc: wrapper.getAttribute('data-desc') || '',
+          vendor: wrapper.getAttribute('data-vendor') || '',
+          cat: wrapper.getAttribute('data-category') || '',
+          pluginId: wrapper.getAttribute('data-plugin-id') || '',
+          downloads: parseInt(wrapper.getAttribute('data-downloads') || '0', 10),
+          trending: parseInt(wrapper.getAttribute('data-trending') || '0', 10),
+          aiReady: parseInt(wrapper.getAttribute('data-ai') || '0', 10),
+          isHidden: index >= 24,
+        };
+      });
 
-                    if (resultCount) {
-                        resultCount.textContent = `${matchedCount} plugin${matchedCount !== 1 ? 's' : ''}`;
-                    }
-                    
-                    if (noResults) {
-                        if (matchedCount === 0) {
-                            noResults.classList.remove('hidden');
-                            const noResultsMsg = document.getElementById('noResultsMsg');
-                            if (noResultsMsg) {
-                                noResultsMsg.textContent = currentCategory === '__favorites'
-                                    ? 'No favorites yet, click the ★ on any plugin to save it here.'
-                                    : 'No plugins found matching your criteria.';
-                            }
-                        } else {
-                            noResults.classList.add('hidden');
-                        }
-                    }
+      let sortedPlugins = [...pluginsCache];
 
-                    const favShareBar = document.getElementById('favShareBar');
-                    if (favShareBar) {
-                        if (currentCategory === '__favorites' && matchedCount > 0) {
-                            favShareBar.classList.remove('hidden');
-                        } else {
-                            favShareBar.classList.add('hidden');
-                        }
-                    }
-                    
-                    if (scrollSentinel) {
-                        if (renderedCount < matchedCount) {
-                            scrollSentinel.classList.remove('hidden');
-                        } else {
-                            scrollSentinel.classList.add('hidden');
-                        }
-                    }
-                });
-            }
+      function applySort() {
+        if (!sortSelect) return;
+        const sortValue = sortSelect.value;
 
-            if (scrollSentinel) {
-                const observer = new IntersectionObserver((entries) => {
-                    if (entries[0].isIntersecting) {
-                        displayLimit += ITEMS_PER_PAGE;
-                        updateGrid();
-                    }
-                }, { rootMargin: '400px' }); // Load nicely before it becomes fully visible
-                observer.observe(scrollSentinel);
-            }
-
-            // Debounce search input
-            let debounceTimer: number | null = null;
-            if (searchInput) {
-                searchInput.addEventListener('input', (e) => {
-                    if (debounceTimer) clearTimeout(debounceTimer);
-                    debounceTimer = window.setTimeout(() => {
-                        currentSearchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
-                        displayLimit = ITEMS_PER_PAGE;
-                        updateGrid();
-                    }, 250);
-                });
-            }
-
-            if (sortSelect) {
-                sortSelect.addEventListener('change', () => {
-                    applySort();
-                });
-            }
-
-            function updateFavPill() {
-                const favApi = (window as any).__favorites;
-                const count = favApi ? favApi.list().length : 0;
-                const favPillCount = document.getElementById('favPillCount');
-                const favsPill = document.querySelector('.favorites-pill') as HTMLElement | null;
-                if (favPillCount) {
-                    if (count > 0) {
-                        favPillCount.textContent = String(count);
-                        favPillCount.classList.remove('hidden');
-                    } else {
-                        favPillCount.classList.add('hidden');
-                    }
-                }
-                if (favsPill) {
-                    const outline = favsPill.querySelector('.fav-icon-outline') as HTMLElement | null;
-                    const filled  = favsPill.querySelector('.fav-icon-filled') as HTMLElement | null;
-                    if (count > 0) {
-                        outline?.classList.add('hidden');
-                        filled?.classList.remove('hidden');
-                    } else {
-                        outline?.classList.remove('hidden');
-                        filled?.classList.add('hidden');
-                    }
-                }
-            }
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md',
-                            'bg-yellow-400/20', 'border-yellow-400', 'text-yellow-900', 'dark:text-yellow-300');
-                        b.classList.add('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
-                    });
-                    
-                    const target = e.currentTarget as HTMLElement;
-                    target.classList.remove('bg-white', 'dark:bg-dark-surface', 'border-gray-200', 'dark:border-white/10', 'text-gray-600', 'dark:text-gray-300');
-                    const filter = target.getAttribute('data-filter') || 'all';
-
-                    if (filter === '__favorites') {
-                        target.classList.add('bg-yellow-400/20', 'border-yellow-400', 'text-yellow-900', 'dark:text-yellow-300', 'shadow-md');
-                        favoritesActive = true;
-                    } else {
-                        target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
-                        favoritesActive = false;
-                    }
-
-                    currentCategory = filter;
-                    displayLimit = ITEMS_PER_PAGE;
-                    updateGrid();
-                });
-            });
-
-            // Share link button
-            const favShareBtn = document.getElementById('favShareBtn');
-            if (favShareBtn) {
-                favShareBtn.addEventListener('click', () => {
-                    const favApi = (window as any).__favorites;
-                    if (!favApi) return;
-                    const ids = favApi.list().slice(0, 100);
-                    const shareUrl = `${location.origin}/?favs=${ids.join(',')}`;
-                    const labelEl = document.getElementById('favShareBtnLabel');
-                    navigator.clipboard.writeText(shareUrl).then(() => {
-                        if (labelEl) {
-                            const orig = labelEl.textContent;
-                            labelEl.textContent = 'Copied!';
-                            setTimeout(() => { labelEl.textContent = orig; }, 2000);
-                        }
-                    });
-                });
-            }
-
-            // React to favorites changes (star toggled anywhere on page)
-            document.addEventListener('favorites:update', () => {
-                updateFavPill();
-                if (currentCategory === '__favorites') updateGrid();
-            });
-
-            // Auto-activate Favorites pill if ?fav=1 is present
-            (() => {
-                const params = new URLSearchParams(window.location.search);
-                if (params.get('fav') === '1') {
-                    params.delete('fav');
-                    const newSearch = params.toString();
-                    history.replaceState(null, '', window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash);
-                    const favsPill = document.querySelector('.favorites-pill') as HTMLElement | null;
-                    if (favsPill) {
-                        favsPill.click();
-                        requestAnimationFrame(() => {
-                            const filtersEl = document.getElementById('categoryFilters');
-                            if (filtersEl) filtersEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        });
-                    }
-                }
-            })();
-
-            updateFavPill();
-
-            // Initialize Grid State
-            updateGrid();
+        sortedPlugins.sort((a, b) => {
+          if (sortValue === 'name-asc') {
+            return a.name.localeCompare(b.name);
+          } else if (sortValue === 'downloads-desc') {
+            return b.downloads - a.downloads;
+          } else if (sortValue === 'trending-desc') {
+            return b.trending - a.trending;
+          } else if (sortValue === 'ai-ready') {
+            const aiDiff = b.aiReady - a.aiReady;
+            if (aiDiff === 0) return b.downloads - a.downloads;
+            return aiDiff;
+          }
+          return a.index - b.index;
         });
-    </script>
+
+        requestAnimationFrame(() => {
+          sortedPlugins.forEach((item, index) => {
+            item.element.style.order = String(index);
+          });
+
+          displayLimit = ITEMS_PER_PAGE;
+          updateGrid();
+        });
+      }
+
+      function updateGrid() {
+        let matchedCount = 0;
+        let renderedCount = 0;
+
+        requestAnimationFrame(() => {
+          if (featuredTrendingSection) {
+            if (currentSearchTerm !== '') {
+              featuredTrendingSection.classList.add('hidden');
+            } else {
+              featuredTrendingSection.classList.remove('hidden');
+            }
+          }
+
+          // Sync fav state from window.__favorites if available
+          const favApi = (window as any).__favorites;
+          sortedPlugins.forEach((item) => {
+            const matchesSearch =
+              currentSearchTerm === '' ||
+              item.name.includes(currentSearchTerm) ||
+              item.desc.includes(currentSearchTerm) ||
+              item.vendor.includes(currentSearchTerm);
+            const isFav = favApi
+              ? favApi.has(item.pluginId)
+              : item.element.getAttribute('data-fav') === '1';
+            const matchesCategory =
+              currentCategory === '__favorites'
+                ? isFav
+                : currentCategory === 'all' || item.cat === currentCategory;
+            const isMatched = matchesSearch && matchesCategory;
+
+            if (isMatched) {
+              matchedCount++;
+              if (renderedCount < displayLimit) {
+                renderedCount++;
+                if (item.isHidden) {
+                  item.element.classList.remove('hidden');
+                  item.isHidden = false;
+                }
+              } else {
+                if (!item.isHidden) {
+                  item.element.classList.add('hidden');
+                  item.isHidden = true;
+                }
+              }
+            } else {
+              if (!item.isHidden) {
+                item.element.classList.add('hidden');
+                item.isHidden = true;
+              }
+            }
+          });
+
+          if (resultCount) {
+            resultCount.textContent = `${matchedCount} plugin${matchedCount !== 1 ? 's' : ''}`;
+          }
+
+          if (noResults) {
+            if (matchedCount === 0) {
+              noResults.classList.remove('hidden');
+              const noResultsMsg = document.getElementById('noResultsMsg');
+              if (noResultsMsg) {
+                noResultsMsg.textContent =
+                  currentCategory === '__favorites'
+                    ? 'No favorites yet, click the ★ on any plugin to save it here.'
+                    : 'No plugins found matching your criteria.';
+              }
+            } else {
+              noResults.classList.add('hidden');
+            }
+          }
+
+          const favShareBar = document.getElementById('favShareBar');
+          if (favShareBar) {
+            if (currentCategory === '__favorites' && matchedCount > 0) {
+              favShareBar.classList.remove('hidden');
+            } else {
+              favShareBar.classList.add('hidden');
+            }
+          }
+
+          if (scrollSentinel) {
+            if (renderedCount < matchedCount) {
+              scrollSentinel.classList.remove('hidden');
+            } else {
+              scrollSentinel.classList.add('hidden');
+            }
+          }
+        });
+      }
+
+      if (scrollSentinel) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting) {
+              displayLimit += ITEMS_PER_PAGE;
+              updateGrid();
+            }
+          },
+          { rootMargin: '400px' },
+        ); // Load nicely before it becomes fully visible
+        observer.observe(scrollSentinel);
+      }
+
+      // Debounce search input
+      let debounceTimer: number | null = null;
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          if (debounceTimer) clearTimeout(debounceTimer);
+          debounceTimer = window.setTimeout(() => {
+            currentSearchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
+            displayLimit = ITEMS_PER_PAGE;
+            updateGrid();
+          }, 250);
+        });
+      }
+
+      if (sortSelect) {
+        sortSelect.addEventListener('change', () => {
+          applySort();
+        });
+      }
+
+      function updateFavPill() {
+        const favApi = (window as any).__favorites;
+        const count = favApi ? favApi.list().length : 0;
+        const favPillCount = document.getElementById('favPillCount');
+        const favsPill = document.querySelector('.favorites-pill') as HTMLElement | null;
+        if (favPillCount) {
+          if (count > 0) {
+            favPillCount.textContent = String(count);
+            favPillCount.classList.remove('hidden');
+          } else {
+            favPillCount.classList.add('hidden');
+          }
+        }
+        if (favsPill) {
+          const outline = favsPill.querySelector('.fav-icon-outline') as HTMLElement | null;
+          const filled = favsPill.querySelector('.fav-icon-filled') as HTMLElement | null;
+          if (count > 0) {
+            outline?.classList.add('hidden');
+            filled?.classList.remove('hidden');
+          } else {
+            outline?.classList.remove('hidden');
+            filled?.classList.add('hidden');
+          }
+        }
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          filterBtns.forEach((b) => {
+            b.classList.remove(
+              'bg-primary',
+              'border-primary',
+              'text-gray-900',
+              'shadow-md',
+              'bg-yellow-400/20',
+              'border-yellow-400',
+              'text-yellow-900',
+              'dark:text-yellow-300',
+            );
+            b.classList.add(
+              'bg-white',
+              'dark:bg-dark-surface',
+              'border-gray-200',
+              'dark:border-white/10',
+              'text-gray-600',
+              'dark:text-gray-300',
+            );
+          });
+
+          const target = e.currentTarget as HTMLElement;
+          target.classList.remove(
+            'bg-white',
+            'dark:bg-dark-surface',
+            'border-gray-200',
+            'dark:border-white/10',
+            'text-gray-600',
+            'dark:text-gray-300',
+          );
+          const filter = target.getAttribute('data-filter') || 'all';
+
+          if (filter === '__favorites') {
+            target.classList.add(
+              'bg-yellow-400/20',
+              'border-yellow-400',
+              'text-yellow-900',
+              'dark:text-yellow-300',
+              'shadow-md',
+            );
+            favoritesActive = true;
+          } else {
+            target.classList.add('bg-primary', 'border-primary', 'text-gray-900', 'shadow-md');
+            favoritesActive = false;
+          }
+
+          currentCategory = filter;
+          displayLimit = ITEMS_PER_PAGE;
+          updateGrid();
+        });
+      });
+
+      // Share link button
+      const favShareBtn = document.getElementById('favShareBtn');
+      if (favShareBtn) {
+        favShareBtn.addEventListener('click', () => {
+          const favApi = (window as any).__favorites;
+          if (!favApi) return;
+          const ids = favApi.list().slice(0, 100);
+          const shareUrl = `${location.origin}/?favs=${ids.join(',')}`;
+          const labelEl = document.getElementById('favShareBtnLabel');
+          navigator.clipboard.writeText(shareUrl).then(() => {
+            if (labelEl) {
+              const orig = labelEl.textContent;
+              labelEl.textContent = 'Copied!';
+              setTimeout(() => {
+                labelEl.textContent = orig;
+              }, 2000);
+            }
+          });
+        });
+      }
+
+      // React to favorites changes (star toggled anywhere on page)
+      document.addEventListener('favorites:update', () => {
+        updateFavPill();
+        if (currentCategory === '__favorites') updateGrid();
+      });
+
+      // Auto-activate Favorites pill if ?fav=1 is present
+      (() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('fav') === '1') {
+          params.delete('fav');
+          const newSearch = params.toString();
+          history.replaceState(
+            null,
+            '',
+            window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash,
+          );
+          const favsPill = document.querySelector('.favorites-pill') as HTMLElement | null;
+          if (favsPill) {
+            favsPill.click();
+            requestAnimationFrame(() => {
+              const filtersEl = document.getElementById('categoryFilters');
+              if (filtersEl) filtersEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+          }
+        }
+      })();
+
+      updateFavPill();
+
+      // Initialize Grid State
+      updateGrid();
+    });
+  </script>
 </Layout>

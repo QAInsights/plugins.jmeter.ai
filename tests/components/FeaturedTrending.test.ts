@@ -29,7 +29,9 @@ describe('FeaturedTrending', () => {
 
   it('should link to GitHub issue template for featuring', async () => {
     const { html } = await render([]);
-    expect(html).toContain('https://github.com/QAInsights/plugins.jmeter.ai/issues/new?template=feature_plugin.md');
+    expect(html).toContain(
+      'https://github.com/QAInsights/plugins.jmeter.ai/issues/new?template=feature_plugin.md',
+    );
   });
 
   it('should render exactly 2 PluginCards when 5 plugins provided', async () => {

@@ -15,8 +15,16 @@ test.describe('Compare page', () => {
     await expect(cards.first()).toBeVisible({ timeout: 15000 });
     const count = await cards.count();
     if (count >= 2) {
-      const id1 = await cards.nth(0).locator('[data-plugin-id]').first().getAttribute('data-plugin-id');
-      const id2 = await cards.nth(1).locator('[data-plugin-id]').first().getAttribute('data-plugin-id');
+      const id1 = await cards
+        .nth(0)
+        .locator('[data-plugin-id]')
+        .first()
+        .getAttribute('data-plugin-id');
+      const id2 = await cards
+        .nth(1)
+        .locator('[data-plugin-id]')
+        .first()
+        .getAttribute('data-plugin-id');
       if (id1 && id2) {
         await page.goto(`/compare/?ids=${id1},${id2}`);
         const table = page.locator('table');

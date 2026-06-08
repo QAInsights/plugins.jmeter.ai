@@ -28,30 +28,46 @@ function generateFeaturedSvg(): string {
     { cx: 200, cy: 100, r: 10, ai: true },
   ];
 
-  const starElements = stars.map((s, i) => {
-    const color = s.ai ? '#ccff00' : '#ffffff';
-    const glowId = `star-glow-${i}`;
-    const glow = s.ai ? `
+  const starElements = stars
+    .map((s, i) => {
+      const color = s.ai ? '#ccff00' : '#ffffff';
+      const glowId = `star-glow-${i}`;
+      const glow = s.ai
+        ? `
       <radialGradient id="${glowId}" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="#ccff00" stop-opacity="0.6"/>
         <stop offset="100%" stop-color="#ccff00" stop-opacity="0"/>
       </radialGradient>
       <circle cx="${s.cx}" cy="${s.cy}" r="${s.r * 2}" fill="url(#${glowId})"/>
-    ` : '';
-    return `
+    `
+        : '';
+      return `
       ${glow}
       <circle cx="${s.cx}" cy="${s.cy}" r="${s.r}" fill="${color}" opacity="${s.ai ? 1 : 0.7}"/>
     `;
-  }).join('');
+    })
+    .join('');
 
   // Connection lines between nearby stars
   const connections = [
-    [0, 2], [2, 6], [6, 3], [3, 1], [1, 9], [9, 0],
-    [0, 4], [4, 7], [7, 8], [8, 6], [2, 5], [5, 8]
+    [0, 2],
+    [2, 6],
+    [6, 3],
+    [3, 1],
+    [1, 9],
+    [9, 0],
+    [0, 4],
+    [4, 7],
+    [7, 8],
+    [8, 6],
+    [2, 5],
+    [5, 8],
   ];
-  const connectionLines = connections.map(([a, b]) => {
-    return `<line x1="${stars[a].cx}" y1="${stars[a].cy}" x2="${stars[b].cx}" y2="${stars[b].cy}" stroke="#ffffff" stroke-width="1" opacity="0.15"/>`;
-  }).join('');
+  const connectionLines = connections
+    .map(([a, b]) => {
+      return `<line x1="${stars[a].cx}" y1="${stars[a].cy}" x2="${stars[b].cx}" y2="${stars[b].cy}" stroke="#ffffff" stroke-width="1" opacity="0.15"/>`;
+    })
+    .join('');
 
   // Heatmap grid (right side)
   const heatmapColors = ['#163a00', '#4d7c0f', '#84cc16', '#ccff00'];
@@ -61,7 +77,9 @@ function generateFeaturedSvg(): string {
       const level = Math.floor(Math.random() * 4);
       const x = 720 + col * 44;
       const y = 100 + row * 44;
-      heatmapCells.push(`<rect x="${x}" y="${y}" width="36" height="36" rx="4" fill="${heatmapColors[level]}"/>`);
+      heatmapCells.push(
+        `<rect x="${x}" y="${y}" width="36" height="36" rx="4" fill="${heatmapColors[level]}"/>`,
+      );
     }
   }
 

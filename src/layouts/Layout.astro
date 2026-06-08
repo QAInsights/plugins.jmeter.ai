@@ -4,30 +4,30 @@ import ScrollToTop from '../components/ScrollToTop.astro';
 import CompareFloatingBar from '../components/CompareFloatingBar.astro';
 import InstallFloatingBar from '../components/InstallFloatingBar.astro';
 import FavoritesManager from '../components/FavoritesManager.astro';
-import { SEO } from "astro-seo";
+import { SEO } from 'astro-seo';
 
 interface Props {
-	title: string;
-    description?: string;
-    image?: string;
-    type?: "website" | "article";
-    articleDate?: string;
-    articleModifiedDate?: string;
-    articleAuthor?: string;
-    schema?: Record<string, unknown>;
-    canonicalURL?: string | URL;
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  articleDate?: string;
+  articleModifiedDate?: string;
+  articleAuthor?: string;
+  schema?: Record<string, unknown>;
+  canonicalURL?: string | URL;
 }
 
-const { 
-    title, 
-    description = "Discover, search, and track modern and AI-ready JMeter plugins. Community-driven directory automatically synced daily.", 
-    image = "/favicon.svg",
-    type = "website",
-    articleDate,
-    articleModifiedDate,
-    articleAuthor,
-    schema,
-    canonicalURL,
+const {
+  title,
+  description = 'Discover, search, and track modern and AI-ready JMeter plugins. Community-driven directory automatically synced daily.',
+  image = '/favicon.svg',
+  type = 'website',
+  articleDate,
+  articleModifiedDate,
+  articleAuthor,
+  schema,
+  canonicalURL,
 } = Astro.props;
 
 // Determine canonical URL: fallback to current pathname.
@@ -35,173 +35,202 @@ const {
 // directory/index.html, so the canonical must match the trailing-slash form
 // that browsers and crawlers actually receive.
 const resolvedCanonicalURL = canonicalURL
-    ? typeof canonicalURL === 'string' ? canonicalURL : canonicalURL.toString()
-    : new URL(Astro.url.pathname, Astro.site || 'https://plugins.jmeter.ai').toString();
+  ? typeof canonicalURL === 'string'
+    ? canonicalURL
+    : canonicalURL.toString()
+  : new URL(Astro.url.pathname, Astro.site || 'https://plugins.jmeter.ai').toString();
 const socialImageURL = new URL(image, Astro.site || 'https://plugins.jmeter.ai');
 
 // Best-effort MIME hint so crawlers can pick the image without HEAD-probing.
 const socialImageType = /\.png($|\?)/i.test(socialImageURL.pathname)
-    ? 'image/png'
-    : /\.jpe?g($|\?)/i.test(socialImageURL.pathname)
-        ? 'image/jpeg'
-        : /\.webp($|\?)/i.test(socialImageURL.pathname)
-            ? 'image/webp'
-            : /\.svg($|\?)/i.test(socialImageURL.pathname)
-                ? 'image/svg+xml'
-                : undefined;
-const isGeneratedOg = socialImageURL.pathname.startsWith('/og/') && socialImageURL.pathname.endsWith('.png');
+  ? 'image/png'
+  : /\.jpe?g($|\?)/i.test(socialImageURL.pathname)
+    ? 'image/jpeg'
+    : /\.webp($|\?)/i.test(socialImageURL.pathname)
+      ? 'image/webp'
+      : /\.svg($|\?)/i.test(socialImageURL.pathname)
+        ? 'image/svg+xml'
+        : undefined;
+const isGeneratedOg =
+  socialImageURL.pathname.startsWith('/og/') && socialImageURL.pathname.endsWith('.png');
 
 // --- Global JSON-LD schemas ---
 
 // Organization schema: establishes entity authority for AI agents
 const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'PerfAtlas by QAInsights',
-    url: 'https://plugins.jmeter.ai',
-    logo: 'https://plugins.jmeter.ai/favicon.svg',
-    sameAs: [
-        'https://github.com/QAInsights/plugins.jmeter.ai',
-        'https://qainsights.com',
-        'https://twitter.com/qainsights',
-    ],
-    founder: {
-        '@type': 'Person',
-        name: 'NaveenKumar Namachivayam',
-        url: 'https://qainsights.com',
-        sameAs: ['https://twitter.com/qainsights', 'https://github.com/QAInsights'],
-    },
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'PerfAtlas by QAInsights',
+  url: 'https://plugins.jmeter.ai',
+  logo: 'https://plugins.jmeter.ai/favicon.svg',
+  sameAs: [
+    'https://github.com/QAInsights/plugins.jmeter.ai',
+    'https://qainsights.com',
+    'https://twitter.com/qainsights',
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'NaveenKumar Namachivayam',
+    url: 'https://qainsights.com',
+    sameAs: ['https://twitter.com/qainsights', 'https://github.com/QAInsights'],
+  },
 };
 
 // WebSite schema with SearchAction — tells agents how to search the site
 const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'PerfAtlas — JMeter Plugin Directory',
-    url: 'https://plugins.jmeter.ai',
-    description: 'The modern directory for JMeter plugins — search, discover, compare, and track the velocity of load testing extensions, with AI-ready plugin highlights.',
-    potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-            '@type': 'EntryPoint',
-            urlTemplate: 'https://plugins.jmeter.ai/?q={search_term_string}',
-        },
-        'query-input': 'required name=search_term_string',
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'PerfAtlas — JMeter Plugin Directory',
+  url: 'https://plugins.jmeter.ai',
+  description:
+    'The modern directory for JMeter plugins — search, discover, compare, and track the velocity of load testing extensions, with AI-ready plugin highlights.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://plugins.jmeter.ai/?q={search_term_string}',
     },
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 // Article schema for blog posts
-const articleSchema = type === 'article' ? {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: title,
-    description: description,
-    image: socialImageURL.toString(),
-    url: resolvedCanonicalURL,
-    ...(articleDate ? { datePublished: articleDate } : {}),
-    ...(articleModifiedDate ? { dateModified: articleModifiedDate } : articleDate ? { dateModified: articleDate } : {}),
-    author: {
-        '@type': 'Person',
-        name: articleAuthor || 'NaveenKumar Namachivayam',
-        url: 'https://qainsights.com',
-    },
-    publisher: {
-        '@type': 'Organization',
-        name: 'PerfAtlas by QAInsights',
-        url: 'https://plugins.jmeter.ai',
-        logo: {
+const articleSchema =
+  type === 'article'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        description: description,
+        image: socialImageURL.toString(),
+        url: resolvedCanonicalURL,
+        ...(articleDate ? { datePublished: articleDate } : {}),
+        ...(articleModifiedDate
+          ? { dateModified: articleModifiedDate }
+          : articleDate
+            ? { dateModified: articleDate }
+            : {}),
+        author: {
+          '@type': 'Person',
+          name: articleAuthor || 'NaveenKumar Namachivayam',
+          url: 'https://qainsights.com',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'PerfAtlas by QAInsights',
+          url: 'https://plugins.jmeter.ai',
+          logo: {
             '@type': 'ImageObject',
             url: 'https://plugins.jmeter.ai/favicon.svg',
+          },
         },
-    },
-} : null;
+      }
+    : null;
 ---
 
 <html lang="en" class="dark">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        {/* Machine-readable site description for AI agents and LLMs */}
-        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site description" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		
-        <SEO
-            title={title}
-            description={description}
-            canonical={resolvedCanonicalURL}
-            openGraph={{
-                basic: {
-                    title: title,
-                    type: type,
-                    image: socialImageURL.toString(),
-                    url: resolvedCanonicalURL,
-                },
-                article: type === 'article' ? {
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    {/* Machine-readable site description for AI agents and LLMs */}
+    <link
+      rel="alternate"
+      type="text/plain"
+      href="/llms.txt"
+      title="LLM-readable site description"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={resolvedCanonicalURL}
+      openGraph={{
+        basic: {
+          title: title,
+          type: type,
+          image: socialImageURL.toString(),
+          url: resolvedCanonicalURL,
+        },
+        article:
+          type === 'article'
+            ? {
                 publishedTime: articleDate,
                 modifiedTime: articleModifiedDate || articleDate,
                 authors: [articleAuthor || 'NaveenKumar Namachivayam'],
-            } : undefined
-            }}
-            twitter={{
-                creator: "@qainsights",
-                card: "summary_large_image",
-                title: title,
-                description: description,
-                image: socialImageURL.toString(),
-            }}
-            extend={{
-                meta: [
-                    { name: "twitter:url", content: resolvedCanonicalURL },
-                    ...(isGeneratedOg ? [
-                        { property: "og:image:width", content: "1200" },
-                        { property: "og:image:height", content: "630" },
-                        { property: "og:image:alt", content: title },
-                    ] : []),
-                    ...(socialImageType ? [
-                        { property: "og:image:type", content: socialImageType },
-                    ] : []),
-                ],
-            }}
-        />
+              }
+            : undefined,
+      }}
+      twitter={{
+        creator: '@qainsights',
+        card: 'summary_large_image',
+        title: title,
+        description: description,
+        image: socialImageURL.toString(),
+      }}
+      extend={{
+        meta: [
+          { name: 'twitter:url', content: resolvedCanonicalURL },
+          ...(isGeneratedOg
+            ? [
+                { property: 'og:image:width', content: '1200' },
+                { property: 'og:image:height', content: '630' },
+                { property: 'og:image:alt', content: title },
+              ]
+            : []),
+          ...(socialImageType ? [{ property: 'og:image:type', content: socialImageType }] : []),
+        ],
+      }}
+    />
 
-        <script>
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        </script>
-        
-        
-        <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
+    <script>
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
 
-        {/* Global Organization schema on every page */}
-        <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
-        {/* Global WebSite schema with SearchAction on every page */}
-        <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-        {/* Article schema for blog posts */}
-        {articleSchema && (
-            <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-        )}
-        {/* Page-specific schema (SoftwareApplication, etc.) */}
-        {schema && (
-            <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-        )}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
 
-        {/* Cloudflare Web Analytics */}
-        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>        
-	</head>
-	<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-primary dark:selection:bg-[#ccff00] selection:text-white dark:selection:text-dark-bg">
-        <slot />
-        <ScrollToTop />
-        <CompareFloatingBar />
-        <InstallFloatingBar />
-        <FavoritesManager />
-    </body>
+    {/* Global Organization schema on every page */}
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    {/* Global WebSite schema with SearchAction on every page */}
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {/* Article schema for blog posts */}
+    {
+      articleSchema && (
+        <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+      )
+    }
+    {/* Page-specific schema (SoftwareApplication, etc.) */}
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+    {/* Cloudflare Web Analytics */}
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>
+  </head>
+  <body
+    class="selection:bg-primary dark:selection:text-dark-bg flex min-h-screen flex-col font-sans antialiased selection:text-white dark:selection:bg-[#ccff00]"
+  >
+    <slot />
+    <ScrollToTop />
+    <CompareFloatingBar />
+    <InstallFloatingBar />
+    <FavoritesManager />
+  </body>
 </html>

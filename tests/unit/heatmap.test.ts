@@ -1,9 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  buildWeeklyHeatmap,
-  HEATMAP_WEEKS,
-  type HeatmapCell,
-} from '../../src/utils/heatmap';
+import { buildWeeklyHeatmap, HEATMAP_WEEKS, type HeatmapCell } from '../../src/utils/heatmap';
 
 describe('buildWeeklyHeatmap', () => {
   it('returns an empty grid when history is missing, null, or not an object', () => {

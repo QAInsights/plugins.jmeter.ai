@@ -37,6 +37,6 @@ export function makePluginsList(count: number, overrides: Record<string, any> = 
         },
       },
       ...overrides,
-    })
+    }),
   );
 }

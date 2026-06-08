@@ -11,10 +11,13 @@ export const SHARE_CAP = 100;
  * Returns an empty array for null, empty, or malformed input.
  */
 export function parseShareParam(raw: string | null | undefined): string[] {
-    if (!raw) return [];
-    return dedupIds(
-        raw.split(',').map(s => s.trim()).filter(Boolean)
-    );
+  if (!raw) return [];
+  return dedupIds(
+    raw
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean),
+  );
 }
 
 /**
@@ -22,14 +25,14 @@ export function parseShareParam(raw: string | null | undefined): string[] {
  * The result is capped at {@link SHARE_CAP} items when used for URL building.
  */
 export function dedupMerge(existing: string[], incoming: string[]): string[] {
-    return dedupIds([...existing, ...incoming]);
+  return dedupIds([...existing, ...incoming]);
 }
 
 /**
  * Remove duplicate IDs while preserving insertion order.
  */
 export function dedupIds(ids: string[]): string[] {
-    return [...new Set(ids)];
+  return [...new Set(ids)];
 }
 
 /**
@@ -38,6 +41,6 @@ export function dedupIds(ids: string[]): string[] {
  * @param ids     - The list of favorite plugin IDs.
  */
 export function buildShareUrl(baseUrl: string, ids: string[]): string {
-    const capped = ids.slice(0, SHARE_CAP);
-    return `${baseUrl}/?favs=${capped.join(',')}`;
+  const capped = ids.slice(0, SHARE_CAP);
+  return `${baseUrl}/?favs=${capped.join(',')}`;
 }

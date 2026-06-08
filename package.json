@@ -20,7 +20,13 @@
     "test:unit": "vitest run tests/unit",
     "test:components": "vitest run tests/components",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "lint": "eslint . --max-warnings 100",
+    "lint:fix": "eslint . --fix --max-warnings 100",
+    "lint:ci": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint:ci && npm run format:check && npm test"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
@@ -43,8 +49,14 @@
     "@playwright/test": "^1.59.1",
     "@resvg/resvg-js": "^2.6.2",
     "@vitest/coverage-v8": "^4.1.4",
+    "eslint": "^9.39.4",
+    "eslint-plugin-astro": "^1.7.0",
     "linkedom": "^0.18.12",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "tsx": "^4.21.0",
+    "typescript-eslint": "^8.60.1",
     "undici": "^8.1.0",
     "vitest": "^4.1.4"
   }

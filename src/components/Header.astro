@@ -2,200 +2,535 @@
 import DiscoverMenu from './DiscoverMenu.astro';
 import AuthButton from './AuthButton.astro';
 ---
-<header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-white/10 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-            <a href="/" class="flex items-center gap-2 transition-transform hover:scale-105">
-                <svg class="w-9 h-9 text-green-600 dark:text-[#ccff00]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" aria-label="PerfAtlas" role="img">
-                  <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="1.8"/>
-                  <ellipse cx="20" cy="20" rx="16" ry="6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
-                  <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
-                  <ellipse cx="20" cy="20" rx="7" ry="16" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
-                  <polyline points="7,26 12,22 16,24 20,11 24,17 28,15 34,19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="20" cy="11" r="2" fill="currentColor"/>
-                </svg>
-                <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Perf<span class="text-green-600 dark:text-[#ccff00]">Atlas</span></span>
-            </a>
-        </div>
 
-        <!-- Desktop nav -->
-        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-            <a href="/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname === '/' ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
-                Home
-            </a>
-            <a href="/vendor/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/vendor') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
-                Vendors
-            </a>
-            <a href="/collections/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/collections') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
-                Collections
-            </a>
-            <a href="/blog/" class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/blog') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}>
-                Blog
-            </a>
-            <DiscoverMenu />
-            <a id="favHeaderIndicator" href="/?fav=1" class="hidden flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-yellow-400/15 border border-yellow-400/30 text-yellow-700 dark:text-yellow-400 text-sm font-bold hover:bg-yellow-400/25 transition-colors">
-                <svg class="w-4 h-4" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                <span id="favHeaderCount">0</span>
-            </a>
-            <div class="flex items-center gap-4 shrink-0">
-                <a href="https://github.com/QAInsights/plugins.jmeter.ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" class="hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
-                </a>
-                <a href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new" target="_blank" rel="noopener noreferrer" aria-label="Provide Feedback" class="hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-                </a>
-            </div>
-            <a href="https://www.buymeacoffee.com/qainsights" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffea30] text-black px-4 py-2 rounded-lg font-bold transition-transform hover:scale-105 shadow-md shadow-[#FFDD00]/20">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
-                <span>Donate</span>
-            </a>
-            <AuthButton />
-            <button id="themeToggle" class="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors flex-shrink-0">
-                <svg id="themeIconDark" class="w-4 h-4 hidden dark:block text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="themeIconLight" class="w-4 h-4 block dark:hidden text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-            </button>
-        </div>
-
-        <!-- Mobile right controls -->
-        <div class="flex md:hidden items-center gap-2">
-            <button id="themeToggleMobile" class="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors">
-                <svg id="themeIconDarkMobile" class="w-5 h-5 hidden dark:block text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="themeIconLightMobile" class="w-5 h-5 block dark:hidden text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-            </button>
-            <button id="mobileMenuBtn" aria-label="Toggle menu" class="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/5 transition-colors">
-                <svg id="menuIconOpen" class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                <svg id="menuIconClose" class="w-5 h-5 text-gray-700 dark:text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
+<header
+  class="dark:bg-dark-bg/80 sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-white/10"
+>
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+    <div class="flex items-center gap-2">
+      <a href="/" class="flex items-center gap-2 transition-transform hover:scale-105">
+        <svg
+          class="h-9 w-9 text-green-600 dark:text-[#ccff00]"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 40 40"
+          fill="none"
+          aria-label="PerfAtlas"
+          role="img"
+        >
+          <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="1.8"></circle>
+          <ellipse
+            cx="20"
+            cy="20"
+            rx="16"
+            ry="6"
+            stroke="currentColor"
+            stroke-width="1.2"
+            opacity="0.4"></ellipse>
+          <line
+            x1="4"
+            y1="20"
+            x2="36"
+            y2="20"
+            stroke="currentColor"
+            stroke-width="1.2"
+            opacity="0.4"></line>
+          <ellipse
+            cx="20"
+            cy="20"
+            rx="7"
+            ry="16"
+            stroke="currentColor"
+            stroke-width="1.2"
+            opacity="0.4"></ellipse>
+          <polyline
+            points="7,26 12,22 16,24 20,11 24,17 28,15 34,19"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></polyline>
+          <circle cx="20" cy="11" r="2" fill="currentColor"></circle>
+        </svg>
+        <span
+          class="text-xl font-extrabold tracking-tight text-gray-900 sm:text-2xl dark:text-white"
+          >Perf<span class="text-green-600 dark:text-[#ccff00]">Atlas</span></span
+        >
+      </a>
     </div>
 
-    <!-- Mobile menu drawer -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-dark-bg/95 backdrop-blur-md">
-        <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1 text-sm font-medium">
-            <a href="/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname === '/' ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Home</a>
-            <a href="/vendor/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/vendor') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Vendors</a>
-            <a href="/collections/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/collections') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Collections</a>
-            <a href="/blog/" class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/blog') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}>Blog</a>
-            <!-- Mobile Discover accordion -->
-            <div>
-                <button id="mobileDiscoverToggle" type="button" class="w-full flex items-center justify-between px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
-                    <span>Discover</span>
-                    <svg id="mobileDiscoverChevron" class="w-4 h-4 transition-transform duration-200 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div id="mobileDiscoverMenu" class="hidden flex flex-col gap-0.5 pl-3 pb-1">
-                    <a href="/#search" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
-                        <svg class="w-4 h-4 flex-shrink-0 text-green-600 dark:text-[#ccff00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                        <span class="text-sm font-semibold">Search</span>
-                    </a>
-                    <a href="/#compare" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
-                        <svg class="w-4 h-4 flex-shrink-0 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                        <span class="text-sm font-semibold">Compare</span>
-                    </a>
-                    <a href="/#statistics" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
-                        <svg class="w-4 h-4 flex-shrink-0 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        <span class="text-sm font-semibold">Statistics</span>
-                    </a>
-                    <a href="/#ai-ready" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
-                        <svg class="w-4 h-4 flex-shrink-0 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        <span class="text-sm font-semibold">AI Ready Plugins</span>
-                    </a>
-                    <a href="/#install" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
-                        <svg class="w-4 h-4 flex-shrink-0 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        <span class="text-sm font-semibold">One-click Install</span>
-                    </a>
-                </div>
-            </div>
-            <a id="favHeaderIndicatorMobile" href="/?fav=1" class="hidden flex items-center gap-2 px-3 py-3 rounded-lg font-bold text-yellow-700 dark:text-yellow-400 hover:bg-yellow-400/10 transition-colors">
-                <svg class="w-4 h-4" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                Favorites (<span id="favHeaderCountMobile">0</span>)
-            </a>
-            <div class="flex items-center gap-4 px-3 py-3 border-t border-gray-100 dark:border-white/5 mt-1">
-                <a href="https://github.com/QAInsights/plugins.jmeter.ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" class="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
-                </a>
-                <a href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new" target="_blank" rel="noopener noreferrer" aria-label="Provide Feedback" class="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-                </a>
-                <a href="https://www.buymeacoffee.com/qainsights" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffea30] text-black px-3 py-1.5 rounded-lg font-bold transition-colors shadow-md">
-                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
-                    Donate
-                </a>
-            </div>
-            <div class="px-3 py-2 border-t border-gray-100 dark:border-white/5">
-                <div class="mobile-auth-wrapper">
-                    <AuthButton />
-                </div>
-            </div>
-        </nav>
+    <!-- Desktop nav -->
+    <div
+      class="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex dark:text-gray-400"
+    >
+      <a
+        href="/"
+        class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname === '/' ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}
+      >
+        Home
+      </a>
+      <a
+        href="/vendor/"
+        class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/vendor') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}
+      >
+        Vendors
+      </a>
+      <a
+        href="/collections/"
+        class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/collections') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}
+      >
+        Collections
+      </a>
+      <a
+        href="/blog/"
+        class={`hover:text-green-600 dark:hover:text-[#ccff00] transition-colors font-bold text-gray-900 dark:text-white ${Astro.url.pathname.startsWith('/blog') ? 'border-b-2 border-green-600 dark:border-[#ccff00]' : ''}`}
+      >
+        Blog
+      </a>
+      <DiscoverMenu />
+      <a
+        id="favHeaderIndicator"
+        href="/?fav=1"
+        class="flex hidden items-center gap-1.5 rounded-full border border-yellow-400/30 bg-yellow-400/15 px-3 py-1.5 text-sm font-bold text-yellow-700 transition-colors hover:bg-yellow-400/25 dark:text-yellow-400"
+      >
+        <svg class="h-4 w-4" fill="currentColor" stroke="none" viewBox="0 0 24 24"
+          ><path
+            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+          ></path></svg
+        >
+        <span id="favHeaderCount">0</span>
+      </a>
+      <div class="flex shrink-0 items-center gap-4">
+        <a
+          href="https://github.com/QAInsights/plugins.jmeter.ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub Repository"
+          class="transition-colors hover:text-green-600 dark:hover:text-[#ccff00]"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
+            ><path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+            ></path></svg
+          >
+        </a>
+        <a
+          href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Provide Feedback"
+          class="transition-colors hover:text-green-600 dark:hover:text-[#ccff00]"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+            ></path></svg
+          >
+        </a>
+      </div>
+      <a
+        href="https://www.buymeacoffee.com/qainsights"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 rounded-lg bg-[#FFDD00] px-4 py-2 font-bold text-black shadow-md shadow-[#FFDD00]/20 transition-transform hover:scale-105 hover:bg-[#ffea30]"
+      >
+        <svg
+          class="h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          ><path
+            d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"
+          ></path></svg
+        >
+        <span>Donate</span>
+      </a>
+      <AuthButton />
+      <button
+        id="themeToggle"
+        class="dark:bg-dark-surface flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-gray-100 transition-colors hover:bg-gray-200 dark:border-white/10 dark:hover:bg-white/5"
+      >
+        <svg
+          id="themeIconDark"
+          class="hidden h-4 w-4 text-yellow-400 dark:block"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path></svg
+        >
+        <svg
+          id="themeIconLight"
+          class="block h-4 w-4 text-gray-600 dark:hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          ></path></svg
+        >
+      </button>
     </div>
+
+    <!-- Mobile right controls -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button
+        id="themeToggleMobile"
+        class="dark:bg-dark-surface flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-gray-100 transition-colors hover:bg-gray-200 dark:border-white/10 dark:hover:bg-white/5"
+      >
+        <svg
+          id="themeIconDarkMobile"
+          class="hidden h-5 w-5 text-yellow-400 dark:block"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path></svg
+        >
+        <svg
+          id="themeIconLightMobile"
+          class="block h-5 w-5 text-gray-600 dark:hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          ></path></svg
+        >
+      </button>
+      <button
+        id="mobileMenuBtn"
+        aria-label="Toggle menu"
+        class="dark:bg-dark-surface flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-gray-100 transition-colors hover:bg-gray-200 dark:border-white/10 dark:hover:bg-white/5"
+      >
+        <svg
+          id="menuIconOpen"
+          class="h-5 w-5 text-gray-700 dark:text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path></svg
+        >
+        <svg
+          id="menuIconClose"
+          class="hidden h-5 w-5 text-gray-700 dark:text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path></svg
+        >
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <div
+    id="mobileMenu"
+    class="dark:bg-dark-bg/95 hidden border-t border-gray-200 bg-white/95 backdrop-blur-md md:hidden dark:border-white/10"
+  >
+    <nav class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 text-sm font-medium">
+      <a
+        href="/"
+        class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname === '/' ? 'text-green-600 dark:text-[#ccff00]' : ''}`}
+        >Home</a
+      >
+      <a
+        href="/vendor/"
+        class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/vendor') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}
+        >Vendors</a
+      >
+      <a
+        href="/collections/"
+        class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/collections') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}
+        >Collections</a
+      >
+      <a
+        href="/blog/"
+        class={`px-3 py-3 rounded-lg font-bold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${Astro.url.pathname.startsWith('/blog') ? 'text-green-600 dark:text-[#ccff00]' : ''}`}
+        >Blog</a
+      >
+      <!-- Mobile Discover accordion -->
+      <div>
+        <button
+          id="mobileDiscoverToggle"
+          type="button"
+          class="flex w-full items-center justify-between rounded-lg px-3 py-3 font-bold text-gray-900 transition-colors hover:bg-gray-100 dark:text-white dark:hover:bg-white/5"
+        >
+          <span>Discover</span>
+          <svg
+            id="mobileDiscoverChevron"
+            class="h-4 w-4 text-gray-400 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              d="M19 9l-7 7-7-7"></path></svg
+          >
+        </button>
+        <div id="mobileDiscoverMenu" class="flex hidden flex-col gap-0.5 pb-1 pl-3">
+          <a
+            href="/#search"
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5"
+          >
+            <svg
+              class="h-4 w-4 flex-shrink-0 text-green-600 dark:text-[#ccff00]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg
+            >
+            <span class="text-sm font-semibold">Search</span>
+          </a>
+          <a
+            href="/#compare"
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5"
+          >
+            <svg
+              class="h-4 w-4 flex-shrink-0 text-blue-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg
+            >
+            <span class="text-sm font-semibold">Compare</span>
+          </a>
+          <a
+            href="/#statistics"
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5"
+          >
+            <svg
+              class="h-4 w-4 flex-shrink-0 text-purple-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              ></path></svg
+            >
+            <span class="text-sm font-semibold">Statistics</span>
+          </a>
+          <a
+            href="/#ai-ready"
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5"
+          >
+            <svg
+              class="h-4 w-4 flex-shrink-0 text-yellow-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+            >
+            <span class="text-sm font-semibold">AI Ready Plugins</span>
+          </a>
+          <a
+            href="/#install"
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5"
+          >
+            <svg
+              class="h-4 w-4 flex-shrink-0 text-orange-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg
+            >
+            <span class="text-sm font-semibold">One-click Install</span>
+          </a>
+        </div>
+      </div>
+      <a
+        id="favHeaderIndicatorMobile"
+        href="/?fav=1"
+        class="flex hidden items-center gap-2 rounded-lg px-3 py-3 font-bold text-yellow-700 transition-colors hover:bg-yellow-400/10 dark:text-yellow-400"
+      >
+        <svg class="h-4 w-4" fill="currentColor" stroke="none" viewBox="0 0 24 24"
+          ><path
+            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+          ></path></svg
+        >
+        Favorites (<span id="favHeaderCountMobile">0</span>)
+      </a>
+      <div
+        class="mt-1 flex items-center gap-4 border-t border-gray-100 px-3 py-3 dark:border-white/5"
+      >
+        <a
+          href="https://github.com/QAInsights/plugins.jmeter.ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub Repository"
+          class="text-gray-600 transition-colors hover:text-green-600 dark:text-gray-400 dark:hover:text-[#ccff00]"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
+            ><path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+            ></path></svg
+          >
+        </a>
+        <a
+          href="https://github.com/QAInsights/plugins.jmeter.ai/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Provide Feedback"
+          class="text-gray-600 transition-colors hover:text-green-600 dark:text-gray-400 dark:hover:text-[#ccff00]"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+            ></path></svg
+          >
+        </a>
+        <a
+          href="https://www.buymeacoffee.com/qainsights"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 rounded-lg bg-[#FFDD00] px-3 py-1.5 font-bold text-black shadow-md transition-colors hover:bg-[#ffea30]"
+        >
+          <svg
+            class="h-4 w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            ><path
+              d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"
+            ></path></svg
+          >
+          Donate
+        </a>
+      </div>
+      <div class="border-t border-gray-100 px-3 py-2 dark:border-white/5">
+        <div class="mobile-auth-wrapper">
+          <AuthButton />
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const themeToggle = document.getElementById('themeToggle');
-        
-        function syncChartTheme() {
-            // @ts-ignore
-            if (window.usageChartInstance) {
-                const isDark = document.documentElement.classList.contains('dark');
-                // @ts-ignore
-                window.usageChartInstance.options.scales.y.grid.color = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
-                // @ts-ignore
-                window.usageChartInstance.options.scales.y.ticks.color = isDark ? '#a1a1aa' : '#6b7280';
-                // @ts-ignore
-                window.usageChartInstance.options.plugins.tooltip.backgroundColor = isDark ? '#18181b' : '#ffffff';
-                // @ts-ignore
-                window.usageChartInstance.options.plugins.tooltip.titleColor = isDark ? '#ffffff' : '#000000';
-                // @ts-ignore
-                window.usageChartInstance.options.plugins.tooltip.bodyColor = isDark ? '#a1a1aa' : '#4b5563';
-                // @ts-ignore
-                window.usageChartInstance.update();
-            }
-        }
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
 
-        function toggleTheme() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-            syncChartTheme();
-        }
+    function syncChartTheme() {
+      // @ts-ignore
+      if (window.usageChartInstance) {
+        const isDark = document.documentElement.classList.contains('dark');
+        // @ts-ignore
+        window.usageChartInstance.options.scales.y.grid.color = isDark
+          ? 'rgba(255, 255, 255, 0.05)'
+          : 'rgba(0, 0, 0, 0.05)';
+        // @ts-ignore
+        window.usageChartInstance.options.scales.y.ticks.color = isDark ? '#a1a1aa' : '#6b7280';
+        // @ts-ignore
+        window.usageChartInstance.options.plugins.tooltip.backgroundColor = isDark
+          ? '#18181b'
+          : '#ffffff';
+        // @ts-ignore
+        window.usageChartInstance.options.plugins.tooltip.titleColor = isDark
+          ? '#ffffff'
+          : '#000000';
+        // @ts-ignore
+        window.usageChartInstance.options.plugins.tooltip.bodyColor = isDark
+          ? '#a1a1aa'
+          : '#4b5563';
+        // @ts-ignore
+        window.usageChartInstance.update();
+      }
+    }
 
-        if(themeToggle) {
-            themeToggle.addEventListener('click', toggleTheme);
-        }
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+      syncChartTheme();
+    }
 
-        const themeToggleMobile = document.getElementById('themeToggleMobile');
-        if (themeToggleMobile) {
-            themeToggleMobile.addEventListener('click', toggleTheme);
-        }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', toggleTheme);
+    }
 
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuIconOpen = document.getElementById('menuIconOpen');
-        const menuIconClose = document.getElementById('menuIconClose');
+    const themeToggleMobile = document.getElementById('themeToggleMobile');
+    if (themeToggleMobile) {
+      themeToggleMobile.addEventListener('click', toggleTheme);
+    }
 
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                const isOpen = !mobileMenu.classList.contains('hidden');
-                mobileMenu.classList.toggle('hidden', isOpen);
-                menuIconOpen?.classList.toggle('hidden', !isOpen);
-                menuIconClose?.classList.toggle('hidden', isOpen);
-            });
-        }
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
 
-        const mobileDiscoverToggle = document.getElementById('mobileDiscoverToggle');
-        const mobileDiscoverMenu = document.getElementById('mobileDiscoverMenu');
-        const mobileDiscoverChevron = document.getElementById('mobileDiscoverChevron');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', isOpen);
+        menuIconOpen?.classList.toggle('hidden', !isOpen);
+        menuIconClose?.classList.toggle('hidden', isOpen);
+      });
+    }
 
-        if (mobileDiscoverToggle && mobileDiscoverMenu) {
-            mobileDiscoverToggle.addEventListener('click', () => {
-                mobileDiscoverMenu.classList.toggle('hidden');
-                const nowOpen = !mobileDiscoverMenu.classList.contains('hidden');
-                mobileDiscoverChevron?.classList.toggle('rotate-180', nowOpen);
-            });
-        }
-    });
+    const mobileDiscoverToggle = document.getElementById('mobileDiscoverToggle');
+    const mobileDiscoverMenu = document.getElementById('mobileDiscoverMenu');
+    const mobileDiscoverChevron = document.getElementById('mobileDiscoverChevron');
+
+    if (mobileDiscoverToggle && mobileDiscoverMenu) {
+      mobileDiscoverToggle.addEventListener('click', () => {
+        mobileDiscoverMenu.classList.toggle('hidden');
+        const nowOpen = !mobileDiscoverMenu.classList.contains('hidden');
+        mobileDiscoverChevron?.classList.toggle('rotate-180', nowOpen);
+      });
+    }
+  });
 </script>

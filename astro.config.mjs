@@ -20,7 +20,7 @@ export default defineConfig({
       styleOverrides: {
         borderRadius: '0.75rem',
         codeFontSize: '0.9rem',
-      }
+      },
     }),
     mdx(),
     sitemap({
@@ -71,9 +71,9 @@ export default defineConfig({
       JavaScript: false,
       SVG: true,
     }),
-    clerk()
+    clerk(),
   ],
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

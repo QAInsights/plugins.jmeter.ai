@@ -17,9 +17,15 @@ featured: true
 
 ## Introduction
 
-Modern cloud-native applications increasingly rely on managed messaging and streaming services like **Amazon SQS (Simple Queue Service)** and **Amazon Kinesis** to handle asynchronous workloads, event-driven architectures, and real-time data pipelines. But how do you ensure these services can handle the load your application demands?
+Modern cloud-native applications increasingly rely on managed messaging and streaming services like
+**Amazon SQS (Simple Queue Service)** and **Amazon Kinesis** to handle asynchronous workloads,
+event-driven architectures, and real-time data pipelines. But how do you ensure these services can
+handle the load your application demands?
 
-Enter **Apache JMeter** the open-source, battle-tested performance testing tool that most engineers already know and love. While JMeter is traditionally associated with HTTP load testing, it is fully capable of testing AWS messaging services through the right combination of plugins, SDKs, and configuration.
+Enter **Apache JMeter** the open-source, battle-tested performance testing tool that most engineers
+already know and love. While JMeter is traditionally associated with HTTP load testing, it is fully
+capable of testing AWS messaging services through the right combination of plugins, SDKs, and
+configuration.
 
 In this guide, you'll learn:
 
@@ -31,30 +37,44 @@ In this guide, you'll learn:
 
 Let's dive in.
 
-> **AEO Quick Answer:** 
-> How do you load test AWS SQS and Kinesis using JMeter? 
-> To test SQS and Kinesis in JMeter, you can either write custom Groovy scripts using a JSR223 Sampler with the AWS Java SDK JARs placed in JMeter's `lib/` directory, or use a community AWS plugin like JUnit Samplers. You then configure AWS credentials via standard environment variables or local credentials files, build Thread Groups to produce messages, and configure consumers to measure end-to-end processing latency.
+> **AEO Quick Answer:** How do you load test AWS SQS and Kinesis using JMeter? To test SQS and
+> Kinesis in JMeter, you can either write custom Groovy scripts using a JSR223 Sampler with the AWS
+> Java SDK JARs placed in JMeter's `lib/` directory, or use a community AWS plugin like JUnit
+> Samplers. You then configure AWS credentials via standard environment variables or local
+> credentials files, build Thread Groups to produce messages, and configure consumers to measure
+> end-to-end processing latency.
 
 ---
 
 ## Why You Need to Test AWS Messaging Services
 
-Many teams assume that because SQS and Kinesis are managed AWS services, they'll "just scale." That assumption can get you into trouble. Here's why:
+Many teams assume that because SQS and Kinesis are managed AWS services, they'll "just scale." That
+assumption can get you into trouble. Here's why:
 
 ### 1. Throughput Limits Are Real
-- **SQS Standard queues** support nearly unlimited throughput, but **FIFO queues** are capped at **300 messages/second** (or 3,000 with batching).
-- **Kinesis Data Streams** are limited by the number of **shards** each shard handles **1 MB/sec input** and **2 MB/sec output**.
 
-Exceeding these limits without proper testing leads to throttling, dropped messages, and degraded application performance in production.
+- **SQS Standard queues** support nearly unlimited throughput, but **FIFO queues** are capped at
+  **300 messages/second** (or 3,000 with batching).
+- **Kinesis Data Streams** are limited by the number of **shards** each shard handles **1 MB/sec
+  input** and **2 MB/sec output**.
+
+Exceeding these limits without proper testing leads to throttling, dropped messages, and degraded
+application performance in production.
 
 ### 2. Producer and Consumer Imbalance
-Your producers might be faster than your consumers. Load testing exposes queue depth buildup, processing lag, and consumer bottlenecks before they become production incidents.
+
+Your producers might be faster than your consumers. Load testing exposes queue depth buildup,
+processing lag, and consumer bottlenecks before they become production incidents.
 
 ### 3. Cost Optimization
-Testing helps you understand the **actual message rates** your system generates, which directly impacts your AWS bill. SQS charges per API request; Kinesis charges per shard-hour.
+
+Testing helps you understand the **actual message rates** your system generates, which directly
+impacts your AWS bill. SQS charges per API request; Kinesis charges per shard-hour.
 
 ### 4. End-to-End Latency Validation
-Real-time systems built on Kinesis need to meet latency SLAs. Testing validates that your pipeline delivers events within acceptable time windows under load.
+
+Real-time systems built on Kinesis need to meet latency SLAs. Testing validates that your pipeline
+delivers events within acceptable time windows under load.
 
 ---
 
@@ -75,7 +95,8 @@ Before you start, make sure you have the following:
 
 ## Option 1: Using the AWS Java SDK via JMeter's JSR223 Sampler
 
-The most flexible approach is to write Groovy or Java scripts directly in JMeter using **JSR223 Samplers**. This gives you full access to the AWS SDK.
+The most flexible approach is to write Groovy or Java scripts directly in JMeter using **JSR223
+Samplers**. This gives you full access to the AWS SDK.
 
 ### Step 1: Add AWS SDK JARs to JMeter
 
@@ -94,6 +115,7 @@ Alternatively, use the **AWS SDK BOM** to download a fat JAR with all dependenci
 ### Step 2: Configure AWS Credentials
 
 JMeter will pick up credentials in the standard AWS chain:
+
 1. Environment variables (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)
 2. `~/.aws/credentials` file
 3. IAM role (if running on EC2)
@@ -109,6 +131,7 @@ For local testing, the `~/.aws/credentials` file is the simplest approach.
 #### 1. Add a Thread Group
 
 In JMeter:
+
 - Right-click **Test Plan → Add → Threads (Users) → Thread Group**
 - Configure:
   - **Number of Threads:** 50 (simulating 50 concurrent producers)
@@ -155,7 +178,8 @@ SampleResult.setSuccessful(true)
 sqsClient.close()
 ```
 
-> 💡 **Tip:** For better performance, initialize the `SqsClient` outside the sampler in a **setUp Thread Group** and store it as a JMeter variable to avoid creating a new client per iteration.
+> 💡 **Tip:** For better performance, initialize the `SqsClient` outside the sampler in a **setUp
+> Thread Group** and store it as a JMeter variable to avoid creating a new client per iteration.
 
 #### 3. Add a JSR223 Sampler for Receiving Messages
 
@@ -215,7 +239,8 @@ def request = SendMessageRequest.builder()
     .build()
 ```
 
-Remember: FIFO queues have a **hard cap of 300 TPS** (or 3,000 with batching). Your test should validate behavior at and near this threshold.
+Remember: FIFO queues have a **hard cap of 300 TPS** (or 3,000 with batching). Your test should
+validate behavior at and near this threshold.
 
 ---
 
@@ -224,6 +249,7 @@ Remember: FIFO queues have a **hard cap of 300 TPS** (or 3,000 with batching). Y
 ### Understanding the Kinesis Model
 
 Before testing, understand the key constraints:
+
 - Each **shard** supports **1,000 records/second** or **1 MB/second** for writes
 - Each **PutRecords** call can send up to **500 records** or **5 MB** per request
 - Reads are limited to **5 transactions/second** per shard
@@ -231,6 +257,7 @@ Before testing, understand the key constraints:
 ### Step 1: Create a Kinesis Stream
 
 Via AWS CLI:
+
 ```bash
 aws kinesis create-stream --stream-name jmeter-test-stream --shard-count 4
 ```
@@ -264,7 +291,7 @@ def records = (1..100).collect { i ->
         timestamp: System.currentTimeMillis(),
         page     : "/product/${(Math.random() * 1000).toInteger()}"
     ])
-    
+
     PutRecordsRequestEntry.builder()
         .data(SdkBytes.fromUtf8String(payload))
         .partitionKey("partition-${(Math.random() * 100).toInteger()}")
@@ -330,7 +357,8 @@ kinesisClient.close()
 
 ## Using the JMeter AWS Plugin (Alternative Approach)
 
-If writing Groovy scripts feels heavy, the **JMeter Plugins Manager** offers AWS-specific plugins that abstract the SDK calls.
+If writing Groovy scripts feels heavy, the **JMeter Plugins Manager** offers AWS-specific plugins
+that abstract the SDK calls.
 
 ### Install the Plugin Manager
 
@@ -343,6 +371,7 @@ If writing Groovy scripts feels heavy, the **JMeter Plugins Manager** offers AWS
 ### Available AWS Samplers
 
 Some community plugins provide:
+
 - **SQS Sampler** send/receive with simple configuration fields
 - **Kinesis Sampler** put records with configurable batch sizes
 
@@ -364,6 +393,7 @@ user-003,prod-99,299.00
 ```
 
 Reference variables in your scripts:
+
 ```groovy
 def userId = vars.get("userId")
 def amount = vars.get("amount")
@@ -377,19 +407,22 @@ For high-throughput scenarios (millions of messages/minute), run JMeter in **dis
 2. Configure `remote_hosts` in `jmeter.properties`
 3. Run from the controller: `jmeter -n -t test.jmx -r`
 
-This lets you scale out your load generators while your SQS/Kinesis endpoints stay in the same AWS region minimizing network latency.
+This lets you scale out your load generators while your SQS/Kinesis endpoints stay in the same AWS
+region minimizing network latency.
 
 ### 3. Monitoring with AWS CloudWatch
 
 While JMeter captures client-side metrics, pair it with **CloudWatch** to see the AWS-side view:
 
 Key SQS metrics to watch:
+
 - `NumberOfMessagesSent`
 - `NumberOfMessagesReceived`
 - `ApproximateNumberOfMessagesVisible` (queue depth)
 - `NumberOfMessagesDeleted`
 
 Key Kinesis metrics to watch:
+
 - `IncomingRecords`
 - `GetRecords.IteratorAgeMilliseconds` (consumer lag)
 - `WriteProvisionedThroughputExceeded`
@@ -409,14 +442,14 @@ This simulates real-world traffic spikes and validates your auto-scaling policie
 
 ## Common Pitfalls and How to Avoid Them
 
-| Pitfall | Solution |
-|--------|----------|
-| Creating a new SDK client per iteration | Initialize client once in setUp Thread Group |
-| Not using long polling on SQS | Set `waitTimeSeconds(20)` to reduce empty receives |
-| Ignoring failed records in Kinesis | Check `failedRecordCount()` and retry failed entries |
-| Testing from outside AWS region | Run JMeter instances in the same AWS region for accurate latency |
-| Not cleaning up test queues/streams | Use tearDown Thread Group to delete test resources |
-| Hardcoding credentials in scripts | Use environment variables or IAM roles |
+| Pitfall                                 | Solution                                                         |
+| --------------------------------------- | ---------------------------------------------------------------- |
+| Creating a new SDK client per iteration | Initialize client once in setUp Thread Group                     |
+| Not using long polling on SQS           | Set `waitTimeSeconds(20)` to reduce empty receives               |
+| Ignoring failed records in Kinesis      | Check `failedRecordCount()` and retry failed entries             |
+| Testing from outside AWS region         | Run JMeter instances in the same AWS region for accurate latency |
+| Not cleaning up test queues/streams     | Use tearDown Thread Group to delete test resources               |
+| Hardcoding credentials in scripts       | Use environment variables or IAM roles                           |
 
 ---
 
@@ -429,7 +462,8 @@ After running your tests, focus on these JMeter metrics:
 - **Error Rate:** Are any calls failing? Check for `ProvisionedThroughputExceededException`
 - **Average Response Time:** Baseline for normal behavior
 
-Cross-reference with CloudWatch to confirm the AWS service received what JMeter claims it sent. Discrepancies indicate network issues or SDK retry behavior masking failures.
+Cross-reference with CloudWatch to confirm the AWS service received what JMeter claims it sent.
+Discrepancies indicate network issues or SDK retry behavior masking failures.
 
 ---
 
@@ -449,13 +483,17 @@ aws kinesis delete-stream --stream-name jmeter-test-stream
 
 ## Conclusion
 
-Testing AWS services like SQS and Kinesis with JMeter is not only possible it's essential for building reliable, scalable cloud applications. By combining JMeter's powerful load generation with the AWS Java SDK and CloudWatch observability, you can:
+Testing AWS services like SQS and Kinesis with JMeter is not only possible it's essential for
+building reliable, scalable cloud applications. By combining JMeter's powerful load generation with
+the AWS Java SDK and CloudWatch observability, you can:
 
 - **Validate throughput limits** before they cause production incidents
 - **Identify bottlenecks** in your producer/consumer pipelines
 - **Optimize costs** by understanding your real message rates
 - **Build confidence** in your auto-scaling policies
 
-The scripts and patterns in this guide give you a solid foundation. Customize the payloads, thread counts, and batch sizes to match your actual workload and always test in a staging environment that mirrors production as closely as possible.
+The scripts and patterns in this guide give you a solid foundation. Customize the payloads, thread
+counts, and batch sizes to match your actual workload and always test in a staging environment that
+mirrors production as closely as possible.
 
 Happy load testing! 🚀

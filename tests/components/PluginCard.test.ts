@@ -78,9 +78,9 @@ describe('PluginCard', () => {
     const { html } = await render(plugin);
     // Tag badge CSS classes should not appear (the words "Featured"/"Sponsored"/"AI Ready"
     // also exist inside data-plugin JSON as key names, so check badge-specific classes)
-    expect(html).not.toContain('bg-purple-100');      // Featured badge
-    expect(html).not.toContain('bg-secondary/10');    // Sponsored badge
-    expect(html).not.toContain('text-primary-dark');  // AI Ready badge
+    expect(html).not.toContain('bg-purple-100'); // Featured badge
+    expect(html).not.toContain('bg-secondary/10'); // Sponsored badge
+    expect(html).not.toContain('text-primary-dark'); // AI Ready badge
   });
 
   it('should infer category Assertions from componentClasses', async () => {
