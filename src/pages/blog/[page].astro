@@ -61,7 +61,7 @@ const uniqueTags = Array.from(new Set(allSortedPosts.flatMap(p => p.data.tags ||
                         <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-6 border-b border-gray-200 dark:border-white/10 pb-2">Popular Tags</h3>
                         <div class="flex flex-wrap gap-2">
                             {uniqueTags.map(tag => (
-                                <a href={`/blog/tags/${tag}/`} class="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-[#ccff00]/50 transition-all lowercase">
+                                <a href={`/blog/tags/${encodeURIComponent(tag)}/`} class="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-[#ccff00]/50 transition-all lowercase">
                                     #{tag}
                                 </a>
                             ))}
