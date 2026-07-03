@@ -47349,7 +47349,7 @@
     },
     "sponsored": false,
     "isAiReady": false,
-    "isFeatured": false,
+    "isFeatured": true,
     "stats": {
       "trendingDelta": 3,
       "absoluteDownloads": 35,
