@@ -60,4 +60,14 @@ describe('FeaturedTrending', () => {
     const cardMatches = html.match(/class="[^"]*plugin-card[^"]*"/g);
     expect(cardMatches).toHaveLength(2);
   });
+
+  it('should render featured plugin when provided in featuredPlugins prop', async () => {
+    const trending = makePluginsList(2);
+    const featured = [makePluginsList(1)[0]];
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(FeaturedTrending, {
+      props: { trendingPlugins: trending, featuredPlugins: featured },
+    });
+    expect(html).toContain(featured[0].name);
+  });
 });

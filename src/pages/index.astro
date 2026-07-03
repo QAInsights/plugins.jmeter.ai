@@ -14,6 +14,8 @@ const trendingPlugins = [...pluginsData]
   .sort((a, b) => b.stats.trendingDelta - a.stats.trendingDelta)
   .slice(0, 3);
 
+const featuredPlugins = pluginsData.filter((p) => p.isFeatured);
+
 // Extract Unique Categories for Filters
 const categoriesSet = new Set(['All']);
 pluginsData.forEach((p) => {
@@ -94,7 +96,7 @@ const homeSchema = {
     <Hero />
 
     <div id="statistics">
-      <FeaturedTrending trendingPlugins={trendingPlugins} />
+      <FeaturedTrending trendingPlugins={trendingPlugins} featuredPlugins={featuredPlugins} />
     </div>
 
     <BadgesPromotion />
