@@ -196,7 +196,7 @@ async function main() {
       const dates = Object.keys(stats).sort();
       const absoluteDownloads = dates.length > 0 ? stats[dates[dates.length - 1]] : 0;
 
-      let baseEnriched = {
+      const baseEnriched = {
         ...plugin,
         sponsored: SPONSORED_PLUGINS.includes(id),
         isAiReady: AI_READY_PLUGINS.includes(id),

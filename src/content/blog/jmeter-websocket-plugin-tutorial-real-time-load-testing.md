@@ -210,6 +210,13 @@ Close Connection
 
 Here is the complete test plan structure. Each step is explained below.
 
+> **Pro Tip: Automating Script Creation** Creating a complex WebSocket test plan frame-by-frame can
+> be tedious. To automate this process, you can use the
+> [har-correlation-generator](https://github.com/vdaburon/har-correlation-generator) tool. It
+> records your WebSocket exchanges from a HAR file (exported from your browser's network log) and
+> automatically generates a JMeter script pre-configured with the correct `WebSocket Connection` and
+> `WebSocket Samplers`.
+
 ```
 Test Plan
 └── Thread Group (50 VUs, 60s ramp, 5 min duration)

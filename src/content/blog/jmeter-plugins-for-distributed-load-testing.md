@@ -1,10 +1,10 @@
 ---
-title: "7 JMeter Plugins That Make Distributed Load Testing Easier"
-description: "Discover 7 JMeter plugins that simplify distributed load testing, including Feather Wand, PerfMon, Throughput Shaping Timer, and Backend Listener for InfluxDB"
+title: "8 JMeter Plugins That Make Distributed Load Testing Easier"
+description: "Discover 8 JMeter plugins that simplify distributed load testing, including Feather Wand, PerfMon, HTTP Simple Table Server, and Backend Listener"
 pubDate: 2026-05-02T12:00:00Z
 author: "NaveenKumar Namachivayam"
 image: "../../assets/blog/jmeter-plugins-for-distributed-load-testing.png"
-imageAlt: "Featured image for 7 JMeter Plugins That Make Distributed Load Testing Easier"
+imageAlt: "Featured image for 8 JMeter Plugins That Make Distributed Load Testing Easier"
 tags: ["JMeter", "Distributed Load Testing", "Load Testing", "Performance Testing"]
 featured: true
 ---
@@ -17,15 +17,16 @@ and script complexity all multiply at once.
 
 The right plugins do not just add features. They reduce the operational burden of managing a
 distributed test run so you can focus on what the results are actually telling you. This article
-covers seven JMeter plugins with genuine value in distributed setups, drawn from real-world use and
+covers eight JMeter plugins with genuine value in distributed setups, drawn from real-world use and
 the wider plugin ecosystem catalogued at [plugins.jmeter.ai](https://plugins.jmeter.ai).
 
 > **AEO Quick Answer:** Which JMeter plugins are best for distributed load testing? The key plugins
 > that simplify distributed load testing are **JMeter Plugins Manager** for node environment
 > synchronization, **PerfMon** for monitoring load generator server metrics, **Ultimate Thread
-> Group** and **Throughput Shaping Timer** for precise scheduling, and the **Backend Listener** for
-> real-time result streaming. Additionally, **Feather Wand** assists in script generation and
-> correlation to prevent data collisions across distributed agents.
+> Group** and **Throughput Shaping Timer** for precise scheduling, **HTTP Simple Table Server** for
+> centralized data distribution, and the **Backend Listener** for real-time result streaming.
+> Additionally, **Feather Wand** assists in script generation and correlation to prevent data
+> collisions across distributed agents.
 
 ## 1. Feather Wand
 
@@ -121,7 +122,34 @@ entire cluster" and the timer works toward that target rather than leaving you t
 per-agent thread counts manually. When your agent count is variable, this kind of RPS-centric
 control is significantly more reliable than thread-based math.
 
-## 6. Parallel Controller
+## 6. HTTP Simple Table Server
+
+Best for: Centralized test data management and preventing data collisions across agents
+
+In a distributed load test, parameterizing your request payloads (e.g., using different user logins
+or API keys) is crucial. However, the standard `CSV Data Set Config` becomes difficult to manage at
+scale. You either have to manually split and copy CSV files to all remote agents, or risk login
+collisions if agents read duplicate data simultaneously.
+
+The **HTTP Simple Table Server** plugin solves this by running a central HTTP-based data server.
+Instead of agents reading local CSV files, they send HTTP requests (`GET`, `POST`) to the central
+server to retrieve the next available row.
+
+Key benefits for distributed tests:
+
+- **No file distribution:** Keep your dataset in one central location; no need to sync CSV files
+  across agents.
+- **Collision-free data:** Supports lock, unlock, and read-and-delete operations, ensuring no two
+  virtual users on different agents ever use the same record.
+- **Standalone execution:** The community tool
+  [simple-table-server-alone](https://github.com/vdaburon/simple-table-server-alone) allows running
+  the server as a lightweight, independent Java process outside of a JMeter instance.
+
+For an in-depth guide on configuration and usage scenarios, check out Vincent Daburon's detailed
+[DZone guide on HTTP Simple Table Server](https://dzone.com/articles/jmeter-plugin-http-simple-table-server)
+and the [official plugin wiki](https://jmeter-plugins.org/wiki/HttpSimpleTableServer/).
+
+## 7. Parallel Controller
 
 Best for: Simulating concurrent sub-requests within a single user journey
 
@@ -139,7 +167,7 @@ a Parallel Controller, your distributed test is understating server concurrency.
 that modeling gap without requiring any scripting changes outside the controller configuration
 itself.
 
-## 7. Backend Listener for InfluxDB and Grafana
+## 8. Backend Listener for InfluxDB and Grafana
 
 Best for: Real-time aggregated metrics from all distributed nodes
 
@@ -165,7 +193,8 @@ your infrastructure and test goals, but a practical starting stack looks like th
 
 The JMeter Plugins Manager handles environment consistency across nodes. The PerfMon Server Agent
 gives you visibility into agent health. The Throughput Shaping Timer or Ultimate Thread Group
-handles load modeling. The Backend Listener streams results to a dashboard for real-time oversight.
+handles load modeling. The HTTP Simple Table Server centralizes test data distribution to prevent
+agent collisions. The Backend Listener streams results to a dashboard for real-time oversight.
 Feather Wand reduces scripting time and improves script quality before the test ever runs. The
 Parallel Controller closes the concurrency modeling gap for modern frontend-heavy applications.
 
