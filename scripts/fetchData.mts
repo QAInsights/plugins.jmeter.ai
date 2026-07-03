@@ -19,7 +19,11 @@ try {
       const parts = trimmed.split('=');
       if (parts.length >= 2) {
         const key = parts[0].trim();
-        const val = parts.slice(1).join('=').trim().replace(/^['"]|['"]$/g, '');
+        const val = parts
+          .slice(1)
+          .join('=')
+          .trim()
+          .replace(/^['"]|['"]$/g, '');
         // Only set if not already set by system environment
         if (!process.env[key]) {
           process.env[key] = val;
@@ -122,7 +126,7 @@ async function fetchGitHubRepoInfo(
       archived: data.archived,
       pushedAt: data.pushed_at,
       updatedAt: data.updated_at,
-      license: data.license ? (data.license.spdx_id || data.license.name || 'N/A') : 'N/A',
+      license: data.license ? data.license.spdx_id || data.license.name || 'N/A' : 'N/A',
       fetchedAt: new Date().toISOString(),
     };
 
@@ -146,9 +150,7 @@ async function fetchGitHubRepoInfo(
 
 async function main() {
   console.log('Fetching plugins metadata from upstream repos...');
-  const allReposData = await Promise.all(
-    REPOS.map((repo) => fetchJson(repo).catch(() => []))
-  );
+  const allReposData = await Promise.all(REPOS.map((repo) => fetchJson(repo).catch(() => [])));
   const pluginsMeta = allReposData.flat();
 
   // Deduplicate by ID
@@ -168,7 +170,7 @@ async function main() {
     AI_READY_PLUGINS = overrides.aiReadyPlugins || [];
     FEATURED_PLUGINS = overrides.featuredPlugins || [];
     console.log(
-      `Loaded overrides: ${SPONSORED_PLUGINS.length} sponsored, ${AI_READY_PLUGINS.length} AI-ready.`
+      `Loaded overrides: ${SPONSORED_PLUGINS.length} sponsored, ${AI_READY_PLUGINS.length} AI-ready.`,
     );
   } catch (_e) {
     console.warn('Could not read custom overrides.json, using defaults.');
@@ -177,7 +179,7 @@ async function main() {
   const githubToken = process.env.GITHUB_TOKEN;
   if (!githubToken) {
     console.warn(
-      '⚠️ WARNING: GITHUB_TOKEN env variable is missing. GitHub API queries will be rate-limited to 60 requests/hour.'
+      '⚠️ WARNING: GITHUB_TOKEN env variable is missing. GitHub API queries will be rate-limited to 60 requests/hour.',
     );
   }
 
@@ -211,11 +213,7 @@ async function main() {
         return baseEnriched;
       }
 
-      const ghResult = await fetchGitHubRepoInfo(
-        parsedRepo.owner,
-        parsedRepo.repo,
-        githubToken
-      );
+      const ghResult = await fetchGitHubRepoInfo(parsedRepo.owner, parsedRepo.repo, githubToken);
 
       if (ghResult?.rateLimited) {
         rateLimitHit = true;
@@ -232,7 +230,7 @@ async function main() {
 
       return baseEnriched;
     },
-    6
+    6,
   );
 
   // Sort by popularity (absolute downloads) or trending delta
@@ -243,7 +241,7 @@ async function main() {
   await fs.writeFile(outPath, JSON.stringify(enrichedPlugins, null, 2), 'utf-8');
 
   console.log(
-    `Successfully generated plugins_data.json with ${enrichedPlugins.length} plugins at ${outPath}`
+    `Successfully generated plugins_data.json with ${enrichedPlugins.length} plugins at ${outPath}`,
   );
 
   // Copy generated blog image if found in the brain folder

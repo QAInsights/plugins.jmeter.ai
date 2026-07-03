@@ -28,7 +28,9 @@ export const HEALTH_THRESHOLDS = {
   STALE: 1,
 };
 
-export function parseGitHubRepo(url: string | undefined | null): { owner: string; repo: string } | null {
+export function parseGitHubRepo(
+  url: string | undefined | null,
+): { owner: string; repo: string } | null {
   if (!url) return null;
   try {
     const parsed = new URL(url);
@@ -82,7 +84,10 @@ function calculateReleaseScore(latestReleaseAt: string | undefined, now: Date): 
   return Math.max(0, Math.min(15, 15 * (1 - (months - 3) / (36 - 3))));
 }
 
-function calculateIssueBurdenScore(openIssues: number | undefined, stars: number | undefined): number {
+function calculateIssueBurdenScore(
+  openIssues: number | undefined,
+  stars: number | undefined,
+): number {
   const issues = openIssues ?? 0;
   const starsCount = stars ?? 0;
   const ratio = issues / (starsCount + 1);
@@ -90,7 +95,10 @@ function calculateIssueBurdenScore(openIssues: number | undefined, stars: number
   return Math.max(0, Math.min(10, 10 - ratio * 20));
 }
 
-export function computeHealth(signals: GitHubSignals | undefined | null, now = new Date()): HealthInfo {
+export function computeHealth(
+  signals: GitHubSignals | undefined | null,
+  now = new Date(),
+): HealthInfo {
   const defaultHealth: HealthInfo = {
     score: 0,
     label: 'Unknown',

@@ -17,7 +17,8 @@ const plugins = pluginsData
   });
 
 const title = 'Recently Updated JMeter Plugins | PerfAtlas';
-const description = 'Browse JMeter plugins with active development, sorted by their most recent GitHub commit date. Check repository health status in real time.';
+const description =
+  'Browse JMeter plugins with active development, sorted by their most recent GitHub commit date. Check repository health status in real time.';
 ---
 
 <Layout title={title} description={description}>
@@ -44,9 +45,7 @@ const description = 'Browse JMeter plugins with active development, sorted by th
         Activity Feed
       </p>
       <div class="mb-4 flex flex-wrap items-center gap-3">
-        <h1
-          class="text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white"
-        >
+        <h1 class="text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white">
           Recently <span
             class="bg-gradient-to-r from-green-400 to-[#ccff00] bg-clip-text text-transparent"
             >Updated</span
@@ -61,19 +60,23 @@ const description = 'Browse JMeter plugins with active development, sorted by th
             i
           </button>
           <div slot="content" class="space-y-1">
-            <p class="font-bold text-white mb-1">Measurement Details</p>
-            <p>We query the GitHub repository's latest commit timestamp (Push Recency). Plugins are sorted in real time to highlight the most actively updated codebase first.</p>
+            <p class="mb-1 font-bold text-white">Measurement Details</p>
+            <p>
+              We query the GitHub repository's latest commit timestamp (Push Recency). Plugins are
+              sorted in real time to highlight the most actively updated codebase first.
+            </p>
           </div>
         </Tooltip>
       </div>
       <p class="max-w-2xl text-xl text-gray-600 dark:text-gray-400">
-        JMeter extensions with the latest development activity, sorted by their most recent GitHub commits.
+        JMeter extensions with the latest development activity, sorted by their most recent GitHub
+        commits.
       </p>
     </div>
 
     {
       plugins.length === 0 ? (
-        <div class="py-20 text-center rounded-2xl border border-gray-200 bg-gray-50 dark:border-white/5 dark:bg-white/[0.01]">
+        <div class="rounded-2xl border border-gray-200 bg-gray-50 py-20 text-center dark:border-white/5 dark:bg-white/[0.01]">
           <h3 class="text-xl text-gray-500 dark:text-gray-400">
             No active GitHub health data found yet. Performing initial sync, check back soon.
           </h3>

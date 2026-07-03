@@ -36,7 +36,7 @@ describe('HealthBadge', () => {
     // Commit pushed yesterday
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    
+
     const { html } = await render({
       health: {
         score: 95,

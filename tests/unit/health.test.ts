@@ -164,11 +164,14 @@ describe('enrichPluginWithHealth', () => {
 
   it('should add githubInfo when valid health info is provided', () => {
     const plugin = { id: 'test', name: 'Test' };
-    const health = computeHealth({
-      stars: 100,
-      license: 'MIT',
-      pushedAt: '2026-07-01T12:00:00Z',
-    }, new Date('2026-07-03T12:00:00Z'));
+    const health = computeHealth(
+      {
+        stars: 100,
+        license: 'MIT',
+        pushedAt: '2026-07-01T12:00:00Z',
+      },
+      new Date('2026-07-03T12:00:00Z'),
+    );
 
     const enriched = enrichPluginWithHealth(plugin, health);
     expect(enriched).toHaveProperty('githubInfo');

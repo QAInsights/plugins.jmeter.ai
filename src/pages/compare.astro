@@ -164,7 +164,12 @@ import pluginsData from '../data/plugins_data.json';
         { label: 'Category', key: 'category', type: 'category' },
         { label: 'GitHub Stars', key: 'stars', type: 'number', path: 'p.githubInfo?.stars || 0' },
         { label: 'License', key: 'license', type: 'text', path: 'p.githubInfo?.license || "N/A"' },
-        { label: 'Plugin Health', key: 'health', type: 'health', path: 'p.githubInfo?.health || null' },
+        {
+          label: 'Plugin Health',
+          key: 'health',
+          type: 'health',
+          path: 'p.githubInfo?.health || null',
+        },
       ];
 
       let bodyHtml = '';

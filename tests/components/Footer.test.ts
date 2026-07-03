@@ -48,4 +48,13 @@ describe('Footer', () => {
     expect(html).toContain('linkedin.com/in/naveenkumarn');
     expect(html).toContain('github.com/qainsights');
   });
+
+  it('should render Apache trademark disclaimer', async () => {
+    const { html } = await render();
+    const normalizedHtml = html.replace(/\s+/g, ' ');
+    expect(normalizedHtml).toContain(
+      'Apache, Apache JMeter, JMeter, and the Apache JMeter logo are trademarks of the Apache Software Foundation',
+    );
+    expect(normalizedHtml).toContain('This site is an independent community resource');
+  });
 });
