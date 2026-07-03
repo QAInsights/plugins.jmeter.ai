@@ -184,6 +184,12 @@ describe('enrichPlugins (pipeline logic)', () => {
     expect(result[0].isFeatured).toBe(false);
   });
 
+  it('should omit githubInfo by default for plugins without GitHub enrichment', () => {
+    const plugins = [makePlugin('p1')];
+    const result = enrichPlugins(plugins, {});
+    expect(result[0]).not.toHaveProperty('githubInfo');
+  });
+
   it('should handle no overrides provided', () => {
     const plugins = [makePlugin('p1')];
     const result = enrichPlugins(plugins, {});

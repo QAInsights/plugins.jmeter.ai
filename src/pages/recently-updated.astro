@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PluginCard from '../components/PluginCard.astro';
+import Footer from '../components/Footer.astro';
+import PluginModal from '../components/PluginModal.astro';
+import Tooltip from '../components/Tooltip.astro';
+import pluginsData from '../data/plugins_data.json';
+
+// Filter plugins with githubInfo.health, sorted by lastCommitAt descending
+const plugins = pluginsData
+  .filter((p: any) => p.githubInfo?.health?.lastCommitAt)
+  .sort((a: any, b: any) => {
+    const da = new Date(a.githubInfo.health.lastCommitAt).getTime();
+    const db = new Date(b.githubInfo.health.lastCommitAt).getTime();
+    return db - da;
+  });
+
+const title = 'Recently Updated JMeter Plugins | PerfAtlas';
+const description = 'Browse JMeter plugins with active development, sorted by their most recent GitHub commit date. Check repository health status in real time.';
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main class="mx-auto w-full max-w-7xl flex-grow px-6 py-12 md:py-20">
+    <div class="mb-12">
+      {/* Back to Directory */}
+      <a
+        href="/"
+        class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 dark:hover:text-white"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+        >
+        Back to Directory
+      </a>
+
+      <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+        Activity Feed
+      </p>
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <h1
+          class="text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white"
+        >
+          Recently <span
+            class="bg-gradient-to-r from-green-400 to-[#ccff00] bg-clip-text text-transparent"
+            >Updated</span
+          > Plugins
+        </h1>
+        <Tooltip position="bottom" className="mt-2 md:mt-4">
+          <button
+            slot="trigger"
+            class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-gray-500 hover:bg-gray-200 dark:bg-white/5 dark:text-gray-400 dark:hover:bg-white/10"
+            aria-label="Measurement info"
+          >
+            i
+          </button>
+          <div slot="content" class="space-y-1">
+            <p class="font-bold text-white mb-1">Measurement Details</p>
+            <p>We query the GitHub repository's latest commit timestamp (Push Recency). Plugins are sorted in real time to highlight the most actively updated codebase first.</p>
+          </div>
+        </Tooltip>
+      </div>
+      <p class="max-w-2xl text-xl text-gray-600 dark:text-gray-400">
+        JMeter extensions with the latest development activity, sorted by their most recent GitHub commits.
+      </p>
+    </div>
+
+    {
+      plugins.length === 0 ? (
+        <div class="py-20 text-center rounded-2xl border border-gray-200 bg-gray-50 dark:border-white/5 dark:bg-white/[0.01]">
+          <h3 class="text-xl text-gray-500 dark:text-gray-400">
+            No active GitHub health data found yet. Performing initial sync, check back soon.
+          </h3>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {plugins.map((plugin) => (
+            <PluginCard plugin={plugin} />
+          ))}
+        </div>
+      )
+    }
+  </main>
+
+  <PluginModal />
+  <Footer />
+</Layout>

@@ -30,6 +30,8 @@ PerfAtlas is built and maintained by NaveenKumar Namachivayam, a performance eng
 - [Home](https://plugins.jmeter.ai/): Plugin directory, search, compare, statistics, AI-ready section, and one-click install.
 - [Plugin Detail](https://plugins.jmeter.ai/plugin/{plugin-id}/): Individual plugin page with downloads, trend chart, weekly heatmap, component classes, changelog, and related plugins. Replace {plugin-id} with a valid plugin ID such as `jpgc-perfmon`.
 - [Compare](https://plugins.jmeter.ai/compare/): Side-by-side comparison table. Add ?ids=jpgc-perfmon,jpgc-casutg to pre-select plugins.
+- [Recently Updated](https://plugins.jmeter.ai/recently-updated/): Plugins sorted by their latest GitHub commit dates.
+- [Potentially Stale](https://plugins.jmeter.ai/potentially-abandoned/): Plugins warning of long periods without commits or archived repositories.
 - [Vendors](https://plugins.jmeter.ai/vendor/): Browse plugins grouped by vendor/organization.
 - [Collections](https://plugins.jmeter.ai/collections/): Curated plugin stacks for specific testing scenarios.
 - [Blog](https://plugins.jmeter.ai/blog/): Tutorials and guides for JMeter plugins and load testing.

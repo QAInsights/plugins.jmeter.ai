@@ -1,0 +1,32 @@
+---
+interface Props {
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  className?: string;
+}
+
+const { position = 'top', className = '' } = Astro.props;
+
+const positionClasses = {
+  top: 'bottom-full left-1/2 -translate-x-1/2 mb-2.5',
+  bottom: 'top-full left-1/2 -translate-x-1/2 mt-2.5',
+  left: 'right-full top-1/2 -translate-y-1/2 mr-2.5',
+  right: 'left-full top-1/2 -translate-y-1/2 ml-2.5',
+};
+
+const arrowClasses = {
+  top: 'top-full left-1/2 -translate-x-1/2 border-t-gray-900 dark:border-t-zinc-900 border-x-transparent border-b-transparent',
+  bottom: 'bottom-full left-1/2 -translate-x-1/2 border-b-gray-900 dark:border-b-zinc-900 border-x-transparent border-t-transparent',
+  left: 'left-full top-1/2 -translate-y-1/2 border-l-gray-900 dark:border-l-zinc-900 border-y-transparent border-r-transparent',
+  right: 'right-full top-1/2 -translate-y-1/2 border-r-gray-900 dark:border-r-zinc-900 border-y-transparent border-l-transparent',
+};
+---
+
+<span class={`relative inline-flex items-center group ${className}`}>
+  <slot name="trigger" />
+  <span
+    class={`absolute z-[999] invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 w-72 rounded-lg bg-gray-900 dark:bg-zinc-900 border border-gray-800 dark:border-white/10 p-3 text-xs leading-relaxed text-gray-200 shadow-xl pointer-events-none ${positionClasses[position]}`}
+  >
+    <slot name="content" />
+    <span class={`absolute border-4 ${arrowClasses[position]}`}></span>
+  </span>
+</span>

@@ -44,7 +44,10 @@ if (sUrl && !sUrl.startsWith('http')) {
 const ogImage = `/og/plugin/${plugin.id}.png`;
 
 const title = `${plugin.name} | PerfAtlas`;
-const description = `Discover ${plugin.name} by ${plugin.vendor}. ${plugin.description}`;
+const healthText = plugin.githubInfo?.health
+  ? ` Health score: ${plugin.githubInfo.health.score}/100 (${plugin.githubInfo.health.label}).`
+  : '';
+const description = `Discover ${plugin.name} by ${plugin.vendor}. ${plugin.description}${healthText}`;
 const url = `https://plugins.jmeter.ai/plugin/${plugin.id}/`;
 
 // Prepare Chart Data
@@ -246,6 +249,41 @@ const schema = {
                   {trendArrow}{trendDelta}
                 </p>
               </div>
+              {
+                plugin.githubInfo?.health && (
+                  <div
+                    class="md:col-span-2 rounded-xl border border-gray-100 bg-gray-50 p-6 dark:border-white/5 dark:bg-black/20"
+                  >
+                    <h4 class="mb-4 text-sm font-bold text-gray-500 uppercase">GitHub Repo Health</h4>
+                    <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 text-sm">
+                      <div>
+                        <p class="text-gray-400 dark:text-gray-500 font-medium">Score & Status</p>
+                        <p class="text-xl font-bold dark:text-white mt-1">
+                          {plugin.githubInfo.health.score}/100 ({plugin.githubInfo.health.label})
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-gray-400 dark:text-gray-500 font-medium">Stars & License</p>
+                        <p class="text-xl font-bold dark:text-white mt-1">
+                          ★ {plugin.githubInfo.stars} &bull; {plugin.githubInfo.license}
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-gray-400 dark:text-gray-500 font-medium">Last Commit</p>
+                        <p class="text-xl font-bold dark:text-white mt-1">
+                          {plugin.githubInfo.health.lastCommitAt ? new Date(plugin.githubInfo.health.lastCommitAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) : 'N/A'}
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-gray-400 dark:text-gray-500 font-medium">Last Release</p>
+                        <p class="text-xl font-bold dark:text-white mt-1">
+                          {plugin.githubInfo.health.lastReleaseAt ? new Date(plugin.githubInfo.health.lastReleaseAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) : 'N/A'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
             </div>
 
             {

@@ -56,6 +56,6 @@ describe('CompareFloatingBar', () => {
 
   it('should have compare link pointing to /compare', async () => {
     const { html } = await render();
-    expect(html).toContain('href="/compare"');
+    expect(html).toContain('href="/compare/"');
   });
 });

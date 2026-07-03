@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PluginCard from '../components/PluginCard.astro';
+import Footer from '../components/Footer.astro';
+import PluginModal from '../components/PluginModal.astro';
+import Tooltip from '../components/Tooltip.astro';
+import pluginsData from '../data/plugins_data.json';
+
+// Filter plugins whose label is Stale/Archived, sorted by score ascending
+const plugins = pluginsData
+  .filter((p: any) => {
+    const label = p.githubInfo?.health?.label;
+    return label === 'Stale' || label === 'Archived';
+  })
+  .sort((a: any, b: any) => {
+    const scoreA = a.githubInfo?.health?.score ?? 0;
+    const scoreB = b.githubInfo?.health?.score ?? 0;
+    return scoreA - scoreB;
+  });
+
+const title = 'Potentially Abandoned JMeter Plugins | PerfAtlas';
+const description = 'List of JMeter plugins that appear to be unmaintained or archived on GitHub. Understand repository status, star count, and last commit dates.';
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main class="mx-auto w-full max-w-7xl flex-grow px-6 py-12 md:py-20">
+    <div class="mb-12">
+      {/* Back to Directory */}
+      <a
+        href="/"
+        class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 dark:hover:text-white"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+        >
+        Back to Directory
+      </a>
+
+      <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+        Maintenance Warning
+      </p>
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <h1
+          class="text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white"
+        >
+          Potentially <span
+            class="bg-gradient-to-r from-rose-400 to-red-600 bg-clip-text text-transparent"
+            >Abandoned</span
+          > Plugins
+        </h1>
+        <Tooltip position="bottom" className="mt-2 md:mt-4">
+          <button
+            slot="trigger"
+            class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-gray-500 hover:bg-gray-200 dark:bg-white/5 dark:text-gray-400 dark:hover:bg-white/10"
+            aria-label="Scoring formula info"
+          >
+            i
+          </button>
+          <div slot="content" class="space-y-1.5">
+            <p class="font-bold text-white mb-1">Health Score Calculation</p>
+            <p>Calculated daily out of 100 points:</p>
+            <ul class="list-disc list-inside space-y-0.5 opacity-90 pl-1">
+              <li><strong>Push Recency (50 pts):</strong> Linear decay over 2 years.</li>
+              <li><strong>GitHub Stars (25 pts):</strong> Logarithmic scaling up to 500.</li>
+              <li><strong>Release Freshness (15 pts):</strong> Fresh releases within 3 years.</li>
+              <li><strong>Issue Burden (10 pts):</strong> Ratio of open issues to stars.</li>
+            </ul>
+            <p class="text-[10px] text-gray-400 mt-1 border-t border-white/5 pt-1">Archived repositories are capped at a maximum of 20 points.</p>
+          </div>
+        </Tooltip>
+      </div>
+      <p class="max-w-2xl text-xl text-gray-600 dark:text-gray-400">
+        Plugins with low health scores, long periods without updates, or explicitly marked as archived on GitHub. Use with caution.
+      </p>
+    </div>
+
+    {
+      plugins.length === 0 ? (
+        <div class="py-20 text-center rounded-2xl border border-gray-200 bg-gray-50 dark:border-white/5 dark:bg-white/[0.01]">
+          <h3 class="text-xl text-gray-500 dark:text-gray-400">
+            No stale or archived plugins found. Initial sync may still be running, check back soon.
+          </h3>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {plugins.map((plugin) => (
+            <PluginCard plugin={plugin} />
+          ))}
+        </div>
+      )
+    }
+  </main>
+
+  <PluginModal />
+  <Footer />
+</Layout>

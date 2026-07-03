@@ -180,15 +180,15 @@ describe('PluginCard', () => {
   it('should render gradient highlight bar when sponsored or isFeatured', async () => {
     const plugin = makePlugin({ sponsored: true });
     const { html } = await render(plugin);
-    expect(html).toContain('bg-gradient-to-r from-primary to-secondary');
+    expect(html).toContain('from-primary to-secondary');
+    expect(html).toContain('bg-gradient-to-r');
   });
 
   it('should not render gradient highlight bar when neither sponsored nor isFeatured', async () => {
     const plugin = makePlugin();
     const { html } = await render(plugin);
     // The gradient div is inside a conditional, so it shouldn't appear
-    const matches = html.match(/bg-gradient-to-r from-primary to-secondary/g);
-    expect(matches).toBeNull();
+    expect(html).not.toContain('bg-gradient-to-r');
   });
 
   it('should render compare-checkbox with data-plugin-id', async () => {
@@ -220,7 +220,7 @@ describe('PluginCard', () => {
     const plugin = makePlugin();
     const { html } = await render(plugin);
     expect(html).toContain('fav-icon-filled');
-    expect(html).toContain('fav-icon-filled w-4 h-4 hidden');
+    expect(html).toMatch(/fav-icon-filled[^>]*hidden/);
   });
 
   it('should set aria-label="Add to favorites" on the favorite-btn', async () => {

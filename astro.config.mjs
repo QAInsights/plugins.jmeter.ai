@@ -41,6 +41,13 @@ export default defineConfig({
         if (item.url === 'https://plugins.jmeter.ai/compare/') {
           return { ...item, changefreq: 'weekly', priority: 0.8 };
         }
+        // Recently Updated & Potentially Abandoned SEO Landing Pages
+        if (
+          item.url === 'https://plugins.jmeter.ai/recently-updated/' ||
+          item.url === 'https://plugins.jmeter.ai/potentially-abandoned/'
+        ) {
+          return { ...item, changefreq: 'daily', priority: 0.7 };
+        }
         // Individual plugin pages — data refreshed nightly
         if (item.url.includes('/plugin/')) {
           return { ...item, changefreq: 'daily', priority: 0.8 };

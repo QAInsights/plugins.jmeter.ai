@@ -1,5 +1,6 @@
 ---
 import { inferCategory, vendorSlug } from '../utils/plugin';
+import HealthBadge from './HealthBadge.astro';
 
 const { plugin } = Astro.props;
 
@@ -240,6 +241,7 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
               </span>
             )
           }
+          <HealthBadge health={plugin.githubInfo?.health} size="sm" />
           <span
             class="rounded bg-gray-100 px-2 py-1 text-gray-600 dark:bg-white/5 dark:text-gray-400"
           >

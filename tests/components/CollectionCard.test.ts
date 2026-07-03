@@ -78,7 +78,7 @@ describe('CollectionCard', () => {
 
   it('links to the correct /collections/:id URL', async () => {
     const { html } = await render(makeSummary({ id: 'ci-cd-stack' }));
-    expect(html).toContain('href="/collections/ci-cd-stack"');
+    expect(html).toContain('href="/collections/ci-cd-stack/"');
   });
 
   it('renders "View Stack" affordance', async () => {

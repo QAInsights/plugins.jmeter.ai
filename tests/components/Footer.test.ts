@@ -33,7 +33,7 @@ describe('Footer', () => {
   it('should render Platform section with Blog link', async () => {
     const { html } = await render();
     expect(html).toContain('Platform');
-    expect(html).toContain('href="/blog"');
+    expect(html).toContain('href="/blog/"');
   });
 
   it('should render Network section', async () => {

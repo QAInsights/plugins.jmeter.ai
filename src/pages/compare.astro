@@ -164,6 +164,7 @@ import pluginsData from '../data/plugins_data.json';
         { label: 'Category', key: 'category', type: 'category' },
         { label: 'GitHub Stars', key: 'stars', type: 'number', path: 'p.githubInfo?.stars || 0' },
         { label: 'License', key: 'license', type: 'text', path: 'p.githubInfo?.license || "N/A"' },
+        { label: 'Plugin Health', key: 'health', type: 'health', path: 'p.githubInfo?.health || null' },
       ];
 
       let bodyHtml = '';
@@ -191,6 +192,18 @@ import pluginsData from '../data/plugins_data.json';
               val > 0
                 ? `<span class="text-green-500 font-bold">+${new Intl.NumberFormat('en-US').format(val)}</span>`
                 : `<span class="text-gray-400">${new Intl.NumberFormat('en-US').format(val)}</span>`;
+          }
+          if (row.type === 'health') {
+            if (val) {
+              let color = 'text-gray-400';
+              if (val.label === 'Active') color = 'text-green-500 font-bold';
+              else if (val.label === 'Maintained') color = 'text-blue-500 font-bold';
+              else if (val.label === 'Stale') color = 'text-amber-500';
+              else if (val.label === 'Archived') color = 'text-red-500';
+              display = `<span class="${color}">${val.score}/100 · ${val.label}</span>`;
+            } else {
+              display = '<span class="text-gray-400">N/A</span>';
+            }
           }
           if (row.type === 'category') {
             let cat = 'Others';

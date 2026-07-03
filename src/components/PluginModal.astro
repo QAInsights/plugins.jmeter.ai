@@ -99,7 +99,7 @@
         >
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
         <div
           class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
         >
@@ -111,6 +111,13 @@
         >
           <h4 class="mb-1 text-xs font-bold text-gray-500 uppercase">Downloads This Week</h4>
           <p id="modalTrending" class="text-xl font-bold"></p>
+        </div>
+        <div
+          id="modalHealthWrapper"
+          class="col-span-2 md:col-span-1 rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
+        >
+          <h4 class="mb-1 text-xs font-bold text-gray-500 uppercase">Plugin Health</h4>
+          <p id="modalHealth" class="text-xl font-bold"></p>
         </div>
       </div>
 
@@ -328,6 +335,26 @@
         const arrow = (p.stats?.trendingDelta || 0) > 0 ? '+' : '';
         trendEl.textContent = `${arrow}${new Intl.NumberFormat('en-US').format(p.stats?.trendingDelta || 0)}`;
         trendEl.className = `text-xl font-bold ${(p.stats?.trendingDelta || 0) > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`;
+      }
+
+      const healthWrapper = document.getElementById('modalHealthWrapper');
+      const healthEl = document.getElementById('modalHealth');
+      if (healthWrapper && healthEl) {
+        if (p.githubInfo && p.githubInfo.health) {
+          const h = p.githubInfo.health;
+          healthEl.textContent = `${h.score}/100 · ${h.label}`;
+          
+          let colorClass = 'text-gray-500';
+          if (h.label === 'Active') colorClass = 'text-green-600 dark:text-green-400';
+          else if (h.label === 'Maintained') colorClass = 'text-blue-600 dark:text-blue-400';
+          else if (h.label === 'Stale') colorClass = 'text-amber-600 dark:text-amber-400';
+          else if (h.label === 'Archived') colorClass = 'text-rose-600 dark:text-rose-400';
+          
+          healthEl.className = `text-xl font-bold ${colorClass}`;
+          healthWrapper.style.display = 'block';
+        } else {
+          healthWrapper.style.display = 'none';
+        }
       }
 
       const headerBg = document.getElementById('modalHeaderBg');

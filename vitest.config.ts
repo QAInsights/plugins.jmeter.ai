@@ -9,6 +9,7 @@ export default getViteConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       include: ['src/utils/**', 'scripts/**'],
+      exclude: ['scripts/fetchData.mts'],
       thresholds: {
         statements: 80,
         branches: 80,

@@ -22,7 +22,7 @@ describe('Header', () => {
 
   it('should render Blog link', async () => {
     const { html } = await render();
-    expect(html).toContain('href="/blog"');
+    expect(html).toContain('href="/blog/"');
     expect(html).toContain('Blog');
   });
 
