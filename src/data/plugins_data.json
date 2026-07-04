@@ -16018,6 +16018,21 @@
         "2026-06-15": 5878,
         "2026-06-22": 6407
       }
+    },
+    "githubInfo": {
+      "stars": 143,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 143,
+        "openIssues": 4,
+        "archived": false,
+        "lastCommitAt": "2025-10-29T16:58:11Z",
+        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
+      }
     }
   },
   {
@@ -16639,6 +16654,21 @@
         "2026-06-08": 5844,
         "2026-06-15": 4942,
         "2026-06-22": 5444
+      }
+    },
+    "githubInfo": {
+      "stars": 143,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 143,
+        "openIssues": 4,
+        "archived": false,
+        "lastCommitAt": "2025-10-29T16:58:11Z",
+        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
     }
   },
@@ -21291,6 +21321,21 @@
         "2026-06-08": 3648,
         "2026-06-15": 3095,
         "2026-06-22": 3477
+      }
+    },
+    "githubInfo": {
+      "stars": 316,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 29,
+        "label": "Stale",
+        "stars": 316,
+        "openIssues": 61,
+        "archived": false,
+        "lastCommitAt": "2021-08-31T15:12:57Z",
+        "lastReleaseAt": "2021-08-31T15:12:58Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/maciejzaleski/JMeter-WebSocketSampler"
       }
     }
   },
@@ -28720,6 +28765,21 @@
         "2026-06-15": 8092,
         "2026-06-22": 8367
       }
+    },
+    "githubInfo": {
+      "stars": 143,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 143,
+        "openIssues": 4,
+        "archived": false,
+        "lastCommitAt": "2025-10-29T16:58:11Z",
+        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
+      }
     }
   },
   {
@@ -30137,6 +30197,21 @@
         "2026-06-15": 1506,
         "2026-06-22": 1640
       }
+    },
+    "githubInfo": {
+      "stars": 18,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 22,
+        "label": "Stale",
+        "stars": 18,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2023-05-31T11:02:18Z",
+        "lastReleaseAt": null,
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/xmeter-net/mqtt-jmeter"
+      }
     }
   },
   {
@@ -31242,6 +31317,21 @@
         "2026-06-15": 1191,
         "2026-06-22": 1298
       }
+    },
+    "githubInfo": {
+      "stars": 101,
+      "license": "MIT",
+      "health": {
+        "score": 25,
+        "label": "Stale",
+        "stars": 101,
+        "openIssues": 20,
+        "archived": false,
+        "lastCommitAt": "2024-03-11T01:01:28Z",
+        "lastReleaseAt": "2023-07-14T14:21:21Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/delirius325/jmeter-elasticsearch-backend-listener"
+      }
     }
   },
   {
@@ -31803,6 +31893,21 @@
         "2026-06-08": 1067,
         "2026-06-15": 911,
         "2026-06-22": 997
+      }
+    },
+    "githubInfo": {
+      "stars": 21,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 16,
+        "label": "Stale",
+        "stars": 21,
+        "openIssues": 7,
+        "archived": false,
+        "lastCommitAt": "2018-03-05T10:35:04Z",
+        "lastReleaseAt": null,
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/hemikak/mqtt-jmeter"
       }
     }
   },
@@ -32482,6 +32587,21 @@
         "2026-06-15": 921,
         "2026-06-22": 1005
       }
+    },
+    "githubInfo": {
+      "stars": 51,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 85,
+        "label": "Active",
+        "stars": 51,
+        "openIssues": 15,
+        "archived": false,
+        "lastCommitAt": "2026-06-09T01:53:33Z",
+        "lastReleaseAt": "2026-06-09T01:53:24Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/HLSPlugin"
+      }
     }
   },
   {
@@ -32721,6 +32841,21 @@
         "2026-06-08": 613,
         "2026-06-15": 557,
         "2026-06-22": 636
+      }
+    },
+    "githubInfo": {
+      "stars": 3,
+      "license": "MIT",
+      "health": {
+        "score": 11,
+        "label": "Stale",
+        "stars": 3,
+        "openIssues": 1,
+        "archived": false,
+        "lastCommitAt": "2022-05-27T02:55:53Z",
+        "lastReleaseAt": "2022-05-27T02:55:46Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/tilln/jmeter-retrier"
       }
     }
   },
@@ -33713,6 +33848,21 @@
         "2026-06-15": 2337,
         "2026-06-22": 2412
       }
+    },
+    "githubInfo": {
+      "stars": 32,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 72,
+        "label": "Active",
+        "stars": 32,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2025-12-19T22:38:27Z",
+        "lastReleaseAt": "2025-07-14T23:34:16Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-debugger"
+      }
     }
   },
   {
@@ -34174,6 +34324,21 @@
         "2026-06-08": 850,
         "2026-06-15": 718,
         "2026-06-22": 792
+      }
+    },
+    "githubInfo": {
+      "stars": 77,
+      "license": "MIT",
+      "health": {
+        "score": 79,
+        "label": "Active",
+        "stars": 77,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-02-09T00:11:21Z",
+        "lastReleaseAt": "2025-03-15T04:16:48Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/tilln/jmeter-iso8583"
       }
     }
   },
@@ -34742,6 +34907,21 @@
         "2026-06-15": 2568,
         "2026-06-22": 2640
       }
+    },
+    "githubInfo": {
+      "stars": 53,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 32,
+        "label": "Stale",
+        "stars": 53,
+        "openIssues": 12,
+        "archived": false,
+        "lastCommitAt": "2024-11-20T22:07:39Z",
+        "lastReleaseAt": "2018-11-28T21:29:35Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/yciabaud/jmeter-ssh-sampler"
+      }
     }
   },
   {
@@ -34999,6 +35179,21 @@
         "2026-06-15": 912,
         "2026-06-22": 981
       }
+    },
+    "githubInfo": {
+      "stars": 7,
+      "license": "N/A",
+      "health": {
+        "score": 28,
+        "label": "Stale",
+        "stars": 7,
+        "openIssues": 3,
+        "archived": false,
+        "lastCommitAt": "2025-02-24T02:52:58Z",
+        "lastReleaseAt": "2022-03-20T17:05:25Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/QAInsights/validate-thread-group"
+      }
     }
   },
   {
@@ -35194,6 +35389,21 @@
         "2026-06-15": 1345,
         "2026-06-22": 1413
       }
+    },
+    "githubInfo": {
+      "stars": 19,
+      "license": "MIT",
+      "health": {
+        "score": 84,
+        "label": "Active",
+        "stars": 19,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2026-07-01T03:43:55Z",
+        "lastReleaseAt": "2026-01-12T09:34:08Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/Qytera-Gmbh/JMeterHARImporterPlugin"
+      }
     }
   },
   {
@@ -35250,6 +35460,21 @@
         "2026-06-08": 130,
         "2026-06-15": 133,
         "2026-06-22": 199
+      }
+    },
+    "githubInfo": {
+      "stars": 6,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 6,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-03-22T08:36:10Z",
+        "lastReleaseAt": "2026-03-22T08:36:10Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/loadmagic/jmeter-load-distributor"
       }
     }
   },
@@ -35557,6 +35782,21 @@
         "2026-06-08": 357,
         "2026-06-15": 343,
         "2026-06-22": 405
+      }
+    },
+    "githubInfo": {
+      "stars": 8,
+      "license": "N/A",
+      "health": {
+        "score": 28,
+        "label": "Stale",
+        "stars": 8,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2024-08-25T12:41:34Z",
+        "lastReleaseAt": "2024-06-06T17:40:00Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/DanilGolikov/UtilityJmeterFunctions"
       }
     }
   },
@@ -36305,6 +36545,21 @@
         "2026-06-15": 2005,
         "2026-06-22": 2064
       }
+    },
+    "githubInfo": {
+      "stars": 28,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 44,
+        "label": "Maintained",
+        "stars": 28,
+        "openIssues": 21,
+        "archived": false,
+        "lastCommitAt": "2025-04-17T20:02:29Z",
+        "lastReleaseAt": "2025-04-17T20:02:29Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/CorrelationRecorder"
+      }
     }
   },
   {
@@ -36643,6 +36898,21 @@
         "2026-06-08": 2151,
         "2026-06-15": 2067,
         "2026-06-22": 2126
+      }
+    },
+    "githubInfo": {
+      "stars": 188,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 28,
+        "label": "Stale",
+        "stars": 188,
+        "openIssues": 36,
+        "archived": false,
+        "lastCommitAt": "2023-08-03T16:28:46Z",
+        "lastReleaseAt": "2023-08-03T16:16:42Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/johrstrom/jmeter-prometheus-plugin"
       }
     }
   },
@@ -37253,6 +37523,21 @@
         "2026-06-15": 766,
         "2026-06-22": 824
       }
+    },
+    "githubInfo": {
+      "stars": 20,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 51,
+        "label": "Maintained",
+        "stars": 20,
+        "openIssues": 25,
+        "archived": false,
+        "lastCommitAt": "2025-07-23T05:20:36Z",
+        "lastReleaseAt": "2025-07-23T05:03:45Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/RTEPlugin"
+      }
     }
   },
   {
@@ -37533,6 +37818,21 @@
         "2026-06-08": 2292,
         "2026-06-15": 1969,
         "2026-06-22": 2015
+      }
+    },
+    "githubInfo": {
+      "stars": 48,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 81,
+        "label": "Active",
+        "stars": 48,
+        "openIssues": 32,
+        "archived": false,
+        "lastCommitAt": "2026-07-03T13:19:33Z",
+        "lastReleaseAt": "2026-05-19T18:47:31Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
     }
   },
@@ -37879,6 +38179,21 @@
         "2026-06-08": 394,
         "2026-06-15": 331,
         "2026-06-22": 371
+      }
+    },
+    "githubInfo": {
+      "stars": 3,
+      "license": "N/A",
+      "health": {
+        "score": 16,
+        "label": "Stale",
+        "stars": 3,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2022-01-05T08:08:49Z",
+        "lastReleaseAt": "2022-01-05T08:08:49Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/yongfa365/yongfa365-jmeter-plugins"
       }
     }
   },
@@ -38404,6 +38719,21 @@
         "2026-06-15": 504,
         "2026-06-22": 543
       }
+    },
+    "githubInfo": {
+      "stars": 143,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 143,
+        "openIssues": 4,
+        "archived": false,
+        "lastCommitAt": "2025-10-29T16:58:11Z",
+        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
+      }
     }
   },
   {
@@ -38632,6 +38962,21 @@
         "2026-06-08": 338,
         "2026-06-15": 326,
         "2026-06-22": 364
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 13,
+        "label": "Stale",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2024-02-29T17:28:32Z",
+        "lastReleaseAt": null,
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/undera/jmeter-extract-success"
       }
     }
   },
@@ -39022,6 +39367,21 @@
         "2026-06-08": 1628,
         "2026-06-15": 1525,
         "2026-06-22": 1562
+      }
+    },
+    "githubInfo": {
+      "stars": 33,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 21,
+        "label": "Stale",
+        "stars": 33,
+        "openIssues": 6,
+        "archived": false,
+        "lastCommitAt": "2022-05-20T21:01:24Z",
+        "lastReleaseAt": "2019-07-05T17:00:48Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/rahulsinghai/jmeter-backend-listener-kafka"
       }
     }
   },
@@ -39938,6 +40298,21 @@
         "2026-06-15": 1204,
         "2026-06-22": 1237
       }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 65,
+        "label": "Maintained",
+        "stars": 0,
+        "openIssues": 8,
+        "archived": false,
+        "lastCommitAt": "2026-06-29T16:06:32Z",
+        "lastReleaseAt": "2026-04-14T02:03:28Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/bakthava/jmeter-grpc-request"
+      }
     }
   },
   {
@@ -40471,6 +40846,21 @@
         "2026-06-15": 921,
         "2026-06-22": 952
       }
+    },
+    "githubInfo": {
+      "stars": 20,
+      "license": "MIT",
+      "health": {
+        "score": 58,
+        "label": "Maintained",
+        "stars": 20,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-09-17T02:41:35Z",
+        "lastReleaseAt": "2024-03-23T21:40:36Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/tilln/jmeter-sshmon"
+      }
     }
   },
   {
@@ -40648,6 +41038,21 @@
         "2026-06-08": 326,
         "2026-06-15": 313,
         "2026-06-22": 340
+      }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 9,
+        "label": "Stale",
+        "stars": 2,
+        "openIssues": 1,
+        "archived": false,
+        "lastCommitAt": "2023-10-14T06:51:47Z",
+        "lastReleaseAt": "2023-10-13T18:03:14Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/sashikaR/jwt-preProcessor"
       }
     }
   },
@@ -41228,6 +41633,21 @@
         "2026-06-15": 640,
         "2026-06-22": 666
       }
+    },
+    "githubInfo": {
+      "stars": 143,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 143,
+        "openIssues": 4,
+        "archived": false,
+        "lastCommitAt": "2025-10-29T16:58:11Z",
+        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
+      }
     }
   },
   {
@@ -41477,6 +41897,21 @@
         "2026-06-08": 132,
         "2026-06-15": 111,
         "2026-06-22": 135
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "N/A",
+      "health": {
+        "score": 13,
+        "label": "Stale",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2023-01-18T14:49:12Z",
+        "lastReleaseAt": "2023-01-18T14:49:12Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/atakama/jmeter_plugin_backend_listener"
       }
     }
   },
@@ -41849,6 +42284,21 @@
         "2026-06-08": 661,
         "2026-06-15": 622,
         "2026-06-22": 643
+      }
+    },
+    "githubInfo": {
+      "stars": 26,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 16,
+        "label": "Stale",
+        "stars": 26,
+        "openIssues": 10,
+        "archived": false,
+        "lastCommitAt": "2021-02-24T16:17:21Z",
+        "lastReleaseAt": "2019-12-22T22:38:48Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/JoseLuisSR/mqmeter"
       }
     }
   },
@@ -42431,6 +42881,21 @@
         "2026-06-15": 411,
         "2026-06-22": 431
       }
+    },
+    "githubInfo": {
+      "stars": 168,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 20,
+        "label": "Archived",
+        "stars": 168,
+        "openIssues": 1,
+        "archived": true,
+        "lastCommitAt": "2023-04-10T10:21:59Z",
+        "lastReleaseAt": null,
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Netflix/CassJMeter"
+      }
     }
   },
   {
@@ -42852,6 +43317,21 @@
         "2026-06-08": 781,
         "2026-06-15": 715,
         "2026-06-22": 734
+      }
+    },
+    "githubInfo": {
+      "stars": 32,
+      "license": "NOASSERTION",
+      "health": {
+        "score": 19,
+        "label": "Stale",
+        "stars": 32,
+        "openIssues": 8,
+        "archived": false,
+        "lastCommitAt": "2023-04-21T14:00:32Z",
+        "lastReleaseAt": "2023-04-21T10:09:31Z",
+        "license": "NOASSERTION",
+        "repoUrl": "https://github.com/adrianmo/jmeter-backend-azure"
       }
     }
   },
@@ -43312,6 +43792,21 @@
         "2026-06-15": 258,
         "2026-06-22": 275
       }
+    },
+    "githubInfo": {
+      "stars": 13,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 62,
+        "label": "Maintained",
+        "stars": 13,
+        "openIssues": 26,
+        "archived": false,
+        "lastCommitAt": "2026-01-26T21:36:15Z",
+        "lastReleaseAt": "2025-06-11T06:58:43Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/CitrixPlugin"
+      }
     }
   },
   {
@@ -43578,6 +44073,21 @@
         "2026-06-15": 541,
         "2026-06-22": 558
       }
+    },
+    "githubInfo": {
+      "stars": 4,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 17,
+        "label": "Stale",
+        "stars": 4,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2023-08-21T15:19:13Z",
+        "lastReleaseAt": "2023-08-21T15:22:55Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/LeeBaul/baolu-csv-data-file-config"
+      }
     }
   },
   {
@@ -43622,6 +44132,21 @@
         "2026-06-08": 169,
         "2026-06-15": 170,
         "2026-06-22": 187
+      }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "N/A",
+      "health": {
+        "score": 61,
+        "label": "Maintained",
+        "stars": 0,
+        "openIssues": 3,
+        "archived": false,
+        "lastCommitAt": "2026-04-07T01:36:52Z",
+        "lastReleaseAt": "2026-04-04T19:03:12Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/bakthava/swagger-postman-importer"
       }
     }
   },
@@ -43945,6 +44470,21 @@
         "2026-06-15": 2427,
         "2026-06-22": 2442
       }
+    },
+    "githubInfo": {
+      "stars": 47,
+      "license": "N/A",
+      "health": {
+        "score": 50,
+        "label": "Maintained",
+        "stars": 47,
+        "openIssues": 7,
+        "archived": false,
+        "lastCommitAt": "2025-04-16T15:36:00Z",
+        "lastReleaseAt": "2024-09-30T20:34:40Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/rollno748/di-kafkameter"
+      }
     }
   },
   {
@@ -44205,6 +44745,21 @@
         "2026-06-15": 72,
         "2026-06-22": 85
       }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "N/A",
+      "health": {
+        "score": 13,
+        "label": "Stale",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2023-05-19T14:52:08Z",
+        "lastReleaseAt": "2022-11-14T14:31:54Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/atakama/jmeter_plugin_variabilization"
+      }
     }
   },
   {
@@ -44273,6 +44828,21 @@
         "2026-06-08": 261,
         "2026-06-15": 250,
         "2026-06-22": 263
+      }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 55,
+        "label": "Maintained",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-10-02T06:39:03Z",
+        "lastReleaseAt": "2025-10-02T05:24:25Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/adukhi/Unique-CSV-DataSet-Config"
       }
     }
   },
@@ -44649,6 +45219,21 @@
         "2026-06-15": 230,
         "2026-06-22": 241
       }
+    },
+    "githubInfo": {
+      "stars": 12,
+      "license": "MIT",
+      "health": {
+        "score": 39,
+        "label": "Stale",
+        "stars": 12,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2025-01-05T15:40:45Z",
+        "lastReleaseAt": "2025-01-05T15:40:45Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/rollno748/Jmeter-pubsub-sampler"
+      }
     }
   },
   {
@@ -44915,6 +45500,21 @@
         "2026-06-08": 44,
         "2026-06-15": 38,
         "2026-06-22": 46
+      }
+    },
+    "githubInfo": {
+      "stars": 9,
+      "license": "MIT",
+      "health": {
+        "score": 84,
+        "label": "Active",
+        "stars": 9,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-05-27T15:01:18Z",
+        "lastReleaseAt": "2026-05-27T14:11:30Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/yeshan333/ApacheJmeter_Schema_Assertion"
       }
     }
   },
@@ -45717,6 +46317,21 @@
         "2026-06-15": 160,
         "2026-06-22": 167
       }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 72,
+        "label": "Active",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-03-02T23:06:14Z",
+        "lastReleaseAt": "2026-03-02T23:06:14Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/vasanthshanmugam/jmeter-auto-correlation-plugin"
+      }
     }
   },
   {
@@ -45753,6 +46368,21 @@
         "2026-06-08": 13,
         "2026-06-15": 18,
         "2026-06-22": 23
+      }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 69,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2026-06-25T07:53:40Z",
+        "lastReleaseAt": "2026-04-25T06:15:45Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
       }
     }
   },
@@ -46845,6 +47475,21 @@
         "2026-06-15": 423,
         "2026-06-22": 427
       }
+    },
+    "githubInfo": {
+      "stars": 20,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 65,
+        "label": "Maintained",
+        "stars": 20,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2025-10-02T02:08:42Z",
+        "lastReleaseAt": "2025-10-02T02:06:17Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/JoseLuisSR/awsmeter"
+      }
     }
   },
   {
@@ -47175,6 +47820,21 @@
         "2026-06-15": 875,
         "2026-06-22": 878
       }
+    },
+    "githubInfo": {
+      "stars": 9,
+      "license": "MIT",
+      "health": {
+        "score": 19,
+        "label": "Stale",
+        "stars": 9,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2022-03-26T04:38:43Z",
+        "lastReleaseAt": "2020-09-06T04:31:40Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/tilln/jmeter-formman"
+      }
     }
   },
   {
@@ -47313,6 +47973,21 @@
         "2026-06-15": 88,
         "2026-06-22": 91
       }
+    },
+    "githubInfo": {
+      "stars": 4,
+      "license": "N/A",
+      "health": {
+        "score": 38,
+        "label": "Stale",
+        "stars": 4,
+        "openIssues": 1,
+        "archived": false,
+        "lastCommitAt": "2025-02-20T12:33:12Z",
+        "lastReleaseAt": "2025-02-20T12:33:12Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/DanilGolikov/JmeterNamesTemplater"
+      }
     }
   },
   {
@@ -47361,6 +48036,21 @@
         "2026-06-15": 32,
         "2026-06-22": 35
       }
+    },
+    "githubInfo": {
+      "stars": 3,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 81,
+        "label": "Active",
+        "stars": 3,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-06-04T09:34:42Z",
+        "lastReleaseAt": "2026-05-27T10:08:17Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/ammyrohilla5050-dot/jmeter-coordinated-throughput-controller"
+      }
     }
   },
   {
@@ -47400,6 +48090,21 @@
         "2026-06-08": 24,
         "2026-06-15": 17,
         "2026-06-22": 19
+      }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 69,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2026-06-20T20:54:51Z",
+        "lastReleaseAt": "2026-04-16T16:29:20Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
       }
     }
   },
@@ -48021,6 +48726,21 @@
         "2026-06-15": 931,
         "2026-06-22": 933
       }
+    },
+    "githubInfo": {
+      "stars": 14,
+      "license": "MIT",
+      "health": {
+        "score": 21,
+        "label": "Stale",
+        "stars": 14,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2023-05-21T01:01:46Z",
+        "lastReleaseAt": "2023-05-21T01:01:46Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/tilln/jmeter-wssecurity"
+      }
     }
   },
   {
@@ -48066,6 +48786,21 @@
         "2026-06-08": 92,
         "2026-06-15": 91,
         "2026-06-22": 93
+      }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 73,
+        "label": "Active",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-03-10T19:10:09Z",
+        "lastReleaseAt": "2026-03-10T19:10:09Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/QAInsights/prism"
       }
     }
   },
@@ -48312,6 +49047,21 @@
         "2026-06-15": 594,
         "2026-06-22": 595
       }
+    },
+    "githubInfo": {
+      "stars": 5,
+      "license": "MIT",
+      "health": {
+        "score": 50,
+        "label": "Maintained",
+        "stars": 5,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-10-03T23:46:23Z",
+        "lastReleaseAt": "2022-09-01T07:25:43Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/tilln/jmeter-junit-reporter"
+      }
     }
   },
   {
@@ -48538,6 +49288,21 @@
         "2026-06-15": 86,
         "2026-06-22": 87
       }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "N/A",
+      "health": {
+        "score": 69,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastReleaseAt": "2026-01-21T03:56:37Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
+      }
     }
   },
   {
@@ -48756,6 +49521,21 @@
         "2026-06-15": 43,
         "2026-06-22": 43
       }
+    },
+    "githubInfo": {
+      "stars": 5,
+      "license": "MIT",
+      "health": {
+        "score": 14,
+        "label": "Stale",
+        "stars": 5,
+        "openIssues": 1,
+        "archived": false,
+        "lastCommitAt": "2023-03-10T15:12:14Z",
+        "lastReleaseAt": "2023-01-06T22:38:58Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/rollno748/JMeter-couchbase-sampler"
+      }
     }
   },
   {
@@ -48780,6 +49560,21 @@
       "trendingDelta": 0,
       "absoluteDownloads": 0,
       "history": {}
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 70,
+        "label": "Active",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-02-23T15:55:07Z",
+        "lastReleaseAt": "2026-02-19T12:47:01Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/prasantmohanty/jmeter-backend-listner-reportportal"
+      }
     }
   },
   {
@@ -48809,6 +49604,21 @@
       "trendingDelta": 0,
       "absoluteDownloads": 0,
       "history": {}
+    },
+    "githubInfo": {
+      "stars": 3,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 78,
+        "label": "Active",
+        "stars": 3,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-05-05T03:12:08Z",
+        "lastReleaseAt": "2026-03-03T04:48:00Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/QAInsights/superkey"
+      }
     }
   },
   {
@@ -48843,6 +49653,21 @@
         "2026-06-15": 7,
         "2026-06-22": 7
       }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "MIT",
+      "health": {
+        "score": 58,
+        "label": "Maintained",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-05-11T16:40:23Z",
+        "lastReleaseAt": null,
+        "license": "MIT",
+        "repoUrl": "https://github.com/QAInsights/jmeter-readme-config"
+      }
     }
   },
   {
@@ -48874,6 +49699,21 @@
       "history": {
         "2026-06-15": 3,
         "2026-06-22": 3
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 78,
+        "label": "Active",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-06-04T06:05:32Z",
+        "lastReleaseAt": "2026-06-03T06:25:46Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
     }
   },
@@ -48907,6 +49747,21 @@
       "absoluteDownloads": 45,
       "history": {
         "2026-06-22": 45
+      }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 65,
+        "label": "Maintained",
+        "stars": 0,
+        "openIssues": 1,
+        "archived": false,
+        "lastCommitAt": "2026-06-21T06:25:22Z",
+        "lastReleaseAt": "2026-06-21T05:49:22Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/srenevasanks/jmeter-html-report-plugin"
       }
     }
   },
@@ -48956,6 +49811,21 @@
         "2026-06-15": 25,
         "2026-06-22": 24
       }
+    },
+    "githubInfo": {
+      "stars": 6,
+      "license": "N/A",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 6,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-03-14T17:32:28Z",
+        "lastReleaseAt": "2026-03-13T18:10:57Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/AndreyVMarkelov/MCPulse"
+      }
     }
   },
   {
@@ -48987,6 +49857,21 @@
         "2026-06-01": 2,
         "2026-06-15": 2,
         "2026-06-22": 1
+      }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "MIT",
+      "health": {
+        "score": 71,
+        "label": "Active",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-04-08T18:44:57Z",
+        "lastReleaseAt": "2026-04-08T17:10:11Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/perfsage/perfsage-slo-reporter"
       }
     }
   },
@@ -49040,6 +49925,21 @@
         "2026-06-08": 85,
         "2026-06-15": 94,
         "2026-06-22": 92
+      }
+    },
+    "githubInfo": {
+      "stars": 4,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 73,
+        "label": "Active",
+        "stars": 4,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2026-07-02T21:44:01Z",
+        "lastReleaseAt": "2026-04-09T22:16:51Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
       }
     }
   },
@@ -49828,6 +50728,21 @@
         "2026-06-15": 76,
         "2026-06-22": 71
       }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "N/A",
+      "health": {
+        "score": 10,
+        "label": "Stale",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2023-08-06T13:40:59Z",
+        "lastReleaseAt": "2023-08-06T13:41:51Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/bobcode99/jmeter-rapi-plugin"
+      }
     }
   },
   {
@@ -49943,6 +50858,21 @@
         "2026-06-08": 343,
         "2026-06-15": 351,
         "2026-06-22": 345
+      }
+    },
+    "githubInfo": {
+      "stars": 5,
+      "license": "N/A",
+      "health": {
+        "score": 30,
+        "label": "Stale",
+        "stars": 5,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2024-09-30T12:15:38Z",
+        "lastReleaseAt": "2024-09-27T08:51:17Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/vdaburon/pacing-jmeter-plugin"
       }
     }
   },
@@ -50371,6 +51301,21 @@
         "2026-06-15": 37,
         "2026-06-22": 30
       }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "N/A",
+      "health": {
+        "score": 69,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastReleaseAt": "2026-01-21T03:56:37Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
+      }
     }
   },
   {
@@ -50556,6 +51501,21 @@
         "2026-06-15": 131,
         "2026-06-22": 122
       }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "N/A",
+      "health": {
+        "score": 45,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-04-25T15:12:04Z",
+        "lastReleaseAt": "2025-04-25T15:12:04Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/vdaburon/JUnitReportKpiJMeterDashboardStats"
+      }
     }
   },
   {
@@ -50596,6 +51556,21 @@
         "2026-06-08": 47,
         "2026-06-15": 53,
         "2026-06-22": 44
+      }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "N/A",
+      "health": {
+        "score": 71,
+        "label": "Active",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-04-08T23:44:54Z",
+        "lastReleaseAt": "2026-04-08T23:45:02Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/bakthava/LLM-Metrics-Visualizer"
       }
     }
   },
@@ -50822,6 +51797,21 @@
         "2026-06-08": 122,
         "2026-06-15": 113,
         "2026-06-22": 103
+      }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "N/A",
+      "health": {
+        "score": 69,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastReleaseAt": "2026-01-21T03:56:37Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
       }
     }
   },
@@ -51076,6 +52066,21 @@
         "2026-06-15": 786,
         "2026-06-22": 775
       }
+    },
+    "githubInfo": {
+      "stars": 52,
+      "license": "MIT",
+      "health": {
+        "score": 88,
+        "label": "Active",
+        "stars": 52,
+        "openIssues": 7,
+        "archived": false,
+        "lastCommitAt": "2026-06-25T01:46:53Z",
+        "lastReleaseAt": "2026-06-10T02:53:01Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/QAInsights/jmeter-ai"
+      }
     }
   },
   {
@@ -51260,6 +52265,21 @@
         "2026-06-15": 143,
         "2026-06-22": 130
       }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "N/A",
+      "health": {
+        "score": 45,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-04-25T15:31:13Z",
+        "lastReleaseAt": "2025-04-25T15:31:13Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/vdaburon/JUnitReportKpiCompareJMeterReportCsv"
+      }
     }
   },
   {
@@ -51301,6 +52321,21 @@
         "2026-06-08": 84,
         "2026-06-15": 96,
         "2026-06-22": 83
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "NOASSERTION",
+      "health": {
+        "score": 74,
+        "label": "Active",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-04-08T09:04:17Z",
+        "lastReleaseAt": "2026-04-08T07:42:02Z",
+        "license": "NOASSERTION",
+        "repoUrl": "https://github.com/cuneytcakir/jmeter-sse-sampler"
       }
     }
   },
@@ -51348,6 +52383,21 @@
         "2026-06-08": 62,
         "2026-06-15": 64,
         "2026-06-22": 49
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-05-21T17:54:53Z",
+        "lastReleaseAt": "2026-05-19T18:44:15Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/rishavsawarn/jmeter-jtl-xls-report-plugin"
       }
     }
   },
@@ -51479,6 +52529,21 @@
         "2026-06-08": 83,
         "2026-06-15": 107,
         "2026-06-22": 89
+      }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "MIT",
+      "health": {
+        "score": 36,
+        "label": "Stale",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-02-28T00:39:33Z",
+        "lastReleaseAt": "2025-02-28T00:39:59Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/tilln/jmeter-cors-plugin"
       }
     }
   },
@@ -52400,6 +53465,21 @@
         "2026-06-15": 841,
         "2026-06-22": 822
       }
+    },
+    "githubInfo": {
+      "stars": 13,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 73,
+        "label": "Active",
+        "stars": 13,
+        "openIssues": 9,
+        "archived": false,
+        "lastCommitAt": "2026-05-08T07:58:43Z",
+        "lastReleaseAt": "2026-03-03T13:50:49Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/DataDog/jmeter-datadog-backend-listener"
+      }
     }
   },
   {
@@ -52663,6 +53743,21 @@
         "2026-06-15": 566,
         "2026-06-22": 547
       }
+    },
+    "githubInfo": {
+      "stars": 13,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 16,
+        "label": "Archived",
+        "stars": 13,
+        "openIssues": 3,
+        "archived": true,
+        "lastCommitAt": "2022-12-22T14:39:11Z",
+        "lastReleaseAt": "2022-12-22T14:39:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/dynatrace-oss/jmeter-dynatrace-plugin"
+      }
     }
   },
   {
@@ -52847,6 +53942,21 @@
         "2026-06-08": 100,
         "2026-06-15": 135,
         "2026-06-22": 116
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "N/A",
+      "health": {
+        "score": 44,
+        "label": "Maintained",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-04-25T15:45:20Z",
+        "lastReleaseAt": "2025-04-25T15:45:20Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/vdaburon/JUnitReportKpiJMeterReportCsv"
       }
     }
   },
@@ -53424,6 +54534,21 @@
         "2026-06-15": 1179,
         "2026-06-22": 1159
       }
+    },
+    "githubInfo": {
+      "stars": 10,
+      "license": "N/A",
+      "health": {
+        "score": 18,
+        "label": "Stale",
+        "stars": 10,
+        "openIssues": 1,
+        "archived": false,
+        "lastCommitAt": "2019-07-27T16:11:45Z",
+        "lastReleaseAt": null,
+        "license": "N/A",
+        "repoUrl": "https://github.com/spinning10/JMeterSoapSampler"
+      }
     }
   },
   {
@@ -53605,6 +54730,21 @@
         "2026-06-08": 181,
         "2026-06-15": 175,
         "2026-06-22": 154
+      }
+    },
+    "githubInfo": {
+      "stars": 2,
+      "license": "N/A",
+      "health": {
+        "score": 69,
+        "label": "Maintained",
+        "stars": 2,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastReleaseAt": "2026-01-21T03:56:37Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
       }
     }
   },
@@ -54391,6 +55531,21 @@
         "2026-06-15": 1271,
         "2026-06-22": 1247
       }
+    },
+    "githubInfo": {
+      "stars": 48,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 81,
+        "label": "Active",
+        "stars": 48,
+        "openIssues": 32,
+        "archived": false,
+        "lastCommitAt": "2026-07-03T13:19:33Z",
+        "lastReleaseAt": "2026-05-19T18:47:31Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
+      }
     }
   },
   {
@@ -54545,6 +55700,21 @@
         "2026-06-15": 74,
         "2026-06-22": 50
       }
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "N/A",
+      "health": {
+        "score": 32,
+        "label": "Stale",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2025-01-14T13:12:04Z",
+        "lastReleaseAt": "2025-01-14T13:12:04Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/vdaburon/elastic-apm-jmeter-plugin"
+      }
     }
   },
   {
@@ -54584,6 +55754,21 @@
         "2026-06-08": 66,
         "2026-06-15": 72,
         "2026-06-22": 45
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 68,
+        "label": "Maintained",
+        "stars": 1,
+        "openIssues": 3,
+        "archived": false,
+        "lastCommitAt": "2026-06-29T05:54:27Z",
+        "lastReleaseAt": "2026-04-16T19:31:38Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
       }
     }
   },
@@ -55116,6 +56301,21 @@
         "2026-06-15": 905,
         "2026-06-22": 872
       }
+    },
+    "githubInfo": {
+      "stars": 143,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 143,
+        "openIssues": 4,
+        "archived": false,
+        "lastCommitAt": "2025-10-29T16:58:11Z",
+        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
+      }
     }
   },
   {
@@ -55216,6 +56416,21 @@
         "2026-06-08": 64,
         "2026-06-15": 91,
         "2026-06-22": 55
+      }
+    },
+    "githubInfo": {
+      "stars": 1,
+      "license": "N/A",
+      "health": {
+        "score": 74,
+        "label": "Active",
+        "stars": 1,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-04-17T08:36:51Z",
+        "lastReleaseAt": "2026-04-17T08:36:51Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/vdaburon/otel-apm-jmeter-plugin"
       }
     }
   },
@@ -55820,6 +57035,21 @@
         "2026-06-15": 9972,
         "2026-06-22": 9927
       }
+    },
+    "githubInfo": {
+      "stars": 143,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 143,
+        "openIssues": 4,
+        "archived": false,
+        "lastCommitAt": "2025-10-29T16:58:11Z",
+        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
+      }
     }
   },
   {
@@ -55864,6 +57094,21 @@
         "2026-06-08": 322,
         "2026-06-15": 384,
         "2026-06-22": 329
+      }
+    },
+    "githubInfo": {
+      "stars": 5,
+      "license": "N/A",
+      "health": {
+        "score": 77,
+        "label": "Active",
+        "stars": 5,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-03-29T22:46:42Z",
+        "lastReleaseAt": "2026-03-24T22:38:35Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/QAInsights/jmeter-studio"
       }
     }
   },
@@ -56141,6 +57386,21 @@
         "2026-06-08": 2205,
         "2026-06-15": 2150,
         "2026-06-22": 2091
+      }
+    },
+    "githubInfo": {
+      "stars": 29,
+      "license": "MIT",
+      "health": {
+        "score": 32,
+        "label": "Stale",
+        "stars": 29,
+        "openIssues": 7,
+        "archived": false,
+        "lastCommitAt": "2024-11-01T10:39:44Z",
+        "lastReleaseAt": "2024-04-24T10:22:40Z",
+        "license": "MIT",
+        "repoUrl": "https://github.com/rollno748/Extended-csv-dataset-config"
       }
     }
   },
@@ -57516,6 +58776,21 @@
         "2026-06-15": 5700,
         "2026-06-22": 5557
       }
+    },
+    "githubInfo": {
+      "stars": 50,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 75,
+        "label": "Active",
+        "stars": 50,
+        "openIssues": 1,
+        "archived": false,
+        "lastCommitAt": "2026-06-30T08:47:47Z",
+        "lastReleaseAt": null,
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/undera/jmeter-plugins-webdriver"
+      }
     }
   },
   {
@@ -57713,6 +58988,21 @@
         "2026-06-08": 1503,
         "2026-06-15": 1538,
         "2026-06-22": 1395
+      }
+    },
+    "githubInfo": {
+      "stars": 25,
+      "license": "N/A",
+      "health": {
+        "score": 79,
+        "label": "Active",
+        "stars": 25,
+        "openIssues": 2,
+        "archived": false,
+        "lastCommitAt": "2026-02-24T10:25:25Z",
+        "lastReleaseAt": "2026-02-24T10:25:25Z",
+        "license": "N/A",
+        "repoUrl": "https://github.com/vdaburon/har-convertor-jmeter-plugin"
       }
     }
   }
