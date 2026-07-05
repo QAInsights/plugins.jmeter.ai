@@ -34330,12 +34330,12 @@
       "stars": 77,
       "license": "MIT",
       "health": {
-        "score": 79,
+        "score": 87,
         "label": "Active",
         "stars": 77,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-02-09T00:11:21Z",
+        "lastCommitAt": "2026-07-04T21:54:31Z",
         "lastReleaseAt": "2025-03-15T04:16:48Z",
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-iso8583"
@@ -48101,7 +48101,7 @@
         "stars": 2,
         "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-06-20T20:54:51Z",
+        "lastCommitAt": "2026-07-04T20:52:53Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
