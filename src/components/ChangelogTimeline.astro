@@ -32,7 +32,7 @@ const { entries, initialVisible = 5 } = Astro.props;
           <div class="mb-2 flex flex-wrap items-baseline gap-3">
             <span class="text-lg font-black text-gray-900 dark:text-white">v{entry.version}</span>
             {i === 0 && (
-              <span class="bg-primary/15 text-primary rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase">
+              <span class="bg-primary/15 text-green-700 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase dark:text-[#ccff00]">
                 Latest
               </span>
             )}
@@ -47,7 +47,7 @@ const { entries, initialVisible = 5 } = Astro.props;
                   href={entry.downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-primary inline-flex items-center gap-1.5 font-semibold hover:underline"
+                  class="text-green-600 dark:text-[#ccff00] inline-flex items-center gap-1.5 font-semibold hover:underline"
                 >
                   <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
@@ -70,7 +70,7 @@ const { entries, initialVisible = 5 } = Astro.props;
                       <li>
                         <span class="mr-1">&bull;</span>
                         <a
-                          class="hover:text-primary break-all"
+                          class="hover:text-green-600 dark:hover:text-[#ccff00] break-all"
                           href={l.url}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -93,7 +93,7 @@ const { entries, initialVisible = 5 } = Astro.props;
       <button
         type="button"
         id="toggleChangelog"
-        class="hover:text-primary mt-6 inline-flex items-center gap-2 text-sm font-bold text-gray-700 transition-colors dark:text-gray-300"
+        class="hover:text-green-600 dark:hover:text-[#ccff00] mt-6 inline-flex items-center gap-2 text-sm font-bold text-gray-700 transition-colors dark:text-gray-300"
         data-expanded="false"
         aria-expanded="false"
         aria-controls="changelogTimeline"

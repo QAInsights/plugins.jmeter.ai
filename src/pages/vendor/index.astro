@@ -128,7 +128,7 @@ const description = `Browse ${vendors.length} JMeter plugin vendors on PerfAtlas
                       <span
                         class={`text-2xl font-black ${
                           i === 0
-                            ? 'text-primary dark:text-[#ccff00]'
+                            ? 'text-green-600 dark:text-[#ccff00]'
                             : i === 1
                               ? 'text-gray-400'
                               : 'text-amber-500'
@@ -140,7 +140,7 @@ const description = `Browse ${vendors.length} JMeter plugin vendors on PerfAtlas
                         Top {i + 1}
                       </span>
                     </div>
-                    <h3 class="group-hover:text-primary text-2xl leading-tight font-black text-gray-900 transition-colors dark:text-white dark:group-hover:text-[#ccff00]">
+                    <h3 class="group-hover:text-green-600 text-2xl leading-tight font-black text-gray-900 transition-colors dark:text-white dark:group-hover:text-[#ccff00]">
                       {v.vendor}
                     </h3>
                     <div class="grid grid-cols-2 gap-3 text-sm">
@@ -243,7 +243,7 @@ const description = `Browse ${vendors.length} JMeter plugin vendors on PerfAtlas
               data-index={index}
             >
               <div class="mb-3 flex items-start justify-between gap-3">
-                <h3 class="group-hover:text-primary line-clamp-2 text-lg leading-snug font-bold text-gray-900 transition-colors dark:text-white dark:group-hover:text-[#ccff00]">
+                <h3 class="group-hover:text-green-600 line-clamp-2 text-lg leading-snug font-bold text-gray-900 transition-colors dark:text-white dark:group-hover:text-[#ccff00]">
                   {v.vendor}
                 </h3>
                 <span class="shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-bold text-gray-600 dark:bg-white/5 dark:text-gray-300">
@@ -282,7 +282,7 @@ const description = `Browse ${vendors.length} JMeter plugin vendors on PerfAtlas
               </div>
 
               {v.aiReadyCount > 0 && (
-                <span class="bg-primary/20 text-primary-dark border-primary/40 mb-3 inline-flex items-center gap-1 self-start rounded border px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase dark:text-[#ccff00]">
+                <span class="bg-primary/20 text-green-700 border-primary/40 mb-3 inline-flex items-center gap-1 self-start rounded border px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase dark:text-[#ccff00]">
                   {v.aiReadyCount} AI Ready
                 </span>
               )}

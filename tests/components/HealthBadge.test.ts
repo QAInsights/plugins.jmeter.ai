@@ -3,7 +3,7 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import HealthBadge from '../../src/components/HealthBadge.astro';
 import type { HealthInfo } from '../../src/utils/health';
 
-async function render(props: { health?: HealthInfo; size?: 'sm' | 'md' }) {
+async function render(props: { health?: HealthInfo; size?: 'sm' | 'md'; compact?: boolean }) {
   const container = await AstroContainer.create();
   const html = await container.renderToString(HealthBadge, { props });
   return { html };
@@ -73,5 +73,129 @@ describe('HealthBadge', () => {
 
     expect(html).toContain('Archived');
     expect(html).toContain('text-rose-700');
+  });
+
+  describe('compact mode', () => {
+    it('should render single letter A for Active', async () => {
+      const { html } = await render({
+        health: {
+          score: 95,
+          label: 'Active',
+          stars: 150,
+          openIssues: 2,
+          archived: false,
+          lastCommitAt: '2025-01-01T12:00:00Z',
+          lastReleaseAt: '2025-01-01T12:00:00Z',
+          license: 'Apache-2.0',
+          repoUrl: 'https://github.com/owner/repo',
+        },
+        compact: true,
+      });
+
+      expect(html).toContain('>A<');
+      expect(html).not.toContain('>Active<');
+      expect(html).toContain('text-green-700');
+      expect(html).toContain('aria-label="Active"');
+    });
+
+    it('should render single letter M for Maintained', async () => {
+      const { html } = await render({
+        health: {
+          score: 60,
+          label: 'Maintained',
+          stars: 50,
+          openIssues: 5,
+          archived: false,
+          lastCommitAt: '2025-01-01T12:00:00Z',
+          lastReleaseAt: '2025-01-01T12:00:00Z',
+          license: 'MIT',
+          repoUrl: 'https://github.com/owner/repo',
+        },
+        compact: true,
+      });
+
+      expect(html).toContain('>M<');
+      expect(html).not.toContain('>Maintained<');
+      expect(html).toContain('text-blue-700');
+    });
+
+    it('should render single letter S for Stale', async () => {
+      const { html } = await render({
+        health: {
+          score: 20,
+          label: 'Stale',
+          stars: 10,
+          openIssues: 0,
+          archived: false,
+          lastCommitAt: '2020-01-01T12:00:00Z',
+          lastReleaseAt: '2020-01-01T12:00:00Z',
+          license: 'MIT',
+          repoUrl: 'https://github.com/owner/repo',
+        },
+        compact: true,
+      });
+
+      expect(html).toContain('>S<');
+      expect(html).not.toContain('>Stale<');
+      expect(html).toContain('text-amber-700');
+    });
+
+    it('should render single letter R for Archived', async () => {
+      const { html } = await render({
+        health: {
+          score: 15,
+          label: 'Archived',
+          stars: 50,
+          openIssues: 0,
+          archived: true,
+          lastCommitAt: '2020-01-01T12:00:00Z',
+          lastReleaseAt: '2020-01-01T12:00:00Z',
+          license: 'MIT',
+          repoUrl: 'https://github.com/owner/repo',
+        },
+        compact: true,
+      });
+
+      expect(html).toContain('>R<');
+      expect(html).not.toContain('>Archived<');
+      expect(html).toContain('text-rose-700');
+    });
+
+    it('should include tooltip with full label and score', async () => {
+      const { html } = await render({
+        health: {
+          score: 95,
+          label: 'Active',
+          stars: 150,
+          openIssues: 2,
+          archived: false,
+          lastCommitAt: '2025-01-01T12:00:00Z',
+          lastReleaseAt: '2025-01-01T12:00:00Z',
+          license: 'Apache-2.0',
+          repoUrl: 'https://github.com/owner/repo',
+        },
+        compact: true,
+      });
+
+      expect(html).toContain('title="Active · Health Score: 95/100');
+    });
+
+    it('should render empty when health is Unknown in compact mode', async () => {
+      const { html } = await render({
+        health: {
+          score: 0,
+          label: 'Unknown',
+          stars: 0,
+          openIssues: 0,
+          archived: false,
+          lastCommitAt: null,
+          lastReleaseAt: null,
+          license: 'N/A',
+          repoUrl: '',
+        },
+        compact: true,
+      });
+      expect(html.trim()).toBe('');
+    });
   });
 });

@@ -24,18 +24,18 @@ const totalPages = Math.ceil(allSortedPosts.length / postsPerPage);
   <Header />
 
   <!-- Hero Header with Grid -->
-  <section class="bg-dark-bg relative overflow-hidden border-b border-white/5 pt-16 pb-24">
+  <section class="dark:bg-dark-bg relative overflow-hidden border-b border-gray-200 bg-gray-50 pt-16 pb-24 dark:border-white/5">
     <div class="grid-background absolute inset-0 opacity-20"></div>
     <div class="to-dark-bg/80 absolute inset-0 bg-gradient-to-b from-transparent"></div>
 
     <div class="relative mx-auto max-w-7xl px-6 text-center">
-      <h1 class="mb-6 text-5xl font-black tracking-tighter text-white md:text-7xl">
+      <h1 class="mb-6 text-5xl font-black tracking-tighter text-gray-900 md:text-7xl dark:text-white">
         Welcome, <span
-          class="bg-gradient-to-r from-green-400 to-[#ccff00] bg-clip-text text-transparent"
+          class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
           >world</span
         >
       </h1>
-      <p class="mx-auto max-w-2xl text-xl leading-relaxed text-gray-400">
+      <p class="mx-auto max-w-2xl text-xl leading-relaxed text-gray-600 dark:text-gray-400">
         Deep dives into the PerfAtlas ecosystem. Get the latest engineering insights from the JMeter
         community.
       </p>
@@ -160,7 +160,7 @@ const totalPages = Math.ceil(allSortedPosts.length / postsPerPage);
                     </div>
                     <a
                       href={`/blog/${post.id}/`}
-                      class="flex items-center gap-1 text-xs font-bold tracking-widest text-[#ccff00] uppercase opacity-0 transition-all group-hover:opacity-100"
+                      class="flex items-center gap-1 text-xs font-bold tracking-widest text-green-600 uppercase opacity-0 transition-all group-hover:opacity-100 dark:text-[#ccff00]"
                     >
                       Read Post{' '}
                       <svg

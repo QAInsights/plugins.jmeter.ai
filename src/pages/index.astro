@@ -106,7 +106,27 @@ const homeSchema = {
       <div class="mx-auto max-w-7xl">
         <div class="mb-6 flex flex-col justify-between gap-4 sm:mb-8 md:flex-row md:items-end">
           <div>
-            <h2 class="mb-4 text-2xl font-bold dark:text-white">All Directory Plugins</h2>
+            <h2 class="mb-2 text-2xl font-bold dark:text-white">All Directory Plugins</h2>
+
+            {/* Health Legend */}
+            <div class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-gray-500 dark:text-gray-400">
+              <span class="inline-flex items-center gap-1">
+                <span class="inline-flex h-4 w-4 items-center justify-center rounded border border-green-200/60 bg-green-50 text-[9px] font-black text-green-700 dark:border-green-500/20 dark:bg-green-500/10 dark:text-green-400">A</span>
+                Active
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <span class="inline-flex h-4 w-4 items-center justify-center rounded border border-blue-200/60 bg-blue-50 text-[9px] font-black text-blue-700 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400">M</span>
+                Maintained
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <span class="inline-flex h-4 w-4 items-center justify-center rounded border border-amber-200/60 bg-amber-50 text-[9px] font-black text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-400">S</span>
+                Stale
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <span class="inline-flex h-4 w-4 items-center justify-center rounded border border-rose-200/60 bg-rose-50 text-[9px] font-black text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-400">R</span>
+                Archived
+              </span>
+            </div>
 
             {/* Filter Categories */}
             <span id="ai-ready" class="block" aria-hidden="true"></span>
