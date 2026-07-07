@@ -593,13 +593,13 @@
       "stars": 1,
       "license": "NOASSERTION",
       "health": {
-        "score": 74,
-        "label": "Active",
+        "score": 68,
+        "label": "Maintained",
         "stars": 1,
-        "openIssues": 0,
+        "openIssues": 1,
         "archived": false,
-        "lastCommitAt": "2026-04-08T09:04:17Z",
-        "lastReleaseAt": "2026-04-08T07:42:02Z",
+        "lastCommitAt": "2026-07-06T10:41:39Z",
+        "lastReleaseAt": "2026-07-06T10:41:39Z",
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/cuneytcakir/jmeter-sse-sampler"
       }
@@ -1106,7 +1106,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -1698,6 +1698,10 @@
       "3.0.0": {
         "changes": "Baseline JTL comparison support. The Excel report now contains three sheets: Current, Baseline, and Comparison. Added 'Baseline Directory' field in the GUI listener.",
         "downloadUrl": "https://github.com/rishavsawarn/jmeter-jtl-xls-report-plugin/releases/download/v3.0.0/jmeter-jtl-xls-report-plugin-v3.0.0.jar"
+      },
+      "3.1.0": {
+        "changes": "Added Error Analysis sheet: per-transaction breakdown of failures by type (Timeout, 4xx, 5xx, Assertion, Other). Bundled commons-compress so .xlsx generation works reliably inside JMeter.",
+        "downloadUrl": "https://github.com/rishavsawarn/jmeter-jtl-xls-report-plugin/releases/download/v3.1.0/jmeter-jtl-xls-report-plugin-v3.1.0.jar"
       }
     },
     "sponsored": false,
@@ -10638,7 +10642,7 @@
       "stars": 8,
       "license": "N/A",
       "health": {
-        "score": 28,
+        "score": 27,
         "label": "Stale",
         "stars": 8,
         "openIssues": 0,
@@ -13169,7 +13173,7 @@
       "stars": 7,
       "license": "N/A",
       "health": {
-        "score": 28,
+        "score": 27,
         "label": "Stale",
         "stars": 7,
         "openIssues": 3,
@@ -27670,12 +27674,12 @@
       }
     },
     "githubInfo": {
-      "stars": 53,
+      "stars": 54,
       "license": "Apache-2.0",
       "health": {
-        "score": 31,
+        "score": 32,
         "label": "Stale",
-        "stars": 53,
+        "stars": 54,
         "openIssues": 12,
         "archived": false,
         "lastCommitAt": "2024-11-20T22:07:39Z",
