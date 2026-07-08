@@ -7,6 +7,7 @@ import PluginCard from '../components/PluginCard.astro';
 import Footer from '../components/Footer.astro';
 import PluginModal from '../components/PluginModal.astro';
 import BadgesPromotion from '../components/BadgesPromotion.astro';
+import DocsCTA from '../components/DocsCTA.astro';
 import pluginsData from '../data/plugins_data.json';
 
 // Sort descending by trending delta for "Hot This Week"
@@ -100,6 +101,8 @@ const homeSchema = {
     </div>
 
     <BadgesPromotion />
+
+    <DocsCTA />
 
     {/* All Plugins Grid with Filters */}
     <section id="compare" class="flex-grow px-4 py-8 sm:px-6 sm:py-10">

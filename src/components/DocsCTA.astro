@@ -1,0 +1,144 @@
+---
+
+---
+
+<section class="px-4 py-12 sm:px-6 sm:py-16">
+  <div class="mx-auto max-w-7xl">
+    <div class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-white/10 dark:bg-dark-surface">
+      {/* Animated conic gradient glow border */}
+      <div
+        class="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style="background: conic-gradient(from 180deg at 50% 50%, #b0d600, #ccff00, #4285f4, #9b72cb, #b0d600); filter: blur(24px); opacity: 0.15;"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="relative grid grid-cols-1 gap-8 p-6 sm:p-10 md:grid-cols-5 md:gap-10 md:p-12">
+        {/* Left: Copy + CTA */}
+        <div class="md:col-span-3 flex flex-col justify-center">
+          <div class="mb-5 flex items-center gap-2">
+            <span
+              class="bg-primary/10 text-green-600 dark:text-[#ccff00] inline-flex h-9 w-9 items-center justify-center rounded-lg"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.121 4.884 7.693 4 5 4c-1.118 0-2.205.181-3.25.522v13C2.795 17.181 3.882 17 5 17c2.693 0 5.121.884 7 2.253m0-13C13.879 4.884 16.307 4 19 4c1.118 0 2.205.181 3.25.522v13C21.205 17.181 20.118 17 19 17c-2.693 0-5.121.884-7 2.253"
+                ></path></svg
+              >
+            </span>
+            <span
+              class="text-[11px] font-bold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+              >Modern JMeter Docs</span
+            >
+          </div>
+
+          <h2
+            class="mb-3 text-3xl font-black leading-tight tracking-tight text-gray-900 sm:text-4xl dark:text-white"
+          >
+            Stop guessing.
+            <span
+              class="from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
+              >Start testing.</span
+            >
+          </h2>
+          <p
+            class="mb-7 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg dark:text-gray-400"
+          >
+            From your first thread group to advanced load shaping, the complete JMeter
+            playbook, written for engineers who ship. Search, Ask AI, and dark/light theme
+            built in.
+          </p>
+
+          <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <a
+              href="https://docs.jmeter.ai"
+              target="_blank"
+              rel="noopener"
+              class="group/btn bg-primary text-gray-900 hover:brightness-105 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold shadow-lg shadow-green-500/20 transition-all hover:shadow-xl hover:shadow-green-500/30 active:scale-[0.98]"
+            >
+              Read the Docs
+              <svg
+                class="h-4 w-4 transform transition-transform group-hover/btn:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
+              >
+            </a>
+            <a
+              href="https://docs.jmeter.ai/getting-started/get-started/"
+              target="_blank"
+              rel="noopener"
+              class="text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-[#ccff00] inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
+            >
+              New here? Start with the beginner guide
+              <svg
+                class="h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"></path></svg
+              >
+            </a>
+          </div>
+        </div>
+
+        {/* Right: Terminal-style preview card */}
+        <div class="md:col-span-2 flex items-center">
+          <div
+            class="dark:bg-dark-bg w-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-inner dark:border-white/5"
+          >
+            <div
+              class="flex items-center gap-1.5 border-b border-gray-200 bg-gray-100 px-4 py-2.5 dark:border-white/5 dark:bg-white/5"
+            >
+              <span class="h-2.5 w-2.5 rounded-full bg-red-400/80"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-green-400/80"></span>
+              <span
+                class="ml-2 font-mono text-[11px] font-medium text-gray-400 dark:text-gray-500"
+                >docs.jmeter.ai</span
+              >
+            </div>
+            <div class="space-y-2.5 p-4 font-mono text-[12px] leading-relaxed">
+              <p class="text-gray-400 dark:text-gray-500"># what you'll find</p>
+              <p class="text-gray-700 dark:text-gray-300">
+                <span class="text-green-600 dark:text-[#ccff00]">&rarr;</span> Thread groups &
+                samplers
+              </p>
+              <p class="text-gray-700 dark:text-gray-300">
+                <span class="text-green-600 dark:text-[#ccff00]">&rarr;</span> CI/CD pipelines
+              </p>
+              <p class="text-gray-700 dark:text-gray-300">
+                <span class="text-green-600 dark:text-[#ccff00]">&rarr;</span> Distributed load
+                testing
+              </p>
+              <p class="text-gray-700 dark:text-gray-300">
+                <span class="text-green-600 dark:text-[#ccff00]">&rarr;</span> Plugin recipes
+              </p>
+              <p class="text-gray-700 dark:text-gray-300">
+                <span class="text-green-600 dark:text-[#ccff00]">&rarr;</span> Real-world
+                scenarios
+              </p>
+              <p class="pt-1 text-gray-400 dark:text-gray-500">
+                <span class="text-green-600 dark:text-[#ccff00]">$</span> jmeter -n -t
+                plan.jmx
+                <span class="ml-1 inline-block h-3.5 w-1.5 animate-pulse bg-green-600 dark:bg-[#ccff00] align-middle"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
