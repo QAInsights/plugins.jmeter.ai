@@ -1,5 +1,6 @@
 ---
 import { inferCategory, vendorSlug } from '../utils/plugin';
+import { formatJMeterCompatibility } from '../utils/jmeterCompatibility';
 import HealthBadge from './HealthBadge.astro';
 
 const { plugin } = Astro.props;
@@ -14,6 +15,10 @@ const category = inferCategory(plugin);
 const vendorHref = plugin.vendor ? `/vendor/${vendorSlug(plugin.vendor)}/` : null;
 
 const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
+const jmeterDisplay = formatJMeterCompatibility(plugin.jmeterCompatibility);
+const jmeterTitle = plugin.jmeterCompatibility
+  ? `Requires JMeter ${plugin.jmeterCompatibility} or later`
+  : undefined;
 ---
 
 <div
@@ -48,7 +53,7 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
           >
           <button
             type="button"
-            class="copy-id-btn hover:text-green-600 -ml-1 p-1 text-gray-400 transition-colors dark:hover:text-[#ccff00]"
+            class="copy-id-btn -ml-1 p-1 text-gray-400 transition-colors hover:text-green-600 dark:hover:text-[#ccff00]"
             data-plugin-id={plugin.id}
             title="Copy ID"
           >
@@ -143,7 +148,7 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
       <div class="mb-4 flex items-start justify-between">
         <div class="flex flex-col">
           <h3
-            class="group-hover:text-green-600 line-clamp-2 text-xl leading-tight font-bold text-gray-900 transition-colors dark:text-gray-100 dark:group-hover:text-[#ccff00]"
+            class="line-clamp-2 text-xl leading-tight font-bold text-gray-900 transition-colors group-hover:text-green-600 dark:text-gray-100 dark:group-hover:text-[#ccff00]"
           >
             {plugin.name}
           </h3>
@@ -151,7 +156,7 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
             vendorHref ? (
               <a
                 href={vendorHref}
-                class="hover:text-green-600 mt-1 w-fit text-xs font-semibold tracking-wider text-gray-500 uppercase transition-colors dark:text-gray-400 dark:hover:text-[#ccff00]"
+                class="mt-1 w-fit text-xs font-semibold tracking-wider text-gray-500 uppercase transition-colors hover:text-green-600 dark:text-gray-400 dark:hover:text-[#ccff00]"
                 onclick="event.stopPropagation()"
               >
                 By {plugin.vendor}
@@ -169,7 +174,7 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
             <div class="flex shrink-0 flex-col items-end gap-2 pl-3">
               {tags.map((tag) => (
                 <span
-                  class={`rounded-sm px-2 py-1 text-[9px] font-bold whitespace-nowrap uppercase ${tag === 'AI Ready' ? 'bg-primary/20 text-green-700 border-primary/50 border dark:text-[#ccff00]' : ''} ${tag === 'Sponsored' ? 'bg-secondary/10 text-secondary border-secondary/30 border' : ''} ${tag === 'Featured' ? 'border border-purple-300 bg-purple-100 text-purple-600 dark:border-purple-500/50 dark:bg-purple-900/30 dark:text-purple-400' : ''} `}
+                  class={`rounded-sm px-2 py-1 text-[9px] font-bold whitespace-nowrap uppercase ${tag === 'AI Ready' ? 'bg-primary/20 border-primary/50 border text-green-700 dark:text-[#ccff00]' : ''} ${tag === 'Sponsored' ? 'bg-secondary/10 text-secondary border-secondary/30 border' : ''} ${tag === 'Featured' ? 'border border-purple-300 bg-purple-100 text-purple-600 dark:border-purple-500/50 dark:bg-purple-900/30 dark:text-purple-400' : ''} `}
                 >
                   {tag}
                 </span>
@@ -191,7 +196,7 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
         <div class="flex items-center gap-2">
           <span class="flex items-center gap-1" title="Total Downloads">
             <svg
-              class="text-green-600 h-4 w-4 dark:text-[#ccff00]"
+              class="h-4 w-4 text-green-600 dark:text-[#ccff00]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -242,6 +247,16 @@ const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num)
             )
           }
           <HealthBadge health={plugin.githubInfo?.health} size="sm" compact />
+          {
+            jmeterDisplay && (
+              <span
+                class="bg-primary/10 dark:bg-primary/20 inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium text-green-700 dark:text-[#ccff00]"
+                title={jmeterTitle}
+              >
+                {jmeterDisplay}
+              </span>
+            )
+          }
           <span
             class="rounded bg-gray-100 px-2 py-1 text-gray-600 dark:bg-white/5 dark:text-gray-400"
           >

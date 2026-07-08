@@ -266,7 +266,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "jmeter-html-report-plugin",
@@ -315,7 +316,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/srenevasanks/jmeter-html-report-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "io.github.sagaraggarwal86-jmx-version-control-system",
@@ -371,7 +373,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "io.github.sagaraggarwal86-bpm-jmeter-plugin",
@@ -427,7 +430,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "swagger-postman-importer",
@@ -488,7 +492,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/bakthava/swagger-postman-importer"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "llm-metrics-visualizer",
@@ -545,7 +550,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/bakthava/LLM-Metrics-Visualizer"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-sse-sampler",
@@ -607,7 +613,8 @@
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/cuneytcakir/jmeter-sse-sampler"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "ulp-observability-plugin",
@@ -902,7 +909,8 @@
         "2026-06-22": 41,
         "2026-06-29": 48
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "JmeterNamesTemplater",
@@ -1056,7 +1064,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/DanilGolikov/JmeterNamesTemplater"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "avm-mcp-sampler",
@@ -1120,7 +1129,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/AndreyVMarkelov/MCPulse"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-oauth",
@@ -1681,7 +1691,8 @@
         "2026-06-22": 10,
         "2026-06-29": 16
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jtl-xls-smart-report",
@@ -1748,7 +1759,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/rishavsawarn/jmeter-jtl-xls-report-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "vdn-pacing-jmeter-plugin",
@@ -1880,7 +1892,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/vdaburon/pacing-jmeter-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "vdn-elastic-apm-tool",
@@ -2050,7 +2063,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/vdaburon/elastic-apm-jmeter-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "rbourga-jmeter-plugins-modalitycovcheck",
@@ -2186,20 +2200,21 @@
       }
     },
     "githubInfo": {
-      "stars": 2,
+      "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 68,
-        "label": "Maintained",
-        "stars": 2,
+        "score": 79,
+        "label": "Active",
+        "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastCommitAt": "2026-07-08T07:36:54Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "readme-config-element",
@@ -2249,7 +2264,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-readme-config"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "ulp-jmeter-gwt-plugin",
@@ -2606,7 +2622,8 @@
         "2026-06-22": 43,
         "2026-06-29": 43
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "rbourga-jmeter-plugins-cohendeffectsize",
@@ -2835,20 +2852,21 @@
       }
     },
     "githubInfo": {
-      "stars": 2,
+      "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 68,
-        "label": "Maintained",
-        "stars": 2,
+        "score": 79,
+        "label": "Active",
+        "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastCommitAt": "2026-07-08T07:36:54Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jmeter.backendlistener.reportportal",
@@ -2887,7 +2905,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/prasantmohanty/jmeter-backend-listner-reportportal"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "superkey",
@@ -2931,7 +2950,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/QAInsights/superkey"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "perfsage-slo-reporter",
@@ -2978,7 +2998,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/perfsage/perfsage-slo-reporter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "perfana-timescaledb",
@@ -3021,12 +3042,13 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-06-04T06:05:32Z",
-        "lastReleaseAt": "2026-06-03T06:25:46Z",
+        "lastCommitAt": "2026-07-08T14:34:14Z",
+        "lastReleaseAt": "2026-07-08T14:36:19Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "ulp-jmeter-autocorrelator-plugin",
@@ -3404,7 +3426,8 @@
         "2026-06-22": 57,
         "2026-06-29": 55
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "io.github.sagaraggarwal86-configurable-aggregate-report",
@@ -3473,7 +3496,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "rbourga-jmeter-plugins-tukeyoutlierdetector",
@@ -3702,20 +3726,21 @@
       }
     },
     "githubInfo": {
-      "stars": 2,
+      "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 68,
-        "label": "Maintained",
-        "stars": 2,
+        "score": 79,
+        "label": "Active",
+        "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastCommitAt": "2026-07-08T07:36:54Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "coordinated-throughput-controller",
@@ -3779,7 +3804,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/ammyrohilla5050-dot/jmeter-coordinated-throughput-controller"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "io.github.sagaraggarwal86-jmxauditor",
@@ -3832,7 +3858,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "io.github.vasanthshanmugam-jmeter-auto-correlation-plugin",
@@ -3896,7 +3923,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/vasanthshanmugam/jmeter-auto-correlation-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "ulp-jmeter-videostreaming-plugin",
@@ -4650,7 +4678,8 @@
         "2026-06-22": 26,
         "2026-06-29": 18
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "schema-assertion",
@@ -4933,7 +4962,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/yeshan333/ApacheJmeter_Schema_Assertion"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-rapi-plugin",
@@ -5176,7 +5206,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/bobcode99/jmeter-rapi-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "prism",
@@ -5238,7 +5269,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/QAInsights/prism"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "componentClasses": [
@@ -5472,7 +5504,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/rollno748/JMeter-couchbase-sampler"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "vdn-junit-reporter-kpi-from-jmeter-report-csv",
@@ -5673,7 +5706,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/vdaburon/JUnitReportKpiJMeterReportCsv"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "vdn-otel-apm-tool",
@@ -5790,7 +5824,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/vdaburon/otel-apm-jmeter-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "componentClasses": [
@@ -5875,7 +5910,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/adukhi/Unique-CSV-DataSet-Config"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "rbourga-jmeter-plugins-apdexcalculator",
@@ -6060,20 +6096,21 @@
       }
     },
     "githubInfo": {
-      "stars": 2,
+      "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 68,
-        "label": "Maintained",
-        "stars": 2,
+        "score": 79,
+        "label": "Active",
+        "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-01-21T03:56:37Z",
+        "lastCommitAt": "2026-07-08T07:36:54Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "vdn-junit-reporter-kpi-compare-jmeter-report-csv",
@@ -6273,7 +6310,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/vdaburon/JUnitReportKpiCompareJMeterReportCsv"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-atakama-variabilization-plugin",
@@ -6549,7 +6587,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/atakama/jmeter_plugin_variabilization"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-atakama-backend-listener-plugin",
@@ -6815,7 +6854,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/atakama/jmeter_plugin_backend_listener"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "tilln-cors-plugin",
@@ -6962,7 +7002,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-cors-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "vdn-junit-reporter-kpi-from-jmeter-dashboard-stats",
@@ -7163,7 +7204,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/vdaburon/JUnitReportKpiJMeterDashboardStats"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-pubsub-sampler",
@@ -7554,7 +7596,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/rollno748/Jmeter-pubsub-sampler"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "awsmeter",
@@ -7928,7 +7971,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/JoseLuisSR/awsmeter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "bzm-jmeter-citrix-plugin",
@@ -8403,7 +8447,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/CitrixPlugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-studio-oss",
@@ -8464,7 +8509,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/QAInsights/jmeter-studio"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "vdn-har-convertor-jmeter-tool",
@@ -8678,7 +8724,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/vdaburon/har-convertor-jmeter-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jwt-preProcessor",
@@ -8872,7 +8919,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sashikaR/jwt-preProcessor"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "netflix-cassandra",
@@ -9469,7 +9517,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Netflix/CassJMeter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "loadmagic-load-distributor",
@@ -9542,7 +9591,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/loadmagic/jmeter-load-distributor"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "componentClasses": [
@@ -9835,7 +9885,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/rollno748/Extended-csv-dataset-config"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-datadog-backend-listener",
@@ -10193,7 +10244,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/DataDog/jmeter-datadog-backend-listener"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "mqtt-xmeter",
@@ -10515,7 +10567,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/xmeter-net/mqtt-jmeter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "UtilityJmeterFunctions",
@@ -10656,7 +10709,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/DanilGolikov/UtilityJmeterFunctions"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "mqtt-sampler",
@@ -11234,7 +11288,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/hemikak/mqtt-jmeter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "yongfa365-jmeter-plugins",
@@ -11596,7 +11651,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/yongfa365/yongfa365-jmeter-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter.backendlistener.kafka",
@@ -12002,7 +12058,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/rahulsinghai/jmeter-backend-listener-kafka"
       }
-    }
+    },
+    "jmeterCompatibility": "5.1.1"
   },
   {
     "id": "mqmeter",
@@ -12390,7 +12447,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/JoseLuisSR/mqmeter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-esa",
@@ -12635,7 +12693,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/undera/jmeter-extract-success"
       }
-    }
+    },
+    "jmeterCompatibility": "5.1"
   },
   {
     "id": "jmeter-dynatrace-backend-listener",
@@ -12914,7 +12973,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/dynatrace-oss/jmeter-dynatrace-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "validate-thread-group",
@@ -13187,7 +13247,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/QAInsights/validate-thread-group"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "baolu-csv-data-file-config",
@@ -13469,7 +13530,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/LeeBaul/baolu-csv-data-file-config"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "custom-soap",
@@ -14061,7 +14123,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/spinning10/JMeterSoapSampler"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "tilln-junit",
@@ -14322,7 +14385,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-junit-reporter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-rotating-listener",
@@ -14862,7 +14926,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "3.1"
   },
   {
     "id": "bzm-repositories",
@@ -15045,7 +15110,8 @@
         "2026-06-22": 1580,
         "2026-06-29": 1479
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-xmpp",
@@ -15640,7 +15706,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jmeter-grpc-request",
@@ -16009,7 +16076,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/bakthava/jmeter-grpc-request"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "tilln-sshmon",
@@ -16558,7 +16626,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-sshmon"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jmeter.backendlistener.azure",
@@ -16996,7 +17065,8 @@
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/adrianmo/jmeter-backend-azure"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "bzm-http2",
@@ -17797,7 +17867,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-hadoop",
@@ -18376,7 +18447,8 @@
         "2026-06-22": 608,
         "2026-06-29": 496
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "bzm-siebel",
@@ -19129,7 +19201,7 @@
       "stars": 28,
       "license": "Apache-2.0",
       "health": {
-        "score": 44,
+        "score": 43,
         "label": "Maintained",
         "stars": 28,
         "openIssues": 21,
@@ -19139,7 +19211,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/CorrelationRecorder"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "tilln-retrier",
@@ -19395,7 +19468,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-retrier"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "bzm-rte",
@@ -20020,7 +20094,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/RTEPlugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "bzm-hls",
@@ -20709,12 +20784,13 @@
         "stars": 51,
         "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-06-09T01:53:33Z",
+        "lastCommitAt": "2026-07-08T15:46:58Z",
         "lastReleaseAt": "2026-06-09T01:53:24Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/HLSPlugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-directory-listing",
@@ -21261,7 +21337,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "3.1"
   },
   {
     "id": "jpgc-redis",
@@ -21877,7 +21954,8 @@
         "2026-06-22": 2107,
         "2026-06-29": 1977
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jmeter.backendlistener.elasticsearch",
@@ -22433,7 +22511,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/delirius325/jmeter-elasticsearch-backend-listener"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-jms",
@@ -22996,7 +23075,8 @@
         "2026-06-22": 923,
         "2026-06-29": 789
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jmeter.pack-listener",
@@ -23395,7 +23475,8 @@
         "2026-06-22": 1799,
         "2026-06-29": 1660
       }
-    }
+    },
+    "jmeterCompatibility": "5.1"
   },
   {
     "id": "jpgc-lockfile",
@@ -23956,7 +24037,8 @@
         "2026-06-22": 2825,
         "2026-06-29": 2679
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "tilln-iso8583",
@@ -24434,7 +24516,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-iso8583"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "tilln-wssecurity",
@@ -25070,7 +25153,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-wssecurity"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-har-import",
@@ -25281,7 +25365,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/Qytera-Gmbh/JMeterHARImporterPlugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "kafkameter",
@@ -25847,7 +25932,8 @@
         "2026-06-22": 2082,
         "2026-06-29": 1893
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "componentClasses": [
@@ -26185,7 +26271,8 @@
         "license": "N/A",
         "repoUrl": "https://github.com/rollno748/di-kafkameter"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-prometheus",
@@ -26540,7 +26627,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/johrstrom/jmeter-prometheus-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-jmxmon",
@@ -27108,7 +27196,8 @@
         "2026-06-22": 3178,
         "2026-06-29": 2969
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "ssh-sampler",
@@ -27691,7 +27780,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/yciabaud/jmeter-ssh-sampler"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "tilln-formman",
@@ -28037,7 +28127,8 @@
         "license": "MIT",
         "repoUrl": "https://github.com/tilln/jmeter-formman"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-pde",
@@ -28598,7 +28689,8 @@
         "2026-06-22": 3185,
         "2026-06-29": 2952
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-dbmon",
@@ -29162,7 +29254,8 @@
         "2026-06-22": 3302,
         "2026-06-29": 3056
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-udp",
@@ -29733,7 +29826,8 @@
         "2026-06-22": 3507,
         "2026-06-29": 3256
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-xml",
@@ -30282,7 +30376,8 @@
         "2026-06-22": 4309,
         "2026-06-29": 4046
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "websocket-sampler",
@@ -30863,7 +30958,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/maciejzaleski/JMeter-WebSocketSampler"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-prmctl",
@@ -31427,7 +31523,8 @@
         "2026-06-22": 5864,
         "2026-06-29": 5592
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "blazemeter-debugger",
@@ -32036,7 +32133,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-debugger"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "bzm-http2-legacy",
@@ -32333,7 +32431,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-csvars",
@@ -32900,7 +32999,8 @@
         "2026-06-22": 4916,
         "2026-06-29": 4533
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-sts",
@@ -33498,7 +33598,8 @@
         "2026-06-22": 3941,
         "2026-06-29": 3557
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-ggl",
@@ -34059,7 +34160,8 @@
         "2026-06-22": 4761,
         "2026-06-29": 4371
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "websocket-samplers",
@@ -34706,7 +34808,8 @@
         "2026-06-22": 6980,
         "2026-06-29": 6571
       }
-    }
+    },
+    "jmeterCompatibility": "3.1"
   },
   {
     "id": "jpgc-graphs-dist",
@@ -35275,7 +35378,8 @@
         "2026-06-22": 5374,
         "2026-06-29": 4949
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "jpgc-autostop",
@@ -35850,7 +35954,8 @@
         "2026-06-22": 4272,
         "2026-06-29": 3847
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-webdriver",
@@ -37240,7 +37345,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/undera/jmeter-plugins-webdriver"
       }
-    }
+    },
+    "jmeterCompatibility": "5.6.3"
   },
   {
     "id": "bzm-parallel",
@@ -37859,7 +37965,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "3.1"
   },
   {
     "id": "jpgc-json",
@@ -38443,7 +38550,8 @@
         "2026-06-22": 5646,
         "2026-06-29": 5123
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-httpraw",
@@ -39007,7 +39115,8 @@
         "2026-06-22": 4550,
         "2026-06-29": 4007
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-wsc",
@@ -39625,7 +39734,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-plancheck",
@@ -40221,7 +40331,8 @@
         "2026-06-22": 4683,
         "2026-06-29": 4101
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-sense",
@@ -40859,7 +40970,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-graphs-vs",
@@ -41421,7 +41533,8 @@
         "2026-06-22": 5859,
         "2026-06-29": 5249
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-filterresults",
@@ -42005,7 +42118,8 @@
         "2026-06-22": 6655,
         "2026-06-29": 6025
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-csl",
@@ -42566,7 +42680,8 @@
         "2026-06-22": 5738,
         "2026-06-29": 5087
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-mergeresults",
@@ -43125,7 +43240,8 @@
         "2026-06-22": 6723,
         "2026-06-29": 6016
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-graphs-composite",
@@ -43685,7 +43801,8 @@
         "2026-06-22": 7060,
         "2026-06-29": 6304
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "bzm-random-csv",
@@ -44229,7 +44346,8 @@
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
-    }
+    },
+    "jmeterCompatibility": "3.0"
   },
   {
     "id": "jpgc-synthesis",
@@ -44812,7 +44930,8 @@
         "2026-06-22": 7581,
         "2026-06-29": 6792
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-cmd",
@@ -45387,7 +45506,8 @@
         "2026-06-22": 7291,
         "2026-06-29": 6497
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-graphs-additional",
@@ -45951,7 +46071,8 @@
         "2026-06-22": 13275,
         "2026-06-29": 12197
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-standard",
@@ -46516,7 +46637,8 @@
         "2026-06-22": 12230,
         "2026-06-29": 11020
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-ffw",
@@ -47078,7 +47200,8 @@
         "2026-06-22": 14215,
         "2026-06-29": 12887
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-fifo",
@@ -47642,7 +47765,8 @@
         "2026-06-22": 13868,
         "2026-06-29": 12481
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-functions",
@@ -48214,7 +48338,8 @@
         "2026-06-22": 15871,
         "2026-06-29": 14362
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-tst",
@@ -48784,7 +48909,8 @@
         "2026-06-22": 18610,
         "2026-06-29": 17023
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-dummy",
@@ -49349,7 +49475,8 @@
         "2026-06-22": 18584,
         "2026-06-29": 16880
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-perfmon",
@@ -49912,7 +50039,8 @@
         "2026-06-22": 18454,
         "2026-06-29": 16558
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jpgc-casutg",
@@ -50513,7 +50641,8 @@
         "2026-06-22": 30691,
         "2026-06-29": 28281
       }
-    }
+    },
+    "jmeterCompatibility": "5.2.1"
   },
   {
     "id": "jpgc-graphs-basic",
@@ -51076,7 +51205,8 @@
         "2026-06-22": 26129,
         "2026-06-29": 23701
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jmeter-mail",
@@ -51637,7 +51767,8 @@
         "2026-06-22": 49353,
         "2026-06-29": 45578
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-ldap",
@@ -52202,7 +52333,8 @@
         "2026-06-22": 49374,
         "2026-06-29": 45596
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-junit",
@@ -52761,7 +52893,8 @@
         "2026-06-22": 49375,
         "2026-06-29": 45596
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-jms",
@@ -53324,7 +53457,8 @@
         "2026-06-22": 49382,
         "2026-06-29": 45602
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-jdbc",
@@ -53885,7 +54019,8 @@
         "2026-06-22": 49429,
         "2026-06-29": 45649
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-components",
@@ -54547,7 +54682,8 @@
         "2026-06-22": 49461,
         "2026-06-29": 45681
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-http",
@@ -55134,7 +55270,8 @@
         "2026-06-22": 49461,
         "2026-06-29": 45680
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-core",
@@ -55734,7 +55871,8 @@
         "2026-06-22": 49469,
         "2026-06-29": 45687
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-plugins-manager",
@@ -56350,7 +56488,8 @@
         "2026-06-22": 49472,
         "2026-06-29": 45686
       }
-    }
+    },
+    "jmeterCompatibility": "2.13"
   },
   {
     "id": "jmeter-native",
@@ -56909,7 +57048,8 @@
         "2026-06-22": 49423,
         "2026-06-29": 45636
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-ftp",
@@ -57469,7 +57609,8 @@
         "2026-06-22": 49388,
         "2026-06-29": 45601
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-tcp",
@@ -58029,7 +58170,8 @@
         "2026-06-22": 49440,
         "2026-06-29": 45651
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-mongodb",
@@ -58588,7 +58730,8 @@
         "2026-06-22": 49310,
         "2026-06-29": 45521
       }
-    }
+    },
+    "jmeterCompatibility": null
   },
   {
     "id": "jmeter-java",
@@ -59153,6 +59296,7 @@
         "2026-06-22": 49442,
         "2026-06-29": 45647
       }
-    }
+    },
+    "jmeterCompatibility": null
   }
 ]

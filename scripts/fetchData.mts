@@ -7,6 +7,16 @@ import {
   enrichPluginWithHealth,
   type GitHubSignals,
 } from '../src/utils/health.ts';
+import {
+  getChangelogTimeline,
+  type PluginLike,
+  type ChangelogSource,
+} from '../src/utils/plugin.ts';
+import {
+  parseMavenCoordinates,
+  extractJMeterVersionFromPom,
+  parseChangelogCompatibility,
+} from '../src/utils/jmeterCompatibility.ts';
 
 // Load environment variables from .env file manually since node/tsx doesn't do it automatically
 try {
@@ -51,6 +61,7 @@ const STATS_URL = 'https://jmeter-plugins.org/dat/stats/plugins_usage_history.js
 let SPONSORED_PLUGINS: string[] = [];
 let AI_READY_PLUGINS: string[] = [];
 let FEATURED_PLUGINS: string[] = [];
+let JMETER_COMPATIBILITY_OVERRIDES: Record<string, string> = {};
 
 async function fetchJson(url: string, init?: RequestInit) {
   const res = await fetch(url, init);
@@ -148,6 +159,160 @@ async function fetchGitHubRepoInfo(
   }
 }
 
+interface PomDependency {
+  groupId: string;
+  artifactId: string;
+  version: string;
+  scope?: string;
+}
+
+function parsePomDependencies(pomText: string): PomDependency[] {
+  const deps: PomDependency[] = [];
+  const dependencyRegex = /<dependency>([\s\S]*?)<\/dependency>/g;
+  let match: RegExpExecArray | null;
+  while ((match = dependencyRegex.exec(pomText)) !== null) {
+    const block = match[1];
+    const groupId = block.match(/<groupId>([^<]+)<\/groupId>/)?.[1]?.trim() ?? '';
+    const artifactId = block.match(/<artifactId>([^<]+)<\/artifactId>/)?.[1]?.trim() ?? '';
+    const version = block.match(/<version>([^<]+)<\/version>/)?.[1]?.trim() ?? '';
+    const scope = block.match(/<scope>([^<]+)<\/scope>/)?.[1]?.trim();
+    if (groupId && artifactId && version) {
+      deps.push({ groupId, artifactId, version, scope });
+    }
+  }
+  return deps;
+}
+
+function buildPomUrl(groupId: string, artifactId: string, version: string): string {
+  const groupPath = groupId.replace(/\./g, '/');
+  return `https://repo1.maven.org/maven2/${groupPath}/${artifactId}/${version}/${artifactId}-${version}.pom`;
+}
+
+function isPlaceholderVersion(version: string): boolean {
+  return version.includes('$') || version.includes('%');
+}
+
+async function fetchJMeterVersionFromPom(
+  pomUrl: string,
+  visited: Set<string> = new Set(),
+  depth = 2,
+): Promise<string | null> {
+  if (visited.has(pomUrl) || depth < 0) return null;
+  visited.add(pomUrl);
+
+  const maxAttempts = 3;
+  let pomText: string | undefined;
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      const res = await fetch(pomUrl, {
+        headers: { 'User-Agent': 'PerfAtlas-Data-Fetcher' },
+      });
+      if (res.ok) {
+        pomText = await res.text();
+        break;
+      }
+      // Retry on rate-limit or server errors; don't retry client errors.
+      if (res.status === 429 || res.status >= 500) {
+        await new Promise((r) => setTimeout(r, 500 * (attempt + 1)));
+        continue;
+      }
+      return null;
+    } catch {
+      // Network / transient errors are retried up to maxAttempts.
+      if (attempt < maxAttempts - 1) {
+        await new Promise((r) => setTimeout(r, 500 * (attempt + 1)));
+      }
+    }
+  }
+
+  if (!pomText) return null;
+
+  const directVersion = extractJMeterVersionFromPom(pomText);
+  if (directVersion) return directVersion;
+
+  if (depth === 0) return null;
+
+  // Recurse into JMeter-Plugins.org common libraries, which often declare
+  // org.apache.jmeter:ApacheJMeter_* dependencies so plugins don't have to.
+  const deps = parsePomDependencies(pomText);
+  for (const dep of deps) {
+    if (dep.scope === 'test') continue;
+    if (isPlaceholderVersion(dep.version)) continue;
+
+    if (dep.groupId === 'kg.apc' && dep.artifactId.startsWith('jmeter-plugins-')) {
+      const transitive = await fetchJMeterVersionFromPom(
+        buildPomUrl(dep.groupId, dep.artifactId, dep.version),
+        visited,
+        depth - 1,
+      );
+      if (transitive) return transitive;
+    }
+  }
+
+  return null;
+}
+
+type EnrichablePlugin = PluginLike & ChangelogSource;
+
+/**
+ * Determine the minimum JMeter version a plugin is compatible with by
+ * inspecting the latest concrete version:
+ *   1. Maven POM dependency on org.apache.jmeter/ApacheJMeter_*
+ *   2. The version's changelog text
+ *   3. Optional manual override from overrides.json
+ *
+ * The result is stored on the plugin object as `jmeterCompatibility`.
+ */
+async function enrichJMeterCompatibility(
+  plugin: EnrichablePlugin,
+  overrides: Record<string, string>,
+): Promise<EnrichablePlugin> {
+  if (overrides[plugin.id]) {
+    plugin.jmeterCompatibility = overrides[plugin.id];
+    return plugin;
+  }
+
+  const timeline = getChangelogTimeline(plugin);
+  const latest = timeline.find((entry) => entry.downloadUrl && !entry.isMavenTemplate);
+
+  if (!latest) {
+    plugin.jmeterCompatibility = null;
+    return plugin;
+  }
+
+  let version: string | null = null;
+
+  if (latest.downloadUrl) {
+    const coords = parseMavenCoordinates(latest.downloadUrl);
+    if (coords) {
+      version = await fetchJMeterVersionFromPom(coords.pomUrl);
+    }
+  }
+
+  // Fallback: some plugin POMs don't declare JMeter, but their bundled
+  // library list includes jmeter-plugins-cmn-jmeter which carries the
+  // ApacheJMeter_* dependency.
+  if (!version && latest.libs && latest.libs.length > 0) {
+    for (const lib of latest.libs) {
+      const libCoords = parseMavenCoordinates(lib.url);
+      if (libCoords) {
+        const libVersion = await fetchJMeterVersionFromPom(libCoords.pomUrl);
+        if (libVersion) {
+          version = libVersion;
+          break;
+        }
+      }
+    }
+  }
+
+  if (!version && latest.changes) {
+    version = parseChangelogCompatibility(latest.changes);
+  }
+
+  plugin.jmeterCompatibility = version;
+  return plugin;
+}
+
 async function main() {
   console.log('Fetching plugins metadata from upstream repos...');
   const allReposData = await Promise.all(REPOS.map((repo) => fetchJson(repo).catch(() => [])));
@@ -169,8 +334,9 @@ async function main() {
     SPONSORED_PLUGINS = overrides.sponsoredPlugins || [];
     AI_READY_PLUGINS = overrides.aiReadyPlugins || [];
     FEATURED_PLUGINS = overrides.featuredPlugins || [];
+    JMETER_COMPATIBILITY_OVERRIDES = overrides.jmeterCompatibility || {};
     console.log(
-      `Loaded overrides: ${SPONSORED_PLUGINS.length} sponsored, ${AI_READY_PLUGINS.length} AI-ready.`,
+      `Loaded overrides: ${SPONSORED_PLUGINS.length} sponsored, ${AI_READY_PLUGINS.length} AI-ready, ${Object.keys(JMETER_COMPATIBILITY_OVERRIDES).length} compatibility.`,
     );
   } catch (_e) {
     console.warn('Could not read custom overrides.json, using defaults.');
@@ -231,6 +397,13 @@ async function main() {
       return baseEnriched;
     },
     6,
+  );
+
+  console.log('Enriching JMeter version compatibility...');
+  await runWithConcurrency(
+    enrichedPlugins as EnrichablePlugin[],
+    (plugin) => enrichJMeterCompatibility(plugin, JMETER_COMPATIBILITY_OVERRIDES),
+    4,
   );
 
   // Sort by popularity (absolute downloads) or trending delta

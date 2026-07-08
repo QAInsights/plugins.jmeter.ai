@@ -1,5 +1,6 @@
 {
   "sponsoredPlugins": [],
   "aiReadyPlugins": ["feather-wand-jmeter-ai-agent"],
-  "featuredPlugins": ["coordinated-throughput-controller"]
+  "featuredPlugins": ["coordinated-throughput-controller"],
+  "jmeterCompatibility": {}
 }

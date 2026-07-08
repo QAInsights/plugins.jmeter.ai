@@ -9,6 +9,7 @@ export interface PluginLike {
   isAiReady?: boolean;
   isFeatured?: boolean;
   sponsored?: boolean;
+  jmeterCompatibility?: string | null;
 }
 
 // Intentionally loose — `plugins_data.json` infers per-key union types which

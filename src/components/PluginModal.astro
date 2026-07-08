@@ -28,7 +28,7 @@
           By <a
             id="modalVendorLink"
             href="#"
-            class="hover:text-green-600 underline-offset-4 transition-colors hover:underline dark:hover:text-[#ccff00]"
+            class="underline-offset-4 transition-colors hover:text-green-600 hover:underline dark:hover:text-[#ccff00]"
           ></a>
         </p>
       </div>
@@ -99,7 +99,7 @@
         >
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
         <div
           class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
         >
@@ -114,10 +114,22 @@
         </div>
         <div
           id="modalHealthWrapper"
-          class="col-span-2 rounded-lg border border-gray-100 bg-gray-50 p-4 md:col-span-1 dark:border-white/5 dark:bg-black/20"
+          class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
         >
           <h4 class="mb-1 text-xs font-bold text-gray-500 uppercase">Plugin Health</h4>
           <p id="modalHealth" class="text-xl font-bold"></p>
+        </div>
+        <div
+          id="modalJMeterWrapper"
+          class="rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-white/5 dark:bg-black/20"
+          style="display: none;"
+        >
+          <h4 class="mb-1 text-xs font-bold text-gray-500 uppercase">JMeter Compatibility</h4>
+          <p
+            id="modalJMeterCompatibility"
+            class="text-xl font-bold text-green-700 dark:text-[#ccff00]"
+          >
+          </p>
         </div>
       </div>
 
@@ -247,6 +259,13 @@
       });
     }
 
+    function formatJMeterCompatibility(version: string | null | undefined): string | null {
+      if (!version) return null;
+      const parts = String(version).split('.').filter(Boolean);
+      if (parts.length === 0) return null;
+      return `JMeter ${parts.slice(0, 2).join('.')}+`;
+    }
+
     // Expose function globally for the Star Map and other components
     // @ts-ignore
     window.openPluginModal = (p: any) => {
@@ -354,6 +373,19 @@
           healthWrapper.style.display = 'block';
         } else {
           healthWrapper.style.display = 'none';
+        }
+      }
+
+      const jmeterWrapper = document.getElementById('modalJMeterWrapper');
+      const jmeterEl = document.getElementById('modalJMeterCompatibility');
+      if (jmeterWrapper && jmeterEl) {
+        const compat = formatJMeterCompatibility(p.jmeterCompatibility);
+        if (compat) {
+          jmeterEl.textContent = compat;
+          jmeterEl.title = `Requires JMeter ${p.jmeterCompatibility} or later`;
+          jmeterWrapper.style.display = 'block';
+        } else {
+          jmeterWrapper.style.display = 'none';
         }
       }
 
