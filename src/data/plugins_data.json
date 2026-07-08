@@ -559,6 +559,10 @@
       "com.jmeter.sse.SSESamplerGui"
     ],
     "versions": {
+      "2.0.1": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/github/cuneytcakir/jmeter-sse-sampler/2.0.1/jmeter-sse-sampler-2.0.1.jar",
+        "changes": "increase OkHttp connection pool size for high-concurrency load tests"
+      },
       "2.0.0": {
         "downloadUrl": "https://repo1.maven.org/maven2/io/github/cuneytcakir/jmeter-sse-sampler/2.0.0/jmeter-sse-sampler-2.0.0.jar",
         "changes": "Maven Central release preparations and Maven groupId updates."
@@ -2185,7 +2189,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -2834,7 +2838,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -3701,7 +3705,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -4919,7 +4923,7 @@
       "stars": 9,
       "license": "MIT",
       "health": {
-        "score": 84,
+        "score": 83,
         "label": "Active",
         "stars": 9,
         "openIssues": 0,
@@ -5659,7 +5663,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 44,
+        "score": 43,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -5861,7 +5865,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 55,
+        "score": 54,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -6059,7 +6063,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -7540,7 +7544,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 39,
+        "score": 38,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -17786,9 +17790,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 32,
+        "openIssues": 31,
         "archived": false,
-        "lastCommitAt": "2026-07-03T13:19:33Z",
+        "lastCommitAt": "2026-07-07T13:24:10Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -27677,7 +27681,7 @@
       "stars": 54,
       "license": "Apache-2.0",
       "health": {
-        "score": 32,
+        "score": 31,
         "label": "Stale",
         "stars": 54,
         "openIssues": 12,
@@ -32322,9 +32326,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 32,
+        "openIssues": 31,
         "archived": false,
-        "lastCommitAt": "2026-07-03T13:19:33Z",
+        "lastCommitAt": "2026-07-07T13:24:10Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
