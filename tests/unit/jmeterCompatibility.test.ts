@@ -5,6 +5,8 @@ import {
   resolvePomProperty,
   parseChangelogCompatibility,
   formatJMeterCompatibility,
+  formatJMeterVersion,
+  getJMeterCompatibilityTitle,
 } from '../../src/utils/jmeterCompatibility';
 
 describe('parseMavenCoordinates', () => {
@@ -188,5 +190,31 @@ describe('formatJMeterCompatibility', () => {
     expect(formatJMeterCompatibility(null)).toBeNull();
     expect(formatJMeterCompatibility(undefined)).toBeNull();
     expect(formatJMeterCompatibility('')).toBeNull();
+  });
+});
+
+describe('formatJMeterVersion', () => {
+  it('returns a short version suffix', () => {
+    expect(formatJMeterVersion('5.6.2')).toBe('5.6+');
+    expect(formatJMeterVersion('3.1')).toBe('3.1+');
+    expect(formatJMeterVersion('5')).toBe('5+');
+  });
+
+  it('returns null for missing values', () => {
+    expect(formatJMeterVersion(null)).toBeNull();
+    expect(formatJMeterVersion(undefined)).toBeNull();
+    expect(formatJMeterVersion('')).toBeNull();
+  });
+});
+
+describe('getJMeterCompatibilityTitle', () => {
+  it('returns a descriptive tooltip', () => {
+    expect(getJMeterCompatibilityTitle('5.6.2')).toBe('Requires JMeter 5.6.2 or later');
+  });
+
+  it('returns undefined for missing values', () => {
+    expect(getJMeterCompatibilityTitle(null)).toBeUndefined();
+    expect(getJMeterCompatibilityTitle(undefined)).toBeUndefined();
+    expect(getJMeterCompatibilityTitle('')).toBeUndefined();
   });
 });

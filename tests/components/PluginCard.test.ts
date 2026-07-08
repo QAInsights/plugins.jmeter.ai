@@ -238,13 +238,13 @@ describe('PluginCard', () => {
   it('should render JMeter compatibility badge when jmeterCompatibility is set', async () => {
     const plugin = makePlugin({ jmeterCompatibility: '5.6.2' });
     const { html } = await render(plugin);
-    expect(html).toContain('JMeter 5.6+');
+    expect(html).toContain('5.6+');
     expect(html).toContain('Requires JMeter 5.6.2 or later');
   });
 
   it('should not render JMeter compatibility badge when jmeterCompatibility is missing', async () => {
     const plugin = makePlugin();
     const { html } = await render(plugin);
-    expect(html).not.toContain('JMeter 5.6+');
+    expect(html).not.toContain('5.6+');
   });
 });

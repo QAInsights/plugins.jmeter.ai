@@ -196,18 +196,40 @@ export function parseChangelogCompatibility(changes: string): string | null {
   return candidates[0].version;
 }
 
+function compactJMeterVersion(version: string): string | null {
+  const parts = version.split('.').filter(Boolean);
+  if (parts.length === 0) return null;
+  return `${parts.slice(0, 2).join('.')}+`;
+}
+
 /**
- * Format a raw JMeter version (e.g. "5.6.2") into a compact user-facing
- * compatibility label (e.g. "JMeter 5.6+").
+ * Format a raw JMeter version (e.g. "5.6.2") into a compact version
+ * suffix (e.g. "5.6+").
+ *
+ * Returns null for missing/empty values so callers can hide the badge.
+ */
+export function formatJMeterVersion(version: string | null | undefined): string | null {
+  if (!version || typeof version !== 'string') return null;
+  return compactJMeterVersion(version);
+}
+
+/**
+ * Format a raw JMeter version into a full user-facing label
+ * (e.g. "JMeter 5.6+").
  *
  * Returns null for missing/empty values so callers can hide the badge.
  */
 export function formatJMeterCompatibility(version: string | null | undefined): string | null {
-  if (!version || typeof version !== 'string') return null;
+  const compact = formatJMeterVersion(version);
+  return compact ? `JMeter ${compact}` : null;
+}
 
-  const parts = version.split('.').filter(Boolean);
-  if (parts.length === 0) return null;
-
-  const compact = parts.slice(0, 2).join('.');
-  return `JMeter ${compact}+`;
+/**
+ * Build the accessible tooltip/title text for a JMeter compatibility value.
+ */
+export function getJMeterCompatibilityTitle(
+  version: string | null | undefined,
+): string | undefined {
+  if (!version || typeof version !== 'string') return undefined;
+  return `Requires JMeter ${version} or later`;
 }

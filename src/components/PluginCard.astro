@@ -1,6 +1,6 @@
 ---
 import { inferCategory, vendorSlug } from '../utils/plugin';
-import { formatJMeterCompatibility } from '../utils/jmeterCompatibility';
+import { formatJMeterVersion, getJMeterCompatibilityTitle } from '../utils/jmeterCompatibility';
 import HealthBadge from './HealthBadge.astro';
 
 const { plugin } = Astro.props;
@@ -15,10 +15,8 @@ const category = inferCategory(plugin);
 const vendorHref = plugin.vendor ? `/vendor/${vendorSlug(plugin.vendor)}/` : null;
 
 const formatNumber = (num: number) => new Intl.NumberFormat('en-US').format(num);
-const jmeterDisplay = formatJMeterCompatibility(plugin.jmeterCompatibility);
-const jmeterTitle = plugin.jmeterCompatibility
-  ? `Requires JMeter ${plugin.jmeterCompatibility} or later`
-  : undefined;
+const jmeterDisplay = formatJMeterVersion(plugin.jmeterCompatibility);
+const jmeterTitle = getJMeterCompatibilityTitle(plugin.jmeterCompatibility);
 ---
 
 <div
@@ -45,10 +43,10 @@ const jmeterTitle = plugin.jmeterCompatibility
     }
 
     <div class="flex h-full flex-col p-6">
-      <div class="relative z-10 mb-2 flex items-center justify-between">
-        <div class="flex items-center gap-2">
+      <div class="relative z-10 mb-2 flex min-w-0 items-center justify-between">
+        <div class="flex min-w-0 items-center gap-2">
           <span
-            class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] text-gray-400 dark:bg-white/5 dark:text-gray-500"
+            class="min-w-0 truncate rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] text-gray-400 dark:bg-white/5 dark:text-gray-500"
             >{plugin.id}</span
           >
           <button
@@ -68,7 +66,7 @@ const jmeterTitle = plugin.jmeterCompatibility
           </button>
         </div>
 
-        <div class="flex items-center gap-1">
+        <div class="flex shrink-0 items-center gap-1">
           <button
             type="button"
             class="favorite-btn relative z-20 flex h-7 w-7 items-center justify-center rounded-md border border-transparent text-gray-400 transition-all hover:border-yellow-500/30 hover:bg-yellow-500/10 hover:text-yellow-500 dark:text-gray-500 dark:hover:text-yellow-400"
@@ -253,6 +251,20 @@ const jmeterTitle = plugin.jmeterCompatibility
                 class="bg-primary/10 dark:bg-primary/20 inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium text-green-700 dark:text-[#ccff00]"
                 title={jmeterTitle}
               >
+                <svg
+                  class="h-3.5 w-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
+                  <line x1="16" y1="8" x2="2" y2="22" />
+                  <line x1="17.5" y1="15" x2="9" y2="15" />
+                </svg>
                 {jmeterDisplay}
               </span>
             )

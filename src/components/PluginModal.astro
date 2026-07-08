@@ -125,10 +125,24 @@
           style="display: none;"
         >
           <h4 class="mb-1 text-xs font-bold text-gray-500 uppercase">JMeter Compatibility</h4>
-          <p
-            id="modalJMeterCompatibility"
-            class="text-xl font-bold text-green-700 dark:text-[#ccff00]"
-          >
+          <p class="flex items-center gap-1.5 text-xl font-bold text-green-700 dark:text-[#ccff00]">
+            <svg
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+              <line x1="16" y1="8" x2="2" y2="22" stroke-linecap="round" stroke-linejoin="round"
+              ></line>
+              <line x1="17.5" y1="15" x2="9" y2="15" stroke-linecap="round" stroke-linejoin="round"
+              ></line>
+            </svg>
+            <span id="modalJMeterCompatibility"></span>
           </p>
         </div>
       </div>
@@ -259,11 +273,11 @@
       });
     }
 
-    function formatJMeterCompatibility(version: string | null | undefined): string | null {
+    function formatJMeterVersion(version: string | null | undefined): string | null {
       if (!version) return null;
       const parts = String(version).split('.').filter(Boolean);
       if (parts.length === 0) return null;
-      return `JMeter ${parts.slice(0, 2).join('.')}+`;
+      return `${parts.slice(0, 2).join('.')}+`;
     }
 
     // Expose function globally for the Star Map and other components
@@ -379,7 +393,7 @@
       const jmeterWrapper = document.getElementById('modalJMeterWrapper');
       const jmeterEl = document.getElementById('modalJMeterCompatibility');
       if (jmeterWrapper && jmeterEl) {
-        const compat = formatJMeterCompatibility(p.jmeterCompatibility);
+        const compat = formatJMeterVersion(p.jmeterCompatibility);
         if (compat) {
           jmeterEl.textContent = compat;
           jmeterEl.title = `Requires JMeter ${p.jmeterCompatibility} or later`;
