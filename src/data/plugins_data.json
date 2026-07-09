@@ -482,7 +482,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 61,
+        "score": 60,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -8714,7 +8714,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 25,
         "openIssues": 2,
@@ -20084,7 +20084,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 51,
+        "score": 50,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
@@ -20784,8 +20784,8 @@
         "stars": 51,
         "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-07-08T15:46:58Z",
-        "lastReleaseAt": "2026-06-09T01:53:24Z",
+        "lastCommitAt": "2026-07-08T22:05:38Z",
+        "lastReleaseAt": "2026-07-08T22:05:28Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/HLSPlugin"
       }
