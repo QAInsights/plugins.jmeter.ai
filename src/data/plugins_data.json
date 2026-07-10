@@ -1054,7 +1054,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 38,
+        "score": 37,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -2208,7 +2208,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-08T07:36:54Z",
+        "lastCommitAt": "2026-07-09T12:31:41Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -2860,7 +2860,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-08T07:36:54Z",
+        "lastCommitAt": "2026-07-09T12:31:41Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -2895,8 +2895,8 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
         "archived": false,
@@ -2940,7 +2940,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -3491,7 +3491,7 @@
         "stars": 4,
         "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-07-02T21:44:01Z",
+        "lastCommitAt": "2026-07-09T21:44:13Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -3734,7 +3734,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-08T07:36:54Z",
+        "lastCommitAt": "2026-07-09T12:31:41Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -3853,7 +3853,7 @@
         "stars": 2,
         "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-06-25T07:53:40Z",
+        "lastCommitAt": "2026-07-09T07:54:29Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
@@ -5259,7 +5259,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 2,
         "openIssues": 0,
@@ -6104,7 +6104,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-08T07:36:54Z",
+        "lastCommitAt": "2026-07-09T12:31:41Z",
         "lastReleaseAt": "2026-01-21T03:56:37Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -14375,7 +14375,7 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 50,
+        "score": 49,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -17862,7 +17862,7 @@
         "stars": 48,
         "openIssues": 31,
         "archived": false,
-        "lastCommitAt": "2026-07-07T13:24:10Z",
+        "lastCommitAt": "2026-07-09T19:21:03Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -26261,7 +26261,7 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 50,
+        "score": 49,
         "label": "Maintained",
         "stars": 47,
         "openIssues": 7,
@@ -32426,7 +32426,7 @@
         "stars": 48,
         "openIssues": 31,
         "archived": false,
-        "lastCommitAt": "2026-07-07T13:24:10Z",
+        "lastCommitAt": "2026-07-09T19:21:03Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
