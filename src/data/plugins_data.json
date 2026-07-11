@@ -253,12 +253,12 @@
       }
     },
     "githubInfo": {
-      "stars": 52,
+      "stars": 53,
       "license": "MIT",
       "health": {
         "score": 88,
         "label": "Active",
-        "stars": 52,
+        "stars": 53,
         "openIssues": 7,
         "archived": false,
         "lastCommitAt": "2026-06-25T01:46:53Z",
@@ -540,7 +540,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 0,
         "openIssues": 0,
@@ -2988,7 +2988,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 0,
         "openIssues": 0,
@@ -8437,7 +8437,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 62,
+        "score": 61,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 26,
@@ -9875,7 +9875,7 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 32,
+        "score": 31,
         "label": "Stale",
         "stars": 29,
         "openIssues": 7,
@@ -16071,7 +16071,7 @@
         "stars": 0,
         "openIssues": 8,
         "archived": false,
-        "lastCommitAt": "2026-06-29T16:06:32Z",
+        "lastCommitAt": "2026-07-10T16:04:47Z",
         "lastReleaseAt": "2026-04-14T02:03:28Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/bakthava/jmeter-grpc-request"
@@ -17860,9 +17860,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 31,
+        "openIssues": 33,
         "archived": false,
-        "lastCommitAt": "2026-07-09T19:21:03Z",
+        "lastCommitAt": "2026-07-10T18:59:45Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -32123,7 +32123,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 32,
         "openIssues": 2,
@@ -32424,9 +32424,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 31,
+        "openIssues": 33,
         "archived": false,
-        "lastCommitAt": "2026-07-09T19:21:03Z",
+        "lastCommitAt": "2026-07-10T18:59:45Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
