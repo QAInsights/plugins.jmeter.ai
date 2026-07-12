@@ -3,7 +3,7 @@ title: "High-Volume Testing on a Budget: Scaling to 1 Million+ RPS with Distribu
 description: "Learn how to plan, build, and run a distributed JMeter test that scales past 1 million requests per second without an unlimited cloud budget."
 pubDate: 2026-07-12T14:00:00Z
 author: "NaveenKumar Namachivayam"
-image: "../../assets/blog/scale-jmeter-1-million-rps-distributed-testing.jpg"
+image: "../../assets/blog/scale-jmeter-1-million-rps-distributed-testing.png"
 imageAlt: "A beautiful modern tech cover design showing a network of distributed server nodes scaling to 1M+ RPS"
 tags: ["JMeter", "Distributed Testing", "Load Testing", "Performance Testing", "1 Million RPS", "Throughput Shaping Timer", "InfluxDB", "Grafana"]
 featured: true
