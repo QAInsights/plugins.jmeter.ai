@@ -16,7 +16,9 @@ export default defineConfig({
   },
   integrations: [
     expressiveCode({
-      themes: ['dracula'],
+      themes: ['github-light', 'dracula'],
+      useDarkModeMediaQuery: false,
+      themeCssSelector: (theme) => (theme.type === 'dark' ? '.dark' : ':root:not(.dark)'),
       styleOverrides: {
         borderRadius: '0.75rem',
         codeFontSize: '0.9rem',
