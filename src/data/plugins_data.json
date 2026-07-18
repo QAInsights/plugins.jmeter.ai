@@ -13402,9 +13402,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 36,
+        "openIssues": 32,
         "archived": false,
-        "lastCommitAt": "2026-07-17T01:37:03Z",
+        "lastCommitAt": "2026-07-18T01:34:31Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -28842,7 +28842,7 @@
       "stars": 20,
       "license": "MIT",
       "health": {
-        "score": 57,
+        "score": 56,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 0,
@@ -40046,7 +40046,7 @@
       "stars": 8,
       "license": "N/A",
       "health": {
-        "score": 27,
+        "score": 26,
         "label": "Stale",
         "stars": 8,
         "openIssues": 0,
@@ -41170,6 +41170,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.0.3": {
+        "changes": "NEW: AWS Bedrock Support",
+        "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/jmeter-agent/3.0.3/jmeter-agent-3.0.3.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -41259,10 +41267,10 @@
         "score": 90,
         "label": "Active",
         "stars": 53,
-        "openIssues": 4,
+        "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-07-16T13:29:37Z",
-        "lastReleaseAt": "2026-07-16T13:29:37Z",
+        "lastCommitAt": "2026-07-17T02:24:20Z",
+        "lastReleaseAt": "2026-07-17T02:24:20Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -55736,9 +55744,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 36,
+        "openIssues": 32,
         "archived": false,
-        "lastCommitAt": "2026-07-17T01:37:03Z",
+        "lastCommitAt": "2026-07-18T01:34:31Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
