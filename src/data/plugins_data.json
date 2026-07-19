@@ -13404,7 +13404,7 @@
         "stars": 48,
         "openIssues": 32,
         "archived": false,
-        "lastCommitAt": "2026-07-18T01:34:31Z",
+        "lastCommitAt": "2026-07-18T22:36:24Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -33129,12 +33129,12 @@
       }
     },
     "githubInfo": {
-      "stars": 316,
+      "stars": 317,
       "license": "Apache-2.0",
       "health": {
         "score": 29,
         "label": "Stale",
-        "stars": 316,
+        "stars": 317,
         "openIssues": 61,
         "archived": false,
         "lastCommitAt": "2021-08-31T15:12:57Z",
@@ -42895,7 +42895,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -43205,7 +43205,7 @@
         "stars": 2,
         "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-07-11T20:52:43Z",
+        "lastCommitAt": "2026-07-18T20:52:47Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -49216,7 +49216,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 38,
+        "score": 37,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -55746,7 +55746,7 @@
         "stars": 48,
         "openIssues": 32,
         "archived": false,
-        "lastCommitAt": "2026-07-18T01:34:31Z",
+        "lastCommitAt": "2026-07-18T22:36:24Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
