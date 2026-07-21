@@ -28941,7 +28941,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 50,
+        "score": 49,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
@@ -30263,7 +30263,7 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 49,
+        "score": 48,
         "label": "Maintained",
         "stars": 47,
         "openIssues": 7,
@@ -39421,7 +39421,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 60,
+        "score": 59,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -41880,6 +41880,47 @@
     "jmeterCompatibility": "5.6.3"
   },
   {
+    "id": "mock-jutsu",
+    "name": "Mock Jutsu - The Ultimate Algorithmic Mock Data Engine",
+    "description": "Generate format-valid synthetic test data directly inside JMeter test plans via custom functions - no Python, no subprocess, no CSV files needed. 390 types across 49 categories, 6 locales (TR/UK/US/DE/FR/RU), pipe-separated options, mask support (PCI DSS / GDPR / KVKK), zero external dependencies.",
+    "helpUrl": "https://github.com/altansayan/mock-jutsu-jmeter#readme",
+    "markerClass": "com.mockjutsu.jmeter.MockJutsuBaseFunction",
+    "screenshotUrl": "https://raw.githubusercontent.com/altansayan/mock-jutsu-jmeter/main/assets/function-helper-preview.png",
+    "vendor": "ASA Intelligence - Altan Sezer Ayan",
+    "versions": {
+      "1.0.0": {
+        "changes": "Initial release - 390 types, 49 categories, pipe separator syntax, mask support, 5955 tests passed.",
+        "downloadUrl": "https://github.com/altansayan/mock-jutsu-jmeter/releases/download/v1.0.0/mock-jutsu-jmeter-1.0.0.jar",
+        "libs": {},
+        "depends": []
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 0,
+      "history": {}
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "NOASSERTION",
+      "health": {
+        "score": 75,
+        "label": "Active",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-06-24T16:08:48Z",
+        "lastReleaseAt": "2026-06-22T17:27:31Z",
+        "license": "NOASSERTION",
+        "repoUrl": "https://github.com/altansayan/mock-jutsu-jmeter"
+      }
+    },
+    "jmeterCompatibility": null
+  },
+  {
     "id": "ulp-jmeter-autocorrelator-plugin",
     "name": "UbikLoadPack Auto-correlator plugin",
     "description": "Plugin which provides the ability to easily load tests Vaadin, Oracle Siebel, Oracle PeopleSoft, Oracle Hyperion and Oracle JD-Edwards EntrepriseOne (JDE Eone) applications with Apache JMeter",
@@ -44274,7 +44315,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 25,
         "openIssues": 2,
@@ -45005,7 +45046,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 37,
+        "score": 36,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -45915,7 +45956,7 @@
       "stars": 28,
       "license": "Apache-2.0",
       "health": {
-        "score": 43,
+        "score": 42,
         "label": "Maintained",
         "stars": 28,
         "openIssues": 21,
@@ -56187,7 +56228,7 @@
       "stars": 7,
       "license": "N/A",
       "health": {
-        "score": 27,
+        "score": 26,
         "label": "Stale",
         "stars": 7,
         "openIssues": 3,
