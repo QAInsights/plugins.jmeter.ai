@@ -40332,8 +40332,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-08T14:34:14Z",
-        "lastReleaseAt": "2026-07-08T14:36:19Z",
+        "lastCommitAt": "2026-07-21T08:52:16Z",
+        "lastReleaseAt": "2026-07-21T08:54:23Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
@@ -41718,7 +41718,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -41763,7 +41763,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -41912,8 +41912,8 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-06-24T16:08:48Z",
-        "lastReleaseAt": "2026-06-22T17:27:31Z",
+        "lastCommitAt": "2026-07-21T23:46:29Z",
+        "lastReleaseAt": "2026-07-21T23:45:41Z",
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/altansayan/mock-jutsu-jmeter"
       }
@@ -47753,7 +47753,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 2,
         "openIssues": 0,
@@ -50153,7 +50153,7 @@
       "stars": 189,
       "license": "Apache-2.0",
       "health": {
-        "score": 28,
+        "score": 27,
         "label": "Stale",
         "stars": 189,
         "openIssues": 36,
@@ -55353,7 +55353,7 @@
       "stars": 54,
       "license": "Apache-2.0",
       "health": {
-        "score": 31,
+        "score": 30,
         "label": "Stale",
         "stars": 54,
         "openIssues": 12,
