@@ -26662,7 +26662,7 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 31,
+        "score": 30,
         "label": "Stale",
         "stars": 29,
         "openIssues": 7,
@@ -27098,12 +27098,12 @@
       }
     },
     "githubInfo": {
-      "stars": 53,
+      "stars": 54,
       "license": "MIT",
       "health": {
         "score": 90,
         "label": "Active",
-        "stars": 53,
+        "stars": 54,
         "openIssues": 2,
         "archived": false,
         "lastCommitAt": "2026-07-17T02:24:20Z",
@@ -28313,7 +28313,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 61,
+        "score": 60,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 26,
@@ -36721,7 +36721,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 35,
+        "score": 34,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
@@ -39481,8 +39481,8 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
         "archived": false,
@@ -41813,8 +41813,8 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
         "archived": false,
@@ -41888,6 +41888,12 @@
     "screenshotUrl": "https://raw.githubusercontent.com/altansayan/mock-jutsu-jmeter/main/assets/function-helper-preview.png",
     "vendor": "ASA Intelligence - Altan Sezer Ayan",
     "versions": {
+      "1.0.1": {
+        "changes": "Not backward compatible with 1.0.0 - corrects 273 mismatches against the Python (mockjutsu) reference implementation across all 39 generator files, fixes a Turkish-locale decimal separator bug, removes a dead registry entry. 4191 tests passed.",
+        "downloadUrl": "https://github.com/altansayan/mock-jutsu-jmeter/releases/download/v1.0.1/mock-jutsu-jmeter-1.0.1.jar",
+        "libs": {},
+        "depends": []
+      },
       "1.0.0": {
         "changes": "Initial release - 390 types, 49 categories, pipe separator syntax, mask support, 5955 tests passed.",
         "downloadUrl": "https://github.com/altansayan/mock-jutsu-jmeter/releases/download/v1.0.0/mock-jutsu-jmeter-1.0.0.jar",
@@ -43106,7 +43112,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 64,
+        "score": 63,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 2,
@@ -51670,7 +51676,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 32,
         "openIssues": 2,
