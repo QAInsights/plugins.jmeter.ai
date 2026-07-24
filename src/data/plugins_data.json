@@ -36576,7 +36576,7 @@
         "stars": 2,
         "openIssues": 1,
         "archived": false,
-        "lastCommitAt": "2026-07-16T07:54:05Z",
+        "lastCommitAt": "2026-07-23T07:53:57Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
@@ -41918,7 +41918,7 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-21T23:46:29Z",
+        "lastCommitAt": "2026-07-23T23:07:19Z",
         "lastReleaseAt": "2026-07-21T23:45:41Z",
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/altansayan/mock-jutsu-jmeter"
@@ -43845,7 +43845,7 @@
         "stars": 4,
         "openIssues": 1,
         "archived": false,
-        "lastCommitAt": "2026-07-16T21:44:02Z",
+        "lastCommitAt": "2026-07-23T21:43:44Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -44104,7 +44104,7 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 49,
+        "score": 48,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
