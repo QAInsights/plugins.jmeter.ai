@@ -1,0 +1,106 @@
+---
+
+---
+
+{/* Invisible component - owns all client-side preferences state (theme + */}
+{/* discovery defaults). Include once in Layout.astro so every page shares */}
+{/* the same behaviour. Mirrors FavoritesManager.astro. */}
+
+<script>
+  import {
+    PREFS_STORAGE_KEY,
+    LEGACY_THEME_KEY,
+    DEFAULT_PREFERENCES,
+    normalizePreferences,
+    resolveTheme,
+    isTheme,
+  } from '../utils/preferences';
+
+  (function () {
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    /** Load prefs, migrating the legacy `theme` key on first run. */
+    function load() {
+      var raw = null;
+      var hadBlob = false;
+      try {
+        var stored = localStorage.getItem(PREFS_STORAGE_KEY);
+        if (stored) {
+          raw = JSON.parse(stored);
+          hadBlob = true;
+        }
+      } catch (_) {
+        raw = null;
+      }
+      var prefs = normalizePreferences(raw);
+      if (!hadBlob) {
+        var legacy = null;
+        try {
+          legacy = localStorage.getItem(LEGACY_THEME_KEY);
+        } catch (_) {}
+        if (isTheme(legacy)) {
+          prefs.theme = legacy;
+        }
+      }
+      return prefs;
+    }
+
+    var prefs = load();
+
+    function persist() {
+      try {
+        localStorage.setItem(PREFS_STORAGE_KEY, JSON.stringify(prefs));
+        // Preferences are now canonical; drop the legacy key to avoid drift.
+        localStorage.removeItem(LEGACY_THEME_KEY);
+      } catch (_) {}
+    }
+
+    function applyTheme() {
+      var concrete = resolveTheme(prefs.theme, media.matches);
+      document.documentElement.classList.toggle('dark', concrete === 'dark');
+    }
+
+    function notify() {
+      document.dispatchEvent(
+        new CustomEvent('preferences:update', { detail: { prefs: Object.assign({}, prefs) } }),
+      );
+    }
+
+    /** Public API exposed on window.__preferences */
+    var api = {
+      get: function () {
+        return Object.assign({}, prefs);
+      },
+      set: function (partial: Partial<typeof prefs>) {
+        if (!partial || typeof partial !== 'object') return;
+        prefs = normalizePreferences(Object.assign({}, prefs, partial));
+        persist();
+        applyTheme();
+        notify();
+      },
+      reset: function () {
+        prefs = Object.assign({}, DEFAULT_PREFERENCES);
+        persist();
+        applyTheme();
+        notify();
+      },
+    };
+
+    // @ts-ignore - global handle consumed by Header, Settings, and index.
+    window.__preferences = api;
+
+    // Follow OS color-scheme changes only while the preference is 'system'.
+    function onSystemChange() {
+      if (prefs.theme === 'system') applyTheme();
+    }
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', onSystemChange);
+    }
+
+    function init() {
+      applyTheme();
+    }
+    init();
+    document.addEventListener('astro:after-swap', init);
+  })();
+</script>

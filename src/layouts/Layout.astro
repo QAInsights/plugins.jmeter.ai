@@ -4,6 +4,7 @@ import ScrollToTop from '../components/ScrollToTop.astro';
 import CompareFloatingBar from '../components/CompareFloatingBar.astro';
 import InstallFloatingBar from '../components/InstallFloatingBar.astro';
 import FavoritesManager from '../components/FavoritesManager.astro';
+import PreferencesManager from '../components/PreferencesManager.astro';
 import { SEO } from 'astro-seo';
 
 interface Props {
@@ -192,15 +193,23 @@ const articleSchema =
       }}
     />
 
-    <script>
-      if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+    <script is:inline>
+      (function () {
+        var theme = 'system';
+        try {
+          var prefs = JSON.parse(localStorage.getItem('perfatlas:prefs') || 'null');
+          if (prefs && typeof prefs.theme === 'string') {
+            theme = prefs.theme;
+          } else if (localStorage.getItem('theme')) {
+            // Legacy key written by the old header toggle; migrated on first run.
+            theme = localStorage.getItem('theme');
+          }
+        } catch (_) {}
+        var dark =
+          theme === 'dark' ||
+          (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+      })();
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
@@ -232,5 +241,6 @@ const articleSchema =
     <CompareFloatingBar />
     <InstallFloatingBar />
     <FavoritesManager />
+    <PreferencesManager />
   </body>
 </html>

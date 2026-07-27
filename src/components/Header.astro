@@ -488,15 +488,16 @@ import AuthButton from './AuthButton.astro';
     }
 
     function toggleTheme() {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.theme = 'light';
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.theme = 'dark';
-      }
-      syncChartTheme();
+      const prefs = (window as any).__preferences;
+      if (!prefs) return;
+      const isDark = document.documentElement.classList.contains('dark');
+      // A manual toggle is an explicit choice that overrides 'system'.
+      prefs.set({ theme: isDark ? 'light' : 'dark' });
     }
+
+    // Keep any live Chart.js instance in sync when the resolved theme changes
+    // (e.g. from the Settings page or an OS color-scheme switch).
+    document.addEventListener('preferences:update', () => syncChartTheme());
 
     if (themeToggle) {
       themeToggle.addEventListener('click', toggleTheme);
