@@ -6203,7 +6203,7 @@
       "stars": 8,
       "license": "N/A",
       "health": {
-        "score": 26,
+        "score": 25,
         "label": "Stale",
         "stars": 8,
         "openIssues": 0,
@@ -7418,6 +7418,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.0.6": {
+        "changes": "NEW: OpenAI Tool calls support; Prompt to record, correlate, and more; JMeter Pets.",
+        "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/jmeter-agent/3.0.6/jmeter-agent-3.0.6.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -7511,8 +7519,8 @@
         "stars": 54,
         "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-07-28T23:31:51Z",
-        "lastReleaseAt": "2026-07-26T02:34:13Z",
+        "lastCommitAt": "2026-07-29T02:31:52Z",
+        "lastReleaseAt": "2026-07-29T02:31:53Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -22977,12 +22985,18 @@
   {
     "id": "mock-jutsu",
     "name": "Mock Jutsu - The Ultimate Algorithmic Mock Data Engine",
-    "description": "Generate format-valid synthetic test data directly inside JMeter test plans via custom functions - no Python, no subprocess, no CSV files needed. 390 types across 49 categories, 6 locales (TR/UK/US/DE/FR/RU), pipe-separated options, mask support (PCI DSS / GDPR / KVKK), zero external dependencies. Plugin Benchmark: https://github.com/altansayan/mock-jutsu-jmeter-plugin-benchmark",
+    "description": "Generate format & checksum-valid mock test data directly inside JMeter test plans via custom functions - no Python, no subprocess, no CSV files needed. 390 types across 49 categories, 6 locales (TR/UK/US/DE/FR/RU), pipe-separated options, mask support (PCI DSS / GDPR / KVKK), zero external dependencies.<br>Plugin Benchmark: https://github.com/altansayan/mock-jutsu-jmeter-plugin-benchmark",
     "helpUrl": "https://github.com/altansayan/mock-jutsu-jmeter#readme",
     "markerClass": "com.mockjutsu.jmeter.MockJutsuBaseFunction",
     "screenshotUrl": "https://raw.githubusercontent.com/altansayan/mock-jutsu-jmeter/main/assets/function-helper-preview.png",
     "vendor": "ASA Intelligence - Altan Sezer Ayan",
     "versions": {
+      "1.1.1": {
+        "changes": "Concurrency: ThreadLocal<SecureRandom>, ThreadLocal<Mac> (HmacSHA256), ThreadLocal<MessageDigest> (SHA-256/SHA-512) eliminate lock contention under concurrent load. DateTimeFormatter.ofPattern() hoisted to static final fields in 15 generators. CI: 426-sampler all-types JMeter smoke test on every PR.",
+        "downloadUrl": "https://github.com/altansayan/mock-jutsu-jmeter/releases/download/v1.1.1/mock-jutsu-jmeter-1.1.1.jar",
+        "libs": {},
+        "depends": []
+      },
       "1.1.0": {
         "changes": "Performance: SecureRandom pool, JDK native EC crypto (crypto types 8-22ms to <1ms), Pattern cache, JWT SecureRandom consolidation. Bug fixes: 12 missing _masked registry entries, JSON control-char escapes, NUL byte in CryptoFuzzGen. Observability: SLF4J logging to all generators. Architecture: O(1) Map dispatch. Testing: per-type perf regression guard for all 429 type+qualifier combos. Benchmark: https://github.com/altansayan/mock-jutsu-jmeter-plugin-benchmark",
         "downloadUrl": "https://github.com/altansayan/mock-jutsu-jmeter/releases/download/v1.1.0/mock-jutsu-jmeter-1.1.0.jar",
@@ -23021,8 +23035,8 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-28T15:40:09Z",
-        "lastReleaseAt": "2026-07-25T23:07:00Z",
+        "lastCommitAt": "2026-07-29T17:13:47Z",
+        "lastReleaseAt": "2026-07-29T15:06:47Z",
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/altansayan/mock-jutsu-jmeter"
       }
@@ -24479,7 +24493,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 75,
+        "score": 74,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -37896,9 +37910,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 36,
+        "openIssues": 35,
         "archived": false,
-        "lastCommitAt": "2026-07-27T22:10:12Z",
+        "lastCommitAt": "2026-07-29T22:58:55Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -41104,9 +41118,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 36,
+        "openIssues": 35,
         "archived": false,
-        "lastCommitAt": "2026-07-27T22:10:12Z",
+        "lastCommitAt": "2026-07-29T22:58:55Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
