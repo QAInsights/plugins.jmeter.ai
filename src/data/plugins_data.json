@@ -7206,7 +7206,7 @@
         "stars": 4,
         "openIssues": 1,
         "archived": false,
-        "lastCommitAt": "2026-07-23T21:43:44Z",
+        "lastCommitAt": "2026-07-30T21:45:04Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -12304,12 +12304,12 @@
       }
     },
     "githubInfo": {
-      "stars": 317,
+      "stars": 318,
       "license": "Apache-2.0",
       "health": {
         "score": 29,
         "label": "Stale",
-        "stars": 317,
+        "stars": 318,
         "openIssues": 61,
         "archived": false,
         "lastCommitAt": "2021-08-31T15:12:57Z",
@@ -14461,7 +14461,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 37,
+        "score": 36,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -20172,7 +20172,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 42,
+        "score": 41,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -21553,7 +21553,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 57,
+        "score": 56,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -26173,7 +26173,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 53,
+        "score": 52,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
