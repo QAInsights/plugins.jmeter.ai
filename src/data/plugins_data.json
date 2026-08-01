@@ -2644,12 +2644,12 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 75,
         "label": "Active",
         "stars": 13,
         "openIssues": 9,
         "archived": false,
-        "lastCommitAt": "2026-05-08T07:58:43Z",
+        "lastCommitAt": "2026-07-31T14:29:09Z",
         "lastReleaseAt": "2026-03-03T13:50:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/DataDog/jmeter-datadog-backend-listener"
@@ -4677,7 +4677,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 49,
+        "score": 48,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
@@ -7128,7 +7128,7 @@
       "stars": 28,
       "license": "Apache-2.0",
       "health": {
-        "score": 42,
+        "score": 41,
         "label": "Maintained",
         "stars": 28,
         "openIssues": 21,
@@ -25332,7 +25332,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 59,
+        "score": 58,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -27420,7 +27420,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 25,
         "openIssues": 2,
@@ -37912,7 +37912,7 @@
         "stars": 48,
         "openIssues": 35,
         "archived": false,
-        "lastCommitAt": "2026-07-29T22:58:55Z",
+        "lastCommitAt": "2026-07-31T10:30:58Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -41120,7 +41120,7 @@
         "stars": 48,
         "openIssues": 35,
         "archived": false,
-        "lastCommitAt": "2026-07-29T22:58:55Z",
+        "lastCommitAt": "2026-07-31T10:30:58Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
