@@ -7488,8 +7488,8 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
         "archived": false,
@@ -13825,7 +13825,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 30,
+        "score": 29,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
@@ -14419,6 +14419,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.4.0": {
+        "changes": "NEW: Model Picker, Thinking cards, Attachments, UI touchups, Bug fixes and more.",
+        "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/jmeter-agent/3.4.0/jmeter-agent-3.4.0.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -14505,15 +14513,15 @@
       }
     },
     "githubInfo": {
-      "stars": 54,
+      "stars": 55,
       "license": "MIT",
       "health": {
-        "score": 87,
+        "score": 88,
         "label": "Active",
-        "stars": 54,
+        "stars": 55,
         "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-08-04T17:11:49Z",
+        "lastCommitAt": "2026-08-05T02:54:27Z",
         "lastReleaseAt": "2026-08-03T18:24:51Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -14635,7 +14643,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 3,
@@ -14772,7 +14780,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 28,
+        "score": 27,
         "label": "Stale",
         "stars": 5,
         "openIssues": 0,
@@ -15733,9 +15741,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 35,
+        "openIssues": 33,
         "archived": false,
-        "lastCommitAt": "2026-08-04T16:54:28Z",
+        "lastCommitAt": "2026-08-05T21:00:27Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -18627,9 +18635,9 @@
         "score": 81,
         "label": "Active",
         "stars": 48,
-        "openIssues": 35,
+        "openIssues": 33,
         "archived": false,
-        "lastCommitAt": "2026-08-04T16:54:28Z",
+        "lastCommitAt": "2026-08-05T21:00:27Z",
         "lastReleaseAt": "2026-05-19T18:47:31Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
