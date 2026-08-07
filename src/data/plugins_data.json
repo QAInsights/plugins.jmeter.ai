@@ -1507,7 +1507,7 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 48,
+        "score": 47,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -6295,7 +6295,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 75,
+        "score": 74,
         "label": "Active",
         "stars": 5,
         "openIssues": 0,
@@ -11856,12 +11856,12 @@
       "stars": 4,
       "license": "Apache-2.0",
       "health": {
-        "score": 77,
+        "score": 73,
         "label": "Active",
         "stars": 4,
-        "openIssues": 1,
+        "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-07-30T21:45:04Z",
+        "lastCommitAt": "2026-08-06T21:43:26Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -14521,8 +14521,8 @@
         "stars": 55,
         "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-08-05T02:54:27Z",
-        "lastReleaseAt": "2026-08-03T18:24:51Z",
+        "lastCommitAt": "2026-08-07T01:00:50Z",
+        "lastReleaseAt": "2026-08-06T19:24:20Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -15254,6 +15254,14 @@
         "depends": [
           "jmeter-http"
         ]
+      },
+      "3.1.0": {
+        "changes": "Compatibility & parity release with deeper JMeter alignment, stronger SSL handling, HEAD method support, and a new CLI migration tool.",
+        "downloadUrl": "https://github.com/Blazemeter/jmeter-http-plugin/releases/download/v3.1.0/jmeter-bzm-http2-3.1.0.jar",
+        "libs": {},
+        "depends": [
+          "jmeter-http"
+        ]
       }
     },
     "sponsored": false,
@@ -15735,16 +15743,16 @@
       }
     },
     "githubInfo": {
-      "stars": 48,
+      "stars": 49,
       "license": "Apache-2.0",
       "health": {
         "score": 81,
         "label": "Active",
-        "stars": 48,
-        "openIssues": 33,
+        "stars": 49,
+        "openIssues": 25,
         "archived": false,
-        "lastCommitAt": "2026-08-05T21:00:27Z",
-        "lastReleaseAt": "2026-05-19T18:47:31Z",
+        "lastCommitAt": "2026-08-06T19:03:05Z",
+        "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
@@ -17407,7 +17415,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 75,
+        "score": 74,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -18629,16 +18637,16 @@
       }
     },
     "githubInfo": {
-      "stars": 48,
+      "stars": 49,
       "license": "Apache-2.0",
       "health": {
         "score": 81,
         "label": "Active",
-        "stars": 48,
-        "openIssues": 33,
+        "stars": 49,
+        "openIssues": 25,
         "archived": false,
-        "lastCommitAt": "2026-08-05T21:00:27Z",
-        "lastReleaseAt": "2026-05-19T18:47:31Z",
+        "lastCommitAt": "2026-08-06T19:03:05Z",
+        "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
