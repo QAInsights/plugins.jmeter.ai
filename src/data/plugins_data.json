@@ -5478,7 +5478,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 43,
+        "score": 42,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -7694,7 +7694,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 43,
+        "score": 42,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -14427,6 +14427,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.6.1": {
+        "changes": "NEW: Enhanced Model Picker, UI touch ups, and bug fixes",
+        "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/jmeter-agent/3.6.1/jmeter-agent-3.6.1.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -15751,7 +15759,7 @@
         "stars": 49,
         "openIssues": 25,
         "archived": false,
-        "lastCommitAt": "2026-08-06T19:03:05Z",
+        "lastCommitAt": "2026-08-07T13:44:58Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -18645,7 +18653,7 @@
         "stars": 49,
         "openIssues": 25,
         "archived": false,
-        "lastCommitAt": "2026-08-06T19:03:05Z",
+        "lastCommitAt": "2026-08-07T13:44:58Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
