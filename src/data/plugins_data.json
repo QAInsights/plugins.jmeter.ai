@@ -14702,7 +14702,7 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 25,
+        "openIssues": 26,
         "archived": false,
         "lastCommitAt": "2026-08-07T13:44:58Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
@@ -18270,7 +18270,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 2,
         "openIssues": 1,
@@ -23747,7 +23747,7 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 25,
+        "openIssues": 26,
         "archived": false,
         "lastCommitAt": "2026-08-07T13:44:58Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
@@ -26078,12 +26078,18 @@
   {
     "id": "mock-jutsu",
     "name": "Mock Jutsu - The Ultimate Algorithmic Mock Data Engine",
-    "description": "Generate format & checksum-valid mock test data directly inside JMeter test plans via custom functions - no Python, no subprocess, no CSV files needed. 390 types across 49 categories, 6 locales (TR/UK/US/DE/FR/RU), pipe-separated options, mask support (PCI DSS / GDPR / KVKK), zero external dependencies.<br>Plugin Benchmark: https://github.com/altansayan/mock-jutsu-jmeter-plugin-benchmark",
+    "description": "Generate format & checksum-valid mock test data directly inside JMeter test plans via custom functions - no Python, no subprocess, no CSV files needed. 390 types across 49 categories, 6 locales (TR/UK/US/DE/FR/RU), pipe-separated options, mask support (PCI DSS / GDPR / KVKK), zero external dependencies.<br>Plugin Benchmark: https://github.com/altansayan/mock-jutsu-jmeter-plugin-benchmark<br>Requirements: JMeter 5.5+ | Java 17+",
     "helpUrl": "https://github.com/altansayan/mock-jutsu-jmeter#readme",
     "markerClass": "com.mockjutsu.jmeter.MockJutsuBaseFunction",
     "screenshotUrl": "https://raw.githubusercontent.com/altansayan/mock-jutsu-jmeter/main/assets/function-helper-preview.png",
     "vendor": "ASA Intelligence - Altan Sezer Ayan",
     "versions": {
+      "1.1.2": {
+        "changes": "Backward compatibility: compiled against JMeter 5.5 (supports JMeter 5.5, 5.6, 5.6.1, 5.6.2, 5.6.3). All 4205 tests pass across all supported versions.",
+        "downloadUrl": "https://github.com/altansayan/mock-jutsu-jmeter/releases/download/v1.1.2/mock-jutsu-jmeter-1.1.2.jar",
+        "libs": {},
+        "depends": []
+      },
       "1.1.1": {
         "changes": "Concurrency: ThreadLocal<SecureRandom>, ThreadLocal<Mac> (HmacSHA256), ThreadLocal<MessageDigest> (SHA-256/SHA-512) eliminate lock contention under concurrent load. DateTimeFormatter.ofPattern() hoisted to static final fields in 15 generators. CI: 426-sampler all-types JMeter smoke test on every PR.",
         "downloadUrl": "https://github.com/altansayan/mock-jutsu-jmeter/releases/download/v1.1.1/mock-jutsu-jmeter-1.1.1.jar",
@@ -26130,13 +26136,13 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-07-29T17:13:47Z",
-        "lastReleaseAt": "2026-07-29T15:06:47Z",
+        "lastCommitAt": "2026-08-11T19:55:21Z",
+        "lastReleaseAt": "2026-08-11T19:18:12Z",
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/altansayan/mock-jutsu-jmeter"
       }
     },
-    "jmeterCompatibility": null
+    "jmeterCompatibility": "5.5"
   },
   {
     "id": "jpgc-esa",
@@ -33899,7 +33905,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 65,
+        "score": 64,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
@@ -34262,7 +34268,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 52,
+        "score": 51,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -36614,7 +36620,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 41,
+        "score": 40,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -38809,12 +38815,12 @@
       }
     },
     "githubInfo": {
-      "stars": 78,
+      "stars": 79,
       "license": "MIT",
       "health": {
         "score": 86,
         "label": "Active",
-        "stars": 78,
+        "stars": 79,
         "openIssues": 0,
         "archived": false,
         "lastCommitAt": "2026-07-04T21:54:31Z",
@@ -41862,7 +41868,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 64,
+        "score": 63,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 1,
@@ -43916,7 +43922,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 83,
+        "score": 82,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
