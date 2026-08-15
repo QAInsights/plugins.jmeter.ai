@@ -14702,7 +14702,7 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 27,
+        "openIssues": 28,
         "archived": false,
         "lastCommitAt": "2026-08-13T19:35:28Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
@@ -20483,7 +20483,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 59,
+        "score": 58,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 26,
@@ -23747,7 +23747,7 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 27,
+        "openIssues": 28,
         "archived": false,
         "lastCommitAt": "2026-08-13T19:35:28Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
@@ -25024,7 +25024,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -36345,7 +36345,7 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 29,
+        "score": 28,
         "label": "Stale",
         "stars": 29,
         "openIssues": 7,
@@ -38818,7 +38818,7 @@
       "stars": 79,
       "license": "MIT",
       "health": {
-        "score": 86,
+        "score": 85,
         "label": "Active",
         "stars": 79,
         "openIssues": 0,
@@ -39854,7 +39854,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 32,
         "openIssues": 2,
@@ -52740,6 +52740,13 @@
         "libs": {
           "cmdrunner>=2.3": "https://repo.maven.apache.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar"
         }
+      },
+      "2.0": {
+        "changes": "Much faster repository loading, half the download size. Requires JMeter 3.2+",
+        "downloadUrl": "https://repo.maven.apache.org/maven2/kg/apc/jmeter-plugins-manager/2.0/jmeter-plugins-manager-2.0.jar",
+        "libs": {
+          "cmdrunner>=2.3": "https://repo.maven.apache.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar"
+        }
       }
     },
     "sponsored": false,
@@ -53288,7 +53295,7 @@
         "2026-08-03": 43915
       }
     },
-    "jmeterCompatibility": "2.13"
+    "jmeterCompatibility": "5.0"
   },
   {
     "id": "jmeter-core",
