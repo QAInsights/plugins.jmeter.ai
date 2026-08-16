@@ -19782,7 +19782,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 33,
+        "score": 32,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
@@ -32108,7 +32108,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 62,
+        "score": 61,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 2,
@@ -41723,6 +41723,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.7.0": {
+        "changes": "Fixes broken 3.5.0/3.6.1 installs (missing dependencies)",
+        "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/jmeter-agent/3.7.0/jmeter-agent-3.7.0.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -41810,16 +41818,16 @@
       }
     },
     "githubInfo": {
-      "stars": 56,
+      "stars": 57,
       "license": "MIT",
       "health": {
         "score": 88,
         "label": "Active",
-        "stars": 56,
+        "stars": 57,
         "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-08-08T02:42:16Z",
-        "lastReleaseAt": "2026-08-06T19:24:20Z",
+        "lastCommitAt": "2026-08-15T03:59:21Z",
+        "lastReleaseAt": "2026-08-15T03:59:50Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
