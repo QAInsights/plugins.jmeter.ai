@@ -15218,7 +15218,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 5,
         "openIssues": 0,
@@ -24149,6 +24149,50 @@
     "jmeterCompatibility": null
   },
   {
+    "id": "reportportal-jmeter",
+    "name": "ReportPortal Performance Reporter (official)",
+    "description": "Official ReportPortal Backend Listener for JMeter. Reports aggregated latency percentiles (HdrHistogram), error rate, optional SLA quality gate, and failed sample details into a ReportPortal launch. Optionally attaches the native JMeter HTML dashboard as a ZIP. <ul><li>Add a Backend Listener</li><li>Set implementation to <code>com.epam.reportportal.jmeter.PerformanceReporterClient</code></li><li>Set ReportPortal_URL, Project_Name (project slug, not numeric id), and API_Token</li><li>Docs: <a href=\"https://github.com/reportportal/plugins-performance#jmeter-plugin\">setup guide</a></li></ul>",
+    "helpUrl": "https://github.com/reportportal/plugins-performance#jmeter-plugin",
+    "screenshotUrl": "https://raw.githubusercontent.com/reportportal/plugins-performance/main/media/reportportal-performance-launches.png",
+    "vendor": "ReportPortal",
+    "markerClass": "com.epam.reportportal.jmeter.PerformanceReporterClient",
+    "componentClasses": [
+      "com.epam.reportportal.jmeter.PerformanceReporterClient"
+    ],
+    "versions": {
+      "1.0.0": {
+        "changes": "Initial official release: Backend Listener with SLA, per-request metrics, failed sample history, optional HTML dashboard ZIP.",
+        "downloadUrl": "https://github.com/reportportal/plugins-performance/releases/download/jmeter-v1.0.0/plugin-jmeter-1.0.0-shaded.jar",
+        "libs": {},
+        "depends": []
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 0,
+      "history": {}
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 75,
+        "label": "Active",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-08-17T17:47:10Z",
+        "lastReleaseAt": "2026-08-17T14:44:44Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/reportportal/plugins-performance"
+      }
+    },
+    "jmeterCompatibility": null
+  },
+  {
     "id": "jpgc-udp",
     "name": "UDP Protocol Support",
     "description": "This plugin adds UDP protocol support to JMeter. With this plugin you can load test DNS, NTP, TFTP, Boot servers and many-many other systems.",
@@ -24781,7 +24825,7 @@
         "stars": 1,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-07-27T05:54:57Z",
+        "lastCommitAt": "2026-08-17T05:55:41Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
@@ -27396,7 +27440,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -30692,7 +30736,7 @@
       "stars": 7,
       "license": "N/A",
       "health": {
-        "score": 25,
+        "score": 24,
         "label": "Stale",
         "stars": 7,
         "openIssues": 3,
@@ -37631,7 +37675,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 27,
+        "score": 26,
         "label": "Stale",
         "stars": 5,
         "openIssues": 0,
