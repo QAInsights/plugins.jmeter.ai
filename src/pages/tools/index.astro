@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AskAboutPage from '../../components/AskAboutPage.astro';
+
+const title = 'JMeter Tools | PerfAtlas';
+const description =
+  'Free browser-based tools for JMeter users: a CLI command builder for headless runs and plugin installs, and a thread calculator with think time for sizing your load tests.';
+
+const tools = [
+  {
+    href: '/tools/cli-builder/',
+    name: 'CLI Command Builder',
+    tagline:
+      'Compose jmeter and PluginsManagerCMD commands visually — headless runs, HTML reports, remote servers, -J properties, and plugin installs. Shareable via URL.',
+    icon: 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+  },
+  {
+    href: '/tools/thread-calculator/',
+    name: 'Thread Calculator',
+    tagline:
+      'How many threads do you need? Enter target RPS, response time, and think time to get the exact thread count — plus headroom and plugin recommendations.',
+    icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
+  },
+];
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'PerfAtlas JMeter Tools',
+  itemListElement: tools.map((t, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: t.name,
+    url: `https://plugins.jmeter.ai${t.href}`,
+  })),
+};
+---
+
+<Layout title={title} description={description} schema={itemListSchema}>
+  <Header />
+
+  <main class="mx-auto w-full max-w-7xl flex-grow px-4 py-12 sm:px-6 md:py-20">
+    <div class="mb-12">
+      <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+        Tools
+      </p>
+      <h1 class="mb-4 text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white">
+        Free JMeter <span
+          class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
+          >Tools</span
+        >
+      </h1>
+      <p class="max-w-2xl text-xl text-gray-600 dark:text-gray-400">
+        Small, focused utilities that run entirely in your browser — nothing is uploaded or stored
+        on a server.
+      </p>
+    </div>
+
+    <AskAboutPage prompt="Recommend the right PerfAtlas tool for my JMeter task" class="mb-10" />
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        tools.map((t) => (
+          <a
+            href={t.href}
+            class="dark:bg-dark-surface group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all hover:border-green-500/50 hover:shadow-xl dark:border-white/10"
+          >
+            <div class="from-primary to-secondary absolute top-0 left-0 h-1 w-full bg-gradient-to-r opacity-0 transition-opacity group-hover:opacity-100" />
+            <div class="bg-primary/10 mb-5 flex h-12 w-12 items-center justify-center rounded-xl text-green-600 dark:text-[#ccff00]">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d={t.icon}
+                />
+              </svg>
+            </div>
+            <h2 class="mb-2 text-xl font-black text-gray-900 transition-colors group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+              {t.name}
+            </h2>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{t.tagline}</p>
+            <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-green-600 dark:text-[#ccff00]">
+              Open tool
+              <svg
+                class="h-4 w-4 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

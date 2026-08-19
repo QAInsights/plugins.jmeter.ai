@@ -1,0 +1,123 @@
+---
+interface Props {
+  /** Override the prompt sent to the AI assistant. Defaults to a generic page question. */
+  prompt?: string;
+  /** Extra Tailwind classes for the wrapper (e.g. margin utilities). */
+  class?: string;
+}
+
+const { prompt, class: className = '' } = Astro.props;
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site || 'https://plugins.jmeter.ai').toString();
+const basePrompt = prompt || 'Summarize and answer questions about this page';
+
+const assistants = [
+  {
+    name: 'ChatGPT',
+    href: `https://chatgpt.com/?q=${encodeURIComponent(`${basePrompt}: ${pageUrl}`)}`,
+  },
+  {
+    name: 'Claude',
+    href: `https://claude.ai/new?q=${encodeURIComponent(`${basePrompt}: ${pageUrl}`)}`,
+  },
+  {
+    name: 'Perplexity',
+    href: `https://www.perplexity.ai/search?q=${encodeURIComponent(`${basePrompt}: ${pageUrl}`)}`,
+  },
+  {
+    name: 'Gemini',
+    href: `https://gemini.google.com/app?q=${encodeURIComponent(`${basePrompt}: ${pageUrl}`)}`,
+  },
+];
+---
+
+<div
+  class={`ask-about-page flex flex-wrap items-center gap-2 rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-sm dark:bg-dark-surface dark:border-white/10 ${className}`}
+  data-page-url={pageUrl}
+  data-prompt={basePrompt}
+>
+  <span
+    class="mr-1 flex items-center gap-1.5 text-[10px] font-bold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+  >
+    <svg
+      class="h-3.5 w-3.5 text-green-600 dark:text-[#ccff00]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      ><path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+      ></path><circle cx="12" cy="12" r="3"></circle></svg
+    >
+    Ask about this page
+  </span>
+  {
+    assistants.map((a) => (
+      <a
+        href={a.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition-colors hover:border-green-500/50 hover:text-green-600 dark:border-white/10 dark:text-gray-300 dark:hover:text-[#ccff00]"
+      >
+        {a.name}
+        <svg
+          class="h-3 w-3 opacity-60"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          />
+        </svg>
+      </a>
+    ))
+  }
+  <button
+    type="button"
+    class="ask-copy-btn ml-auto inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold text-gray-400 transition-colors hover:text-green-600 dark:hover:text-[#ccff00]"
+    title="Copy page link with prompt for any AI assistant"
+  >
+    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+      ><path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+      ></path></svg
+    >
+    <span class="ask-copy-label">Copy for AI</span>
+  </button>
+</div>
+
+<script is:inline>
+  (function () {
+    document.addEventListener(
+      'click',
+      (e) => {
+        const btn = e.target.closest && e.target.closest('.ask-copy-btn');
+        if (!btn) return;
+        const wrapper = btn.closest('.ask-about-page');
+        const url = wrapper ? wrapper.getAttribute('data-page-url') : window.location.href;
+        const prompt =
+          (wrapper && wrapper.getAttribute('data-prompt')) ||
+          'Please read this page and be ready to answer questions about it';
+        const label = btn.querySelector('.ask-copy-label');
+        navigator.clipboard
+          .writeText(prompt + ': ' + url)
+          .then(() => {
+            if (!label) return;
+            const original = label.textContent;
+            label.textContent = 'Copied';
+            setTimeout(() => (label.textContent = original), 1600);
+          });
+      },
+      true,
+    );
+  })();
+</script>

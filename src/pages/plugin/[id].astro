@@ -8,6 +8,7 @@ import ChangelogTimeline from '../../components/ChangelogTimeline.astro';
 import GitHubBadge from '../../components/GitHubBadge.astro';
 import RelatedPluginsSection from '../../components/RelatedPluginsSection.astro';
 import CommunityDiscussions from '../../components/CommunityDiscussions.astro';
+import AskAboutPage from '../../components/AskAboutPage.astro';
 import pluginsData from '../../data/plugins_data.json';
 import {
   getRelatedPlugins,
@@ -134,6 +135,11 @@ const schema = {
         >
         Back to Directory
       </a>
+
+      <AskAboutPage
+        prompt={`Answer questions about the JMeter plugin "${plugin.name}" (install, usage, alternatives)`}
+        class="mb-8"
+      />
 
       {/* Plugin Header Card */}
       <div

@@ -1,0 +1,554 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AskAboutPage from '../../components/AskAboutPage.astro';
+import pluginsData from '../../data/plugins_data.json';
+
+const title = 'JMeter CLI Command Builder | PerfAtlas';
+const description =
+  'Build JMeter command-line invocations visually: headless test runs, HTML dashboard reports, distributed testing with remote servers, -J property overrides, and Plugins Manager install commands.';
+
+// Minimal plugin list (id + name) for the picker — keeps the page payload small.
+const pluginOptions = (pluginsData as { id: string; name: string }[])
+  .map((p) => ({ id: p.id, name: p.name }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How do I run a JMeter test from the command line?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Use non-GUI mode: jmeter -n -t test-plan.jmx -l results.jtl. Add -e -o report-folder to generate an HTML dashboard report after the run, and -f to overwrite an existing results file. The GUI should only be used for creating and debugging test plans.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I install JMeter plugins from the command line?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Use the Plugins Manager command-line tool bundled with the Plugins Manager plugin: PluginsManagerCMD.sh install plugin-id-1,plugin-id-2 (or PluginsManagerCMD.bat on Windows). Plugin IDs are listed on each plugin page in the PerfAtlas directory.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I pass properties to a JMeter CLI run?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Use the -J flag for each property, for example -Jthreads=100 -JrampUp=60. Reference them inside the test plan with ${__P(threads,50)}. -J values only apply to the local run; use -G to propagate properties to remote servers in distributed testing.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I run JMeter in distributed mode from the CLI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Add -R followed by a comma-separated list of remote server IPs or hostnames, for example jmeter -n -t plan.jmx -R 10.0.0.1,10.0.0.2. Each remote host must be running jmeter-server with the same JMeter and plugin versions.',
+      },
+    },
+  ],
+};
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'JMeter CLI Command Builder',
+  url: 'https://plugins.jmeter.ai/tools/cli-builder/',
+  description,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  schema={{ '@context': 'https://schema.org', '@graph': [faqSchema, webAppSchema] }}
+>
+  <Header />
+
+  <main class="mx-auto w-full max-w-7xl flex-grow px-4 py-12 sm:px-6 md:py-16">
+    <a
+      href="/tools/"
+      class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 dark:hover:text-white"
+    >
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+      >
+      Back to Tools
+    </a>
+
+    <div class="mb-10">
+      <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+        Tools
+      </p>
+      <h1 class="mb-4 text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white">
+        JMeter CLI <span
+          class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
+          >Command Builder</span
+        >
+      </h1>
+      <p class="max-w-2xl text-xl text-gray-600 dark:text-gray-400">
+        Compose the exact <code class="text-base">jmeter</code> and
+        <code class="text-base">PluginsManagerCMD</code> commands for your environment — no flag
+        memorization required.
+      </p>
+    </div>
+
+    <AskAboutPage
+      prompt="Help me understand and use this JMeter CLI command builder"
+      class="mb-10"
+    />
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+      <!-- ============ Form ============ -->
+      <div
+        class="dark:bg-dark-surface rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-3 dark:border-white/10"
+      >
+        <!-- Mode -->
+        <fieldset class="mb-8">
+          <legend
+            class="mb-3 text-[10px] font-bold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+            >Command type</legend
+          >
+          <div class="flex flex-wrap gap-2" role="radiogroup" aria-label="Command type">
+            <label class="cli-pill">
+              <input type="radio" name="mode" value="run" class="peer sr-only" checked />
+              <span
+                class="peer-checked:border-green-500 peer-checked:bg-green-500/10 peer-checked:text-green-700 dark:peer-checked:text-[#ccff00] inline-flex cursor-pointer items-center rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition-all dark:border-white/10 dark:text-gray-300"
+                >Run test</span
+              >
+            </label>
+            <label class="cli-pill">
+              <input type="radio" name="mode" value="install" class="peer sr-only" />
+              <span
+                class="peer-checked:border-green-500 peer-checked:bg-green-500/10 peer-checked:text-green-700 dark:peer-checked:text-[#ccff00] inline-flex cursor-pointer items-center rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition-all dark:border-white/10 dark:text-gray-300"
+                >Install plugins</span
+              >
+            </label>
+            <label class="cli-pill">
+              <input type="radio" name="mode" value="full" class="peer sr-only" />
+              <span
+                class="peer-checked:border-green-500 peer-checked:bg-green-500/10 peer-checked:text-green-700 dark:peer-checked:text-[#ccff00] inline-flex cursor-pointer items-center rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition-all dark:border-white/10 dark:text-gray-300"
+                >Install + run</span
+              >
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- OS -->
+        <fieldset class="mb-8">
+          <legend
+            class="mb-3 text-[10px] font-bold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+            >Operating system</legend
+          >
+          <div class="flex flex-wrap gap-2" role="radiogroup" aria-label="Operating system">
+            <label class="cli-pill">
+              <input type="radio" name="os" value="unix" class="peer sr-only" checked />
+              <span
+                class="peer-checked:border-green-500 peer-checked:bg-green-500/10 peer-checked:text-green-700 dark:peer-checked:text-[#ccff00] inline-flex cursor-pointer items-center rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition-all dark:border-white/10 dark:text-gray-300"
+                >macOS / Linux</span
+              >
+            </label>
+            <label class="cli-pill">
+              <input type="radio" name="os" value="windows" class="peer sr-only" />
+              <span
+                class="peer-checked:border-green-500 peer-checked:bg-green-500/10 peer-checked:text-green-700 dark:peer-checked:text-[#ccff00] inline-flex cursor-pointer items-center rounded-full border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition-all dark:border-white/10 dark:text-gray-300"
+                >Windows</span
+              >
+            </label>
+          </div>
+        </fieldset>
+
+        <div data-mode-section="run" class="space-y-6">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <label class="block">
+              <span class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-gray-300"
+                >Test plan (.jmx)</span
+              >
+              <input
+                id="cliTestPlan"
+                type="text"
+                value="test-plan.jmx"
+                class="cli-input"
+                placeholder="test-plan.jmx"
+              />
+            </label>
+            <label class="block">
+              <span class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-gray-300"
+                >Results file (.jtl)</span
+              >
+              <input
+                id="cliResultsFile"
+                type="text"
+                value="results.jtl"
+                class="cli-input"
+                placeholder="results.jtl"
+              />
+            </label>
+            <label class="block">
+              <span class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-gray-300"
+                >Log file <span class="font-normal text-gray-400">(optional)</span></span
+              >
+              <input id="cliLogFile" type="text" class="cli-input" placeholder="jmeter.log" />
+            </label>
+            <label class="block">
+              <span class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-gray-300"
+                >Remote servers <span class="font-normal text-gray-400">(comma separated)</span></span
+              >
+              <input
+                id="cliRemoteServers"
+                type="text"
+                class="cli-input"
+                placeholder="10.0.0.1, 10.0.0.2"
+              />
+            </label>
+          </div>
+
+          <div class="flex flex-wrap gap-x-8 gap-y-3">
+            <label class="flex cursor-pointer items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <input
+                id="cliGenerateReport"
+                type="checkbox"
+                checked
+                class="cli-check"
+              />
+              Generate HTML report (-e -o)
+            </label>
+            <label class="flex cursor-pointer items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <input id="cliForceDelete" type="checkbox" checked class="cli-check" />
+              Overwrite existing results (-f)
+            </label>
+          </div>
+
+          <label id="cliReportDirWrap" class="block">
+            <span class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-gray-300"
+              >Report output folder</span
+            >
+            <input
+              id="cliReportDir"
+              type="text"
+              value="dashboard-report"
+              class="cli-input"
+              placeholder="dashboard-report"
+            />
+          </label>
+
+          <label class="block">
+            <span class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-gray-300"
+              >Property overrides <span class="font-normal text-gray-400">(one key=value per line, become -J flags)</span></span
+            >
+            <textarea
+              id="cliProperties"
+              rows="3"
+              class="cli-input font-mono text-xs"
+              placeholder="threads=100&#10;rampUp=60"
+            ></textarea>
+          </label>
+        </div>
+
+        <!-- Plugin picker -->
+        <div data-mode-section="install" class="hidden">
+          <div class="mb-3 flex items-center justify-between gap-4">
+            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+              >Plugins to install</span
+            >
+            <span
+              id="cliPluginCount"
+              class="text-[10px] font-bold tracking-widest text-gray-400 uppercase"
+              >0 selected</span
+            >
+          </div>
+          <input
+            id="cliPluginFilter"
+            type="search"
+            class="cli-input mb-3"
+            placeholder="Filter plugins…"
+            aria-label="Filter plugins"
+          />
+          <div
+            id="cliPluginList"
+            class="max-h-64 space-y-1 overflow-y-auto rounded-xl border border-gray-200 p-2 dark:border-white/10"
+          >
+            {
+              pluginOptions.map((p) => (
+                <label
+                  class="cli-plugin-row flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm transition-colors hover:bg-gray-50 dark:hover:bg-white/5"
+                  data-plugin-id={p.id}
+                  data-plugin-name={p.name.toLowerCase()}
+                >
+                  <input
+                    type="checkbox"
+                    class="cli-check cli-plugin-check"
+                    value={p.id}
+                  />
+                  <span class="font-semibold text-gray-800 dark:text-gray-200">{p.name}</span>
+                  <span class="ml-auto font-mono text-[11px] text-gray-400 dark:text-gray-500">
+                    {p.id}
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ Output ============ -->
+      <div class="lg:col-span-2">
+        <div
+          class="dark:bg-dark-surface sticky top-24 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10"
+        >
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+              Your command
+            </h2>
+            <div class="flex gap-2">
+              <button
+                id="cliShareBtn"
+                class="rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition-colors hover:bg-gray-50 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/5"
+                >Share URL</button
+              >
+              <button
+                id="cliCopyBtn"
+                class="rounded-lg bg-green-600 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-green-700 dark:bg-[#ccff00] dark:text-black dark:hover:bg-[#b8e600]"
+                >Copy</button
+              >
+            </div>
+          </div>
+          <div
+            class="group relative min-h-24 rounded-xl bg-gray-950 p-4 dark:bg-black/60"
+          >
+            <pre
+              id="cliOutput"
+              class="font-mono text-xs leading-relaxed break-all whitespace-pre-wrap text-green-400"
+            ></pre>
+          </div>
+          <p id="cliHint" class="mt-3 hidden text-xs font-medium text-amber-600 dark:text-amber-400">
+          </p>
+          <p class="mt-4 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+            Everything runs locally in your browser. The URL updates as you edit — share it to send
+            the exact same configuration to a teammate.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visible FAQ (mirrors FAQPage schema above) -->
+    <section class="mx-auto mt-16 max-w-3xl">
+      <h2 class="mb-6 text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+        Frequently asked questions
+      </h2>
+      <div class="space-y-4">
+        {
+          faqSchema.mainEntity.map((q) => (
+            <details class="dark:bg-dark-surface group rounded-xl border border-gray-200 bg-white p-5 dark:border-white/10">
+              <summary class="cursor-pointer text-sm font-bold text-gray-900 dark:text-white">
+                {q.name}
+              </summary>
+              <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                {q.acceptedAnswer.text}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import {
+    DEFAULT_CLI_STATE,
+    buildCommands,
+    parseCliState,
+    serializeCliState,
+    type CliBuilderState,
+    type CliMode,
+    type CliOs,
+  } from '../../utils/cliBuilder';
+
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  const els = {
+    testPlan: $<HTMLInputElement>('cliTestPlan'),
+    resultsFile: $<HTMLInputElement>('cliResultsFile'),
+    logFile: $<HTMLInputElement>('cliLogFile'),
+    remoteServers: $<HTMLInputElement>('cliRemoteServers'),
+    generateReport: $<HTMLInputElement>('cliGenerateReport'),
+    forceDelete: $<HTMLInputElement>('cliForceDelete'),
+    reportDir: $<HTMLInputElement>('cliReportDir'),
+    reportDirWrap: $('cliReportDirWrap'),
+    properties: $<HTMLTextAreaElement>('cliProperties'),
+    pluginFilter: $<HTMLInputElement>('cliPluginFilter'),
+    pluginList: $('cliPluginList'),
+    pluginCount: $('cliPluginCount'),
+    output: $('cliOutput'),
+    hint: $('cliHint'),
+    copyBtn: $<HTMLButtonElement>('cliCopyBtn'),
+    shareBtn: $<HTMLButtonElement>('cliShareBtn'),
+  };
+
+  const initialParams = new URLSearchParams(window.location.search);
+  let state: CliBuilderState = parseCliState(initialParams);
+
+  // When the URL carries no plugin selection, seed from the site's install
+  // list so users arriving from plugin cards see their picks pre-selected.
+  // Seeded plugins imply the install workflow, so promote the mode.
+  if (!initialParams.has('plugins')) {
+    try {
+      const installIds = JSON.parse(localStorage.getItem('installIds') || '[]');
+      if (Array.isArray(installIds)) {
+        state.plugins = installIds.filter((x) => typeof x === 'string');
+        if (state.plugins.length > 0) state.mode = 'full';
+      }
+    } catch {
+      /* ignore */
+    }
+  } else if (!initialParams.has('mode') && state.plugins.length > 0) {
+    // A plugins param without an explicit mode implies the install workflow.
+    state.mode = 'full';
+  }
+
+  function readForm(): CliBuilderState {
+    const mode =
+      (document.querySelector<HTMLInputElement>('input[name="mode"]:checked')?.value as CliMode) ||
+      'run';
+    const os =
+      (document.querySelector<HTMLInputElement>('input[name="os"]:checked')?.value as CliOs) ||
+      'unix';
+    const plugins = [
+      ...els.pluginList.querySelectorAll<HTMLInputElement>('.cli-plugin-check:checked'),
+    ].map((c) => c.value);
+    return {
+      os,
+      mode,
+      testPlan: els.testPlan.value,
+      resultsFile: els.resultsFile.value,
+      logFile: els.logFile.value,
+      generateReport: els.generateReport.checked,
+      reportDir: els.reportDir.value,
+      forceDeleteResults: els.forceDelete.checked,
+      remoteServers: els.remoteServers.value,
+      properties: els.properties.value.split('\n'),
+      plugins,
+    };
+  }
+
+  function applyStateToForm(s: CliBuilderState) {
+    const modeInput = document.querySelector<HTMLInputElement>(`input[name="mode"][value="${s.mode}"]`);
+    if (modeInput) modeInput.checked = true;
+    const osInput = document.querySelector<HTMLInputElement>(`input[name="os"][value="${s.os}"]`);
+    if (osInput) osInput.checked = true;
+    els.testPlan.value = s.testPlan;
+    els.resultsFile.value = s.resultsFile;
+    els.logFile.value = s.logFile;
+    els.generateReport.checked = s.generateReport;
+    els.reportDir.value = s.reportDir;
+    els.forceDelete.checked = s.forceDeleteResults;
+    els.remoteServers.value = s.remoteServers;
+    els.properties.value = s.properties.join('\n');
+    els.pluginList
+      .querySelectorAll<HTMLInputElement>('.cli-plugin-check')
+      .forEach((c) => (c.checked = s.plugins.includes(c.value)));
+  }
+
+  function render() {
+    const runVisible = state.mode !== 'install';
+    const installVisible = state.mode !== 'run';
+    document
+      .querySelectorAll<HTMLElement>('[data-mode-section="run"]')
+      .forEach((el) => el.classList.toggle('hidden', !runVisible));
+    document
+      .querySelectorAll<HTMLElement>('[data-mode-section="install"]')
+      .forEach((el) => el.classList.toggle('hidden', !installVisible));
+    els.reportDirWrap.classList.toggle('hidden', !els.generateReport.checked);
+
+    const commands = buildCommands(state);
+    els.output.textContent = commands.length > 0 ? commands.join('\n\n') : '';
+
+    let hint = '';
+    if (commands.length === 0) {
+      hint =
+        state.mode === 'install'
+          ? 'Select at least one plugin to build the install command.'
+          : 'Enter a test plan path to build the run command.';
+    }
+    els.hint.textContent = hint;
+    els.hint.classList.toggle('hidden', hint === '');
+    els.copyBtn.disabled = commands.length === 0;
+    els.pluginCount.textContent = `${state.plugins.length} selected`;
+  }
+
+  function syncUrl() {
+    const params = serializeCliState(state);
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  }
+
+  function update() {
+    state = readForm();
+    render();
+    syncUrl();
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('.cli-input, .cli-check, input[name="mode"], input[name="os"]')
+    .forEach((el) => {
+      el.addEventListener('input', update);
+      el.addEventListener('change', update);
+    });
+
+  els.pluginFilter.addEventListener('input', () => {
+    const q = els.pluginFilter.value.trim().toLowerCase();
+    els.pluginList
+      .querySelectorAll<HTMLElement>('.cli-plugin-row')
+      .forEach((row) => {
+        const hay = `${row.dataset.pluginId} ${row.dataset.pluginName}`;
+        row.classList.toggle('hidden', q !== '' && !hay.includes(q));
+      });
+  });
+
+  function flashButton(btn: HTMLButtonElement, label: string) {
+    const original = btn.textContent;
+    btn.textContent = label;
+    setTimeout(() => (btn.textContent = original), 1600);
+  }
+
+  els.copyBtn.addEventListener('click', () => {
+    navigator.clipboard
+      .writeText(els.output.textContent || '')
+      .then(() => flashButton(els.copyBtn, 'Copied'));
+  });
+
+  els.shareBtn.addEventListener('click', () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => flashButton(els.shareBtn, 'Copied'));
+  });
+
+  applyStateToForm(state);
+  render();
+  syncUrl();
+</script>
+
+<style>
+  @reference '../../styles/global.css';
+
+  .cli-input {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 transition-colors outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder-gray-500;
+  }
+  .cli-check {
+    @apply h-4 w-4 rounded border-gray-300 accent-green-600 dark:border-white/20;
+  }
+</style>

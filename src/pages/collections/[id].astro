@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import CollectionCard from '../../components/CollectionCard.astro';
 import CollectionInstallBlock from '../../components/CollectionInstallBlock.astro';
 import CollectionPluginRow from '../../components/CollectionPluginRow.astro';
+import AskAboutPage from '../../components/AskAboutPage.astro';
 import pluginsData from '../../data/plugins_data.json';
 import rawCollections from '../../data/collections.json';
 import {
@@ -53,6 +54,11 @@ const ogImage = `/og/collections/${collection.id}.png`;
         >
         All Collections
       </a>
+
+      <AskAboutPage
+        prompt={`Explain the "${collection.name}" JMeter plugin collection and when to use it`}
+        class="mb-8"
+      />
 
       {/* Header Card */}
       <div

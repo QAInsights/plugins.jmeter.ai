@@ -58,6 +58,10 @@ export default defineConfig({
         if (item.url.includes('/blog/') && item.url !== 'https://plugins.jmeter.ai/blog/') {
           return { ...item, changefreq: 'monthly', priority: 0.7 };
         }
+        // Tools — interactive utilities, stable URLs
+        if (item.url.includes('/tools/')) {
+          return { ...item, changefreq: 'monthly', priority: 0.7 };
+        }
         // Vendor pages
         if (item.url.includes('/vendor/')) {
           return { ...item, changefreq: 'weekly', priority: 0.6 };

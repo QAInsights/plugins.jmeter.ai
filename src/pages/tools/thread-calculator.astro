@@ -1,0 +1,410 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AskAboutPage from '../../components/AskAboutPage.astro';
+
+const title = 'JMeter Thread Calculator with Think Time | PerfAtlas';
+const description =
+  'Calculate exactly how many JMeter threads you need for a target throughput, including response time, think time, and headroom. Based on Little\'s law — the same model used by the Concurrency Thread Group plugin.';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How many threads do I need in JMeter for a target throughput?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Threads = Target RPS × (average response time + think time) in seconds. For example, 100 requests/second with 500 ms response time and 2 s think time needs 100 × 2.5 = 250 threads. Always add 10–30% headroom for response-time spikes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is think time in JMeter?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Think time is the pause between requests that simulates a real user reading a page or filling a form. Without think time, threads loop back-to-back and generate far more load than real users would. Add it with a Constant Timer, Uniform Random Timer, or the Throughput Shaping Timer plugin.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does my JMeter test not reach the target RPS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Almost always because you do not have enough threads. If a thread is still waiting for a response, it cannot start the next request. Raise the thread count using the formula RPS × (response time + think time), and verify with a Hits per Second listener.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the maximum number of threads per JMeter instance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'There is no hard limit, but a single load generator typically saturates between 500 and 5,000 threads depending on heap size, OS limits, and listener overhead. When the calculator recommends more than about 1,000 threads, split the load across multiple engines with distributed testing.',
+      },
+    },
+  ],
+};
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'JMeter Thread Calculator',
+  url: 'https://plugins.jmeter.ai/tools/thread-calculator/',
+  description,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  schema={{ '@context': 'https://schema.org', '@graph': [faqSchema, webAppSchema] }}
+>
+  <Header />
+
+  <main class="mx-auto w-full max-w-7xl flex-grow px-4 py-12 sm:px-6 md:py-16">
+    <a
+      href="/tools/"
+      class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 dark:hover:text-white"
+    >
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+      >
+      Back to Tools
+    </a>
+
+    <div class="mb-10">
+      <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+        Tools
+      </p>
+      <h1 class="mb-4 text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white">
+        Thread <span
+          class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
+          >Calculator</span
+        >
+      </h1>
+      <p class="max-w-2xl text-xl text-gray-600 dark:text-gray-400">
+        How many threads does your load test really need? Enter your target throughput, response
+        time, and <strong class="font-semibold text-gray-800 dark:text-gray-200">think time</strong>
+        to get the answer.
+      </p>
+    </div>
+
+    <AskAboutPage
+      prompt="Help me size a JMeter load test using this thread calculator"
+      class="mb-10"
+    />
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+      <!-- ============ Inputs ============ -->
+      <div
+        class="dark:bg-dark-surface rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2 dark:border-white/10"
+      >
+        <h2 class="mb-5 text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+          Your workload
+        </h2>
+        <div class="space-y-5">
+          <label class="block">
+            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+              Target throughput
+              <span class="text-xs font-normal text-gray-400">requests / second</span>
+            </span>
+            <input id="tcRps" type="number" min="0" step="any" value="100" class="tc-input" />
+          </label>
+          <label class="block">
+            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+              Average response time
+              <span class="text-xs font-normal text-gray-400">milliseconds</span>
+            </span>
+            <input id="tcRt" type="number" min="0" step="any" value="500" class="tc-input" />
+          </label>
+          <label class="block">
+            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+              Think time per thread
+              <span class="text-xs font-normal text-gray-400">milliseconds</span>
+            </span>
+            <input id="tcTt" type="number" min="0" step="any" value="2000" class="tc-input" />
+          </label>
+          <label class="block">
+            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+              Safety headroom
+              <span id="tcHeadroomLabel" class="text-xs font-normal text-gray-400">20%</span>
+            </span>
+            <input
+              id="tcHeadroom"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              value="20"
+              class="w-full accent-green-600"
+            />
+          </label>
+          <button
+            id="tcShareBtn"
+            class="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-bold text-gray-600 transition-colors hover:bg-gray-50 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/5"
+            >Copy share URL</button
+          >
+        </div>
+      </div>
+
+      <!-- ============ Results ============ -->
+      <div class="space-y-6 lg:col-span-3">
+        <div
+          class="dark:bg-dark-surface rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10"
+        >
+          <p class="text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+            You need
+          </p>
+          <p class="mt-1 flex items-baseline gap-3">
+            <span
+              id="tcThreads"
+              class="text-6xl font-black tracking-tighter text-green-600 md:text-7xl dark:text-[#ccff00]"
+              >—</span
+            >
+            <span class="text-xl font-bold text-gray-500 dark:text-gray-400">threads</span>
+          </p>
+          <p id="tcThreadsSub" class="mt-2 text-sm text-gray-500 dark:text-gray-400"></p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
+            <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Cycle time</p>
+            <p id="tcCycle" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
+          </div>
+          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
+            <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">RPS / thread</p>
+            <p id="tcRpsPerThread" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
+          </div>
+          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
+            <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">In flight</p>
+            <p id="tcInFlight" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
+          </div>
+          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
+            <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Raw threads</p>
+            <p id="tcRaw" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
+          </div>
+        </div>
+
+        <div
+          id="tcDistributedHint"
+          class="hidden rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 dark:border-amber-900/40 dark:bg-amber-900/20 dark:text-amber-300"
+        >
+          That's a lot of threads for one machine. Consider
+          <a
+            href="/blog/jmeter-plugins-for-distributed-load-testing/"
+            class="font-bold underline underline-offset-2">distributed load testing</a
+          >
+          across multiple engines.
+        </div>
+
+        <!-- Formula -->
+        <div
+          class="dark:bg-dark-surface rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10"
+        >
+          <h2 class="mb-3 text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+            The math
+          </h2>
+          <div class="rounded-xl bg-gray-950 p-4 dark:bg-black/60">
+            <code id="tcFormula" class="font-mono text-xs leading-relaxed break-all text-green-400"
+            ></code>
+          </div>
+          <p class="mt-3 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+            One thread completes one request per (response time + think time) cycle. This is
+            Little's law applied to load generation — the same model the
+            <a href="/plugin/jpgc-casutg/" class="font-semibold text-green-600 hover:underline dark:text-[#ccff00]"
+              >Concurrency Thread Group</a
+            >
+            plugin uses to maintain a target concurrency.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plugin recommendations -->
+    <section class="mt-16">
+      <h2 class="mb-2 text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+        Put it into practice
+      </h2>
+      <p class="mb-8 max-w-2xl text-gray-600 dark:text-gray-400">
+        These plugins make think time and precise thread control easy in your test plan.
+      </p>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <a
+          href="/plugin/jpgc-tst/"
+          class="dark:bg-dark-surface group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
+        >
+          <p class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+            Throughput Shaping Timer
+          </p>
+          <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+            Hold an exact RPS schedule automatically — JMeter adds the pauses between requests for
+            you. The easiest way to apply think time at scale.
+          </p>
+        </a>
+        <a
+          href="/plugin/jpgc-casutg/"
+          class="dark:bg-dark-surface group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
+        >
+          <p class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+            Concurrency Thread Group
+          </p>
+          <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+            Maintain a fixed number of concurrent threads with automatic ramp-up — pair it with the
+            calculator's thread count.
+          </p>
+        </a>
+        <a
+          href="/blog/jmeter-timer-plugins-simulate-real-user-think-time/"
+          class="dark:bg-dark-surface group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
+        >
+          <p class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+            Guide: Simulating Real User Think Time
+          </p>
+          <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+            Deep dive into JMeter timer plugins — Constant, Uniform Random, and Throughput Shaping
+            — with realistic examples.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Visible FAQ (mirrors FAQPage schema above) -->
+    <section class="mx-auto mt-16 max-w-3xl">
+      <h2 class="mb-6 text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+        Frequently asked questions
+      </h2>
+      <div class="space-y-4">
+        {
+          faqSchema.mainEntity.map((q) => (
+            <details class="dark:bg-dark-surface group rounded-xl border border-gray-200 bg-white p-5 dark:border-white/10">
+              <summary class="cursor-pointer text-sm font-bold text-gray-900 dark:text-white">
+                {q.name}
+              </summary>
+              <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                {q.acceptedAnswer.text}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import {
+    computeThreads,
+    formatMs,
+    parseThreadCalc,
+    serializeThreadCalc,
+    type ThreadCalcInput,
+  } from '../../utils/threadCalc';
+
+  const rpsEl = document.getElementById('tcRps') as HTMLInputElement;
+  const rtEl = document.getElementById('tcRt') as HTMLInputElement;
+  const ttEl = document.getElementById('tcTt') as HTMLInputElement;
+  const headroomEl = document.getElementById('tcHeadroom') as HTMLInputElement;
+  const headroomLabel = document.getElementById('tcHeadroomLabel')!;
+  const threadsEl = document.getElementById('tcThreads')!;
+  const threadsSubEl = document.getElementById('tcThreadsSub')!;
+  const cycleEl = document.getElementById('tcCycle')!;
+  const rpsPerThreadEl = document.getElementById('tcRpsPerThread')!;
+  const inFlightEl = document.getElementById('tcInFlight')!;
+  const rawEl = document.getElementById('tcRaw')!;
+  const formulaEl = document.getElementById('tcFormula')!;
+  const distributedHint = document.getElementById('tcDistributedHint')!;
+  const shareBtn = document.getElementById('tcShareBtn') as HTMLButtonElement;
+
+  const initial = parseThreadCalc(new URLSearchParams(window.location.search));
+
+  function readForm(): ThreadCalcInput {
+    return {
+      targetRps: Number(rpsEl.value),
+      responseTimeMs: Number(rtEl.value),
+      thinkTimeMs: Number(ttEl.value),
+      headroomPct: Number(headroomEl.value),
+    };
+  }
+
+  function applyToForm(input: ThreadCalcInput) {
+    rpsEl.value = String(input.targetRps);
+    rtEl.value = String(input.responseTimeMs);
+    ttEl.value = String(input.thinkTimeMs);
+    headroomEl.value = String(input.headroomPct);
+  }
+
+  function render(input: ThreadCalcInput) {
+    headroomLabel.textContent = `${input.headroomPct}%`;
+    const result = computeThreads(input);
+    if (!result) {
+      threadsEl.textContent = '—';
+      threadsSubEl.textContent =
+        'Enter a target RPS above zero and a response time or think time above zero.';
+      cycleEl.textContent = '—';
+      rpsPerThreadEl.textContent = '—';
+      inFlightEl.textContent = '—';
+      rawEl.textContent = '—';
+      formulaEl.textContent = '';
+      distributedHint.classList.add('hidden');
+      return;
+    }
+
+    threadsEl.textContent = new Intl.NumberFormat('en-US').format(result.threads);
+    threadsSubEl.textContent =
+      input.headroomPct > 0
+        ? `${new Intl.NumberFormat('en-US').format(result.rawThreads)} minimum + ${input.headroomPct}% headroom for response-time spikes`
+        : 'Exact minimum — consider adding headroom for response-time spikes';
+    cycleEl.textContent = formatMs(result.cycleTimeMs);
+    rpsPerThreadEl.textContent =
+      result.rpsPerThread >= 1
+        ? result.rpsPerThread.toFixed(1)
+        : result.rpsPerThread.toFixed(2);
+    inFlightEl.textContent =
+      result.inFlight >= 10 ? Math.round(result.inFlight).toString() : result.inFlight.toFixed(1);
+    rawEl.textContent = new Intl.NumberFormat('en-US').format(result.rawThreads);
+    formulaEl.textContent =
+      `threads = ${input.targetRps} RPS × ${formatMs(result.cycleTimeMs)} cycle` +
+      ` = ${result.rawThreads}` +
+      (input.headroomPct > 0 ? ` → +${input.headroomPct}% headroom = ${result.threads}` : '');
+    distributedHint.classList.toggle('hidden', result.threads < 1000);
+  }
+
+  function update() {
+    const input = readForm();
+    render(input);
+    const qs = serializeThreadCalc(input).toString();
+    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  }
+
+  [rpsEl, rtEl, ttEl, headroomEl].forEach((el) => el.addEventListener('input', update));
+
+  shareBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const original = shareBtn.textContent;
+      shareBtn.textContent = 'Copied';
+      setTimeout(() => (shareBtn.textContent = original), 1600);
+    });
+  });
+
+  applyToForm(initial);
+  render(initial);
+</script>
+
+<style>
+  @reference '../../styles/global.css';
+
+  .tc-input {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 transition-colors outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder-gray-500;
+  }
+</style>

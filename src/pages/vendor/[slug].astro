@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import PluginCard from '../../components/PluginCard.astro';
 import PluginModal from '../../components/PluginModal.astro';
+import AskAboutPage from '../../components/AskAboutPage.astro';
 import pluginsData from '../../data/plugins_data.json';
 import { getVendors, type PluginCategory } from '../../utils/plugin';
 
@@ -54,6 +55,11 @@ const trendingColor =
         >
         Back to Directory
       </a>
+
+      <AskAboutPage
+        prompt={`Answer questions about JMeter plugins by ${summary.vendor}`}
+        class="mb-8"
+      />
 
       {/* Vendor Hero Card */}
       <div
