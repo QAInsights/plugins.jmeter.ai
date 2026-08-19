@@ -11,6 +11,8 @@ import clerk from '@clerk/astro';
 export default defineConfig({
   site: 'https://plugins.jmeter.ai',
   trailingSlash: 'always',
+  // Keep Astro 6 HTML-aware spacing between inline elements (v7 default is 'jsx').
+  compressHTML: true,
   redirects: {
     '/blog/1': '/blog/',
   },

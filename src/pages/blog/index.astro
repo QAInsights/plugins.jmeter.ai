@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import { sortPosts, filterDrafts, getReadingTime } from '../../utils/blog';
-import Search from 'astro-pagefind/components/Search';
+import Search from 'astro-pagefind/components/Search.astro';
 import placeholderImg from '../../assets/blog/placeholder.png';
 
 const allPosts = await getCollection('blog');
@@ -24,12 +24,16 @@ const totalPages = Math.ceil(allSortedPosts.length / postsPerPage);
   <Header />
 
   <!-- Hero Header with Grid -->
-  <section class="dark:bg-dark-bg relative overflow-hidden border-b border-gray-200 bg-gray-50 pt-16 pb-24 dark:border-white/5">
+  <section
+    class="dark:bg-dark-bg relative overflow-hidden border-b border-gray-200 bg-gray-50 pt-16 pb-24 dark:border-white/5"
+  >
     <div class="grid-background absolute inset-0 opacity-20"></div>
     <div class="dark:to-dark-bg/80 absolute inset-0 bg-gradient-to-b from-transparent"></div>
 
     <div class="relative mx-auto max-w-7xl px-6 text-center">
-      <h1 class="mb-6 text-5xl font-black tracking-tighter text-gray-900 md:text-7xl dark:text-white">
+      <h1
+        class="mb-6 text-5xl font-black tracking-tighter text-gray-900 md:text-7xl dark:text-white"
+      >
         Welcome, <span
           class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
           >world</span
@@ -53,7 +57,11 @@ const totalPages = Math.ceil(allSortedPosts.length / postsPerPage);
             >
               Search
             </h3>
-            <Search id="search" className="pagefind-ui-custom" uiOptions={{ showImages: false }} />
+            <Search
+              instance="search"
+              className="pagefind-ui-custom"
+              searchboxOptions={{ placeholder: 'Search posts' }}
+            />
           </div>
 
           <div class="sidebar-item">

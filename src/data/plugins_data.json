@@ -13797,7 +13797,7 @@
       "stars": 4,
       "license": "Apache-2.0",
       "health": {
-        "score": 17,
+        "score": 16,
         "label": "Stale",
         "stars": 4,
         "openIssues": 0,
@@ -24148,8 +24148,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-08-16T19:45:26Z",
-        "lastReleaseAt": "2026-08-16T19:43:24Z",
+        "lastCommitAt": "2026-08-19T08:50:41Z",
+        "lastReleaseAt": "2026-08-19T08:52:36Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
@@ -24192,7 +24192,7 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-08-17T17:47:10Z",
+        "lastCommitAt": "2026-08-19T08:18:54Z",
         "lastReleaseAt": "2026-08-17T14:44:44Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/reportportal/plugins-performance"
@@ -24856,6 +24856,10 @@
       "0.0.1": {
         "changes": "NEW: README Config Element for documentation. Dark mode support. JMeter Deep link.",
         "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/readme-config-element/0.0.1/readme-config-element-0.0.1-jar-with-dependencies.jar"
+      },
+      "0.1.0": {
+        "changes": "NEW: Create CLAUDE.md and AGENTS.md; Word Wrap and more.",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-readme-config/releases/download/v0.1.0/readme-config-element-0.1.0-jar-with-dependencies.jar"
       }
     },
     "sponsored": false,
@@ -24885,18 +24889,18 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 55,
-        "label": "Maintained",
+        "score": 75,
+        "label": "Active",
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-05-11T16:40:23Z",
-        "lastReleaseAt": null,
+        "lastCommitAt": "2026-08-19T17:42:42Z",
+        "lastReleaseAt": "2026-08-19T17:21:20Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-readme-config"
       }
     },
-    "jmeterCompatibility": "5.6.3"
+    "jmeterCompatibility": null
   },
   {
     "id": "jpgc-hadoop",

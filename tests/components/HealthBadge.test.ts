@@ -92,7 +92,7 @@ describe('HealthBadge', () => {
         compact: true,
       });
 
-      expect(html).toContain('>A<');
+      expect(html).toMatch(/>\s*A\s*</);
       expect(html).not.toContain('>Active<');
       expect(html).toContain('text-green-700');
       expect(html).toContain('aria-label="Active"');
@@ -114,7 +114,7 @@ describe('HealthBadge', () => {
         compact: true,
       });
 
-      expect(html).toContain('>M<');
+      expect(html).toMatch(/>\s*M\s*</);
       expect(html).not.toContain('>Maintained<');
       expect(html).toContain('text-blue-700');
     });
@@ -135,7 +135,7 @@ describe('HealthBadge', () => {
         compact: true,
       });
 
-      expect(html).toContain('>S<');
+      expect(html).toMatch(/>\s*S\s*</);
       expect(html).not.toContain('>Stale<');
       expect(html).toContain('text-amber-700');
     });
@@ -156,7 +156,7 @@ describe('HealthBadge', () => {
         compact: true,
       });
 
-      expect(html).toContain('>R<');
+      expect(html).toMatch(/>\s*R\s*</);
       expect(html).not.toContain('>Archived<');
       expect(html).toContain('text-rose-700');
     });

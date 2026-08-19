@@ -85,130 +85,37 @@
     animation: ai-glow-spin 4s ease infinite;
   }
 }
-/* Premium Pagefind UI Overhaul */
+/* Pagefind Component UI (astro-pagefind v2 / Pagefind 1.5+) */
 .pagefind-ui-custom {
   position: relative;
-  --pagefind-ui-primary: #16a34a;
-  --pagefind-ui-text: #18181b;
-  --pagefind-ui-background: transparent;
-  --pagefind-ui-border: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  --pf-text: #18181b;
+  --pf-text-secondary: #52525b;
+  --pf-text-muted: #71717a;
+  --pf-background: #fff;
+  --pf-border: rgba(0, 0, 0, 0.1);
+  --pf-border-focus: #16a34a;
+  --pf-hover: rgba(0, 0, 0, 0.04);
+  --pf-mark: #16a34a;
+  --pf-outline-focus: #16a34a;
+  --pf-searchbox-max-width: 100%;
+  --pf-border-radius: 1rem;
+  --pf-input-height: 2.75rem;
+  --pf-result-title-font-size: 1rem;
+  --pf-result-excerpt-font-size: 0.85rem;
+  --pf-searchbox-dropdown-max-height: 350px;
 }
 
 :is(.dark .pagefind-ui-custom) {
-  --pagefind-ui-primary: #ccff00;
-  --pagefind-ui-text: #ffffff;
-  --pagefind-ui-border: rgba(255, 255, 255, 0.1);
-}
-
-/* Sleek Glassmorphism Input */
-.pagefind-ui-custom .pagefind-ui__search-input {
-  background-color: rgba(0, 0, 0, 0.05) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-radius: 1rem !important;
-  color: #18181b !important;
-  padding-left: 3rem !important;
-  font-family: inherit !important;
-}
-
-:is(.dark .pagefind-ui-custom) .pagefind-ui__search-input {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: white !important;
-}
-
-/* Floating Results Drawer - This is the key change! */
-.pagefind-ui-custom .pagefind-ui__drawer {
-  position: absolute !important;
-  top: 100% !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 50 !important;
-  margin-top: 0.75rem !important;
-  background: white !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-radius: 1rem !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
-  max-height: 350px !important;
-  overflow-y: auto !important;
-}
-
-:is(.dark .pagefind-ui-custom) .pagefind-ui__drawer {
-  background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
-}
-
-.pagefind-ui-custom .pagefind-ui__result {
-  border: 0 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
-  padding: 1.25rem !important;
-  transition: background-color 0.2s !important;
-}
-
-:is(.dark .pagefind-ui-custom) .pagefind-ui__result {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-}
-
-.pagefind-ui-custom .pagefind-ui__result:hover {
-  background-color: rgba(0, 0, 0, 0.04) !important;
-}
-
-:is(.dark .pagefind-ui-custom) .pagefind-ui__result:hover {
-  background-color: rgba(255, 255, 255, 0.03) !important;
-}
-
-.pagefind-ui-custom .pagefind-ui__result-title {
-  color: #16a34a !important;
-  font-weight: 700 !important;
-  font-size: 1rem !important;
-}
-
-:is(.dark .pagefind-ui-custom) .pagefind-ui__result-title {
-  color: #ccff00 !important;
-}
-
-.pagefind-ui-custom .pagefind-ui__result-excerpt {
-  color: #52525b !important;
-  font-size: 0.85rem !important;
-}
-
-:is(.dark .pagefind-ui-custom) .pagefind-ui__result-excerpt {
-  color: #a1a1aa !important;
-}
-
-.pagefind-ui-custom .pagefind-ui__search-clear {
-  position: absolute !important;
-  right: 0.75rem !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  background-color: rgba(0, 0, 0, 0.1) !important;
-  color: #18181b !important;
-  border-radius: 0.5rem !important;
-  padding: 0.25rem 0.75rem !important;
-  font-size: 0.75rem !important;
-  font-weight: 600 !important;
-  height: auto !important;
-  width: auto !important;
-  transition: all 0.2s !important;
-}
-
-:is(.dark .pagefind-ui-custom) .pagefind-ui__search-clear {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: white !important;
-}
-
-.pagefind-ui-custom .pagefind-ui__search-clear:hover {
-  background-color: #ff4d4d !important;
-  color: white !important;
-}
-
-.pagefind-ui-custom .pagefind-ui__message {
-  padding: 1rem !important;
-  font-size: 0.75rem !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  color: #71717a !important;
-  letter-spacing: 0.05em !important;
+  --pf-text: #ffffff;
+  --pf-text-secondary: #a1a1aa;
+  --pf-text-muted: #71717a;
+  --pf-background: #18181b;
+  --pf-border: rgba(255, 255, 255, 0.1);
+  --pf-border-focus: #ccff00;
+  --pf-hover: rgba(255, 255, 255, 0.03);
+  --pf-mark: #ccff00;
+  --pf-outline-focus: #ccff00;
 }
 
 /* Impressive Grid Pattern */
