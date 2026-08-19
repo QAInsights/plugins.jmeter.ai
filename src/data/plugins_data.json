@@ -16494,6 +16494,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.8.0": {
+        "changes": "NEW: Support for agent mode for Google Gemini models",
+        "downloadUrl": "https://repo1.maven.org/maven2/com/qainsights/jmeter-agent/3.8.0/jmeter-agent-3.8.0.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -16849,7 +16857,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 42,
+        "score": 41,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -19401,7 +19409,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 42,
+        "score": 41,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -20223,7 +20231,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -45561,7 +45569,7 @@
       "stars": 54,
       "license": "Apache-2.0",
       "health": {
-        "score": 29,
+        "score": 28,
         "label": "Stale",
         "stars": 54,
         "openIssues": 12,
