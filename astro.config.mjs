@@ -12,10 +12,12 @@ import clerk from '@clerk/astro';
 export default defineConfig({
   site: 'https://plugins.jmeter.ai',
   trailingSlash: 'always',
-  adapter: cloudflare({
-    platformProxy: { enabled: true },
-    imageService: 'compile',
-  }),
+  adapter: process.env.VITEST
+    ? undefined
+    : cloudflare({
+        platformProxy: { enabled: true },
+        imageService: 'compile',
+      }),
   // Keep Astro 6 HTML-aware spacing between inline elements (v7 default is 'jsx').
   compressHTML: true,
   redirects: {

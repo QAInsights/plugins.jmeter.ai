@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import pluginsData from '../../../data/plugins_data.json';
+import type { PluginLike } from '../../../utils/plugin';
 
 export const prerender = false;
 
@@ -24,21 +25,19 @@ export const GET: APIRoute = async ({ params, locals }) => {
   const cacheKey = `badge:v1:${pluginId}`;
 
   if (kv) {
-    try {
-      const cached = await kv.get(cacheKey, 'json');
-      if (cached) {
-        return new Response(JSON.stringify(cached), {
-          status: 200,
-          headers: {
-            'Content-Type': 'application/json',
-            'Cache-Control': 'public, max-age=3600, s-maxage=3600',
-          },
-        });
-      }
-    } catch (_) {}
+    const cached = await kv.get(cacheKey, 'json').catch(() => null);
+    if (cached) {
+      return new Response(JSON.stringify(cached), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+        },
+      });
+    }
   }
 
-  const plugin = (pluginsData as any[]).find((p) => p.id === pluginId);
+  const plugin = (pluginsData as PluginLike[]).find((p) => p.id === pluginId);
   if (!plugin) {
     return new Response(
       JSON.stringify({
@@ -66,9 +65,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
   // Cache in KV for 1 hour
   if (kv) {
-    try {
-      await kv.put(cacheKey, JSON.stringify(payload), { expirationTtl: 3600 });
-    } catch (_) {}
+    await kv.put(cacheKey, JSON.stringify(payload), { expirationTtl: 3600 }).catch(() => undefined);
   }
 
   return new Response(JSON.stringify(payload), {
