@@ -14,6 +14,8 @@
     "crop:featured": "node scripts/cropBlogFeatured.mjs",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy:cloudflare": "node scripts/deploy-cloudflare.mjs",
+    "deploy:cloudflare:full": "node scripts/deploy-cloudflare.mjs --deploy",
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -29,6 +31,7 @@
     "check": "npm run lint:ci && npm run format:check && npm test"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
     "@astrojs/mdx": "^7.0.7",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
@@ -45,6 +48,7 @@
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250214.0",
     "@playwright/test": "^1.59.1",
     "@resvg/resvg-js": "^2.6.2",
     "@vitest/coverage-v8": "^4.1.4",
@@ -57,6 +61,7 @@
     "tsx": "^4.21.0",
     "typescript-eslint": "^8.60.1",
     "undici": "^8.1.0",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.4",
+    "wrangler": "^3.114.0"
   }
 }
