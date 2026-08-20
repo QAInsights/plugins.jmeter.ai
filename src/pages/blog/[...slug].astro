@@ -10,6 +10,8 @@ import placeholderImg from '../../assets/blog/placeholder.png';
 
 import { type CollectionEntry } from 'astro:content';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
   const posts = filterDrafts(allPosts);
@@ -56,7 +58,7 @@ const { Content, headings } = await render(post);
               class="mb-4 flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white"
             >
               <svg
-                class="text-green-600 dark:text-[#ccff00] h-4 w-4"
+                class="h-4 w-4 text-green-600 dark:text-[#ccff00]"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -73,7 +75,7 @@ const { Content, headings } = await render(post);
               id="copyForAiBtn"
               data-url={Astro.url.href}
               data-title={post.data.title}
-              class="bg-primary/10 hover:bg-primary/20 border-primary/30 text-green-700 group/btn mb-4 flex w-full items-center justify-between rounded-xl border px-4 py-2.5 text-sm font-bold transition-all dark:text-[#ccff00]"
+              class="bg-primary/10 hover:bg-primary/20 border-primary/30 group/btn mb-4 flex w-full items-center justify-between rounded-xl border px-4 py-2.5 text-sm font-bold text-green-700 transition-all dark:text-[#ccff00]"
             >
               <span class="flex items-center gap-2">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -107,7 +109,7 @@ const { Content, headings } = await render(post);
               >
                 <span>ChatGPT</span>
                 <svg
-                  class="text-green-600 dark:text-[#ccff00] h-3.5 w-3.5 opacity-0 transition-opacity group-hover/link:opacity-100"
+                  class="h-3.5 w-3.5 text-green-600 opacity-0 transition-opacity group-hover/link:opacity-100 dark:text-[#ccff00]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -127,7 +129,7 @@ const { Content, headings } = await render(post);
               >
                 <span>Claude</span>
                 <svg
-                  class="text-green-600 dark:text-[#ccff00] h-3.5 w-3.5 opacity-0 transition-opacity group-hover/link:opacity-100"
+                  class="h-3.5 w-3.5 text-green-600 opacity-0 transition-opacity group-hover/link:opacity-100 dark:text-[#ccff00]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -147,7 +149,7 @@ const { Content, headings } = await render(post);
               >
                 <span>Perplexity</span>
                 <svg
-                  class="text-green-600 dark:text-[#ccff00] h-3.5 w-3.5 opacity-0 transition-opacity group-hover/link:opacity-100"
+                  class="h-3.5 w-3.5 text-green-600 opacity-0 transition-opacity group-hover/link:opacity-100 dark:text-[#ccff00]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -171,7 +173,7 @@ const { Content, headings } = await render(post);
                 <a
                   href={`https://x.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url.href)}`}
                   target="_blank"
-                  class="hover:border-primary/50 hover:text-green-600 dark:hover:text-[#ccff00] rounded-lg border border-gray-200 bg-gray-50 p-2 text-gray-500 transition-all dark:border-white/10 dark:bg-white/5 dark:text-gray-400"
+                  class="hover:border-primary/50 rounded-lg border border-gray-200 bg-gray-50 p-2 text-gray-500 transition-all hover:text-green-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 dark:hover:text-[#ccff00]"
                 >
                   <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"
                     ><path
@@ -182,7 +184,7 @@ const { Content, headings } = await render(post);
                 <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`}
                   target="_blank"
-                  class="hover:border-primary/50 hover:text-green-600 dark:hover:text-[#ccff00] rounded-lg border border-gray-200 bg-gray-50 p-2 text-gray-500 transition-all dark:border-white/10 dark:bg-white/5 dark:text-gray-400"
+                  class="hover:border-primary/50 rounded-lg border border-gray-200 bg-gray-50 p-2 text-gray-500 transition-all hover:text-green-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 dark:hover:text-[#ccff00]"
                 >
                   <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"
                     ><path
@@ -194,7 +196,7 @@ const { Content, headings } = await render(post);
                   href={`https://github.com/QAInsights/plugins.jmeter.ai/blob/main/src/content/blog/${post.id}.md`}
                   target="_blank"
                   title="View Markdown Source"
-                  class="hover:border-primary/50 hover:text-green-600 dark:hover:text-[#ccff00] rounded-lg border border-gray-200 bg-gray-50 p-2 text-gray-500 transition-all dark:border-white/10 dark:bg-white/5 dark:text-gray-400"
+                  class="hover:border-primary/50 rounded-lg border border-gray-200 bg-gray-50 p-2 text-gray-500 transition-all hover:text-green-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 dark:hover:text-[#ccff00]"
                 >
                   <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"
                     ><path

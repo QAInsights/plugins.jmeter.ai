@@ -62,12 +62,7 @@ const assistants = [
         class="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition-colors hover:border-green-500/50 hover:text-green-600 dark:border-white/10 dark:text-gray-300 dark:hover:text-[#ccff00]"
       >
         {a.name}
-        <svg
-          class="h-3 w-3 opacity-60"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg class="h-3 w-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -108,14 +103,12 @@ const assistants = [
           (wrapper && wrapper.getAttribute('data-prompt')) ||
           'Please read this page and be ready to answer questions about it';
         const label = btn.querySelector('.ask-copy-label');
-        navigator.clipboard
-          .writeText(prompt + ': ' + url)
-          .then(() => {
-            if (!label) return;
-            const original = label.textContent;
-            label.textContent = 'Copied';
-            setTimeout(() => (label.textContent = original), 1600);
-          });
+        navigator.clipboard.writeText(prompt + ': ' + url).then(() => {
+          if (!label) return;
+          const original = label.textContent;
+          label.textContent = 'Copied';
+          setTimeout(() => (label.textContent = original), 1600);
+        });
       },
       true,
     );

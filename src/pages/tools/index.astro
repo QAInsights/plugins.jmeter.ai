@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -46,7 +48,9 @@ const itemListSchema = {
       <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
         Tools
       </p>
-      <h1 class="mb-4 text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white">
+      <h1
+        class="mb-4 text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white"
+      >
         Free JMeter <span
           class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
           >Tools</span
@@ -70,12 +74,7 @@ const itemListSchema = {
             <div class="from-primary to-secondary absolute top-0 left-0 h-1 w-full bg-gradient-to-r opacity-0 transition-opacity group-hover:opacity-100" />
             <div class="bg-primary/10 mb-5 flex h-12 w-12 items-center justify-center rounded-xl text-green-600 dark:text-[#ccff00]">
               <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d={t.icon}
-                />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={t.icon} />
               </svg>
             </div>
             <h2 class="mb-2 text-xl font-black text-gray-900 transition-colors group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">

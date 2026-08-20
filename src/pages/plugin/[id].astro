@@ -19,6 +19,8 @@ import {
 } from '../../utils/plugin';
 import { formatJMeterVersion, getJMeterCompatibilityTitle } from '../../utils/jmeterCompatibility';
 
+export const prerender = true;
+
 // Make this a statically generated route
 export async function getStaticPaths() {
   return pluginsData.map((plugin) => ({

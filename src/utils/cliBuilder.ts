@@ -166,8 +166,7 @@ export function serializeCliState(state: CliBuilderState): URLSearchParams {
   if (state.mode !== DEFAULT_CLI_STATE.mode || state.plugins.length > 0)
     params.set('mode', state.mode);
   if (state.testPlan !== DEFAULT_CLI_STATE.testPlan) params.set('plan', state.testPlan);
-  if (state.resultsFile !== DEFAULT_CLI_STATE.resultsFile)
-    params.set('results', state.resultsFile);
+  if (state.resultsFile !== DEFAULT_CLI_STATE.resultsFile) params.set('results', state.resultsFile);
   if (state.logFile) params.set('log', state.logFile);
   if (state.generateReport !== DEFAULT_CLI_STATE.generateReport)
     params.set('report', state.generateReport ? '1' : '0');
@@ -205,8 +204,16 @@ export function parseCliState(params: URLSearchParams): CliBuilderState {
   const remote = params.get('remote');
   if (remote) state.remoteServers = remote;
   const props = params.get('props');
-  if (props) state.properties = props.split('\n').map((p) => p.trim()).filter(Boolean);
+  if (props)
+    state.properties = props
+      .split('\n')
+      .map((p) => p.trim())
+      .filter(Boolean);
   const plugins = params.get('plugins');
-  if (plugins) state.plugins = plugins.split(',').map((p) => p.trim()).filter(Boolean);
+  if (plugins)
+    state.plugins = plugins
+      .split(',')
+      .map((p) => p.trim())
+      .filter(Boolean);
   return state;
 }

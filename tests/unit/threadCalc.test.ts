@@ -36,8 +36,12 @@ describe('computeThreads', () => {
   });
 
   it('returns null for invalid input', () => {
-    expect(computeThreads({ targetRps: 0, responseTimeMs: 100, thinkTimeMs: 0, headroomPct: 0 })).toBeNull();
-    expect(computeThreads({ targetRps: 10, responseTimeMs: 0, thinkTimeMs: 0, headroomPct: 0 })).toBeNull();
+    expect(
+      computeThreads({ targetRps: 0, responseTimeMs: 100, thinkTimeMs: 0, headroomPct: 0 }),
+    ).toBeNull();
+    expect(
+      computeThreads({ targetRps: 10, responseTimeMs: 0, thinkTimeMs: 0, headroomPct: 0 }),
+    ).toBeNull();
     expect(
       computeThreads({ targetRps: 10, responseTimeMs: -5, thinkTimeMs: 0, headroomPct: 0 }),
     ).toBeNull();
@@ -77,9 +81,7 @@ describe('serialize/parse round-trip', () => {
   });
 
   it('falls back to defaults on garbage input', () => {
-    expect(parseThreadCalc(new URLSearchParams('rps=abc&rt='))).toEqual(
-      DEFAULT_THREAD_CALC_INPUT,
-    );
+    expect(parseThreadCalc(new URLSearchParams('rps=abc&rt='))).toEqual(DEFAULT_THREAD_CALC_INPUT);
   });
 
   it('clamps headroom to the 0–100 slider range', () => {
