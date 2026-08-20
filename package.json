@@ -48,7 +48,6 @@
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250214.0",
     "@playwright/test": "^1.59.1",
     "@resvg/resvg-js": "^2.6.2",
     "@vitest/coverage-v8": "^4.1.4",
