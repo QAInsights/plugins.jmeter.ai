@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import expressiveCode from 'astro-expressive-code';
@@ -11,6 +12,12 @@ import clerk from '@clerk/astro';
 export default defineConfig({
   site: 'https://plugins.jmeter.ai',
   trailingSlash: 'always',
+  adapter: process.env.VITEST
+    ? undefined
+    : cloudflare({
+        platformProxy: { enabled: true },
+        imageService: 'compile',
+      }),
   // Keep Astro 6 HTML-aware spacing between inline elements (v7 default is 'jsx').
   compressHTML: true,
   redirects: {

@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -6,7 +8,7 @@ import AskAboutPage from '../../components/AskAboutPage.astro';
 
 const title = 'JMeter Thread Calculator with Think Time | PerfAtlas';
 const description =
-  'Calculate exactly how many JMeter threads you need for a target throughput, including response time, think time, and headroom. Based on Little\'s law — the same model used by the Concurrency Thread Group plugin.';
+  "Calculate exactly how many JMeter threads you need for a target throughput, including response time, think time, and headroom. Based on Little's law — the same model used by the Concurrency Thread Group plugin.";
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -85,7 +87,9 @@ const webAppSchema = {
       <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
         Tools
       </p>
-      <h1 class="mb-4 text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white">
+      <h1
+        class="mb-4 text-4xl font-black tracking-tighter text-gray-900 md:text-6xl dark:text-white"
+      >
         Thread <span
           class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
           >Calculator</span
@@ -108,33 +112,43 @@ const webAppSchema = {
       <div
         class="dark:bg-dark-surface rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2 dark:border-white/10"
       >
-        <h2 class="mb-5 text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+        <h2
+          class="mb-5 text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400"
+        >
           Your workload
         </h2>
         <div class="space-y-5">
           <label class="block">
-            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <span
+              class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               Target throughput
               <span class="text-xs font-normal text-gray-400">requests / second</span>
             </span>
             <input id="tcRps" type="number" min="0" step="any" value="100" class="tc-input" />
           </label>
           <label class="block">
-            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <span
+              class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               Average response time
               <span class="text-xs font-normal text-gray-400">milliseconds</span>
             </span>
             <input id="tcRt" type="number" min="0" step="any" value="500" class="tc-input" />
           </label>
           <label class="block">
-            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <span
+              class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               Think time per thread
               <span class="text-xs font-normal text-gray-400">milliseconds</span>
             </span>
             <input id="tcTt" type="number" min="0" step="any" value="2000" class="tc-input" />
           </label>
           <label class="block">
-            <span class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <span
+              class="mb-1.5 flex items-baseline justify-between text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
               Safety headroom
               <span id="tcHeadroomLabel" class="text-xs font-normal text-gray-400">20%</span>
             </span>
@@ -176,19 +190,31 @@ const webAppSchema = {
         </div>
 
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
+          <div
+            class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10"
+          >
             <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Cycle time</p>
             <p id="tcCycle" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
           </div>
-          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
-            <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">RPS / thread</p>
-            <p id="tcRpsPerThread" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
+          <div
+            class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10"
+          >
+            <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+              RPS / thread
+            </p>
+            <p id="tcRpsPerThread" class="mt-1 text-xl font-black text-gray-900 dark:text-white">
+              —
+            </p>
           </div>
-          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
+          <div
+            class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10"
+          >
             <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">In flight</p>
             <p id="tcInFlight" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
           </div>
-          <div class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10">
+          <div
+            class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10"
+          >
             <p class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Raw threads</p>
             <p id="tcRaw" class="mt-1 text-xl font-black text-gray-900 dark:text-white">—</p>
           </div>
@@ -210,7 +236,9 @@ const webAppSchema = {
         <div
           class="dark:bg-dark-surface rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10"
         >
-          <h2 class="mb-3 text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+          <h2
+            class="mb-3 text-sm font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >
             The math
           </h2>
           <div class="rounded-xl bg-gray-950 p-4 dark:bg-black/60">
@@ -220,7 +248,9 @@ const webAppSchema = {
           <p class="mt-3 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
             One thread completes one request per (response time + think time) cycle. This is
             Little's law applied to load generation — the same model the
-            <a href="/plugin/jpgc-casutg/" class="font-semibold text-green-600 hover:underline dark:text-[#ccff00]"
+            <a
+              href="/plugin/jpgc-casutg/"
+              class="font-semibold text-green-600 hover:underline dark:text-[#ccff00]"
               >Concurrency Thread Group</a
             >
             plugin uses to maintain a target concurrency.
@@ -242,7 +272,9 @@ const webAppSchema = {
           href="/plugin/jpgc-tst/"
           class="dark:bg-dark-surface group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
         >
-          <p class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+          <p
+            class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]"
+          >
             Throughput Shaping Timer
           </p>
           <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
@@ -254,7 +286,9 @@ const webAppSchema = {
           href="/plugin/jpgc-casutg/"
           class="dark:bg-dark-surface group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
         >
-          <p class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+          <p
+            class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]"
+          >
             Concurrency Thread Group
           </p>
           <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
@@ -266,12 +300,14 @@ const webAppSchema = {
           href="/blog/jmeter-timer-plugins-simulate-real-user-think-time/"
           class="dark:bg-dark-surface group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
         >
-          <p class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+          <p
+            class="mb-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]"
+          >
             Guide: Simulating Real User Think Time
           </p>
           <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
-            Deep dive into JMeter timer plugins — Constant, Uniform Random, and Throughput Shaping
-            — with realistic examples.
+            Deep dive into JMeter timer plugins — Constant, Uniform Random, and Throughput Shaping —
+            with realistic examples.
           </p>
         </a>
       </div>
@@ -367,9 +403,7 @@ const webAppSchema = {
         : 'Exact minimum — consider adding headroom for response-time spikes';
     cycleEl.textContent = formatMs(result.cycleTimeMs);
     rpsPerThreadEl.textContent =
-      result.rpsPerThread >= 1
-        ? result.rpsPerThread.toFixed(1)
-        : result.rpsPerThread.toFixed(2);
+      result.rpsPerThread >= 1 ? result.rpsPerThread.toFixed(1) : result.rpsPerThread.toFixed(2);
     inFlightEl.textContent =
       result.inFlight >= 10 ? Math.round(result.inFlight).toString() : result.inFlight.toFixed(1);
     rawEl.textContent = new Intl.NumberFormat('en-US').format(result.rawThreads);

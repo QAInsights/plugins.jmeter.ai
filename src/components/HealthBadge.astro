@@ -15,7 +15,16 @@ const label = health?.label;
 const score = health?.score;
 
 // Single-letter code for compact mode
-const letter = label === 'Active' ? 'A' : label === 'Maintained' ? 'M' : label === 'Stale' ? 'S' : label === 'Archived' ? 'R' : '';
+const letter =
+  label === 'Active'
+    ? 'A'
+    : label === 'Maintained'
+      ? 'M'
+      : label === 'Stale'
+        ? 'S'
+        : label === 'Archived'
+          ? 'R'
+          : '';
 
 // Determine colors based on health label
 let colorClasses = '';
@@ -65,10 +74,10 @@ const tooltip = tooltipParts.join(' · ');
 ---
 
 {
-  shouldRender && (
-    compact ? (
+  shouldRender &&
+    (compact ? (
       <span
-        class={`inline-flex h-5 w-5 items-center justify-center rounded-md border ${colorClasses} text-[10px] font-black leading-none`}
+        class={`inline-flex h-5 w-5 items-center justify-center rounded-md border ${colorClasses} text-[10px] leading-none font-black`}
         title={tooltip}
         aria-label={label}
       >
@@ -83,6 +92,5 @@ const tooltip = tooltipParts.join(' · ');
         <span>{label}</span>
         {relativeTime && <span class="font-normal opacity-60">&middot; {relativeTime}</span>}
       </span>
-    )
-  )
+    ))
 }
