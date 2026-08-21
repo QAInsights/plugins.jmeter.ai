@@ -612,7 +612,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -919,9 +919,9 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 28,
+        "openIssues": 32,
         "archived": false,
-        "lastCommitAt": "2026-08-13T19:35:28Z",
+        "lastCommitAt": "2026-08-20T18:50:56Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -1925,9 +1925,9 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 28,
+        "openIssues": 32,
         "archived": false,
-        "lastCommitAt": "2026-08-13T19:35:28Z",
+        "lastCommitAt": "2026-08-20T18:50:56Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -2691,7 +2691,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -7781,7 +7781,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -9982,12 +9982,12 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 46,
-        "label": "Maintained",
+        "score": 79,
+        "label": "Active",
         "stars": 47,
         "openIssues": 7,
         "archived": false,
-        "lastCommitAt": "2025-04-16T15:36:00Z",
+        "lastCommitAt": "2026-08-20T13:03:25Z",
         "lastReleaseAt": "2024-09-30T20:34:40Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rollno748/di-kafkameter"
@@ -14422,7 +14422,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -14503,7 +14503,7 @@
         "stars": 4,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-08-13T21:45:27Z",
+        "lastCommitAt": "2026-08-20T21:44:44Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -26553,7 +26553,7 @@
         "stars": 2,
         "openIssues": 1,
         "archived": false,
-        "lastCommitAt": "2026-07-23T07:53:57Z",
+        "lastCommitAt": "2026-08-20T07:54:02Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
@@ -26672,7 +26672,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
@@ -29333,7 +29333,7 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 47,
+        "score": 46,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -36738,7 +36738,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -37548,7 +37548,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -41517,7 +41517,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
