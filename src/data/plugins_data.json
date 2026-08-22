@@ -919,9 +919,9 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 32,
+        "openIssues": 29,
         "archived": false,
-        "lastCommitAt": "2026-08-20T18:50:56Z",
+        "lastCommitAt": "2026-08-21T18:17:29Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -1925,9 +1925,9 @@
         "score": 81,
         "label": "Active",
         "stars": 49,
-        "openIssues": 32,
+        "openIssues": 29,
         "archived": false,
-        "lastCommitAt": "2026-08-20T18:50:56Z",
+        "lastCommitAt": "2026-08-21T18:17:29Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -7068,7 +7068,7 @@
       "stars": 8,
       "license": "N/A",
       "health": {
-        "score": 24,
+        "score": 23,
         "label": "Stale",
         "stars": 8,
         "openIssues": 0,
@@ -8235,12 +8235,12 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 28,
-        "label": "Stale",
+        "score": 73,
+        "label": "Active",
         "stars": 29,
         "openIssues": 7,
         "archived": false,
-        "lastCommitAt": "2024-11-01T10:39:44Z",
+        "lastCommitAt": "2026-08-21T10:13:59Z",
         "lastReleaseAt": "2024-04-24T10:22:40Z",
         "license": "MIT",
         "repoUrl": "https://github.com/rollno748/Extended-csv-dataset-config"
@@ -9987,7 +9987,7 @@
         "stars": 47,
         "openIssues": 7,
         "archived": false,
-        "lastCommitAt": "2026-08-20T13:03:25Z",
+        "lastCommitAt": "2026-08-21T11:23:37Z",
         "lastReleaseAt": "2024-09-30T20:34:40Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rollno748/di-kafkameter"
@@ -24192,7 +24192,7 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-08-19T08:18:54Z",
+        "lastCommitAt": "2026-08-21T10:49:40Z",
         "lastReleaseAt": "2026-08-17T14:44:44Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/reportportal/plugins-performance"
@@ -44983,7 +44983,7 @@
       "stars": 20,
       "license": "MIT",
       "health": {
-        "score": 54,
+        "score": 53,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 0,
@@ -47839,12 +47839,12 @@
       }
     },
     "githubInfo": {
-      "stars": 51,
+      "stars": 52,
       "license": "Apache-2.0",
       "health": {
         "score": 85,
         "label": "Active",
-        "stars": 51,
+        "stars": 52,
         "openIssues": 15,
         "archived": false,
         "lastCommitAt": "2026-07-14T13:01:30Z",
