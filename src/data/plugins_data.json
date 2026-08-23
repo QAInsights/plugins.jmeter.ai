@@ -2140,7 +2140,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 82,
+        "score": 81,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
@@ -10938,7 +10938,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 51,
+        "score": 50,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -15616,7 +15616,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 35,
+        "score": 34,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -16237,8 +16237,8 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 40,
-        "label": "Maintained",
+        "score": 39,
+        "label": "Stale",
         "stars": 1,
         "openIssues": 0,
         "archived": false,
@@ -21258,7 +21258,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -23196,7 +23196,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-08-08T20:53:45Z",
+        "lastCommitAt": "2026-08-22T20:54:16Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -26746,7 +26746,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
@@ -37684,12 +37684,12 @@
       }
     },
     "githubInfo": {
-      "stars": 5,
+      "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 26,
+        "score": 25,
         "label": "Stale",
-        "stars": 5,
+        "stars": 4,
         "openIssues": 0,
         "archived": false,
         "lastCommitAt": "2024-09-30T12:15:38Z",
@@ -46522,7 +46522,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 64,
+        "score": 63,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
