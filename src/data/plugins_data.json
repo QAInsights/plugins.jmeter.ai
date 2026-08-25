@@ -22600,9 +22600,9 @@
         "score": 88,
         "label": "Active",
         "stars": 58,
-        "openIssues": 10,
+        "openIssues": 11,
         "archived": false,
-        "lastCommitAt": "2026-08-16T16:17:14Z",
+        "lastCommitAt": "2026-08-24T16:21:46Z",
         "lastReleaseAt": "2026-08-16T16:17:35Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -23551,12 +23551,12 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 61,
-        "label": "Maintained",
+        "score": 82,
+        "label": "Active",
         "stars": 20,
         "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2025-10-02T02:08:42Z",
+        "lastCommitAt": "2026-08-24T17:46:47Z",
         "lastReleaseAt": "2025-10-02T02:06:17Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/JoseLuisSR/awsmeter"
@@ -26691,7 +26691,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 75,
+        "score": 74,
         "label": "Active",
         "stars": 25,
         "openIssues": 2,
@@ -30094,7 +30094,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 47,
+        "score": 46,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
@@ -34507,7 +34507,7 @@
         "stars": 1,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-08-17T05:55:41Z",
+        "lastCommitAt": "2026-08-24T05:55:27Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
@@ -37065,7 +37065,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 9,
+        "score": 8,
         "label": "Stale",
         "stars": 2,
         "openIssues": 1,
@@ -41991,7 +41991,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 34,
+        "score": 33,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -43733,8 +43733,8 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-08-21T10:49:40Z",
-        "lastReleaseAt": "2026-08-17T14:44:44Z",
+        "lastCommitAt": "2026-08-24T09:32:09Z",
+        "lastReleaseAt": "2026-08-24T09:32:53Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/reportportal/plugins-performance"
       }
@@ -49588,7 +49588,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 57,
+        "score": 56,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -59067,12 +59067,12 @@
       "stars": 49,
       "license": "Apache-2.0",
       "health": {
-        "score": 81,
+        "score": 84,
         "label": "Active",
         "stars": 49,
-        "openIssues": 29,
+        "openIssues": 16,
         "archived": false,
-        "lastCommitAt": "2026-08-21T18:17:29Z",
+        "lastCommitAt": "2026-08-24T23:25:11Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -59372,12 +59372,12 @@
       "stars": 49,
       "license": "Apache-2.0",
       "health": {
-        "score": 81,
+        "score": 84,
         "label": "Active",
         "stars": 49,
-        "openIssues": 29,
+        "openIssues": 16,
         "archived": false,
-        "lastCommitAt": "2026-08-21T18:17:29Z",
+        "lastCommitAt": "2026-08-24T23:25:11Z",
         "lastReleaseAt": "2026-08-06T07:51:26Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
