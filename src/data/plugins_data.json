@@ -21105,7 +21105,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 63,
+        "score": 62,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 1,
@@ -22600,9 +22600,9 @@
         "score": 88,
         "label": "Active",
         "stars": 58,
-        "openIssues": 11,
+        "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-08-24T16:21:46Z",
+        "lastCommitAt": "2026-08-25T20:04:44Z",
         "lastReleaseAt": "2026-08-16T16:17:35Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -25326,7 +25326,7 @@
       "stars": 52,
       "license": "Apache-2.0",
       "health": {
-        "score": 85,
+        "score": 84,
         "label": "Active",
         "stars": 52,
         "openIssues": 15,
@@ -39544,7 +39544,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 58,
+        "score": 57,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 26,
@@ -42828,7 +42828,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -43460,7 +43460,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 66,
+        "score": 65,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -43577,7 +43577,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -58580,6 +58580,14 @@
         "depends": [
           "jmeter-http"
         ]
+      },
+      "3.2.0": {
+        "changes": "Enhanced HTTP/2 (h2c) support, DNSCacheManager, BASIC_DIGEST authentication, source address binding, and improved connection/timing reliability.",
+        "downloadUrl": "https://github.com/Blazemeter/jmeter-http-plugin/releases/download/v3.2.0/jmeter-bzm-http2-3.2.0.jar",
+        "libs": {},
+        "depends": [
+          "jmeter-http"
+        ]
       }
     },
     "sponsored": false,
@@ -59064,16 +59072,16 @@
       }
     },
     "githubInfo": {
-      "stars": 49,
+      "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 84,
+        "score": 86,
         "label": "Active",
-        "stars": 49,
-        "openIssues": 16,
+        "stars": 51,
+        "openIssues": 14,
         "archived": false,
-        "lastCommitAt": "2026-08-24T23:25:11Z",
-        "lastReleaseAt": "2026-08-06T07:51:26Z",
+        "lastCommitAt": "2026-08-25T16:55:41Z",
+        "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
@@ -59369,16 +59377,16 @@
       }
     },
     "githubInfo": {
-      "stars": 49,
+      "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 84,
+        "score": 86,
         "label": "Active",
-        "stars": 49,
-        "openIssues": 16,
+        "stars": 51,
+        "openIssues": 14,
         "archived": false,
-        "lastCommitAt": "2026-08-24T23:25:11Z",
-        "lastReleaseAt": "2026-08-06T07:51:26Z",
+        "lastCommitAt": "2026-08-25T16:55:41Z",
+        "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
