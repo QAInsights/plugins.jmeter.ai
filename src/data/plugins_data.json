@@ -10752,7 +10752,7 @@
       "stars": 50,
       "license": "Apache-2.0",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 50,
         "openIssues": 1,
@@ -16969,7 +16969,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 32,
         "openIssues": 2,
@@ -22602,8 +22602,8 @@
         "stars": 58,
         "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-08-25T20:04:44Z",
-        "lastReleaseAt": "2026-08-16T16:17:35Z",
+        "lastCommitAt": "2026-08-26T03:12:04Z",
+        "lastReleaseAt": "2026-08-26T02:57:35Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -31990,7 +31990,7 @@
       "stars": 79,
       "license": "MIT",
       "health": {
-        "score": 85,
+        "score": 84,
         "label": "Active",
         "stars": 79,
         "openIssues": 0,
@@ -40212,7 +40212,7 @@
       "stars": 9,
       "license": "MIT",
       "health": {
-        "score": 84,
+        "score": 83,
         "label": "Active",
         "stars": 9,
         "openIssues": 0,
@@ -43628,7 +43628,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -58059,7 +58059,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 32,
+        "score": 31,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
@@ -59078,7 +59078,7 @@
         "score": 86,
         "label": "Active",
         "stars": 51,
-        "openIssues": 14,
+        "openIssues": 13,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
@@ -59383,7 +59383,7 @@
         "score": 86,
         "label": "Active",
         "stars": 51,
-        "openIssues": 14,
+        "openIssues": 13,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
