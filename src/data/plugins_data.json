@@ -34958,7 +34958,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 28,
+        "score": 27,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
@@ -43532,7 +43532,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
