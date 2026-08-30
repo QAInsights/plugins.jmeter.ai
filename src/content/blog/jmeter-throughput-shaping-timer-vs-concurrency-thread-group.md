@@ -68,10 +68,10 @@ Say your application responds in 500ms on average.
 Same numbers, opposite thing being held constant. That's the whole distinction in one sentence: TST
 fixes the rate and lets thread count float, CTG fixes the thread count and lets rate float.
 
-| Plugin                    | What you fix               | What floats              |
-| :------------------------ | :------------------------- | :----------------------- |
-| Throughput Shaping Timer  | Requests per second        | Number of active threads |
-| Concurrency Thread Group  | Number of concurrent users | Resulting throughput     |
+| Plugin                   | What you fix               | What floats              |
+| :----------------------- | :------------------------- | :----------------------- |
+| Throughput Shaping Timer | Requests per second        | Number of active threads |
+| Concurrency Thread Group | Number of concurrent users | Resulting throughput     |
 
 ## 4. When to use Throughput Shaping Timer
 
