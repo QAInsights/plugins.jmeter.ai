@@ -22602,7 +22602,7 @@
         "stars": 58,
         "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-08-26T03:12:04Z",
+        "lastCommitAt": "2026-08-29T18:59:24Z",
         "lastReleaseAt": "2026-08-26T02:57:35Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -34780,7 +34780,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 5,
         "openIssues": 0,
@@ -35039,7 +35039,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -41237,7 +41237,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-08-22T20:54:16Z",
+        "lastCommitAt": "2026-08-29T20:53:17Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -46691,7 +46691,7 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-08-11T19:55:21Z",
+        "lastCommitAt": "2026-08-29T17:12:41Z",
         "lastReleaseAt": "2026-08-11T19:18:12Z",
         "license": "NOASSERTION",
         "repoUrl": "https://github.com/altansayan/mock-jutsu-jmeter"
