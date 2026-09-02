@@ -35,3 +35,7 @@ coverage/
 .eslintcache
 .prettiercache
 .aider*
+
+# playwright output
+playwright-report/
+test-results/
