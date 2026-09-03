@@ -10615,8 +10615,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-08-19T08:50:41Z",
-        "lastReleaseAt": "2026-08-19T08:52:36Z",
+        "lastCommitAt": "2026-09-02T08:33:09Z",
+        "lastReleaseAt": "2026-09-02T08:35:04Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
@@ -15413,7 +15413,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -18838,7 +18838,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 34,
+        "score": 33,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -29706,6 +29706,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.8.2": {
+        "changes": "NEW: Corporate n/w support via LLM gateway, now you can use OpenRouter, LiteLLM etc.",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v3.8.2/jmeter-agent-3.8.2.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -29802,10 +29810,10 @@
         "score": 87,
         "label": "Active",
         "stars": 58,
-        "openIssues": 14,
+        "openIssues": 12,
         "archived": false,
-        "lastCommitAt": "2026-09-01T20:25:56Z",
-        "lastReleaseAt": "2026-08-26T02:57:35Z",
+        "lastCommitAt": "2026-09-02T16:13:44Z",
+        "lastReleaseAt": "2026-09-02T02:31:25Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
