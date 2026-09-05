@@ -5400,7 +5400,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 56,
+        "score": 55,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -9410,7 +9410,7 @@
         "score": 87,
         "label": "Active",
         "stars": 51,
-        "openIssues": 10,
+        "openIssues": 11,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
@@ -14825,7 +14825,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -16754,7 +16754,7 @@
         "score": 87,
         "label": "Active",
         "stars": 51,
-        "openIssues": 10,
+        "openIssues": 11,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
@@ -19667,7 +19667,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 25,
         "openIssues": 2,
@@ -24030,7 +24030,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 46,
+        "score": 45,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
@@ -27670,7 +27670,7 @@
       "stars": 28,
       "license": "Apache-2.0",
       "health": {
-        "score": 39,
+        "score": 38,
         "label": "Stale",
         "stars": 28,
         "openIssues": 21,
@@ -29810,9 +29810,9 @@
         "score": 87,
         "label": "Active",
         "stars": 58,
-        "openIssues": 13,
+        "openIssues": 14,
         "archived": false,
-        "lastCommitAt": "2026-09-03T10:57:51Z",
+        "lastCommitAt": "2026-09-04T10:58:09Z",
         "lastReleaseAt": "2026-09-02T02:31:25Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -40733,7 +40733,7 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 47,
         "openIssues": 7,
