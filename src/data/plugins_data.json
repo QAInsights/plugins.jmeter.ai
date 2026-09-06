@@ -7750,7 +7750,7 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-08-24T09:32:09Z",
+        "lastCommitAt": "2026-09-05T18:49:52Z",
         "lastReleaseAt": "2026-08-24T09:32:53Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/reportportal/plugins-performance"
@@ -10650,7 +10650,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 65,
+        "score": 64,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -10695,7 +10695,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -11926,7 +11926,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-08-29T20:53:17Z",
+        "lastCommitAt": "2026-09-05T20:54:33Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -16292,7 +16292,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 33,
+        "score": 32,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -16363,7 +16363,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -21690,7 +21690,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
@@ -29807,12 +29807,12 @@
       "stars": 58,
       "license": "MIT",
       "health": {
-        "score": 87,
+        "score": 86,
         "label": "Active",
         "stars": 58,
-        "openIssues": 14,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-09-04T10:58:09Z",
+        "lastCommitAt": "2026-09-05T10:19:27Z",
         "lastReleaseAt": "2026-09-02T02:31:25Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
