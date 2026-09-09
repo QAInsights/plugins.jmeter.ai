@@ -18505,10 +18505,10 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 87,
+        "score": 86,
         "label": "Active",
         "stars": 51,
-        "openIssues": 11,
+        "openIssues": 12,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
@@ -32437,7 +32437,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 13,
         "openIssues": 9,
@@ -32744,10 +32744,10 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 87,
+        "score": 86,
         "label": "Active",
         "stars": 51,
-        "openIssues": 11,
+        "openIssues": 12,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
@@ -32803,7 +32803,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 0,
         "openIssues": 0,
@@ -37625,12 +37625,12 @@
       "stars": 58,
       "license": "MIT",
       "health": {
-        "score": 86,
+        "score": 85,
         "label": "Active",
         "stars": 58,
-        "openIssues": 17,
+        "openIssues": 18,
         "archived": false,
-        "lastCommitAt": "2026-09-07T12:05:12Z",
+        "lastCommitAt": "2026-09-08T10:57:53Z",
         "lastReleaseAt": "2026-09-02T02:31:25Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -40617,13 +40617,13 @@
       }
     },
     "githubInfo": {
-      "stars": 0,
+      "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 75,
-        "label": "Active",
-        "stars": 0,
-        "openIssues": 0,
+        "score": 68,
+        "label": "Maintained",
+        "stars": 1,
+        "openIssues": 5,
         "archived": false,
         "lastCommitAt": "2026-09-05T05:07:00Z",
         "lastReleaseAt": "2026-09-03T07:14:28Z",
@@ -44766,7 +44766,7 @@
       "stars": 52,
       "license": "Apache-2.0",
       "health": {
-        "score": 84,
+        "score": 83,
         "label": "Active",
         "stars": 52,
         "openIssues": 15,
