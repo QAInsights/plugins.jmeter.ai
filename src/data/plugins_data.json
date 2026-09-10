@@ -11958,7 +11958,7 @@
       "stars": 50,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 50,
         "openIssues": 1,
@@ -27700,7 +27700,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 5,
         "openIssues": 0,
@@ -31803,7 +31803,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -37628,9 +37628,9 @@
         "score": 85,
         "label": "Active",
         "stars": 58,
-        "openIssues": 18,
+        "openIssues": 19,
         "archived": false,
-        "lastCommitAt": "2026-09-08T10:57:53Z",
+        "lastCommitAt": "2026-09-09T11:02:25Z",
         "lastReleaseAt": "2026-09-02T02:31:25Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -41060,8 +41060,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-09-02T08:33:09Z",
-        "lastReleaseAt": "2026-09-02T08:35:04Z",
+        "lastCommitAt": "2026-09-09T09:01:55Z",
+        "lastReleaseAt": "2026-09-09T09:03:50Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
@@ -47253,7 +47253,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 27,
+        "score": 26,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
