@@ -30609,7 +30609,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -30786,7 +30786,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -33014,8 +33014,8 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 40,
-        "label": "Maintained",
+        "score": 39,
+        "label": "Stale",
         "stars": 2,
         "openIssues": 0,
         "archived": false,
@@ -34186,7 +34186,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -36246,9 +36246,9 @@
         "score": 71,
         "label": "Active",
         "stars": 4,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-03T21:44:41Z",
+        "lastCommitAt": "2026-09-10T21:44:07Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -37086,8 +37086,8 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 40,
-        "label": "Maintained",
+        "score": 39,
+        "label": "Stale",
         "stars": 2,
         "openIssues": 0,
         "archived": false,
@@ -37628,9 +37628,9 @@
         "score": 85,
         "label": "Active",
         "stars": 58,
-        "openIssues": 19,
+        "openIssues": 20,
         "archived": false,
-        "lastCommitAt": "2026-09-09T11:02:25Z",
+        "lastCommitAt": "2026-09-10T10:59:17Z",
         "lastReleaseAt": "2026-09-02T02:31:25Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -38859,9 +38859,9 @@
         "score": 69,
         "label": "Maintained",
         "stars": 2,
-        "openIssues": 2,
+        "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-09-03T07:54:47Z",
+        "lastCommitAt": "2026-09-10T07:53:58Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
@@ -40229,7 +40229,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -40397,7 +40397,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -40999,7 +40999,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
