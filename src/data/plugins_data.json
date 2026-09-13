@@ -8839,7 +8839,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -17084,7 +17084,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -25154,7 +25154,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 24,
+        "score": 23,
         "label": "Stale",
         "stars": 4,
         "openIssues": 0,
@@ -29766,7 +29766,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -37628,9 +37628,9 @@
         "score": 84,
         "label": "Active",
         "stars": 58,
-        "openIssues": 22,
+        "openIssues": 23,
         "archived": false,
-        "lastCommitAt": "2026-09-11T10:57:39Z",
+        "lastCommitAt": "2026-09-12T15:12:50Z",
         "lastReleaseAt": "2026-09-02T02:31:25Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -38397,7 +38397,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-09-05T20:54:33Z",
+        "lastCommitAt": "2026-09-12T20:54:03Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -42771,7 +42771,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -44020,7 +44020,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -47803,7 +47803,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -58024,7 +58024,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -59232,7 +59232,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
