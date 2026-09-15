@@ -29882,7 +29882,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 62,
+        "score": 61,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
@@ -30846,7 +30846,7 @@
         "score": 86,
         "label": "Active",
         "stars": 51,
-        "openIssues": 12,
+        "openIssues": 13,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
@@ -35559,13 +35559,13 @@
       "stars": 52,
       "license": "Apache-2.0",
       "health": {
-        "score": 83,
+        "score": 85,
         "label": "Active",
         "stars": 52,
         "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-07-14T13:01:30Z",
-        "lastReleaseAt": "2026-07-14T13:01:18Z",
+        "lastCommitAt": "2026-09-14T20:25:28Z",
+        "lastReleaseAt": "2026-09-14T20:25:16Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/HLSPlugin"
       }
@@ -36800,7 +36800,7 @@
         "score": 86,
         "label": "Active",
         "stars": 51,
-        "openIssues": 12,
+        "openIssues": 13,
         "archived": false,
         "lastCommitAt": "2026-08-25T16:55:41Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
@@ -45310,7 +45310,7 @@
       "stars": 7,
       "license": "N/A",
       "health": {
-        "score": 23,
+        "score": 22,
         "label": "Stale",
         "stars": 7,
         "openIssues": 3,
@@ -50384,7 +50384,7 @@
         "stars": 1,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-09-07T05:59:25Z",
+        "lastCommitAt": "2026-09-14T05:54:50Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
@@ -52543,7 +52543,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 33,
+        "score": 32,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -52765,7 +52765,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 80,
+        "score": 79,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
@@ -52840,7 +52840,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -56184,13 +56184,13 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 64,
-        "label": "Maintained",
+        "score": 78,
+        "label": "Active",
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-02-23T15:55:07Z",
-        "lastReleaseAt": "2026-02-19T12:47:01Z",
+        "lastCommitAt": "2026-09-14T06:39:42Z",
+        "lastReleaseAt": "2026-09-14T06:45:18Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/prasantmohanty/jmeter-backend-listner-reportportal"
       }
@@ -56636,6 +56636,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.8.3": {
+        "changes": "NEW: Agent mode support for Grok, DeepSeek, and Meta models. Bug fixes.",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v3.8.3/jmeter-agent-3.8.3.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -56728,15 +56736,15 @@
       }
     },
     "githubInfo": {
-      "stars": 58,
+      "stars": 60,
       "license": "MIT",
       "health": {
         "score": 84,
         "label": "Active",
-        "stars": 58,
-        "openIssues": 22,
+        "stars": 60,
+        "openIssues": 23,
         "archived": false,
-        "lastCommitAt": "2026-09-14T00:54:07Z",
+        "lastCommitAt": "2026-09-14T12:22:51Z",
         "lastReleaseAt": "2026-09-14T00:54:08Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
