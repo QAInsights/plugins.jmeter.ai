@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="LLM Streaming TTFT Demo" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="LLM_HOST" elementType="Argument">
+            <stringProp name="Argument.name">LLM_HOST</stringProp>
+            <stringProp name="Argument.value">127.0.0.1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="LLM_PORT" elementType="Argument">
+            <stringProp name="Argument.name">LLM_PORT</stringProp>
+            <stringProp name="Argument.value">8000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MODEL" elementType="Argument">
+            <stringProp name="Argument.name">MODEL</stringProp>
+            <stringProp name="Argument.value">gpt-4o</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MAX_TOKENS" elementType="Argument">
+            <stringProp name="Argument.name">MAX_TOKENS</stringProp>
+            <stringProp name="Argument.value">256</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Prompts CSV">
+        <stringProp name="filename">prompts.csv</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="variableNames">prompt</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">true</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="LLM Users" enabled="true">
+        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">5</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="POST /v1/chat/completions (stream)">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+import java.net.HttpURLConnection
+// NB: do not import org.apache.jmeter.samplers.SampleResult here — the JSR223
+// sampler binds a variable named SampleResult (the current result instance),
+// and the import would shadow it, breaking calls like SampleResult.latencyEnd().
+
+def host = vars.get(&quot;LLM_HOST&quot;); def port = vars.get(&quot;LLM_PORT&quot;)
+def body = JsonOutput.toJson([
+    model: vars.get(&quot;MODEL&quot;),
+    stream: true,
+    max_tokens: vars.get(&quot;MAX_TOKENS&quot;) as int,
+    messages: [[role: &quot;user&quot;, content: vars.get(&quot;prompt&quot;)]]
+])
+
+SampleResult.setSampleLabel(&quot;POST /v1/chat/completions (stream)&quot;)
+def url = new URL(&quot;http://${host}:${port}/v1/chat/completions&quot;)
+HttpURLConnection conn = (HttpURLConnection) url.openConnection()
+conn.setRequestMethod(&quot;POST&quot;)
+conn.setDoOutput(true)
+conn.setConnectTimeout(5000)
+conn.setReadTimeout(60000)
+conn.setRequestProperty(&quot;Content-Type&quot;, &quot;application/json&quot;)
+conn.setRequestProperty(&quot;Accept&quot;, &quot;text/event-stream&quot;)
+conn.setRequestProperty(&quot;Authorization&quot;, &quot;Bearer &quot; + (props.getProperty(&quot;llm.api.key&quot;) ?: &quot;sk-dummy&quot;))
+
+SampleResult.setRequestHeaders(conn.getRequestProperties().toString())
+SampleResult.setSamplerData(body)
+
+long tSent = System.nanoTime()
+conn.outputStream.withWriter(&quot;UTF-8&quot;) { it &lt;&lt; body }
+
+int status = conn.responseCode
+def slurper = new JsonSlurper()
+def text = new StringBuilder()
+int tokens = 0
+long tFirst = 0L, tPrev = 0L
+def gaps = []
+
+conn.inputStream.withReader(&quot;UTF-8&quot;) { reader -&gt;
+    String line
+    while ((line = reader.readLine()) != null) {
+        if (!line.startsWith(&quot;data:&quot;)) continue
+        def payload = line.substring(5).trim()
+        if (payload == &quot;[DONE]&quot;) break
+        long now = System.nanoTime()
+        if (tFirst == 0L) { tFirst = now; SampleResult.latencyEnd() }
+        def delta = slurper.parseText(payload)?.choices?.getAt(0)?.delta?.content
+        if (delta) {
+            tokens++
+            text &lt;&lt; delta
+            if (tPrev != 0L) gaps &lt;&lt; (now - tPrev) / 1_000_000d
+            tPrev = now
+        }
+    }
+}
+long tLast = System.nanoTime()
+
+double ttftMs = tFirst ? (tFirst - tSent) / 1_000_000d : -1
+double totalMs = (tLast - tSent) / 1_000_000d
+double genMs = tFirst ? (tLast - tFirst) / 1_000_000d : 0
+double tps = genMs &gt; 0 ? tokens / (genMs / 1000d) : 0
+double itlP50 = gaps ? gaps.sort()[(int) (gaps.size() * 0.5)] : 0
+
+SampleResult.setResponseCode(status.toString())
+SampleResult.setResponseData(text.toString(), &quot;UTF-8&quot;)
+SampleResult.setResponseHeaders(&quot;ttft_ms=${ttftMs.round(1)}\ntokens=${tokens}\ntokens_per_sec=${tps.round(1)}\nitl_p50_ms=${itlP50.round(1)}&quot;)
+SampleResult.setSuccessful(status == 200 &amp;&amp; tokens &gt; 0)
+if (!SampleResult.isSuccessful()) SampleResult.setResponseMessage(&quot;HTTP ${status}, tokens=${tokens}&quot;)
+
+vars.put(&quot;ttft_ms&quot;, ttftMs.round(1).toString())
+vars.put(&quot;tokens&quot;, tokens.toString())
+vars.put(&quot;tokens_per_sec&quot;, tps.round(1).toString())
+vars.put(&quot;itl_p50_ms&quot;, itlP50.round(1).toString())
+vars.put(&quot;total_ms&quot;, totalMs.round(1).toString())
+log.info(&quot;TTFT=${ttftMs.round(1)}ms tokens=${tokens} tok/s=${tps.round(1)} ITL p50=${itlP50.round(1)}ms total=${totalMs.round(1)}ms&quot;)
+</stringProp>
+        </JSR223Sampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response code = 200" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Append metrics CSV" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">File f = new File(&quot;results/llm-metrics.csv&quot;)
+f.getParentFile().mkdirs()
+synchronized (f) {
+    if (!f.exists()) {
+        f.append(&quot;timestamp,thread,ttft_ms,tokens,tokens_per_sec,itl_p50_ms,total_ms\n&quot;)
+    }
+    f.append(&quot;${prev.getEndTime()},${prev.getThreadName()},${vars.get(&apos;ttft_ms&apos;)},${vars.get(&apos;tokens&apos;)},${vars.get(&apos;tokens_per_sec&apos;)},${vars.get(&apos;itl_p50_ms&apos;)},${vars.get(&apos;total_ms&apos;)}\n&quot;)
+}</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">results/results.jtl</stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
