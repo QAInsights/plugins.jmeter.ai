@@ -21654,12 +21654,12 @@
       }
     },
     "githubInfo": {
-      "stars": 143,
+      "stars": 144,
       "license": "Apache-2.0",
       "health": {
         "score": 70,
         "label": "Active",
-        "stars": 143,
+        "stars": 144,
         "openIssues": 4,
         "archived": false,
         "lastCommitAt": "2025-10-29T16:58:11Z",
@@ -22882,12 +22882,12 @@
       }
     },
     "githubInfo": {
-      "stars": 143,
+      "stars": 144,
       "license": "Apache-2.0",
       "health": {
         "score": 70,
         "label": "Active",
-        "stars": 143,
+        "stars": 144,
         "openIssues": 4,
         "archived": false,
         "lastCommitAt": "2025-10-29T16:58:11Z",
@@ -28093,12 +28093,12 @@
       }
     },
     "githubInfo": {
-      "stars": 143,
+      "stars": 144,
       "license": "Apache-2.0",
       "health": {
         "score": 70,
         "label": "Active",
-        "stars": 143,
+        "stars": 144,
         "openIssues": 4,
         "archived": false,
         "lastCommitAt": "2025-10-29T16:58:11Z",
@@ -29502,7 +29502,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 25,
         "openIssues": 2,
@@ -33657,12 +33657,12 @@
       }
     },
     "githubInfo": {
-      "stars": 143,
+      "stars": 144,
       "license": "Apache-2.0",
       "health": {
         "score": 70,
         "label": "Active",
-        "stars": 143,
+        "stars": 144,
         "openIssues": 4,
         "archived": false,
         "lastCommitAt": "2025-10-29T16:58:11Z",
@@ -34215,12 +34215,12 @@
       }
     },
     "githubInfo": {
-      "stars": 143,
+      "stars": 144,
       "license": "Apache-2.0",
       "health": {
         "score": 70,
         "label": "Active",
-        "stars": 143,
+        "stars": 144,
         "openIssues": 4,
         "archived": false,
         "lastCommitAt": "2025-10-29T16:58:11Z",
@@ -37553,12 +37553,12 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 74,
         "label": "Active",
         "stars": 13,
         "openIssues": 9,
         "archived": false,
-        "lastCommitAt": "2026-07-31T14:29:09Z",
+        "lastCommitAt": "2026-09-16T20:15:14Z",
         "lastReleaseAt": "2026-03-03T13:50:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/DataDog/jmeter-datadog-backend-listener"
@@ -45044,12 +45044,12 @@
       }
     },
     "githubInfo": {
-      "stars": 143,
+      "stars": 144,
       "license": "Apache-2.0",
       "health": {
         "score": 70,
         "label": "Active",
-        "stars": 143,
+        "stars": 144,
         "openIssues": 4,
         "archived": false,
         "lastCommitAt": "2025-10-29T16:58:11Z",
@@ -46743,7 +46743,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 45,
+        "score": 44,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
@@ -46983,7 +46983,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 32,
+        "score": 31,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -47984,12 +47984,12 @@
       }
     },
     "githubInfo": {
-      "stars": 143,
+      "stars": 144,
       "license": "Apache-2.0",
       "health": {
         "score": 70,
         "label": "Active",
-        "stars": 143,
+        "stars": 144,
         "openIssues": 4,
         "archived": false,
         "lastCommitAt": "2025-10-29T16:58:11Z",
@@ -50031,7 +50031,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 55,
+        "score": 54,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -50085,8 +50085,8 @@
         "stars": 0,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-09-05T18:49:52Z",
-        "lastReleaseAt": "2026-08-24T09:32:53Z",
+        "lastCommitAt": "2026-09-16T10:57:29Z",
+        "lastReleaseAt": "2026-09-16T10:54:12Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/reportportal/plugins-performance"
       }
@@ -56760,13 +56760,13 @@
       "stars": 60,
       "license": "MIT",
       "health": {
-        "score": 83,
+        "score": 88,
         "label": "Active",
         "stars": 60,
-        "openIssues": 25,
+        "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-09-15T11:27:19Z",
-        "lastReleaseAt": "2026-09-14T00:54:08Z",
+        "lastCommitAt": "2026-09-17T01:34:34Z",
+        "lastReleaseAt": "2026-09-17T01:35:35Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -56957,7 +56957,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 3,
