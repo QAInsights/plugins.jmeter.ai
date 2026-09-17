@@ -71,6 +71,21 @@ The final test plan looks like this:
 
 Everything runs against a local mock so you can follow along without an API key or a GPU bill.
 
+### Download the Files
+
+If you would rather skip the typing, every file used in this article is available for download:
+
+| File                                                                                        | What it is                                                                        |
+| ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [llm-streaming-ttft.jmx](/downloads/jmeter-llm-streaming-ttft/llm-streaming-ttft.jmx)       | The complete JMeter test plan (JSR223 sampler, PostProcessor, listeners)          |
+| [llm_stream_sampler.groovy](/downloads/jmeter-llm-streaming-ttft/llm_stream_sampler.groovy) | The streaming sampler script on its own, if you prefer to load it from a file     |
+| [mock_llm_server.py](/downloads/jmeter-llm-streaming-ttft/mock_llm_server.py)               | The OpenAI-compatible SSE mock server (Python standard library only)              |
+| [prompts.csv](/downloads/jmeter-llm-streaming-ttft/prompts.csv)                             | Sample prompts for the CSV Data Set Config                                        |
+| [jmeter-llm.properties](/downloads/jmeter-llm-streaming-ttft/jmeter-llm.properties)         | `sample_variables` plus the Feather Wand settings that point it at the local mock |
+
+Put them all in one directory and run JMeter from that directory. The JMX uses relative paths, so
+`prompts.csv` is picked up next to the plan and the metrics land in `results/`.
+
 ---
 
 ## Step 1: A Local OpenAI-Compatible Mock Server
@@ -375,7 +390,10 @@ But the user saw the first word after roughly half a second and then watched the
 out at a comfortable pace. **Elapsed time is the wrong headline metric for streaming APIs.** Use it
 to size connection pools and timeouts, not to judge responsiveness.
 
-For the headline numbers, run the plan in non-GUI mode and generate the HTML report:
+For the headline numbers, run the plan in non-GUI mode from the directory that holds the
+[JMX](/downloads/jmeter-llm-streaming-ttft/llm-streaming-ttft.jmx) and
+[properties file](/downloads/jmeter-llm-streaming-ttft/jmeter-llm.properties), and generate the HTML
+report:
 
 ```bash
 jmeter -n -t llm-streaming-ttft.jmx \
@@ -504,7 +522,8 @@ TTFT in every report JMeter can produce. Count the deltas and divide by the gene
 you have token throughput. Everything else is standard JMeter: CSV data, assertions, listeners,
 backend integrations.
 
-Run the mock, paste the script, and look at the gap between `Latency` and `Load time` on your first
-sample. That gap is what your users are actually waiting through, and now you can measure it.
+[Grab the JMX, scripts, and CSV](#download-the-files), run the mock, and look at the gap between
+`Latency` and `Load time` on your first sample. That gap is what your users are actually waiting
+through, and now you can measure it.
 
 Happy Testing!
