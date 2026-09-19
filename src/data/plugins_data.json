@@ -21657,13 +21657,13 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 91,
+        "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T18:57:25Z",
-        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -22885,13 +22885,13 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 91,
+        "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T18:57:25Z",
-        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -28096,13 +28096,13 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 91,
+        "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T18:57:25Z",
-        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -32070,7 +32070,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 66,
+        "score": 65,
         "label": "Maintained",
         "stars": 32,
         "openIssues": 2,
@@ -33167,6 +33167,16 @@
         "depends": [
           "jmeter-http"
         ]
+      },
+      "0.13.1": {
+        "changes": "Fix parallel controller iteration count synchronization. Removed shaded JMeter classes from the plugin jar.",
+        "downloadUrl": "https://search.maven.org/remotecontent?filepath=com/blazemeter/jmeter-parallel/0.13.1/jmeter-parallel-0.13.1.jar",
+        "libs": {
+          "jmeter-plugins-cmn-jmeter": "https://search.maven.org/remotecontent?filepath=kg/apc/jmeter-plugins-cmn-jmeter/0.7/jmeter-plugins-cmn-jmeter-0.7.jar"
+        },
+        "depends": [
+          "jmeter-http"
+        ]
       }
     },
     "sponsored": false,
@@ -33660,13 +33670,13 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 91,
+        "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T18:57:25Z",
-        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -34218,13 +34228,13 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 91,
+        "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T18:57:25Z",
-        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -45047,13 +45057,13 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 91,
+        "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T18:57:25Z",
-        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -45820,7 +45830,7 @@
       "stars": 79,
       "license": "MIT",
       "health": {
-        "score": 83,
+        "score": 82,
         "label": "Active",
         "stars": 79,
         "openIssues": 0,
@@ -47987,13 +47997,13 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 91,
+        "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T18:57:25Z",
-        "lastReleaseAt": "2025-10-29T16:58:11Z",
+        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -53732,7 +53742,7 @@
       "stars": 9,
       "license": "MIT",
       "health": {
-        "score": 82,
+        "score": 81,
         "label": "Active",
         "stars": 9,
         "openIssues": 0,
@@ -56302,7 +56312,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 65,
+        "score": 64,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -56771,10 +56781,10 @@
         "score": 88,
         "label": "Active",
         "stars": 60,
-        "openIssues": 11,
+        "openIssues": 12,
         "archived": false,
-        "lastCommitAt": "2026-09-17T11:22:37Z",
-        "lastReleaseAt": "2026-09-17T01:35:35Z",
+        "lastCommitAt": "2026-09-19T02:13:26Z",
+        "lastReleaseAt": "2026-09-19T02:13:38Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -59480,7 +59490,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 30,
+        "score": 29,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
