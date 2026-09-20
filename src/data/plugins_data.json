@@ -56683,6 +56683,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.8.5": {
+        "changes": "NEW: Typesafe Jev integration for agent tool routing and results analysis.",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v3.8.5/jmeter-agent-3.8.5.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -56781,10 +56789,10 @@
         "score": 88,
         "label": "Active",
         "stars": 60,
-        "openIssues": 12,
+        "openIssues": 11,
         "archived": false,
-        "lastCommitAt": "2026-09-19T02:13:26Z",
-        "lastReleaseAt": "2026-09-19T02:13:38Z",
+        "lastCommitAt": "2026-09-19T10:40:04Z",
+        "lastReleaseAt": "2026-09-19T02:44:51Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -60006,7 +60014,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 75,
+        "score": 74,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
