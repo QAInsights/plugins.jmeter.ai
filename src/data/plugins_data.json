@@ -37802,12 +37802,12 @@
       "stars": 60,
       "license": "MIT",
       "health": {
-        "score": 89,
+        "score": 88,
         "label": "Active",
         "stars": 60,
-        "openIssues": 9,
+        "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-09-21T01:26:00Z",
+        "lastCommitAt": "2026-09-21T12:28:08Z",
         "lastReleaseAt": "2026-09-19T02:44:51Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -38046,7 +38046,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 6,
         "openIssues": 0,
@@ -44257,7 +44257,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 66,
+        "score": 65,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -46878,7 +46878,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 5,
         "openIssues": 0,
