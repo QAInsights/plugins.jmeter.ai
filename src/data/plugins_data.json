@@ -26728,7 +26728,7 @@
       "stars": 20,
       "license": "MIT",
       "health": {
-        "score": 51,
+        "score": 50,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 0,
@@ -28436,7 +28436,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -29789,7 +29789,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -32261,7 +32261,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -32525,21 +32525,6 @@
         "2026-08-31": 3,
         "2026-09-07": 3,
         "2026-09-14": 3
-      }
-    },
-    "githubInfo": {
-      "stars": 0,
-      "license": "NOASSERTION",
-      "health": {
-        "score": 75,
-        "label": "Active",
-        "stars": 0,
-        "openIssues": 0,
-        "archived": false,
-        "lastCommitAt": "2026-08-29T17:12:41Z",
-        "lastReleaseAt": "2026-08-11T19:18:12Z",
-        "license": "NOASSERTION",
-        "repoUrl": "https://github.com/altansayan/mock-jutsu-jmeter"
       }
     },
     "jmeterCompatibility": "5.5"
@@ -36515,7 +36500,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -36580,7 +36565,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 3,
@@ -37802,12 +37787,12 @@
       "stars": 60,
       "license": "MIT",
       "health": {
-        "score": 89,
+        "score": 88,
         "label": "Active",
         "stars": 60,
-        "openIssues": 9,
+        "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-09-23T15:52:46Z",
+        "lastCommitAt": "2026-09-24T11:27:05Z",
         "lastReleaseAt": "2026-09-19T02:44:51Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -38480,9 +38465,9 @@
         "score": 70,
         "label": "Active",
         "stars": 4,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-17T21:44:47Z",
+        "lastCommitAt": "2026-09-24T21:45:15Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -42052,7 +42037,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
