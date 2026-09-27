@@ -21509,7 +21509,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 61,
+        "score": 60,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
@@ -28502,7 +28502,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 75,
+        "score": 74,
         "label": "Active",
         "stars": 0,
         "openIssues": 0,
@@ -32132,7 +32132,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 32,
+        "score": 31,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -33787,9 +33787,9 @@
         "score": 68,
         "label": "Maintained",
         "stars": 2,
-        "openIssues": 3,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-12T20:54:03Z",
+        "lastCommitAt": "2026-09-26T20:53:49Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -33881,7 +33881,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 48,
+        "score": 47,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -37790,9 +37790,9 @@
         "score": 88,
         "label": "Active",
         "stars": 61,
-        "openIssues": 11,
+        "openIssues": 12,
         "archived": false,
-        "lastCommitAt": "2026-09-25T11:32:42Z",
+        "lastCommitAt": "2026-09-26T11:07:18Z",
         "lastReleaseAt": "2026-09-19T02:44:51Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -45695,7 +45695,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 37,
+        "score": 36,
         "label": "Stale",
         "stars": 1,
         "openIssues": 0,
@@ -49156,7 +49156,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
