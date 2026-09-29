@@ -7768,7 +7768,7 @@
       "stars": 7,
       "license": "N/A",
       "health": {
-        "score": 22,
+        "score": 21,
         "label": "Stale",
         "stars": 7,
         "openIssues": 3,
@@ -9097,15 +9097,15 @@
       }
     },
     "githubInfo": {
-      "stars": 61,
+      "stars": 62,
       "license": "MIT",
       "health": {
         "score": 87,
         "label": "Active",
-        "stars": 61,
-        "openIssues": 13,
+        "stars": 62,
+        "openIssues": 14,
         "archived": false,
-        "lastCommitAt": "2026-09-27T11:45:51Z",
+        "lastCommitAt": "2026-09-28T13:26:56Z",
         "lastReleaseAt": "2026-09-19T02:44:51Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -11764,7 +11764,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 66,
+        "score": 65,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -15685,6 +15685,62 @@
           "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
           "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
         }
+      },
+      "1.1.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.1.0/perfana-jmeter-timescaledb-1.1.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.2.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.2.0/perfana-jmeter-timescaledb-1.2.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.3.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.3.0/perfana-jmeter-timescaledb-1.3.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.3.1": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.3.1/perfana-jmeter-timescaledb-1.3.1.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.4.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.4.0/perfana-jmeter-timescaledb-1.4.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.4.1": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.4.1/perfana-jmeter-timescaledb-1.4.1.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.5.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.5.0/perfana-jmeter-timescaledb-1.5.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.6.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.6.0/perfana-jmeter-timescaledb-1.6.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
       }
     },
     "sponsored": false,
@@ -16456,7 +16512,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 31,
+        "score": 30,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -16541,7 +16597,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -19768,7 +19824,7 @@
         "stars": 1,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-09-14T05:54:50Z",
+        "lastCommitAt": "2026-09-28T05:54:39Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
