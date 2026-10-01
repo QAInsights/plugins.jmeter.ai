@@ -119,7 +119,13 @@ const schema = {
 };
 ---
 
-<Layout title={title} description={description} image={ogImage} schema={schema}>
+<Layout
+  title={title}
+  description={description}
+  image={ogImage}
+  schema={schema}
+  adKeywords={[relatedCategory === 'Others' ? null : relatedCategory, plugin.name, plugin.vendor]}
+>
   <Header />
   <main class="flex flex-grow flex-col px-4 py-8 sm:px-6 sm:py-16">
     <div class="mx-auto w-full max-w-4xl">

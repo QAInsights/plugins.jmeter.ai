@@ -5,6 +5,8 @@ import CompareFloatingBar from '../components/CompareFloatingBar.astro';
 import InstallFloatingBar from '../components/InstallFloatingBar.astro';
 import FavoritesManager from '../components/FavoritesManager.astro';
 import PreferencesManager from '../components/PreferencesManager.astro';
+import EthicalAd from '../components/EthicalAd.astro';
+import { resolveEthicalAdsPublisher } from '../utils/ethicalAds';
 import { SEO } from 'astro-seo';
 
 interface Props {
@@ -17,6 +19,10 @@ interface Props {
   articleAuthor?: string;
   schema?: Record<string, unknown>;
   canonicalURL?: string | URL;
+  /** Page topics for EthicalAds contextual targeting. */
+  adKeywords?: readonly (string | undefined | null)[];
+  /** Set false to render the page without the floating ad. */
+  showAd?: boolean;
 }
 
 const {
@@ -29,7 +35,13 @@ const {
   articleAuthor,
   schema,
   canonicalURL,
+  adKeywords = [],
+  showAd = true,
 } = Astro.props;
+
+const adPublisher = showAd
+  ? resolveEthicalAdsPublisher(import.meta.env.PUBLIC_ETHICALADS_PUBLISHER)
+  : null;
 
 // Determine canonical URL: fallback to current pathname.
 // Keep trailing slashes as-is — Astro static output serves pages via
@@ -242,5 +254,6 @@ const articleSchema =
     <InstallFloatingBar />
     <FavoritesManager />
     <PreferencesManager />
+    {adPublisher && <EthicalAd publisher={adPublisher} keywords={adKeywords} />}
   </body>
 </html>

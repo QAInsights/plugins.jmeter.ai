@@ -39,6 +39,7 @@ const { Content, headings } = await render(post);
     ? post.data.updatedDate.toISOString()
     : post.data.pubDate.toISOString()}
   articleAuthor={post.data.author}
+  adKeywords={post.data.tags}
 >
   <Header />
   <main class="mx-auto w-full max-w-7xl flex-grow px-6 py-12 md:py-20">
