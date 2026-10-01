@@ -1,0 +1,96 @@
+---
+/**
+ * EthicalAd - the site's single floating EthicalAds placement plus the client script.
+ *
+ * Rendered once by Layout (EthicalAds allows one ad per page). The inline
+ * script picks the placement for the viewport (FLOATING_AD_PLACEMENTS), then
+ * loads the client. While an ad is filled, the footer ad's height
+ * (--ea-float-h) or the corner ad's width (--ea-float-w) is exposed so the
+ * page and the floating buttons/bars can clear it.
+ * Signed-in members (AD_FREE_STORAGE_KEY) never load the client.
+ * Layout skips it when ads are disabled (PUBLIC_ETHICALADS_PUBLISHER=off).
+ *
+ * Props:
+ *   publisher - EthicalAds publisher id (see resolveEthicalAdsPublisher)
+ *   keywords - page topics, sent as data-ea-keywords for contextual targeting
+ */
+import {
+  AD_FREE_STORAGE_KEY,
+  ETHICAL_ADS_CAMPAIGN_TYPES,
+  ETHICAL_ADS_CLIENT_SRC,
+  ETHICAL_ADS_DARK_SELECTOR,
+  FLOATING_AD_PLACEMENTS,
+  FLOATING_AD_WIDE_QUERY,
+  SITE_AD_KEYWORDS,
+  adKeywords,
+} from '../utils/ethicalAds';
+
+interface Props {
+  publisher: string;
+  keywords?: readonly (string | undefined | null)[];
+}
+
+const { publisher, keywords = [] } = Astro.props;
+const keywordList = adKeywords([...SITE_AD_KEYWORDS, ...keywords]);
+---
+
+<div
+  class="ea-slot flat"
+  data-ea-publisher={publisher}
+  data-ea-keywords={keywordList}
+  data-ea-campaign-types={ETHICAL_ADS_CAMPAIGN_TYPES}
+  data-ea-dark-selector={ETHICAL_ADS_DARK_SELECTOR}
+  data-ea-placements={JSON.stringify(FLOATING_AD_PLACEMENTS)}
+  data-ea-wide-query={FLOATING_AD_WIDE_QUERY}
+  data-ea-client={ETHICAL_ADS_CLIENT_SRC}
+  data-ea-ad-free-key={AD_FREE_STORAGE_KEY}
+>
+</div>
+<script is:inline>
+  (() => {
+    const slot = document.currentScript.previousElementSibling;
+    try {
+      if (localStorage.getItem(slot.dataset.eaAdFreeKey) === '1') {
+        slot.remove();
+        return;
+      }
+    } catch (_) {}
+    const placements = JSON.parse(slot.dataset.eaPlacements);
+    const placement = window.matchMedia(slot.dataset.eaWideQuery).matches
+      ? placements.wide
+      : placements.narrow;
+    slot.id = placement.id;
+    slot.setAttribute('data-ea-type', placement.type);
+    slot.setAttribute('data-ea-style', placement.style);
+
+    const root = document.documentElement;
+    const sync = () => {
+      const filled = slot.isConnected && slot.classList.contains('loaded');
+      const footer = filled && placement.style === 'fixedfooter';
+      const corner = filled && placement.style === 'stickybox';
+      root.style.setProperty('--ea-float-h', footer ? `${slot.offsetHeight}px` : '0px');
+      root.style.setProperty('--ea-float-w', corner ? `${slot.offsetWidth + 20}px` : '0px');
+    };
+    new ResizeObserver(sync).observe(slot);
+    new MutationObserver(sync).observe(slot, { attributes: true, attributeFilter: ['class'] });
+    new MutationObserver(sync).observe(slot.parentNode, { childList: true });
+
+    const client = document.createElement('script');
+    client.async = true;
+    client.src = slot.dataset.eaClient;
+    document.head.appendChild(client);
+  })();
+</script>
+<script>
+  import { $userStore } from '@clerk/astro/client';
+  import { AD_FREE_STORAGE_KEY } from '../utils/ethicalAds';
+
+  $userStore.subscribe((user) => {
+    if (user === undefined) return;
+    try {
+      if (user) localStorage.setItem(AD_FREE_STORAGE_KEY, '1');
+      else localStorage.removeItem(AD_FREE_STORAGE_KEY);
+    } catch (_) {}
+    if (user) document.querySelectorAll('.ea-slot').forEach((slot) => slot.remove());
+  });
+</script>

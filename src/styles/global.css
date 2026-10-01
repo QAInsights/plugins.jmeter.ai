@@ -136,3 +136,32 @@
 .sidebar-item {
   @apply mb-8 border-b border-gray-200 pb-8 last:border-0 dark:border-white/5;
 }
+
+/* EthicalAds floating placement (src/components/EthicalAd.astro). EthicalAds
+   adds .loaded once a slot is filled; empty slots take no space. The footer
+   ad reserves room below the page and lifts the floating bars above it; the
+   corner StickyBox overlays content and pushes the right-side buttons left. */
+body:has([data-ea-style='fixedfooter'].loaded) {
+  padding-bottom: var(--ea-float-h, 0px);
+}
+body:has([data-ea-style='fixedfooter'].loaded) #scrollToTopBtn,
+body:has([data-ea-style='fixedfooter'].loaded) #compareBar {
+  bottom: calc(2rem + var(--ea-float-h, 0px));
+}
+body:has([data-ea-style='fixedfooter'].loaded) #installBar {
+  bottom: calc(1rem + var(--ea-float-h, 0px));
+}
+body:has([data-ea-style='fixedfooter'].loaded) #installBar.stacked {
+  bottom: calc(88px + 1.25rem + var(--ea-float-h, 0px));
+}
+@media (min-width: 40rem) {
+  body:has([data-ea-style='fixedfooter'].loaded) #installBar {
+    bottom: calc(2rem + var(--ea-float-h, 0px));
+  }
+}
+@media (min-width: 1301px) {
+  body:has([data-ea-style='stickybox'].loaded) #scrollToTopBtn,
+  body:has([data-ea-style='stickybox'].loaded) #installBar {
+    right: calc(2rem + var(--ea-float-w, 0px));
+  }
+}
