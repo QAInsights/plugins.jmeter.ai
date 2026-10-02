@@ -5127,9 +5127,9 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-01T12:41:38Z",
         "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
@@ -9003,6 +9003,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.8.6": {
+        "changes": "NEW: Bug fixes; anonymous usage telemetry, enabled by default (opt out via jmeter.ai.telemetry.enabled=false or FEATHER_WAND_TELEMETRY=0).",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v3.8.6/jmeter-agent-3.8.6.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -9103,9 +9111,9 @@
         "score": 87,
         "label": "Active",
         "stars": 62,
-        "openIssues": 15,
+        "openIssues": 16,
         "archived": false,
-        "lastCommitAt": "2026-09-30T15:40:49Z",
+        "lastCommitAt": "2026-10-01T12:51:05Z",
         "lastReleaseAt": "2026-09-30T15:40:49Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -10645,7 +10653,7 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 44,
+        "score": 43,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -13873,9 +13881,9 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-01T12:41:38Z",
         "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
@@ -14911,9 +14919,9 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-01T12:41:38Z",
         "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
@@ -16735,9 +16743,9 @@
         "score": 70,
         "label": "Active",
         "stars": 4,
-        "openIssues": 4,
+        "openIssues": 6,
         "archived": false,
-        "lastCommitAt": "2026-09-24T21:45:15Z",
+        "lastCommitAt": "2026-10-01T21:48:03Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -19448,7 +19456,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-09-10T07:53:58Z",
+        "lastCommitAt": "2026-10-01T07:56:15Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
@@ -27167,9 +27175,9 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-01T12:41:38Z",
         "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
@@ -31706,9 +31714,9 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-01T12:41:38Z",
         "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
@@ -44433,9 +44441,9 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-01T12:41:38Z",
         "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
@@ -45084,9 +45092,9 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 4,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-01T12:41:38Z",
         "lastReleaseAt": "2026-09-18T13:41:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
