@@ -9111,9 +9111,9 @@
         "score": 86,
         "label": "Active",
         "stars": 62,
-        "openIssues": 17,
+        "openIssues": 18,
         "archived": false,
-        "lastCommitAt": "2026-10-02T12:13:12Z",
+        "lastCommitAt": "2026-10-03T11:24:34Z",
         "lastReleaseAt": "2026-09-30T15:40:49Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -13135,7 +13135,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 38,
+        "score": 37,
         "label": "Stale",
         "stars": 2,
         "openIssues": 0,
@@ -14091,7 +14091,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 38,
+        "score": 37,
         "label": "Stale",
         "stars": 2,
         "openIssues": 0,
@@ -16353,7 +16353,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -16814,7 +16814,7 @@
         "stars": 2,
         "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-09-26T20:53:49Z",
+        "lastCommitAt": "2026-10-03T20:53:56Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -17136,7 +17136,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
@@ -21593,8 +21593,8 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 6,
         "openIssues": 0,
         "archived": false,
@@ -23328,8 +23328,8 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
         "archived": false,
@@ -25172,8 +25172,8 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
         "archived": false,
