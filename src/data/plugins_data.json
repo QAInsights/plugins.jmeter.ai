@@ -124,7 +124,7 @@
         "stars": 1,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-09-28T05:54:39Z",
+        "lastCommitAt": "2026-10-05T05:54:35Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
@@ -4572,7 +4572,7 @@
       "stars": 8,
       "license": "N/A",
       "health": {
-        "score": 23,
+        "score": 22,
         "label": "Stale",
         "stars": 8,
         "openIssues": 0,
@@ -5838,7 +5838,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -20217,15 +20217,15 @@
       }
     },
     "githubInfo": {
-      "stars": 62,
+      "stars": 63,
       "license": "MIT",
       "health": {
-        "score": 86,
+        "score": 85,
         "label": "Active",
-        "stars": 62,
-        "openIssues": 19,
+        "stars": 63,
+        "openIssues": 20,
         "archived": false,
-        "lastCommitAt": "2026-10-04T12:05:09Z",
+        "lastCommitAt": "2026-10-05T20:10:07Z",
         "lastReleaseAt": "2026-09-30T15:40:49Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -21056,7 +21056,7 @@
         "stars": 51,
         "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-09-17T09:46:44Z",
+        "lastCommitAt": "2026-10-05T13:49:50Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -23791,7 +23791,7 @@
         "stars": 51,
         "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-09-17T09:46:44Z",
+        "lastCommitAt": "2026-10-05T13:49:50Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
