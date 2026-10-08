@@ -1369,7 +1369,7 @@
         "score": 54,
         "label": "Maintained",
         "stars": 13,
-        "openIssues": 26,
+        "openIssues": 27,
         "archived": false,
         "lastCommitAt": "2026-01-26T21:36:15Z",
         "lastReleaseAt": "2025-06-11T06:58:43Z",
@@ -2964,7 +2964,7 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-09-14T06:39:42Z",
+        "lastCommitAt": "2026-10-07T06:03:27Z",
         "lastReleaseAt": "2026-09-14T06:45:18Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/prasantmohanty/jmeter-backend-listner-reportportal"
@@ -4280,7 +4280,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 31,
+        "score": 30,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -4861,7 +4861,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 6,
         "openIssues": 0,
@@ -20223,9 +20223,9 @@
         "score": 85,
         "label": "Active",
         "stars": 63,
-        "openIssues": 21,
+        "openIssues": 22,
         "archived": false,
-        "lastCommitAt": "2026-10-06T13:08:16Z",
+        "lastCommitAt": "2026-10-07T13:01:16Z",
         "lastReleaseAt": "2026-09-30T15:40:49Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -35045,7 +35045,7 @@
       "stars": 50,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 50,
         "openIssues": 1,
