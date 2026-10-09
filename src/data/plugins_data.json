@@ -348,7 +348,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -696,7 +696,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -877,7 +877,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -3143,9 +3143,9 @@
         "score": 70,
         "label": "Active",
         "stars": 4,
-        "openIssues": 6,
+        "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-10-01T21:48:03Z",
+        "lastCommitAt": "2026-10-08T21:45:23Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -3189,7 +3189,7 @@
         "stars": 1,
         "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-09-05T05:07:00Z",
+        "lastCommitAt": "2026-10-08T06:53:27Z",
         "lastReleaseAt": "2026-09-03T07:14:28Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/karthi23592/jmeter_corr_param_plugin"
@@ -7837,7 +7837,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -8385,7 +8385,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 36,
+        "score": 35,
         "label": "Stale",
         "stars": 1,
         "openIssues": 0,
@@ -9420,10 +9420,10 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-01T12:41:38Z",
-        "lastReleaseAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-08T14:31:42Z",
+        "lastReleaseAt": "2026-10-08T14:31:42Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -9662,7 +9662,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 47,
+        "score": 46,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -18117,10 +18117,10 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-01T12:41:38Z",
-        "lastReleaseAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-08T14:31:42Z",
+        "lastReleaseAt": "2026-10-08T14:31:42Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -18678,10 +18678,10 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-01T12:41:38Z",
-        "lastReleaseAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-08T14:31:42Z",
+        "lastReleaseAt": "2026-10-08T14:31:42Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -20223,9 +20223,9 @@
         "score": 85,
         "label": "Active",
         "stars": 63,
-        "openIssues": 22,
+        "openIssues": 23,
         "archived": false,
-        "lastCommitAt": "2026-10-07T13:01:16Z",
+        "lastCommitAt": "2026-10-08T13:08:22Z",
         "lastReleaseAt": "2026-09-30T15:40:49Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -24011,7 +24011,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
@@ -27349,7 +27349,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 60,
+        "score": 59,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
@@ -40877,10 +40877,10 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-01T12:41:38Z",
-        "lastReleaseAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-08T14:31:42Z",
+        "lastReleaseAt": "2026-10-08T14:31:42Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -42104,10 +42104,10 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-01T12:41:38Z",
-        "lastReleaseAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-08T14:31:42Z",
+        "lastReleaseAt": "2026-10-08T14:31:42Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -45052,10 +45052,10 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-01T12:41:38Z",
-        "lastReleaseAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-08T14:31:42Z",
+        "lastReleaseAt": "2026-10-08T14:31:42Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
@@ -47028,6 +47028,16 @@
         "depends": [
           "jmeter-http"
         ]
+      },
+      "0.13.2": {
+        "changes": "Fix parallel thread variable sharing",
+        "downloadUrl": "https://search.maven.org/remotecontent?filepath=com/blazemeter/jmeter-parallel/0.13.2/jmeter-parallel-0.13.2.jar",
+        "libs": {
+          "jmeter-plugins-cmn-jmeter": "https://search.maven.org/remotecontent?filepath=kg/apc/jmeter-plugins-cmn-jmeter/0.7/jmeter-plugins-cmn-jmeter-0.7.jar"
+        },
+        "depends": [
+          "jmeter-http"
+        ]
       }
     },
     "sponsored": false,
@@ -47527,10 +47537,10 @@
         "score": 94,
         "label": "Active",
         "stars": 143,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-01T12:41:38Z",
-        "lastReleaseAt": "2026-09-18T13:41:49Z",
+        "lastCommitAt": "2026-10-08T14:31:42Z",
+        "lastReleaseAt": "2026-10-08T14:31:42Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-bzm-plugins"
       }
