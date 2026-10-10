@@ -2475,7 +2475,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 30,
+        "score": 29,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -2964,7 +2964,7 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-10-07T06:03:27Z",
+        "lastCommitAt": "2026-10-09T12:26:26Z",
         "lastReleaseAt": "2026-09-14T06:45:18Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/prasantmohanty/jmeter-backend-listner-reportportal"
@@ -7034,7 +7034,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 66,
+        "score": 65,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -10562,7 +10562,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 53,
+        "score": 52,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -14286,7 +14286,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 43,
+        "score": 42,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
@@ -20220,12 +20220,12 @@
       "stars": 63,
       "license": "MIT",
       "health": {
-        "score": 85,
+        "score": 89,
         "label": "Active",
         "stars": 63,
-        "openIssues": 23,
+        "openIssues": 9,
         "archived": false,
-        "lastCommitAt": "2026-10-08T13:08:22Z",
+        "lastCommitAt": "2026-10-09T17:15:49Z",
         "lastReleaseAt": "2026-09-30T15:40:49Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -21692,7 +21692,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 25,
         "openIssues": 2,
@@ -25157,7 +25157,7 @@
       "stars": 28,
       "license": "Apache-2.0",
       "health": {
-        "score": 36,
+        "score": 35,
         "label": "Stale",
         "stars": 28,
         "openIssues": 21,
