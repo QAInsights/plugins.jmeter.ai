@@ -3004,8 +3004,8 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 3,
         "openIssues": 0,
         "archived": false,
@@ -4721,7 +4721,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 0,
         "openIssues": 0,
@@ -7188,7 +7188,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 65,
+        "score": 64,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -20223,9 +20223,9 @@
         "score": 89,
         "label": "Active",
         "stars": 63,
-        "openIssues": 9,
+        "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-10-09T17:15:49Z",
+        "lastCommitAt": "2026-10-10T12:13:10Z",
         "lastReleaseAt": "2026-09-30T15:40:49Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -25157,12 +25157,12 @@
       "stars": 28,
       "license": "Apache-2.0",
       "health": {
-        "score": 35,
-        "label": "Stale",
+        "score": 72,
+        "label": "Active",
         "stars": 28,
-        "openIssues": 21,
+        "openIssues": 22,
         "archived": false,
-        "lastCommitAt": "2025-04-17T20:02:29Z",
+        "lastCommitAt": "2026-10-10T18:34:53Z",
         "lastReleaseAt": "2025-04-17T20:02:29Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/CorrelationRecorder"
@@ -25464,7 +25464,7 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 29,
         "openIssues": 7,
