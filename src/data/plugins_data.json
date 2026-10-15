@@ -33456,12 +33456,12 @@
       "stars": 63,
       "license": "MIT",
       "health": {
-        "score": 88,
+        "score": 87,
         "label": "Active",
         "stars": 63,
-        "openIssues": 13,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-10-13T23:06:40Z",
+        "lastCommitAt": "2026-10-15T01:56:29Z",
         "lastReleaseAt": "2026-10-12T00:38:01Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -48520,6 +48520,13 @@
           "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
           "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
         }
+      },
+      "1.7.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.7.0/perfana-jmeter-timescaledb-1.7.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
       }
     },
     "sponsored": false,
@@ -48555,8 +48562,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-09-27T11:18:58Z",
-        "lastReleaseAt": "2026-09-27T10:59:15Z",
+        "lastCommitAt": "2026-10-14T13:45:53Z",
+        "lastReleaseAt": "2026-10-14T13:48:22Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
@@ -49229,7 +49236,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -52665,7 +52672,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 64,
+        "score": 63,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -54469,7 +54476,7 @@
         "stars": 1,
         "openIssues": 1,
         "archived": false,
-        "lastCommitAt": "2026-09-16T10:57:29Z",
+        "lastCommitAt": "2026-10-14T06:46:56Z",
         "lastReleaseAt": "2026-09-16T10:54:12Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/reportportal/plugins-performance"
