@@ -33453,15 +33453,15 @@
       }
     },
     "githubInfo": {
-      "stars": 63,
+      "stars": 64,
       "license": "MIT",
       "health": {
         "score": 87,
         "label": "Active",
-        "stars": 63,
+        "stars": 64,
         "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-10-15T01:56:29Z",
+        "lastCommitAt": "2026-10-15T11:10:24Z",
         "lastReleaseAt": "2026-10-12T00:38:01Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -34239,7 +34239,7 @@
         "stars": 28,
         "openIssues": 22,
         "archived": false,
-        "lastCommitAt": "2026-10-10T18:34:53Z",
+        "lastCommitAt": "2026-10-16T01:50:13Z",
         "lastReleaseAt": "2025-04-17T20:02:29Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/CorrelationRecorder"
@@ -39872,7 +39872,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 37,
+        "score": 36,
         "label": "Stale",
         "stars": 2,
         "openIssues": 0,
@@ -44321,7 +44321,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
@@ -44392,9 +44392,9 @@
         "score": 68,
         "label": "Maintained",
         "stars": 2,
-        "openIssues": 3,
+        "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-10-01T07:56:15Z",
+        "lastCommitAt": "2026-10-15T07:53:56Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
@@ -45725,7 +45725,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -46832,7 +46832,7 @@
       "stars": 2,
       "license": "N/A",
       "health": {
-        "score": 37,
+        "score": 36,
         "label": "Stale",
         "stars": 2,
         "openIssues": 0,
@@ -48145,9 +48145,9 @@
         "score": 70,
         "label": "Active",
         "stars": 4,
-        "openIssues": 5,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-08T21:45:23Z",
+        "lastCommitAt": "2026-10-15T21:44:45Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -48807,7 +48807,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 6,
         "openIssues": 0,
@@ -51359,7 +51359,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 80,
+        "score": 79,
         "label": "Active",
         "stars": 20,
         "openIssues": 2,
@@ -54471,13 +54471,13 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 68,
-        "label": "Maintained",
+        "score": 78,
+        "label": "Active",
         "stars": 1,
-        "openIssues": 1,
+        "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-10-14T06:46:56Z",
-        "lastReleaseAt": "2026-09-16T10:54:12Z",
+        "lastCommitAt": "2026-10-15T08:50:03Z",
+        "lastReleaseAt": "2026-10-15T08:49:58Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/reportportal/plugins-performance"
       }
@@ -55525,7 +55525,7 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 43,
+        "score": 42,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -55604,7 +55604,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
