@@ -44490,9 +44490,9 @@
         "score": 86,
         "label": "Active",
         "stars": 64,
-        "openIssues": 19,
+        "openIssues": 20,
         "archived": false,
-        "lastCommitAt": "2026-10-18T10:43:08Z",
+        "lastCommitAt": "2026-10-19T12:42:27Z",
         "lastReleaseAt": "2026-10-12T00:38:01Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -47382,7 +47382,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 46,
+        "score": 45,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -51401,7 +51401,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 30,
+        "score": 29,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -53330,7 +53330,7 @@
         "stars": 1,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-10-05T05:54:35Z",
+        "lastCommitAt": "2026-10-19T05:54:12Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
@@ -56049,7 +56049,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 35,
+        "score": 34,
         "label": "Stale",
         "stars": 1,
         "openIssues": 0,
@@ -56675,7 +56675,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
@@ -59355,7 +59355,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 59,
+        "score": 58,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
