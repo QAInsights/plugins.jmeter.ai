@@ -44487,12 +44487,12 @@
       "stars": 64,
       "license": "MIT",
       "health": {
-        "score": 86,
+        "score": 85,
         "label": "Active",
         "stars": 64,
-        "openIssues": 20,
+        "openIssues": 21,
         "archived": false,
-        "lastCommitAt": "2026-10-19T12:42:27Z",
+        "lastCommitAt": "2026-10-20T11:13:52Z",
         "lastReleaseAt": "2026-10-12T00:38:01Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -48762,7 +48762,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 65,
+        "score": 64,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -48825,6 +48825,53 @@
         "lastReleaseAt": "2026-04-08T17:10:11Z",
         "license": "MIT",
         "repoUrl": "https://github.com/perfsage/perfsage-slo-reporter"
+      }
+    },
+    "jmeterCompatibility": null
+  },
+  {
+    "id": "bzm-mcp-v1",
+    "name": "BlazeMeter - MCP Plugin",
+    "description": "Apache JMeter plugin for Model Context Protocol (MCP) servers. Provides a client config, an optional managed HTTP/SSE server process, and a sampler to ping, list tools, call tools, and read resources over STDIO, SSE, or Streamable HTTP.",
+    "screenshotUrl": "https://raw.githubusercontent.com/Blazemeter/jmeter-mcp-plugin/master/docs/images/mcp-client-config-stdio.png",
+    "helpUrl": "https://github.com/Blazemeter/jmeter-mcp-plugin/blob/master/README.md",
+    "vendor": "BlazeMeter",
+    "markerClass": "com.blazemeter.jmeter.mcp.sampler.McpSampler",
+    "componentClasses": [
+      "com.blazemeter.jmeter.mcp.config.McpClientConfig",
+      "com.blazemeter.jmeter.mcp.config.gui.McpClientConfigGui",
+      "com.blazemeter.jmeter.mcp.server.McpServerProcess",
+      "com.blazemeter.jmeter.mcp.server.gui.McpServerProcessGui",
+      "com.blazemeter.jmeter.mcp.sampler.McpSampler",
+      "com.blazemeter.jmeter.mcp.sampler.gui.McpSamplerGui"
+    ],
+    "versions": {
+      "1.0.0": {
+        "changes": "Initial release",
+        "downloadUrl": "https://github.com/Blazemeter/jmeter-mcp-plugin/releases/download/v1.0.0/jmeter-mcp-plugin-1.0.0.jar"
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 0,
+      "history": {}
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 75,
+        "label": "Active",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-10-19T18:00:53Z",
+        "lastReleaseAt": "2026-10-19T17:37:47Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/Blazemeter/jmeter-mcp-plugin"
       }
     },
     "jmeterCompatibility": null
@@ -52714,7 +52761,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 52,
+        "score": 51,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -54235,7 +54282,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -56448,7 +56495,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -57279,7 +57326,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -59630,7 +59677,7 @@
       "stars": 3,
       "license": "N/A",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -61947,8 +61994,8 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 25,
         "openIssues": 2,
         "archived": false,
