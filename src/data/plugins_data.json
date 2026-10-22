@@ -39484,8 +39484,8 @@
       "stars": 50,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 50,
         "openIssues": 1,
         "archived": false,
@@ -44484,15 +44484,15 @@
       }
     },
     "githubInfo": {
-      "stars": 64,
+      "stars": 65,
       "license": "MIT",
       "health": {
         "score": 85,
         "label": "Active",
-        "stars": 64,
+        "stars": 65,
         "openIssues": 21,
         "archived": false,
-        "lastCommitAt": "2026-10-20T11:13:52Z",
+        "lastCommitAt": "2026-10-22T02:34:14Z",
         "lastReleaseAt": "2026-10-12T00:38:01Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -44567,12 +44567,12 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 72,
+        "score": 80,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-06-04T09:34:42Z",
+        "lastCommitAt": "2026-10-21T16:43:20Z",
         "lastReleaseAt": "2026-05-27T10:08:17Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/ammyrohilla5050-dot/jmeter-coordinated-throughput-controller"
@@ -47540,7 +47540,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 64,
+        "score": 63,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -49888,8 +49888,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-10-09T12:26:26Z",
-        "lastReleaseAt": "2026-09-14T06:45:18Z",
+        "lastCommitAt": "2026-10-21T10:39:48Z",
+        "lastReleaseAt": "2026-10-21T10:39:48Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/prasantmohanty/jmeter-backend-listner-reportportal"
       }
@@ -49928,7 +49928,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 3,
         "openIssues": 0,
@@ -59847,7 +59847,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 29,
+        "score": 28,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -60488,7 +60488,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 42,
+        "score": 41,
         "label": "Maintained",
         "stars": 20,
         "openIssues": 25,
