@@ -31201,12 +31201,12 @@
       }
     },
     "githubInfo": {
-      "stars": 18,
+      "stars": 17,
       "license": "Apache-2.0",
       "health": {
         "score": 22,
         "label": "Stale",
-        "stars": 18,
+        "stars": 17,
         "openIssues": 0,
         "archived": false,
         "lastCommitAt": "2023-05-31T11:02:18Z",
@@ -37048,9 +37048,9 @@
         "score": 85,
         "label": "Active",
         "stars": 52,
-        "openIssues": 15,
+        "openIssues": 16,
         "archived": false,
-        "lastCommitAt": "2026-09-14T20:25:28Z",
+        "lastCommitAt": "2026-10-23T00:33:54Z",
         "lastReleaseAt": "2026-09-14T20:25:16Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/HLSPlugin"
@@ -41269,8 +41269,8 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 29,
         "openIssues": 7,
         "archived": false,
@@ -43535,7 +43535,7 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 47,
         "openIssues": 7,
@@ -44387,6 +44387,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.8.9": {
+        "changes": "FIXES: Terminal and Chat can stay together. Minor class loading fixes. ",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v3.8.9/jmeter-agent-3.8.9.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -44490,10 +44498,10 @@
         "score": 85,
         "label": "Active",
         "stars": 65,
-        "openIssues": 21,
+        "openIssues": 23,
         "archived": false,
-        "lastCommitAt": "2026-10-22T02:34:14Z",
-        "lastReleaseAt": "2026-10-12T00:38:01Z",
+        "lastCommitAt": "2026-10-23T02:48:13Z",
+        "lastReleaseAt": "2026-10-22T03:05:24Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -48816,7 +48824,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 62,
+        "score": 61,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -52282,7 +52290,7 @@
         "stars": 4,
         "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-15T21:44:45Z",
+        "lastCommitAt": "2026-10-22T21:44:50Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -57817,7 +57825,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 53,
+        "score": 52,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 27,
@@ -57889,9 +57897,9 @@
         "score": 68,
         "label": "Maintained",
         "stars": 2,
-        "openIssues": 2,
+        "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-10-15T07:53:56Z",
+        "lastCommitAt": "2026-10-22T07:53:56Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
