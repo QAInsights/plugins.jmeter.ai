@@ -32679,9 +32679,9 @@
         "score": 85,
         "label": "Active",
         "stars": 51,
-        "openIssues": 16,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-10-12T00:02:23Z",
+        "lastCommitAt": "2026-10-23T18:14:51Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -37048,9 +37048,9 @@
         "score": 85,
         "label": "Active",
         "stars": 52,
-        "openIssues": 16,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-10-23T00:33:54Z",
+        "lastCommitAt": "2026-10-23T18:09:36Z",
         "lastReleaseAt": "2026-09-14T20:25:16Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/HLSPlugin"
@@ -40963,9 +40963,9 @@
         "score": 85,
         "label": "Active",
         "stars": 51,
-        "openIssues": 16,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-10-12T00:02:23Z",
+        "lastCommitAt": "2026-10-23T18:14:51Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -44395,6 +44395,14 @@
           "jmeter-core",
           "jmeter-components"
         ]
+      },
+      "3.9.0": {
+        "changes": "NEW: Apple Foundational Models support and other bug fixes ",
+        "downloadUrl": "https://github.com/QAInsights/jmeter-ai/releases/download/v3.9.0/jmeter-agent-3.9.0.jar",
+        "depends": [
+          "jmeter-core",
+          "jmeter-components"
+        ]
       }
     },
     "sponsored": false,
@@ -44495,13 +44503,13 @@
       "stars": 65,
       "license": "MIT",
       "health": {
-        "score": 85,
+        "score": 91,
         "label": "Active",
         "stars": 65,
-        "openIssues": 23,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-23T02:48:13Z",
-        "lastReleaseAt": "2026-10-22T03:05:24Z",
+        "lastCommitAt": "2026-10-24T01:58:03Z",
+        "lastReleaseAt": "2026-10-23T03:13:32Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
       }
@@ -46461,7 +46469,7 @@
       "stars": 79,
       "license": "MIT",
       "health": {
-        "score": 80,
+        "score": 79,
         "label": "Active",
         "stars": 79,
         "openIssues": 0,
@@ -47289,7 +47297,7 @@
       "stars": 9,
       "license": "MIT",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 9,
         "openIssues": 0,
@@ -51880,7 +51888,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 27,
+        "score": 26,
         "label": "Stale",
         "stars": 0,
         "openIssues": 0,
@@ -61398,7 +61406,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 63,
+        "score": 62,
         "label": "Maintained",
         "stars": 32,
         "openIssues": 2,
