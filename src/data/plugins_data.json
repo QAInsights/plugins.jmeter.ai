@@ -2800,7 +2800,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -6720,12 +6720,12 @@
       }
     },
     "githubInfo": {
-      "stars": 1,
+      "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 72,
+        "score": 73,
         "label": "Active",
-        "stars": 1,
+        "stars": 2,
         "openIssues": 0,
         "archived": false,
         "lastCommitAt": "2026-07-05T09:31:39Z",
@@ -8792,7 +8792,7 @@
         "stars": 1,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-10-19T05:54:12Z",
+        "lastCommitAt": "2026-10-26T06:04:46Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
@@ -12835,7 +12835,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 6,
         "openIssues": 0,
@@ -16524,7 +16524,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 22,
+        "score": 21,
         "label": "Stale",
         "stars": 4,
         "openIssues": 0,
@@ -24146,7 +24146,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -27336,7 +27336,7 @@
         "stars": 13,
         "openIssues": 9,
         "archived": false,
-        "lastCommitAt": "2026-09-16T20:15:14Z",
+        "lastCommitAt": "2026-10-26T19:21:11Z",
         "lastReleaseAt": "2026-03-03T13:50:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/DataDog/jmeter-datadog-backend-listener"
@@ -29387,7 +29387,7 @@
       "stars": 7,
       "license": "N/A",
       "health": {
-        "score": 20,
+        "score": 19,
         "label": "Stale",
         "stars": 7,
         "openIssues": 3,
@@ -29830,7 +29830,7 @@
         "stars": 65,
         "openIssues": 5,
         "archived": false,
-        "lastCommitAt": "2026-10-26T02:31:06Z",
+        "lastCommitAt": "2026-10-27T01:52:35Z",
         "lastReleaseAt": "2026-10-23T03:13:32Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
