@@ -6899,12 +6899,12 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 75,
-        "label": "Active",
+        "score": 65,
+        "label": "Maintained",
         "stars": 0,
-        "openIssues": 0,
+        "openIssues": 1,
         "archived": false,
-        "lastCommitAt": "2026-10-19T18:00:53Z",
+        "lastCommitAt": "2026-10-28T21:48:14Z",
         "lastReleaseAt": "2026-10-19T17:37:47Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-mcp-plugin"
@@ -7064,6 +7064,49 @@
         "lastReleaseAt": "2026-08-19T17:21:20Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-readme-config"
+      }
+    },
+    "jmeterCompatibility": null
+  },
+  {
+    "id": "interval-controller",
+    "name": "Interval Controller",
+    "description": "Logic Controller that executes nested elements at most once per configured interval per JMeter thread, only when the thread encounters the controller. Supports optional retry-on-failure, jitter, dynamic interval expressions, and token refresh helpers. SKIP does not sleep or block sibling samplers. Not a Timer and not a background scheduler.",
+    "screenshotUrl": "https://raw.githubusercontent.com/GeorgeKalyaev/jmeter-interval-controller/v1.1.2/docs/images/01-interval-controller-gui.png",
+    "helpUrl": "https://github.com/GeorgeKalyaev/jmeter-interval-controller",
+    "vendor": "Georgii Kaliaev",
+    "markerClass": "com.example.jmeter.interval.IntervalControllerGui",
+    "componentClasses": [
+      "com.example.jmeter.interval.IntervalControllerGui",
+      "com.example.jmeter.interval.IntervalController"
+    ],
+    "versions": {
+      "1.1.2": {
+        "changes": "Stable release: interval EXECUTE/SKIP per thread, retry, jitter, dynamic interval, token TTL helpers, nested controller compatibility. Target JMeter 5.6.3, Java 8 bytecode.",
+        "downloadUrl": "https://github.com/GeorgeKalyaev/jmeter-interval-controller/releases/download/v1.1.2/jmeter-interval-controller-1.1.2.jar"
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 0,
+      "history": {}
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "NOASSERTION",
+      "health": {
+        "score": 75,
+        "label": "Active",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-10-27T22:02:40Z",
+        "lastReleaseAt": "2026-10-27T22:02:56Z",
+        "license": "NOASSERTION",
+        "repoUrl": "https://github.com/GeorgeKalyaev/jmeter-interval-controller"
       }
     },
     "jmeterCompatibility": null
@@ -8682,6 +8725,13 @@
           "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
           "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
         }
+      },
+      "1.8.0": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.8.0/perfana-jmeter-timescaledb-1.8.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
       }
     },
     "sponsored": false,
@@ -8719,8 +8769,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-10-14T13:45:53Z",
-        "lastReleaseAt": "2026-10-14T13:48:22Z",
+        "lastCommitAt": "2026-10-28T16:38:14Z",
+        "lastReleaseAt": "2026-10-28T16:40:18Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
@@ -10986,7 +11036,7 @@
       "stars": 1,
       "license": "NOASSERTION",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
@@ -29825,12 +29875,12 @@
       "stars": 65,
       "license": "MIT",
       "health": {
-        "score": 90,
+        "score": 91,
         "label": "Active",
         "stars": 65,
-        "openIssues": 6,
+        "openIssues": 4,
         "archived": false,
-        "lastCommitAt": "2026-10-28T03:22:09Z",
+        "lastCommitAt": "2026-10-28T12:28:49Z",
         "lastReleaseAt": "2026-10-23T03:13:32Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
