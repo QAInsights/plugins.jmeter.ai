@@ -2142,7 +2142,7 @@
       "stars": 6,
       "license": "N/A",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 6,
         "openIssues": 0,
@@ -6902,9 +6902,9 @@
         "score": 65,
         "label": "Maintained",
         "stars": 0,
-        "openIssues": 2,
+        "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-10-29T20:43:08Z",
+        "lastCommitAt": "2026-10-30T16:04:29Z",
         "lastReleaseAt": "2026-10-19T17:37:47Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-mcp-plugin"
@@ -8769,8 +8769,8 @@
         "stars": 1,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-10-28T16:38:14Z",
-        "lastReleaseAt": "2026-10-28T16:40:18Z",
+        "lastCommitAt": "2026-10-30T11:08:44Z",
+        "lastReleaseAt": "2026-10-30T11:10:53Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/perfana/perfana-jmeter-timescaledb"
       }
@@ -16425,7 +16425,7 @@
       "stars": 12,
       "license": "MIT",
       "health": {
-        "score": 29,
+        "score": 28,
         "label": "Stale",
         "stars": 12,
         "openIssues": 2,
@@ -28517,9 +28517,9 @@
         "score": 85,
         "label": "Active",
         "stars": 51,
-        "openIssues": 15,
+        "openIssues": 16,
         "archived": false,
-        "lastCommitAt": "2026-10-23T18:14:51Z",
+        "lastCommitAt": "2026-10-30T13:30:22Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -29880,7 +29880,7 @@
         "stars": 65,
         "openIssues": 6,
         "archived": false,
-        "lastCommitAt": "2026-10-30T03:31:07Z",
+        "lastCommitAt": "2026-10-30T14:47:24Z",
         "lastReleaseAt": "2026-10-23T03:13:32Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -33182,9 +33182,9 @@
         "score": 85,
         "label": "Active",
         "stars": 51,
-        "openIssues": 15,
+        "openIssues": 16,
         "archived": false,
-        "lastCommitAt": "2026-10-23T18:14:51Z",
+        "lastCommitAt": "2026-10-30T13:30:22Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
