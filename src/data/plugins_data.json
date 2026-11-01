@@ -372,7 +372,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 58,
+        "score": 57,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
@@ -2734,7 +2734,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 34,
+        "score": 33,
         "label": "Stale",
         "stars": 1,
         "openIssues": 0,
@@ -6801,7 +6801,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-10-24T20:54:10Z",
+        "lastCommitAt": "2026-10-31T20:53:04Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -8728,6 +8728,13 @@
       },
       "1.8.0": {
         "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.8.0/perfana-jmeter-timescaledb-1.8.0.jar",
+        "libs": {
+          "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
+          "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
+        }
+      },
+      "1.8.1": {
+        "downloadUrl": "https://repo1.maven.org/maven2/io/perfana/perfana-jmeter-timescaledb/1.8.1/perfana-jmeter-timescaledb-1.8.1.jar",
         "libs": {
           "postgresql>=42.7.4": "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar",
           "HikariCP>=5.1.0": "https://repo1.maven.org/maven2/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar"
@@ -18430,7 +18437,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 45,
+        "score": 44,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -29878,9 +29885,9 @@
         "score": 90,
         "label": "Active",
         "stars": 65,
-        "openIssues": 6,
+        "openIssues": 7,
         "archived": false,
-        "lastCommitAt": "2026-10-30T14:47:24Z",
+        "lastCommitAt": "2026-10-31T11:58:02Z",
         "lastReleaseAt": "2026-10-23T03:13:32Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -32865,7 +32872,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
