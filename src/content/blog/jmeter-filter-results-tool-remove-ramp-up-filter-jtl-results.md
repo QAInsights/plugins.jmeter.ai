@@ -121,7 +121,7 @@ down to 12.45%. The ramp-up period, where fewer than 20 threads were active, dra
 And the very first request, served cold, owns the maximum response time. None of that describes the
 system at steady state.
 
-## 4. How to remove ramp-up with --start-offset and --end-offset
+## 4. How to remove ramp-up with `--start-offset` and `--end-offset`
 
 This is the main reason people install the JMeter Filter Results Tool. With a 30-second ramp-up and
 a 120-second test, I want to keep the window from 30 to 110 seconds:
