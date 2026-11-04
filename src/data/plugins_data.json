@@ -15208,10 +15208,10 @@
       "stars": 50,
       "license": "Apache-2.0",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 50,
-        "openIssues": 1,
+        "openIssues": 2,
         "archived": false,
         "lastCommitAt": "2026-06-30T08:47:47Z",
         "lastReleaseAt": null,
@@ -25256,7 +25256,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 62,
+        "score": 61,
         "label": "Maintained",
         "stars": 32,
         "openIssues": 2,
@@ -27419,7 +27419,7 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 69,
+        "score": 68,
         "label": "Maintained",
         "stars": 29,
         "openIssues": 7,
@@ -34155,7 +34155,7 @@
       "stars": 79,
       "license": "MIT",
       "health": {
-        "score": 79,
+        "score": 78,
         "label": "Active",
         "stars": 79,
         "openIssues": 0,
@@ -38179,7 +38179,7 @@
         "stars": 13,
         "openIssues": 9,
         "archived": false,
-        "lastCommitAt": "2026-10-26T19:21:11Z",
+        "lastCommitAt": "2026-11-03T22:07:29Z",
         "lastReleaseAt": "2026-03-03T13:50:49Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/DataDog/jmeter-datadog-backend-listener"
@@ -40517,7 +40517,7 @@
         "stars": 66,
         "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-11-03T04:48:13Z",
+        "lastCommitAt": "2026-11-03T13:55:04Z",
         "lastReleaseAt": "2026-10-23T03:13:32Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -46337,7 +46337,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 52,
+        "score": 51,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 27,
@@ -49247,7 +49247,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-02T08:34:57Z",
+        "lastCommitAt": "2026-11-04T03:13:57Z",
         "lastReleaseAt": "2026-07-13T03:49:38Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -54332,7 +54332,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-02T08:34:57Z",
+        "lastCommitAt": "2026-11-04T03:13:57Z",
         "lastReleaseAt": "2026-07-13T03:49:38Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -56103,7 +56103,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 61,
+        "score": 60,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -58472,7 +58472,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-02T08:34:57Z",
+        "lastCommitAt": "2026-11-04T03:13:57Z",
         "lastReleaseAt": "2026-07-13T03:49:38Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -58552,7 +58552,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 2,
         "openIssues": 0,
@@ -58990,7 +58990,7 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 75,
+        "score": 74,
         "label": "Active",
         "stars": 47,
         "openIssues": 7,
@@ -59291,7 +59291,7 @@
       "stars": 9,
       "license": "MIT",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 9,
         "openIssues": 0,
@@ -61079,7 +61079,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-02T08:34:57Z",
+        "lastCommitAt": "2026-11-04T03:13:57Z",
         "lastReleaseAt": "2026-07-13T03:49:38Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
