@@ -27787,12 +27787,12 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 85,
+        "score": 84,
         "label": "Active",
         "stars": 51,
-        "openIssues": 15,
+        "openIssues": 18,
         "archived": false,
-        "lastCommitAt": "2026-11-02T15:22:33Z",
+        "lastCommitAt": "2026-11-07T03:39:09Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -35043,12 +35043,12 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 85,
+        "score": 84,
         "label": "Active",
         "stars": 51,
-        "openIssues": 15,
+        "openIssues": 18,
         "archived": false,
-        "lastCommitAt": "2026-11-02T15:22:33Z",
+        "lastCommitAt": "2026-11-07T03:39:09Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -35614,12 +35614,12 @@
       }
     },
     "githubInfo": {
-      "stars": 101,
+      "stars": 102,
       "license": "MIT",
       "health": {
         "score": 25,
         "label": "Stale",
-        "stars": 101,
+        "stars": 102,
         "openIssues": 20,
         "archived": false,
         "lastCommitAt": "2024-03-11T01:01:28Z",
@@ -40576,9 +40576,9 @@
         "score": 90,
         "label": "Active",
         "stars": 66,
-        "openIssues": 5,
+        "openIssues": 6,
         "archived": false,
-        "lastCommitAt": "2026-11-05T14:24:40Z",
+        "lastCommitAt": "2026-11-06T14:00:22Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -49325,7 +49325,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-04T06:45:07Z",
+        "lastCommitAt": "2026-11-06T07:11:55Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -50418,7 +50418,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 62,
+        "score": 61,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -54428,7 +54428,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-04T06:45:07Z",
+        "lastCommitAt": "2026-11-06T07:11:55Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -55036,7 +55036,7 @@
       "stars": 5,
       "license": "N/A",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -58585,7 +58585,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-04T06:45:07Z",
+        "lastCommitAt": "2026-11-06T07:11:55Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -58747,7 +58747,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 80,
+        "score": 79,
         "label": "Active",
         "stars": 3,
         "openIssues": 0,
@@ -61209,7 +61209,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-04T06:45:07Z",
+        "lastCommitAt": "2026-11-06T07:11:55Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "N/A",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
