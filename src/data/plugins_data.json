@@ -40576,9 +40576,9 @@
         "score": 90,
         "label": "Active",
         "stars": 66,
-        "openIssues": 6,
+        "openIssues": 7,
         "archived": false,
-        "lastCommitAt": "2026-11-06T14:00:22Z",
+        "lastCommitAt": "2026-11-07T12:44:48Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -48770,7 +48770,7 @@
       "stars": 6,
       "license": "Apache-2.0",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 6,
         "openIssues": 0,
@@ -51178,7 +51178,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 20,
         "openIssues": 2,
@@ -55927,7 +55927,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 0,
         "openIssues": 0,
@@ -57566,7 +57566,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-10-31T20:53:04Z",
+        "lastCommitAt": "2026-11-07T20:52:28Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -60910,7 +60910,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
