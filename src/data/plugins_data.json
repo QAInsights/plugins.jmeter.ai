@@ -1903,6 +1903,49 @@
     "jmeterCompatibility": null
   },
   {
+    "id": "io.phaseanalyzer-performance-phase-analyzer",
+    "name": "JMeter Performance Phase Analyzer",
+    "description": "A JMeter listener for phase-aware performance analysis of ramp-up, steady load, ramp-down and complete execution. Includes live metrics, Thread Group selection, offline HTML reports and Excel exports.",
+    "screenshotUrl": "https://raw.githubusercontent.com/srenevasanks/jmeter-performance-phase-analyzer/main/screenshots/listener/dashboard-running.png",
+    "helpUrl": "https://github.com/srenevasanks/jmeter-performance-phase-analyzer/blob/main/README.md",
+    "vendor": "Srenevasan",
+    "markerClass": "io.phaseanalyzer.PhaseAnalyzerListener",
+    "componentClasses": [
+      "io.phaseanalyzer.PhaseAnalyzerListener",
+      "io.phaseanalyzer.PhaseAnalyzerGui"
+    ],
+    "versions": {
+      "1.0.0": {
+        "changes": "Initial public release with phase-aware metrics, live dashboard, HTML reporting and Excel export.",
+        "downloadUrl": "https://github.com/srenevasanks/jmeter-performance-phase-analyzer/releases/download/v1.0.0/jmeter-performance-phase-analyzer-1.0.0.jar"
+      }
+    },
+    "sponsored": false,
+    "isAiReady": false,
+    "isFeatured": false,
+    "stats": {
+      "trendingDelta": 0,
+      "absoluteDownloads": 0,
+      "history": {}
+    },
+    "githubInfo": {
+      "stars": 0,
+      "license": "Apache-2.0",
+      "health": {
+        "score": 75,
+        "label": "Active",
+        "stars": 0,
+        "openIssues": 0,
+        "archived": false,
+        "lastCommitAt": "2026-11-01T16:23:34Z",
+        "lastReleaseAt": "2026-11-01T12:05:24Z",
+        "license": "Apache-2.0",
+        "repoUrl": "https://github.com/srenevasanks/jmeter-performance-phase-analyzer"
+      }
+    },
+    "jmeterCompatibility": null
+  },
+  {
     "id": "jmeter-atakama-backend-listener-plugin",
     "name": "Atakama Backend Listener Plugin",
     "description": "This plugin aims to send jmeter metrics to Atakama Infrastructure",
@@ -10076,9 +10119,9 @@
         "score": 88,
         "label": "Active",
         "stars": 66,
-        "openIssues": 12,
+        "openIssues": 13,
         "archived": false,
-        "lastCommitAt": "2026-11-10T04:45:24Z",
+        "lastCommitAt": "2026-11-10T16:28:59Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -11084,7 +11127,7 @@
       "stars": 54,
       "license": "Apache-2.0",
       "health": {
-        "score": 23,
+        "score": 22,
         "label": "Stale",
         "stars": 54,
         "openIssues": 12,
