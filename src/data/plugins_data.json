@@ -714,7 +714,7 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 41,
+        "score": 40,
         "label": "Maintained",
         "stars": 5,
         "openIssues": 0,
@@ -1726,9 +1726,9 @@
         "score": 68,
         "label": "Maintained",
         "stars": 2,
-        "openIssues": 4,
+        "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-11-05T07:54:01Z",
+        "lastCommitAt": "2026-11-12T07:54:13Z",
         "lastReleaseAt": "2026-04-25T06:15:45Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/JMXAuditor-jmeter-plugin"
@@ -7947,7 +7947,7 @@
       "stars": 1,
       "license": "N/A",
       "health": {
-        "score": 63,
+        "score": 62,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
@@ -9668,7 +9668,7 @@
       "stars": 25,
       "license": "N/A",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 25,
         "openIssues": 2,
@@ -10116,12 +10116,12 @@
       "stars": 66,
       "license": "MIT",
       "health": {
-        "score": 88,
+        "score": 87,
         "label": "Active",
         "stars": 66,
-        "openIssues": 14,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-11-11T13:54:50Z",
+        "lastCommitAt": "2026-11-12T14:55:59Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -10525,7 +10525,7 @@
       "stars": 0,
       "license": "N/A",
       "health": {
-        "score": 50,
+        "score": 49,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 3,
@@ -12029,9 +12029,9 @@
         "score": 70,
         "label": "Active",
         "stars": 4,
-        "openIssues": 9,
+        "openIssues": 11,
         "archived": false,
-        "lastCommitAt": "2026-11-05T21:44:22Z",
+        "lastCommitAt": "2026-11-12T21:44:10Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
