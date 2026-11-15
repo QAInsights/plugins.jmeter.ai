@@ -1808,7 +1808,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 3,
         "openIssues": 0,
@@ -1889,7 +1889,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 62,
+        "score": 61,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -3045,7 +3045,7 @@
         "stars": 2,
         "openIssues": 3,
         "archived": false,
-        "lastCommitAt": "2026-11-07T20:52:28Z",
+        "lastCommitAt": "2026-11-14T20:53:00Z",
         "lastReleaseAt": "2026-04-16T16:29:20Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jmx-version-control-system"
@@ -9435,7 +9435,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 72,
+        "score": 71,
         "label": "Active",
         "stars": 2,
         "openIssues": 0,
@@ -10119,9 +10119,9 @@
         "score": 87,
         "label": "Active",
         "stars": 66,
-        "openIssues": 16,
+        "openIssues": 17,
         "archived": false,
-        "lastCommitAt": "2026-11-13T14:21:45Z",
+        "lastCommitAt": "2026-11-14T13:18:01Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -14648,7 +14648,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 51,
+        "score": 50,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 27,
@@ -30597,7 +30597,7 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 68,
+        "score": 67,
         "label": "Maintained",
         "stars": 29,
         "openIssues": 7,
@@ -38764,7 +38764,7 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 47,
         "openIssues": 7,
