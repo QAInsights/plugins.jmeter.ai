@@ -1148,7 +1148,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 66,
+        "score": 65,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -1647,7 +1647,7 @@
       "stars": 20,
       "license": "Apache-2.0",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 20,
         "openIssues": 2,
@@ -2134,12 +2134,12 @@
       "stars": 4,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 4,
-        "openIssues": 11,
+        "openIssues": 10,
         "archived": false,
-        "lastCommitAt": "2026-11-12T21:44:10Z",
+        "lastCommitAt": "2026-11-19T21:44:18Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -2420,12 +2420,12 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 65,
-        "label": "Maintained",
+        "score": 75,
+        "label": "Active",
         "stars": 0,
-        "openIssues": 3,
+        "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-10-30T16:04:29Z",
+        "lastCommitAt": "2026-11-19T14:40:37Z",
         "lastReleaseAt": "2026-10-19T17:37:47Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-mcp-plugin"
@@ -7804,7 +7804,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 78,
+        "score": 77,
         "label": "Active",
         "stars": 1,
         "openIssues": 0,
@@ -34388,9 +34388,9 @@
         "score": 88,
         "label": "Active",
         "stars": 67,
-        "openIssues": 14,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-11-18T19:40:40Z",
+        "lastCommitAt": "2026-11-19T15:32:25Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
