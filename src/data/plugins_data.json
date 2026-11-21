@@ -2045,7 +2045,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 0,
         "openIssues": 0,
@@ -10590,8 +10590,8 @@
       "stars": 1,
       "license": "NOASSERTION",
       "health": {
-        "score": 70,
-        "label": "Active",
+        "score": 69,
+        "label": "Maintained",
         "stars": 1,
         "openIssues": 0,
         "archived": false,
@@ -16516,7 +16516,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 94,
+        "score": 93,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -20416,7 +20416,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 94,
+        "score": 93,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -30317,7 +30317,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 94,
+        "score": 93,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -34385,12 +34385,12 @@
       "stars": 67,
       "license": "MIT",
       "health": {
-        "score": 88,
+        "score": 87,
         "label": "Active",
         "stars": 67,
-        "openIssues": 15,
+        "openIssues": 16,
         "archived": false,
-        "lastCommitAt": "2026-11-19T15:32:25Z",
+        "lastCommitAt": "2026-11-20T15:11:30Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -37056,7 +37056,7 @@
         "score": 25,
         "label": "Stale",
         "stars": 102,
-        "openIssues": 20,
+        "openIssues": 19,
         "archived": false,
         "lastCommitAt": "2024-03-11T01:01:28Z",
         "lastReleaseAt": "2023-07-14T14:21:21Z",
@@ -39078,7 +39078,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 94,
+        "score": 93,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -39736,7 +39736,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 94,
+        "score": 93,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -47619,7 +47619,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 94,
+        "score": 93,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
@@ -53842,7 +53842,7 @@
       "stars": 143,
       "license": "Apache-2.0",
       "health": {
-        "score": 94,
+        "score": 93,
         "label": "Active",
         "stars": 143,
         "openIssues": 4,
