@@ -73,16 +73,17 @@ returns a synthetic result rather than making a network request. In a separate t
 response bodies or errors to check how the rest of your plan responds, without changing the mix.
 
 If you review your JMX in version control, look for `IsRandomChoice` and `Weights` inside
-`com.blazemeter.jmeter.control.WeightedSwitchController`. Here is the shape of the configuration
-with just the first row shown. The three fields are the child name, weight, and enabled state:
+`com.blazemeter.jmeter.control.WeightedSwitchController`. Here is the first row from the JMX saved
+by the GUI. JMeter generates the numeric `name` attributes from hashes. Read the values in order:
+child name, weight, and enabled state.
 
 ```xml
 <boolProp name="IsRandomChoice">false</boolProp>
 <collectionProp name="Weights">
-  <collectionProp name="0">
-    <stringProp name="0">Browse</stringProp>
-    <stringProp name="1">70</stringProp>
-    <stringProp name="2">true</stringProp>
+  <collectionProp name="452480606">
+    <stringProp name="1998230186">Browse</stringProp>
+    <stringProp name="1753">70</stringProp>
+    <stringProp name="3569038">true</stringProp>
   </collectionProp>
 </collectionProp>
 ```
