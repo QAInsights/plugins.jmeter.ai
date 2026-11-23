@@ -150,8 +150,18 @@ With **Random choice** off, the controller tracks selections per thread and favo
 furthest behind its target share. With the box checked, each selection is a weighted random draw
 instead. The
 [upstream implementation](https://github.com/Blazemeter/jmeter-bzm-plugins/blob/master/wsc/src/main/java/com/blazemeter/jmeter/control/WeightedSwitchController.java)
-shows both paths. To compare, enable the option, save as `traffic-mix-random.jmx`, and run the same
-command and counter with `traffic-mix-random.jtl` as the new results file.
+shows both paths. To compare, enable the option, save a separate plan as `traffic-mix-random.jmx`,
+and run it with a fresh results file:
+
+```bash
+jmeter -n -t traffic-mix-random.jmx -l traffic-mix-random.jtl \
+  -Jjmeter.save.saveservice.output_format=csv \
+  -Jjmeter.save.saveservice.print_field_names=true \
+  -Jjmeter.save.saveservice.label=true \
+  -Jjmeter.save.saveservice.successful=true
+```
+
+Pass `traffic-mix-random.jtl` to the same Python counter to compare the results.
 
 | Branch   | Random choice off | Random choice on, one run |
 | -------- | ----------------: | ------------------------: |
