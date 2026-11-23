@@ -87,9 +87,12 @@ with just the first row shown. The three fields are the child name, weight, and 
 </collectionProp>
 ```
 
-I use the GUI to edit the values and the JMX diff to review them. The values are matched by child
-name, not by row number. Reordering the children keeps the weights, but a renamed or newly added
-child gets the default weight. Use unique names and check the table again after renaming a branch.
+The GUI matches weights by child name when it rebuilds the table. During a run, though, the
+controller uses the saved row order to select children by position. I swapped Browse and Search in
+the JMX without moving their weight rows. The next CLI run selected Search 700 times and Browse 200
+times, reversing their original counts. After reordering or renaming a branch, reopen the controller
+panel, check the weights, and save the plan again before running it. Use unique names; renamed and
+newly added children get the default weight when the table is rebuilt.
 
 ## 3. Run from the CLI and count the JTL rows
 
