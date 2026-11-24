@@ -36364,7 +36364,7 @@
       "stars": 7,
       "license": "N/A",
       "health": {
-        "score": 18,
+        "score": 17,
         "label": "Stale",
         "stars": 7,
         "openIssues": 3,
@@ -36814,12 +36814,12 @@
       "stars": 67,
       "license": "MIT",
       "health": {
-        "score": 87,
+        "score": 86,
         "label": "Active",
         "stars": 67,
-        "openIssues": 18,
+        "openIssues": 19,
         "archived": false,
-        "lastCommitAt": "2026-11-22T14:23:58Z",
+        "lastCommitAt": "2026-11-24T03:24:41Z",
         "lastReleaseAt": "2026-11-04T23:52:27Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -37740,7 +37740,7 @@
       "stars": 19,
       "license": "MIT",
       "health": {
-        "score": 74,
+        "score": 73,
         "label": "Active",
         "stars": 19,
         "openIssues": 2,
@@ -41297,7 +41297,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 56,
+        "score": 55,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 8,
@@ -43343,7 +43343,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-16T07:41:56Z",
+        "lastCommitAt": "2026-11-23T07:49:42Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -50152,7 +50152,7 @@
       "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 43,
+        "score": 42,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -50850,7 +50850,7 @@
         "stars": 1,
         "openIssues": 2,
         "archived": false,
-        "lastCommitAt": "2026-11-16T06:07:27Z",
+        "lastCommitAt": "2026-11-23T06:07:45Z",
         "lastReleaseAt": "2026-04-16T19:31:38Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/BPM-jmeter-plugin"
@@ -52921,7 +52921,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-16T07:41:56Z",
+        "lastCommitAt": "2026-11-23T07:49:42Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -53645,7 +53645,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-16T07:41:56Z",
+        "lastCommitAt": "2026-11-23T07:49:42Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
@@ -57243,12 +57243,12 @@
       }
     },
     "githubInfo": {
-      "stars": 1,
+      "stars": 0,
       "license": "Apache-2.0",
       "health": {
-        "score": 77,
+        "score": 74,
         "label": "Active",
-        "stars": 1,
+        "stars": 0,
         "openIssues": 0,
         "archived": false,
         "lastCommitAt": "2026-10-16T08:26:36Z",
@@ -57457,7 +57457,7 @@
         "stars": 3,
         "openIssues": 0,
         "archived": false,
-        "lastCommitAt": "2026-11-16T07:41:56Z",
+        "lastCommitAt": "2026-11-23T07:49:42Z",
         "lastReleaseAt": "2026-11-04T06:45:08Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/rbourga/rbourga-jmeter-plugins"
