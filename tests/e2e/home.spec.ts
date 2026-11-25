@@ -163,6 +163,45 @@ test.describe('Home page', () => {
     await expect(clearBtn).toBeVisible();
   });
 
+  test('should surface search results immediately above the fold without scrolling', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    const searchInput = page.locator('#searchInput');
+    const heroSection = page.locator('#search');
+    const firstCard = page.locator('.plugin-wrapper:not(.hidden) .plugin-card').first();
+
+    await searchInput.fill('graph');
+    await expect(heroSection).toHaveAttribute('data-searching', 'true');
+    await expect(page.locator('#directoryHeading')).toContainText('Search results for "graph"');
+    await expect(page.locator('#statistics')).toBeHidden();
+    await expect(firstCard).toBeVisible();
+
+    const viewport = page.viewportSize();
+    const box = await firstCard.boundingBox();
+    expect(viewport).toBeTruthy();
+    expect(box).toBeTruthy();
+    expect(box!.y).toBeLessThan(viewport!.height);
+
+    // Clearing via Escape restores hero and discovery sections
+    await searchInput.press('Escape');
+    await expect(heroSection).not.toHaveAttribute('data-searching', 'true');
+    await expect(page.locator('#directoryHeading')).toHaveText('All Directory Plugins');
+    await expect(page.locator('#statistics')).toBeVisible();
+  });
+
+  test('should show clear button in empty search results and reset on click', async ({ page }) => {
+    await page.goto('/');
+    const searchInput = page.locator('#searchInput');
+    await searchInput.fill('zzzz-nonexistent-plugin-xyz');
+    await expect(page.locator('#noResults')).toBeVisible();
+    const clearEmptyBtn = page.locator('#noResultsClearBtn');
+    await expect(clearEmptyBtn).toBeVisible();
+    await clearEmptyBtn.click();
+    await expect(searchInput).toHaveValue('');
+    await expect(page.locator('#noResults')).toBeHidden();
+  });
+
   test('should show scroll-to-top button after scrolling', async ({ page }) => {
     await page.goto('/');
     // Scroll down

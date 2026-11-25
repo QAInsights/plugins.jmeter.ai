@@ -98,23 +98,33 @@ const homeSchema = {
   <main class="flex flex-grow flex-col">
     <Hero />
 
-    <div id="statistics">
+    <div id="statistics" data-hide-on-search>
       <FeaturedTrending trendingPlugins={trendingPlugins} featuredPlugins={featuredPlugins} />
     </div>
 
-    <BadgesPromotion />
+    <div data-hide-on-search>
+      <BadgesPromotion />
+    </div>
 
-    <DocsCTA />
+    <div data-hide-on-search>
+      <DocsCTA />
+    </div>
 
     {/* All Plugins Grid with Filters */}
-    <section id="compare" class="flex-grow px-4 py-8 sm:px-6 sm:py-10">
+    <section
+      id="compare"
+      class="flex-grow px-4 py-8 data-[searching=true]:pt-4 sm:px-6 sm:py-10 sm:data-[searching=true]:pt-6"
+    >
       <div class="mx-auto max-w-7xl">
         <div class="mb-6 flex flex-col justify-between gap-4 sm:mb-8 md:flex-row md:items-end">
           <div>
-            <h2 class="mb-2 text-2xl font-bold dark:text-white">All Directory Plugins</h2>
+            <h2 id="directoryHeading" class="mb-2 text-2xl font-bold dark:text-white">
+              All Directory Plugins
+            </h2>
 
             {/* Health Legend */}
             <div
+              data-hide-on-search
               class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-gray-500 dark:text-gray-400"
             >
               <span class="inline-flex items-center gap-1">
@@ -220,11 +230,18 @@ const homeSchema = {
 
         <div
           id="noResults"
-          class="hidden rounded-2xl border border-gray-200 bg-gray-50 py-20 text-center dark:border-white/5 dark:bg-white/[0.01]"
+          class="hidden rounded-2xl border border-gray-200 bg-gray-50 py-16 text-center dark:border-white/5 dark:bg-white/[0.01]"
         >
           <h3 id="noResultsMsg" class="text-xl text-gray-500 dark:text-gray-400">
             No plugins found matching your criteria.
           </h3>
+          <button
+            id="noResultsClearBtn"
+            type="button"
+            class="bg-primary mt-4 hidden rounded-lg px-4 py-2 text-sm font-bold text-gray-900 shadow-sm transition-all hover:brightness-105"
+          >
+            Clear search
+          </button>
         </div>
 
         {/* Share favorites bar — shown when Favorites filter is active with ≥1 item */}
@@ -315,10 +332,16 @@ const homeSchema = {
       const resultCount = document.getElementById('resultCount');
       const filterBtns = document.querySelectorAll('.filter-btn');
       const sortSelect = document.getElementById('sortSelect') as HTMLSelectElement;
-      const featuredTrendingSection = document.getElementById('featuredTrendingSection');
+      const heroSection = document.getElementById('search');
+      const compareSection = document.getElementById('compare');
+      const directoryHeading = document.getElementById('directoryHeading');
+      const noResultsClearBtn = document.getElementById('noResultsClearBtn');
+      const hideOnSearchSections = document.querySelectorAll('[data-hide-on-search]');
       const scrollSentinel = document.getElementById('scrollSentinel');
 
       let currentSearchTerm = '';
+      let rawSearchTerm = '';
+      let wasSearching = false;
       let currentCategory = 'all';
       let favoritesActive = false;
 
@@ -379,13 +402,27 @@ const homeSchema = {
         let renderedCount = 0;
 
         requestAnimationFrame(() => {
-          if (featuredTrendingSection) {
-            if (currentSearchTerm !== '') {
-              featuredTrendingSection.classList.add('hidden');
-            } else {
-              featuredTrendingSection.classList.remove('hidden');
-            }
+          const isSearching = currentSearchTerm !== '';
+          hideOnSearchSections.forEach((el) => {
+            el.classList.toggle('hidden', isSearching);
+          });
+          if (heroSection) {
+            if (isSearching) heroSection.dataset.searching = 'true';
+            else delete heroSection.dataset.searching;
           }
+          if (compareSection) {
+            if (isSearching) compareSection.dataset.searching = 'true';
+            else delete compareSection.dataset.searching;
+          }
+          if (directoryHeading) {
+            directoryHeading.textContent = isSearching
+              ? `Search results for "${rawSearchTerm}"`
+              : 'All Directory Plugins';
+          }
+          if (!wasSearching && isSearching && window.scrollY > 0) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+          wasSearching = isSearching;
 
           // Sync fav state from window.__favorites if available
           const favApi = (window as any).__favorites;
@@ -394,7 +431,8 @@ const homeSchema = {
               currentSearchTerm === '' ||
               item.name.includes(currentSearchTerm) ||
               item.desc.includes(currentSearchTerm) ||
-              item.vendor.includes(currentSearchTerm);
+              item.vendor.includes(currentSearchTerm) ||
+              item.pluginId.toLowerCase().includes(currentSearchTerm);
             const isFav = favApi
               ? favApi.has(item.pluginId)
               : item.element.getAttribute('data-fav') === '1';
@@ -440,6 +478,9 @@ const homeSchema = {
                     ? 'No favorites yet, click the ★ on any plugin to save it here.'
                     : 'No plugins found matching your criteria.';
               }
+              if (noResultsClearBtn) {
+                noResultsClearBtn.classList.toggle('hidden', !isSearching);
+              }
             } else {
               noResults.classList.add('hidden');
             }
@@ -477,16 +518,31 @@ const homeSchema = {
         observer.observe(scrollSentinel);
       }
 
-      // Debounce search input
+      // Debounce search input (clear immediately when emptied)
       let debounceTimer: number | null = null;
       if (searchInput) {
         searchInput.addEventListener('input', (e) => {
           if (debounceTimer) clearTimeout(debounceTimer);
-          debounceTimer = window.setTimeout(() => {
-            currentSearchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
+          const raw = (e.target as HTMLInputElement).value.trim();
+          const applySearch = () => {
+            rawSearchTerm = raw;
+            currentSearchTerm = raw.toLowerCase();
             displayLimit = ITEMS_PER_PAGE;
             updateGrid();
-          }, 250);
+          };
+          if (raw === '') {
+            applySearch();
+          } else {
+            debounceTimer = window.setTimeout(applySearch, 120);
+          }
+        });
+      }
+
+      if (noResultsClearBtn && searchInput) {
+        noResultsClearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
+          searchInput.focus();
         });
       }
 
