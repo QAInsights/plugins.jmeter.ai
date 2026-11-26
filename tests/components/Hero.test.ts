@@ -39,4 +39,11 @@ describe('Hero', () => {
     const { html } = await render();
     expect(html).toContain('Search plugins');
   });
+
+  it('should wrap hero intro for compact search mode', async () => {
+    const { html } = await render();
+    expect(html).toContain('id="heroIntro"');
+    expect(html).toContain('data-[searching=true]:sticky');
+    expect(html).toContain('id="searchShortcutHint"');
+  });
 });

@@ -4,24 +4,26 @@ import StarMap from './StarMap.astro';
 
 <section
   id="search"
-  class="relative min-h-[500px] overflow-hidden border-b border-gray-200 px-4 pt-12 pb-10 sm:px-6 sm:pt-16 dark:border-white/5"
+  class="group/hero relative min-h-[500px] overflow-hidden border-b border-gray-200 px-4 pt-12 pb-10 transition-all duration-200 data-[searching=true]:sticky data-[searching=true]:top-16 data-[searching=true]:z-30 data-[searching=true]:min-h-0 data-[searching=true]:py-3 sm:px-6 sm:pt-16 sm:data-[searching=true]:py-4 dark:border-white/5"
 >
   <StarMap />
   <div class="relative z-10 mx-auto max-w-4xl text-center">
-    <h1
-      class="mb-4 text-4xl leading-tight font-black tracking-tight text-gray-900 sm:mb-6 sm:text-5xl md:text-6xl dark:text-white"
-    >
-      Power up <span
-        class="from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
-        >JMeter</span
-      > with AI.
-    </h1>
-    <p
-      class="mx-auto mb-8 max-w-2xl px-2 text-base leading-relaxed text-gray-600 sm:mb-10 sm:px-0 sm:text-lg md:text-xl dark:text-gray-400"
-    >
-      The ultimate directory for modern load testing. Search, discover, and track the velocity of
-      the best plugins, completely synced daily.
-    </p>
+    <div id="heroIntro" class="group-data-[searching=true]/hero:hidden">
+      <h1
+        class="mb-4 text-4xl leading-tight font-black tracking-tight text-gray-900 sm:mb-6 sm:text-5xl md:text-6xl dark:text-white"
+      >
+        Power up <span
+          class="from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
+          >JMeter</span
+        > with AI.
+      </h1>
+      <p
+        class="mx-auto mb-8 max-w-2xl px-2 text-base leading-relaxed text-gray-600 sm:mb-10 sm:px-0 sm:text-lg md:text-xl dark:text-gray-400"
+      >
+        The ultimate directory for modern load testing. Search, discover, and track the velocity of
+        the best plugins, completely synced daily.
+      </p>
+    </div>
 
     <div class="group relative mx-auto max-w-2xl">
       <div
@@ -51,8 +53,14 @@ import StarMap from './StarMap.astro';
           aria-label="Search JMeter plugins"
           autocomplete="off"
           spellcheck="false"
-          class="w-full bg-transparent px-3 py-4 text-base font-medium text-gray-900 placeholder-gray-400 outline-none sm:px-4 sm:py-5 sm:text-lg dark:text-white dark:placeholder-white/40"
+          class="w-full bg-transparent px-3 py-4 text-base font-medium text-gray-900 placeholder-gray-400 outline-none group-data-[searching=true]/hero:py-2.5 sm:px-4 sm:py-5 sm:text-lg sm:group-data-[searching=true]/hero:py-3 dark:text-white dark:placeholder-white/40"
         />
+        <kbd
+          id="searchShortcutHint"
+          aria-hidden="true"
+          class="mr-3 hidden shrink-0 rounded border border-gray-200 bg-gray-100 px-1.5 py-0.5 font-mono text-xs font-semibold text-gray-400 group-focus-within:hidden sm:inline-block dark:border-white/10 dark:bg-white/5 dark:text-white/40"
+          >/</kbd
+        >
         <button
           id="clearSearchBtn"
           type="button"
@@ -76,19 +84,46 @@ import StarMap from './StarMap.astro';
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput') as HTMLInputElement;
     const clearBtn = document.getElementById('clearSearchBtn');
+    const shortcutHint = document.getElementById('searchShortcutHint');
 
     if (searchInput && clearBtn) {
-      searchInput.addEventListener('input', () => {
-        if (searchInput.value.length > 0) {
-          clearBtn.classList.remove('hidden');
-        } else {
-          clearBtn.classList.add('hidden');
+      const syncControls = () => {
+        const hasValue = searchInput.value.length > 0;
+        clearBtn.classList.toggle('hidden', !hasValue);
+        if (shortcutHint) {
+          shortcutHint.classList.toggle('sm:inline-block', !hasValue);
+        }
+      };
+
+      searchInput.addEventListener('input', syncControls);
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && searchInput.value.length > 0) {
+          e.preventDefault();
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
         }
       });
 
       clearBtn.addEventListener('click', () => {
         searchInput.value = '';
         searchInput.dispatchEvent(new Event('input'));
+        searchInput.focus();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+        const target = e.target as HTMLElement | null;
+        if (
+          target &&
+          (target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.tagName === 'SELECT' ||
+            target.isContentEditable)
+        ) {
+          return;
+        }
+        e.preventDefault();
         searchInput.focus();
       });
     }
