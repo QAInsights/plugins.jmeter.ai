@@ -10,9 +10,7 @@ const trailingSlashRedirect = defineMiddleware((context, next) => {
   const { pathname, search } = url;
   const hasFileExtension = /\/[^/]+\.[^/]+$/.test(pathname);
   const isInternalOrApi =
-    pathname.startsWith('/api/') ||
-    pathname.startsWith('/_') ||
-    pathname.startsWith('/pagefind/');
+    pathname.startsWith('/api/') || pathname.startsWith('/_') || pathname.startsWith('/pagefind/');
 
   if (pathname !== '/' && !pathname.endsWith('/') && !hasFileExtension && !isInternalOrApi) {
     return context.redirect(`${pathname}/${search}`, 301);

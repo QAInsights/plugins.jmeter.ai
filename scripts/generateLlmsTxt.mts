@@ -119,9 +119,7 @@ function buildLlmsTxt(
     '',
     '## Curated Collections',
     '',
-    ...collections.map(
-      (c) => `- [${c.name}](${SITE}/collections/${c.id}/): ${c.tagline}`,
-    ),
+    ...collections.map((c) => `- [${c.name}](${SITE}/collections/${c.id}/): ${c.tagline}`),
     '',
     `## Top 10 Most Downloaded Plugins (as of ${generatedDate})`,
     '',

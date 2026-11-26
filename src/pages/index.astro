@@ -46,7 +46,9 @@ const topDownloadedPlugins = [...pluginsData]
   .slice(0, 5);
 const fmtNum = (n: number) => new Intl.NumberFormat('en-US').format(n);
 const topPluginsSentence = topDownloadedPlugins
-  .map((p, i) => `(${i + 1}) ${p.name} (${p.id}) with ${fmtNum(p.stats.absoluteDownloads)} downloads`)
+  .map(
+    (p, i) => `(${i + 1}) ${p.name} (${p.id}) with ${fmtNum(p.stats.absoluteDownloads)} downloads`,
+  )
   .join(', ');
 
 // FAQPage schema — mirrored visibly in the DOM below to comply with Google's structured data guidelines
@@ -334,7 +336,10 @@ const homeItemListSchema = buildItemListSchema(
     </section>
 
     {/* Visible FAQ matching FAQPage JSON-LD */}
-    <section data-hide-on-search class="border-t border-gray-200 px-4 py-12 sm:px-6 sm:py-16 dark:border-white/5">
+    <section
+      data-hide-on-search
+      class="border-t border-gray-200 px-4 py-12 sm:px-6 sm:py-16 dark:border-white/5"
+    >
       <div class="mx-auto max-w-4xl">
         <h2 class="mb-6 text-2xl font-black tracking-tight text-gray-900 dark:text-white">
           Frequently Asked Questions

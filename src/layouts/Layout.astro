@@ -279,11 +279,7 @@ const safeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, '\\u003
     {/* Global WebSite schema with SearchAction on every page */}
     <script type="application/ld+json" set:html={safeJsonLd(websiteSchema)} />
     {/* Article schema for blog posts */}
-    {
-      articleSchema && (
-        <script type="application/ld+json" set:html={safeJsonLd(articleSchema)} />
-      )
-    }
+    {articleSchema && <script type="application/ld+json" set:html={safeJsonLd(articleSchema)} />}
     {/* BreadcrumbList schema */}
     {
       breadcrumbSchema && (
@@ -291,11 +287,7 @@ const safeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, '\\u003
       )
     }
     {/* Page-specific schema(s) (SoftwareApplication, FAQPage, ItemList, etc.) */}
-    {
-      extraSchemas.map((item) => (
-        <script type="application/ld+json" set:html={safeJsonLd(item)} />
-      ))
-    }
+    {extraSchemas.map((item) => <script type="application/ld+json" set:html={safeJsonLd(item)} />)}
 
     {/* Cloudflare Web Analytics */}
     <script

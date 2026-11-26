@@ -18,11 +18,7 @@ import {
   vendorSlug,
 } from '../../utils/plugin';
 import { formatJMeterVersion, getJMeterCompatibilityTitle } from '../../utils/jmeterCompatibility';
-import {
-  buildFaqSchema,
-  buildPluginFaqs,
-  getLatestPluginVersion,
-} from '../../utils/seoSchema';
+import { buildFaqSchema, buildPluginFaqs, getLatestPluginVersion } from '../../utils/seoSchema';
 
 export const prerender = true;
 
@@ -76,7 +72,9 @@ const showChangelog = hasChangelog(plugin);
 
 // SoftwareApplication schema — enables rich results in Google, Bing, and AI search
 const siteBase = 'https://plugins.jmeter.ai';
-const latestVersion = getLatestPluginVersion(plugin.versions as Record<string, unknown> | undefined);
+const latestVersion = getLatestPluginVersion(
+  plugin.versions as Record<string, unknown> | undefined,
+);
 const lastCommitAt = plugin.githubInfo?.health?.lastCommitAt;
 const licenseName = plugin.githubInfo?.license?.trim();
 const vendorHref = `/vendor/${vendorSlug(plugin.vendor)}/`;
@@ -159,9 +157,7 @@ const schema = {
         aria-label="Breadcrumb"
         class="mb-8 flex flex-wrap items-center gap-2 text-sm font-semibold text-gray-500 dark:text-gray-400"
       >
-        <a href="/" class="transition-colors hover:text-gray-900 dark:hover:text-white">
-          Home
-        </a>
+        <a href="/" class="transition-colors hover:text-gray-900 dark:hover:text-white"> Home </a>
         <span aria-hidden="true">/</span>
         <a href={vendorHref} class="transition-colors hover:text-gray-900 dark:hover:text-white">
           {plugin.vendor}
@@ -276,9 +272,13 @@ const schema = {
             </p>
 
             {/* Static CLI Install Command — crawlable by search engines and AI agents */}
-            <section class="mb-10 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-white/10 dark:bg-black/30">
+            <section
+              class="mb-10 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-white/10 dark:bg-black/30"
+            >
               <div class="mb-2 flex items-center justify-between gap-2">
-                <h2 class="text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+                <h2
+                  class="text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400"
+                >
                   Install via JMeter Plugins Manager CLI
                 </h2>
                 <a
@@ -288,9 +288,12 @@ const schema = {
                   Open in CLI Builder →
                 </a>
               </div>
-              <pre class="overflow-x-auto rounded-lg bg-gray-950 p-3.5 font-mono text-xs text-green-400 sm:text-sm"><code>PluginsManagerCMD.sh install {plugin.id}</code></pre>
+              <pre
+                class="overflow-x-auto rounded-lg bg-gray-950 p-3.5 font-mono text-xs text-green-400 sm:text-sm"><code>PluginsManagerCMD.sh install {plugin.id}</code></pre>
               <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                Windows: <code class="font-mono text-gray-700 dark:text-gray-300">PluginsManagerCMD.bat install {plugin.id}</code>
+                Windows: <code class="font-mono text-gray-700 dark:text-gray-300"
+                  >PluginsManagerCMD.bat install {plugin.id}</code
+                >
               </p>
             </section>
 

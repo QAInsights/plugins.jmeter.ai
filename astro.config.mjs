@@ -40,8 +40,14 @@ function loadBlogLastmodMap() {
       const slug = file.replace(/\.(md|mdx)$/, '').toLowerCase();
       const raw = fs.readFileSync(path.join(blogDir, file), 'utf8');
       const fm = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-      const updated = fm.match(/^updatedDate:\s*(.+)$/m)?.[1]?.trim().replace(/^['"]|['"]$/g, '');
-      const pub = fm.match(/^pubDate:\s*(.+)$/m)?.[1]?.trim().replace(/^['"]|['"]$/g, '');
+      const updated = fm
+        .match(/^updatedDate:\s*(.+)$/m)?.[1]
+        ?.trim()
+        .replace(/^['"]|['"]$/g, '');
+      const pub = fm
+        .match(/^pubDate:\s*(.+)$/m)?.[1]
+        ?.trim()
+        .replace(/^['"]|['"]$/g, '');
       const dateStr = updated || pub;
       if (dateStr) {
         const d = new Date(dateStr);

@@ -1,12 +1,26 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { filterDrafts } from '../../utils/blog';
 
 export const prerender = true;
 
+interface BlogPostEntry {
+  id: string;
+  body?: string;
+  data: {
+    title: string;
+    description: string;
+    author: string;
+    pubDate: Date;
+    updatedDate?: Date;
+    tags?: string[];
+    draft?: boolean;
+  };
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const rawPosts: unknown = await getCollection('blog');
-  const allPosts = Array.isArray(rawPosts) ? (rawPosts as Array<CollectionEntry<'blog'>>) : [];
+  const allPosts = Array.isArray(rawPosts) ? (rawPosts as BlogPostEntry[]) : [];
   const posts = filterDrafts(allPosts);
   return posts.map((post) => ({
     params: { slug: post.id },
@@ -15,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const GET: APIRoute = ({ props }) => {
-  const post = (props as { post: CollectionEntry<'blog'> }).post;
+  const post = (props as { post: BlogPostEntry }).post;
   const canonical = `https://plugins.jmeter.ai/blog/${post.id}/`;
   const tags = (post.data.tags || []).join(', ');
   const header = [
