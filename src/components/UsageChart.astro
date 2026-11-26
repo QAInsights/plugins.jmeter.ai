@@ -21,7 +21,28 @@ const { labels, data } = Astro.props;
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function loadChartJs(): Promise<any> {
+    // @ts-ignore
+    if (window.Chart) return Promise.resolve(window.Chart);
+    return new Promise((resolve) => {
+      const existing = document.querySelector('script[data-chartjs-loader]');
+      if (existing) {
+        // @ts-ignore
+        existing.addEventListener('load', () => resolve(window.Chart || null), { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+      script.async = true;
+      script.setAttribute('data-chartjs-loader', '1');
+      // @ts-ignore
+      script.onload = () => resolve(window.Chart || null);
+      script.onerror = () => resolve(null);
+      document.head.appendChild(script);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
     const chartContainer = document.querySelector('[data-chart-labels]');
     if (!chartContainer) return;
     const labels = JSON.parse(chartContainer.getAttribute('data-chart-labels') || '[]');
@@ -33,10 +54,10 @@ const { labels, data } = Astro.props;
     const isDark = document.documentElement.classList.contains('dark');
     const chartColor = isDark ? '#ccff00' : '#b0d600';
 
+    const ChartLib = await loadChartJs();
+    if (!ChartLib || !ctx) return;
     // @ts-ignore
-    if (!window.Chart || !ctx) return;
-    // @ts-ignore
-    new window.Chart(ctx, {
+    window.usageChartInstance = new ChartLib(ctx, {
       type: 'line',
       data: {
         labels: labels,

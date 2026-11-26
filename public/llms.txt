@@ -1,85 +1,102 @@
 # PerfAtlas
 
-> The modern directory for JMeter plugins — search, discover, compare, and track the velocity of load testing extensions, with AI-ready plugin highlights. Data synced nightly from canonical JMeter plugin repositories.
+> The modern directory for Apache JMeter plugins — search, discover, compare, and track the velocity and GitHub health of load testing extensions, with free browser-based JMeter tools and tutorials. Synced daily from the official JMeter Plugins registry.
 
-PerfAtlas (https://plugins.jmeter.ai) is a high-performance static site built with Astro that aggregates JMeter plugin data, tracks daily and weekly download trends, and curates collections of plugins for common load testing scenarios. It is maintained by NaveenKumar Namachivayam (QAInsights).
+PerfAtlas (https://plugins.jmeter.ai) indexes **150 Apache JMeter plugins**, **4 curated plugin stacks**, and **36 technical guides**. Maintained by NaveenKumar Namachivayam (QAInsights). Last generated: 2026-11-26.
 
-## What PerfAtlas Does
+## Machine-Readable Endpoints for AI Agents
 
-PerfAtlas is a free, community-driven directory of Apache JMeter plugins. It indexes 100+ plugins sourced from the official JMeter Plugins registry (https://jmeter-plugins.org), provides real-time download statistics, and surfaces trending plugins by weekly delta. Data is refreshed nightly via GitHub Actions. The site does not sell plugins — all listed plugins are free and open source.
+- [Full LLM Context](https://plugins.jmeter.ai/llms-full.txt): Complete catalog of all 150 plugins, collections, tools, and guides in a single file.
+- [All Plugins JSON API](https://plugins.jmeter.ai/api/plugins.json): Full structured dataset of all 150 plugins.
+- [Trending Plugins JSON API](https://plugins.jmeter.ai/api/trending.json): Top 25 plugins ranked by weekly download delta.
+- [Plugin Markdown Endpoint](https://plugins.jmeter.ai/plugin/{plugin-id}.md): Clean markdown summary, CLI install command, compatibility, and FAQs for any plugin (e.g., https://plugins.jmeter.ai/plugin/jpgc-perfmon.md).
+- [Blog Post Markdown Endpoint](https://plugins.jmeter.ai/blog/{slug}.md): Raw markdown for any tutorial.
+- [Blog RSS Feed](https://plugins.jmeter.ai/rss.xml): Latest tutorials and guides.
+- [XML Sitemap](https://plugins.jmeter.ai/sitemap-index.xml): Full site index with lastmod dates.
 
-## Who Maintains This
+## Core Pages & Free Tools
 
-PerfAtlas is built and maintained by NaveenKumar Namachivayam, a performance engineering consultant and author at QAInsights (https://qainsights.com). His expertise covers Apache JMeter, Gatling, k6, and AI-assisted performance testing. He can be found on Twitter/X at @qainsights and GitHub at github.com/QAInsights.
+- [Plugin Directory](https://plugins.jmeter.ai/): Search, filter by category, track trends, and build install lists. Supports query search via `/?q=<term>`.
+- [Compare Plugins](https://plugins.jmeter.ai/compare/): Side-by-side comparison table (`?ids=jpgc-perfmon,jpgc-casutg`).
+- [JMeter Tools Hub](https://plugins.jmeter.ai/tools/): Free browser-based utilities for load testing.
+- [JMeter CLI Command Builder](https://plugins.jmeter.ai/tools/cli-builder/): Visual builder for `jmeter` and `PluginsManagerCMD` commands.
+- [JMeter Thread Calculator](https://plugins.jmeter.ai/tools/thread-calculator/): Calculate required threads from target RPS, response time, think time, and headroom.
+- [Recently Updated Plugins](https://plugins.jmeter.ai/recently-updated/): Active plugins sorted by latest GitHub commit.
+- [Potentially Abandoned Plugins](https://plugins.jmeter.ai/potentially-abandoned/): Stale or archived JMeter plugins to watch out for.
+- [Vendors](https://plugins.jmeter.ai/vendor/): Browse plugins by author or organization.
+- [Collections](https://plugins.jmeter.ai/collections/): Curated stacks for CI/CD, Observability, Load Shaping, and AI workflows.
+- [Blog](https://plugins.jmeter.ai/blog/): 36 in-depth JMeter plugin guides and benchmarks.
 
-## Core Features
+## Curated Collections
 
-- Plugin directory with full-text search and tag filtering — search by name, description, or vendor
-- Side-by-side plugin comparison — compare up to 4 plugins across downloads, AI-readiness, license, GitHub stars, and category
-- Weekly download heatmap and historical usage charts — 52-week trend visualization per plugin
-- AI-Ready plugin badge — marks plugins validated for AI-assisted workflows (e.g., usable with AI agents, have predictable APIs, well-documented)
-- One-click install command generation for JMeter Plugin Manager — generates the exact command to paste in JMeter's plugin manager
-- Favorites system — localStorage-persisted favorites with shareable URL
-- Curated Collections: CI/CD Stack, Observability Stack, Load Shaping Stack, AI-Ready Starter
-- Vendor pages listing plugins by author/organization
-- Blog with JMeter plugin guides and tutorials
-- RSS feed at https://plugins.jmeter.ai/rss.xml
+- [CI/CD Stack](https://plugins.jmeter.ai/collections/ci-cd-stack/): Headless-friendly plugins for failing fast in pipelines.
+- [Observability Stack](https://plugins.jmeter.ai/collections/observability-stack/): Stream live metrics to your existing dashboards during tests.
+- [Load Shaping Stack](https://plugins.jmeter.ai/collections/load-shaping-stack/): Precise ramp profiles, target RPS, and safe failure thresholds.
+- [AI-Ready Starter](https://plugins.jmeter.ai/collections/ai-ready-starter/): All AI-augmented plugins in one install.
 
-## Pages
+## Top 10 Most Downloaded Plugins (as of 2026-11-26)
 
-- [Home](https://plugins.jmeter.ai/): Plugin directory, search, compare, statistics, AI-ready section, and one-click install.
-- [Plugin Detail](https://plugins.jmeter.ai/plugin/{plugin-id}/): Individual plugin page with downloads, trend chart, weekly heatmap, component classes, changelog, and related plugins. Replace {plugin-id} with a valid plugin ID such as `jpgc-perfmon`.
-- [Compare](https://plugins.jmeter.ai/compare/): Side-by-side comparison table. Add ?ids=jpgc-perfmon,jpgc-casutg to pre-select plugins.
-- [Recently Updated](https://plugins.jmeter.ai/recently-updated/): Plugins sorted by their latest GitHub commit dates.
-- [Potentially Stale](https://plugins.jmeter.ai/potentially-abandoned/): Plugins warning of long periods without commits or archived repositories.
-- [Vendors](https://plugins.jmeter.ai/vendor/): Browse plugins grouped by vendor/organization.
-- [Collections](https://plugins.jmeter.ai/collections/): Curated plugin stacks for specific testing scenarios.
-- [Blog](https://plugins.jmeter.ai/blog/): Tutorials and guides for JMeter plugins and load testing.
-- [Settings](https://plugins.jmeter.ai/settings/): Protected user account settings page (requires authentication via Clerk).
-- [RSS Feed](https://plugins.jmeter.ai/rss.xml): Blog RSS feed.
-- [Sitemap](https://plugins.jmeter.ai/sitemap-index.xml): Full site sitemap.
+1. [jmeter - Core](https://plugins.jmeter.ai/plugin/jmeter-core/) (`jmeter-core`) — 39,092 downloads. Core functionality for JMeter, including GUI and engine.
+2. [jmeter - HTTP Protocol Support](https://plugins.jmeter.ai/plugin/jmeter-http/) (`jmeter-http`) — 39,088 downloads. This sampler lets you send an HTTP/HTTPS request to a web server.
+3. [jmeter - Various Core Components](https://plugins.jmeter.ai/plugin/jmeter-components/) (`jmeter-components`) — 39,086 downloads. Ships a lot of various components for JMeter, including Debug Sampler
+4. [Plugins Manager](https://plugins.jmeter.ai/plugin/jpgc-plugins-manager/) (`jpgc-plugins-manager`) — 39,085 downloads. Adds menu item into Options menu to access UI for installing/removing additional plugins
+5. [jmeter - Java Components](https://plugins.jmeter.ai/plugin/jmeter-java/) (`jmeter-java`) — 39,068 downloads. Java Sampler and other components
+6. [jmeter - TCP Protocol Support](https://plugins.jmeter.ai/plugin/jmeter-tcp/) (`jmeter-tcp`) — 39,057 downloads. The TCP Sampler opens a TCP/IP connection to the specified server. It then sends the text, and waits for a response.
+7. [jmeter - OS Process Support](https://plugins.jmeter.ai/plugin/jmeter-native/) (`jmeter-native`) — 39,042 downloads. The OS Process Sampler is a sampler that can be used to execute commands on the local machine.
+8. [jmeter - JDBC Support](https://plugins.jmeter.ai/plugin/jmeter-jdbc/) (`jmeter-jdbc`) — 39,033 downloads. This sampler lets you send an JDBC Request (an SQL query) to a database.
+9. [jmeter - FTP Protocol Support](https://plugins.jmeter.ai/plugin/jmeter-ftp/) (`jmeter-ftp`) — 39,006 downloads. This controller lets you send an FTP 'retrieve file' or 'upload file' request to an FTP server.
+10. [jmeter - JMS Support](https://plugins.jmeter.ai/plugin/jmeter-jms/) (`jmeter-jms`) — 39,005 downloads. Offers JMS Subscriber, Publisher and JMS P2P
 
-## Collections
+## Top 5 Trending This Week
 
-- [CI/CD Stack](https://plugins.jmeter.ai/collections/ci-cd-stack/): jpgc-plancheck, jpgc-autostop, jpgc-synthesis — headless-friendly plugins for CI pipelines.
-- [Observability Stack](https://plugins.jmeter.ai/collections/observability-stack/): jpgc-perfmon, jmeter-datadog-backend-listener, elasticsearch listener — real-time metrics streaming to Datadog, Elasticsearch, and more.
-- [Load Shaping Stack](https://plugins.jmeter.ai/collections/load-shaping-stack/): jpgc-casutg, jpgc-tst, jpgc-autostop — precise RPS schedules and concurrency-based thread groups.
-- [AI-Ready Starter](https://plugins.jmeter.ai/collections/ai-ready-starter/): All plugins with the AI-Ready badge, auto-populated from the registry.
+1. [jmeter - Mail/SMTP Support](https://plugins.jmeter.ai/plugin/jmeter-mail/) (`jmeter-mail`) — +3,275 this week.
+2. [jmeter - MongoDB Support](https://plugins.jmeter.ai/plugin/jmeter-mongodb/) (`jmeter-mongodb`) — +3,273 this week.
+3. [jmeter - JUnit Support](https://plugins.jmeter.ai/plugin/jmeter-junit/) (`jmeter-junit`) — +3,270 this week.
+4. [jmeter - HTTP Protocol Support](https://plugins.jmeter.ai/plugin/jmeter-http/) (`jmeter-http`) — +3,270 this week.
+5. [jmeter - TCP Protocol Support](https://plugins.jmeter.ai/plugin/jmeter-tcp/) (`jmeter-tcp`) — +3,267 this week.
 
-## Most Downloaded Plugins (Top 5 by absolute downloads, as of 2026)
+## Blog Guides (36 Published)
 
-1. Custom Thread Groups (jpgc-casutg) — 1,850,000+ total downloads. Adds Stepping, Ultimate, Concurrency, and Arrivals Thread Groups for realistic traffic modeling.
-2. PerfMon Server Performance Monitoring (jpgc-perfmon) — 1,400,000+ downloads. Streams CPU, memory, and network metrics from target servers in real time during load tests.
-3. 5 Additional Graphs (jpgc-graphs-basic) — 1,350,000+ downloads. Renders Response Codes, Bytes Throughput, Connect Times, Latency, and Hits/s charts in GUI mode.
-4. Dummy Sampler (jpgc-dummy) — 1,200,000+ downloads. Generates synthetic results for script debugging with 0ms processing time.
-5. Throughput Shaping Timer (jpgc-tst) — 1,150,000+ downloads. Controls exact requests-per-second (RPS) schedules with less than 1% variance.
+- [JMeter Random CSV Data Set Config: How to Read Test Data in Random Order](https://plugins.jmeter.ai/blog/jmeter-random-csv-data-set-config-plugin-guide/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-random-csv-data-set-config-plugin-guide.md)) — Learn JMeter Random CSV Data Set Config with a tested CSV example, shared vs per-thread lists, header settings, EOF behavior, and a non-GUI verification run.
+- [JMeter Filter Results Tool: How to Remove Ramp-Up and Filter JTL Results](https://plugins.jmeter.ai/blog/jmeter-filter-results-tool-remove-ramp-up-filter-jtl-results/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-filter-results-tool-remove-ramp-up-filter-jtl-results.md)) — Learn how to use the JMeter Filter Results Tool to trim ramp-up, drop Debug and JSR223 samplers, and filter JTL results by label, regex, or success via CLI.
+- [JMeter 3 Basic Graphs Plugin: Response Times, Active Threads and TPS Over Time](https://plugins.jmeter.ai/blog/jmeter-basic-graphs-plugin-response-times-active-threads-tps/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-basic-graphs-plugin-response-times-active-threads-tps.md)) — Learn how to use the JMeter 3 Basic Graphs plugin for Response Times Over Time, Active Threads and TPS, and export PNG graphs from CLI with JMeterPluginsCMD.
+- [JMeter Custom Functions Plugin: How to Use __env, __base64Encode, __MD5 and More](https://plugins.jmeter.ai/blog/jmeter-custom-functions-plugin-env-base64encode-md5-guide/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-custom-functions-plugin-env-base64encode-md5-guide.md)) — Learn how to use the JMeter Custom Functions plugin: __env, __base64Encode, __MD5, __chooseRandom, __if and __caseFormat, with a tested JMX and common pitfalls.
+- [Ultimate Thread Group vs Arrivals Thread Group in JMeter](https://plugins.jmeter.ai/blog/jmeter-ultimate-thread-group-vs-arrivals-thread-group/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-ultimate-thread-group-vs-arrivals-thread-group.md)) — Compare JMeter Ultimate vs Arrivals Thread Group with real benchmarks: threads vs arrival rate, concurrency limits, ramp-up schedules, and when to pick each.
+- [JMeter AutoStop Listener: Fail Load Tests on SLA Breach](https://plugins.jmeter.ai/blog/jmeter-autostop-listener-stop-tests-on-sla-breach/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-autostop-listener-stop-tests-on-sla-breach.md)) — Configure the JMeter AutoStop Listener to halt tests on error rate, response time, or latency SLA breaches and fail CI/CD pipelines automatically.
+- [JMeter Flexible File Writer: How to Write Custom CSV Results and Save Extracted Data](https://plugins.jmeter.ai/blog/jmeter-flexible-file-writer-custom-csv-results/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-flexible-file-writer-custom-csv-results.md)) — Learn how to use the JMeter Flexible File Writer plugin to write custom CSV results, save extracted variables to a file, and avoid buffer and field pitfalls.
+- [JMeter Dummy Sampler: Mock APIs & Debug Test Plans](https://plugins.jmeter.ai/blog/jmeter-dummy-sampler-mock-api-responses-debug-test-plans/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-dummy-sampler-mock-api-responses-debug-test-plans.md)) — Use the JMeter Dummy Sampler plugin to mock HTTP/JSON responses and debug extractors, assertions, and correlation logic locally without a live server.
+- [How to Performance Test LLM Streaming APIs with JMeter: Measuring TTFT and Token Throughput](https://plugins.jmeter.ai/blog/how-to-performance-test-llm-streaming-apis-with-jmeter-ttft-token-throughput/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-performance-test-llm-streaming-apis-with-jmeter-ttft-token-throughput.md)) — Learn how to use JMeter to measure critical performance metrics like Time to First Token (TTFT) and token throughput when load testing streaming LLM APIs.
+- [JMeter Inter-Thread Communication Plugin: How to Share Data Between Thread Groups](https://plugins.jmeter.ai/blog/jmeter-inter-thread-communication-plugin-share-data-between-thread-groups/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-inter-thread-communication-plugin-share-data-between-thread-groups.md)) — Learn how the JMeter Inter-Thread Communication plugin shares data between thread groups via FIFO queues, __fifoPut/__fifoPop functions, timeouts, and pitfalls.
+- [JMeter Parallel Controller: How to Simulate AJAX and Concurrent Requests](https://plugins.jmeter.ai/blog/jmeter-parallel-controller-simulate-ajax-concurrent-requests/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-parallel-controller-simulate-ajax-concurrent-requests.md)) — Learn how the JMeter Parallel Controller plugin runs samplers concurrently to simulate AJAX calls and browser-style page loads, with JMX examples and pitfalls.
+- [Throughput Shaping Timer vs Concurrency Thread Group](https://plugins.jmeter.ai/blog/jmeter-throughput-shaping-timer-vs-concurrency-thread-group/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-throughput-shaping-timer-vs-concurrency-thread-group.md)) — JMeter Throughput Shaping Timer vs Concurrency Thread Group: when to target RPS vs concurrent users, how to pair them with tstFeedback, and config examples.
+- [How to Test MQTT Protocol with JMeter for IoT Applications](https://plugins.jmeter.ai/blog/how-to-test-mqtt-protocol-with-jmeter-for-iot-applications/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-test-mqtt-protocol-with-jmeter-for-iot-applications.md)) — Learn how to test MQTT protocol with JMeter using the EMQX plugin. Configure connect, publish, and subscribe samplers to load test IoT brokers and devices.
+- [High-Volume Testing on a Budget: Scaling to 1 Million+ RPS with Distributed JMeter](https://plugins.jmeter.ai/blog/scale-jmeter-1-million-rps-distributed-testing/) ([Markdown](https://plugins.jmeter.ai/blog/scale-jmeter-1-million-rps-distributed-testing.md)) — Learn how to plan, build, and run a distributed JMeter test that scales past 1 million requests per second without an unlimited cloud budget.
+- [AI Observability for Performance Engineers](https://plugins.jmeter.ai/blog/ai-observability-for-performance-engineers/) ([Markdown](https://plugins.jmeter.ai/blog/ai-observability-for-performance-engineers.md)) — Learn AI observability for performance engineers: TTFT, token metrics, OpenTelemetry GenAI conventions, and tools to monitor LLM systems in production.
+- [JMeter vs k6 for AI & LLM Load Testing (2026)](https://plugins.jmeter.ai/blog/jmeter-vs-k6-ai-workload-testing/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-vs-k6-ai-workload-testing.md)) — JMeter vs k6 for LLM APIs compared: TTFT, token throughput, SSE streaming, goodput metrics, and which tool fits your AI workload testing stack.
+- [JMeter Plugin Install Automation with PluginsManagerCMD in a Docker Image](https://plugins.jmeter.ai/blog/jmeter-plugin-install-automation-pluginsmanagercmd-docker/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-plugin-install-automation-pluginsmanagercmd-docker.md)) — Learn how to automate JMeter plugin installation inside a Docker image using PluginsManagerCMD, so your container is test-ready from the moment it spins up.
+- [JMeter Datadog Backend Listener: Stream Metrics in CI/CD](https://plugins.jmeter.ai/blog/jmeter-datadog-backend-listener-streaming-test-results-cicd/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-datadog-backend-listener-streaming-test-results-cicd.md)) — Stream live JMeter p95 latency, throughput, and error metrics to Datadog in CI/CD pipelines. Complete Backend Listener plugin setup and dashboard guide.
+- [5 JMeter Timer Plugins to Simulate Real User Think Time](https://plugins.jmeter.ai/blog/jmeter-timer-plugins-simulate-real-user-think-time/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-timer-plugins-simulate-real-user-think-time.md)) — Learn how to use the 5 best JMeter timer plugins to simulate realistic user think time in your performance tests.
+- [How to Import Swagger and Postman Collections into JMeter Automatically](https://plugins.jmeter.ai/blog/how-to-import-swagger-postman-collections-into-jmeter-automatically/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-import-swagger-postman-collections-into-jmeter-automatically.md)) — Learn how to convert Swagger/OpenAPI specs and Postman collections into JMeter test plans automatically using CLI tools, scripts, and CI/CD pipelines no manual point-and-click.
+- [How to Use JMeter PerfMon Plugin for Server Resource Monitoring (2026 Guide)](https://plugins.jmeter.ai/blog/how-to-use-jmeter-perfmon-plugin-for-server-resource-monitoring-2026-guide/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-use-jmeter-perfmon-plugin-for-server-resource-monitoring-2026-guide.md)) — A comprehensive 2026 guide on setting up and using the JMeter PerfMon Plugin and Server Agent to monitor server resources during load tests.
+- [How to Test AWS Services Like SQS and Kinesis with JMeter](https://plugins.jmeter.ai/blog/how-to-test-aws-services-like-sqs-and-kinesis-with-jmeter/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-test-aws-services-like-sqs-and-kinesis-with-jmeter.md)) — A practical guide for performance engineers and backend developers to load test AWS SQS queues and Kinesis data streams using Apache JMeter.
+- [JMeter WebSocket Plugin Tutorial: Testing Real-Time Apps Under Load](https://plugins.jmeter.ai/blog/jmeter-websocket-plugin-tutorial-real-time-load-testing/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-websocket-plugin-tutorial-real-time-load-testing.md)) — Master the JMeter WebSocket Plugin with this step-by-step guide. Learn how to load test real-time applications, manage bidirectional communication, and analyze results with precision.
+- [Real-Time JMeter Metrics with Prometheus and Grafana Using the Backend Listener](https://plugins.jmeter.ai/blog/real-time-jmeter-metrics-with-prometheus-and-grafana-using-the-backend-listener/) ([Markdown](https://plugins.jmeter.ai/blog/real-time-jmeter-metrics-with-prometheus-and-grafana-using-the-backend-listener.md)) — Learn how to stream JMeter test results to Prometheus and build a live Grafana dashboard using the Backend Listener plugin. Step-by-step guide for observability teams.
+- [JMeter KLoadGen Plugin for Kafka Load Testing with AVRO and Protobuf Schemas - 2026 Practical Guide](https://plugins.jmeter.ai/blog/jmeter-kloadgen-plugin-kafka-load-testing-avro-protobuf-schemas-2026-practical-guide/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-kloadgen-plugin-kafka-load-testing-avro-protobuf-schemas-2026-practical-guide.md)) — Explore the top JMeter KLoadGen plugin for Kafka load testing with AVRO and Protobuf schemas in 2026, featuring realistic workload modeling, protocol-specific enhancements like HTTP/2, and real-time observability.
+- [How to Load Test gRPC Microservices with the JMeter gRPC Plugin: A Step-by-Step Guide](https://plugins.jmeter.ai/blog/how-to-load-test-grpc-microservices-with-the-jmeter-grpc-plugin/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-load-test-grpc-microservices-with-the-jmeter-grpc-plugin.md)) — Learn how to load test gRPC microservices using the JMeter gRPC plugin with this step-by-step guide covering setup, proto files, parameterization, and CI/CD
+- [8 JMeter Plugins That Make Distributed Load Testing Easier](https://plugins.jmeter.ai/blog/jmeter-plugins-for-distributed-load-testing/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-plugins-for-distributed-load-testing.md)) — Discover 8 JMeter plugins that simplify distributed load testing, including Feather Wand, PerfMon, HTTP Simple Table Server, and Backend Listener
+- [JMeter vs Gatling: Which Tool Has Better Plugin Support in 2026?](https://plugins.jmeter.ai/blog/jmeter-vs-gatling-plugin-support-2026/) ([Markdown](https://plugins.jmeter.ai/blog/jmeter-vs-gatling-plugin-support-2026.md)) — A comprehensive comparison of JMeter and Gatling's plugin support in 2026, exploring depth, discoverability, CI/CD support, and AI integrations.
+- [How to Test Kafka Message Queues with JMeter: The Complete Load Testing Guide](https://plugins.jmeter.ai/blog/how-to-test-kafka-message-queues-with-jmeter-the-complete-load-testing-guide/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-test-kafka-message-queues-with-jmeter-the-complete-load-testing-guide.md)) — Learn how to load test Kafka message queues using JMeter with Kafkameter and Pepper-Box plugins, including producer and consumer examples and best practices.
+- [How to Use JMeter's Throughput Shaping Timer for Realistic Load Profiles](https://plugins.jmeter.ai/blog/how-to-use-jmeter-throughput-shaping-timer-for-realistic-load-profiles/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-use-jmeter-throughput-shaping-timer-for-realistic-load-profiles.md)) — Learn how to use JMeter's Throughput Shaping Timer to simulate realistic load profiles and improve your load testing accuracy.
+- [Testing AWS SQS and Kinesis with JMeter + LocalStack](https://plugins.jmeter.ai/blog/testing-aws-sqs-kinesis-jmeter-localstack/) ([Markdown](https://plugins.jmeter.ai/blog/testing-aws-sqs-kinesis-jmeter-localstack.md)) — Run Your Entire AWS Test Environment Locally — Zero Cloud Costs
+- [How to Load Test WebSocket Applications Using JMeter Plugins?](https://plugins.jmeter.ai/blog/how-to-load-test-websocket-applications-using-jmeter-plugins/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-load-test-websocket-applications-using-jmeter-plugins.md)) — JMeter does not speak WebSocket natively. You need a community sampler, and the two maintained options are WebSocket Samplers by Peter Doornbosch and the older WebSocket Sampler by Maciej Zaleski. In practice, Peter’s suite is cited as the most comprehensive
+- [How to Find and Install the Best JMeter Plugins for Load Testing in 2026 (Using PerfAtlas)](https://plugins.jmeter.ai/blog/how-to-find-and-install-the-best-jmeter-plugins-for-load-testing-in-2026/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-find-and-install-the-best-jmeter-plugins-for-load-testing-in-2026.md)) — Learn about the latest features and improvements in PerfAtlas
+- [What's new in PerfAtlas?](https://plugins.jmeter.ai/blog/new-in-perfatlas/) ([Markdown](https://plugins.jmeter.ai/blog/new-in-perfatlas.md)) — Learn about the latest features and improvements in PerfAtlas
+- [Best JMeter Plugins for API Load Testing in 2026 (With Download Stats & Benchmarks)](https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026/) ([Markdown](https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026.md)) — Explore the top JMeter plugins for API load testing in 2026, featuring realistic workload modeling, protocol-specific enhancements like HTTP/2, and real-time observability.
+- [How to install JMeter Plugins Manager?](https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger/) ([Markdown](https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger.md)) — Discover how to install JMeter Plugins Manager and explore the latest plugins to supercharge your testing workflows.
 
-## Blog Posts
+## Maintainer & Links
 
-- [Best JMeter Plugins for API Load Testing in 2026](https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026/) — Curated list with download stats and benchmarks for the top JMeter plugins for API testing.
-- [How to Install JMeter Plugins with Plugin Manager](https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger/) — Step-by-step guide for installing plugins via JMeter Plugin Manager.
-- [What's New in PerfAtlas](https://plugins.jmeter.ai/blog/new-in-perfatlas/) — Changelog and feature announcements for the PerfAtlas platform.
-- [How to Load Test gRPC Microservices with the JMeter gRPC Plugin](https://plugins.jmeter.ai/blog/how-to-load-test-gRPC-microservices-with-the-jmeter-gRPC-plugin/) — Practical guide for gRPC load testing using the JMeter gRPC Request plugin.
-- [How to Load Test WebSocket Applications Using JMeter Plugins](https://plugins.jmeter.ai/blog/How-to-Load-Test-WebSocket-Applications-Using-JMeter-Plugins/) — Covers WebSocket load testing setup and scenarios.
-- [How to Use JMeter Throughput Shaping Timer for Realistic Load Tests](https://plugins.jmeter.ai/blog/how-to-use-jmeter-throughput-shaping-timer-for-realistic-load-tests/) — Deep dive into RPS-based scheduling with jpgc-tst.
-- [JMeter Plugins for Distributed Load Testing](https://plugins.jmeter.ai/blog/jmeter-plugins-for-distributed-load-testing/) — Best plugins for running JMeter in distributed/controller-worker mode.
-- [JMeter vs Gatling Plugin Support in 2026](https://plugins.jmeter.ai/blog/jmeter-vs-gatling-plugin-support-2026/) — Comparison of plugin ecosystems between JMeter and Gatling.
-
-## Data & Integrations
-
-- Plugin data fetched from the official JMeter Plugins registry via `scripts/fetchData.mjs`
-- GitHub Actions workflow syncs data nightly
-- AI-Ready flags and custom metadata managed in `src/data/overrides.json`
-- Collections defined in `src/data/collections.json`
-
-## External Links
-
+- Maintainer: NaveenKumar Namachivayam (https://qainsights.com)
 - GitHub: https://github.com/QAInsights/plugins.jmeter.ai
 - JMeter.ai: https://jmeter.ai
-- QAInsights: https://qainsights.com
-- Support: https://www.buymeacoffee.com/qainsights
-- Twitter/X: https://twitter.com/qainsights
-
-## Pricing
-
-PerfAtlas is free to use. All plugins listed in the directory are free and open source. There are no paid tiers, no API keys required for browsing, and no paywalled content. The site is supported by the community.
+- Pricing: 100% free and open source; no paywalls or API keys required.

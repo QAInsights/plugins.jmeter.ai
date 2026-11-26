@@ -7,6 +7,7 @@ import FavoritesManager from '../components/FavoritesManager.astro';
 import PreferencesManager from '../components/PreferencesManager.astro';
 import EthicalAd from '../components/EthicalAd.astro';
 import { resolveEthicalAdsPublisher } from '../utils/ethicalAds';
+import { buildBreadcrumbSchema, type BreadcrumbItem } from '../utils/seoSchema';
 import { SEO } from 'astro-seo';
 
 interface Props {
@@ -17,26 +18,37 @@ interface Props {
   articleDate?: string;
   articleModifiedDate?: string;
   articleAuthor?: string;
-  schema?: Record<string, unknown>;
+  articleKeywords?: readonly string[];
+  articleWordCount?: number;
+  schema?: Record<string, unknown> | readonly Record<string, unknown>[];
+  breadcrumbs?: readonly BreadcrumbItem[];
+  markdownUrl?: string;
   canonicalURL?: string | URL;
   /** Page topics for EthicalAds contextual targeting. */
   adKeywords?: readonly (string | undefined | null)[];
   /** Set false to render the page without the floating ad. */
   showAd?: boolean;
+  /** Set true to add robots noindex meta tag (e.g., auth/settings pages). */
+  noindex?: boolean;
 }
 
 const {
   title,
   description = 'Discover, search, and track modern and AI-ready JMeter plugins. Community-driven directory automatically synced daily.',
-  image = '/favicon.svg',
+  image = '/og/home.png',
   type = 'website',
   articleDate,
   articleModifiedDate,
   articleAuthor,
+  articleKeywords,
+  articleWordCount,
   schema,
+  breadcrumbs,
+  markdownUrl,
   canonicalURL,
   adKeywords = [],
   showAd = true,
+  noindex = false,
 } = Astro.props;
 
 const adPublisher = showAd
@@ -75,7 +87,12 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'PerfAtlas by QAInsights',
   url: 'https://plugins.jmeter.ai',
-  logo: 'https://plugins.jmeter.ai/favicon.svg',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://plugins.jmeter.ai/android-chrome-512x512.png',
+    width: 512,
+    height: 512,
+  },
   sameAs: [
     'https://github.com/QAInsights/plugins.jmeter.ai',
     'https://qainsights.com',
@@ -117,16 +134,25 @@ const articleSchema =
         description: description,
         image: socialImageURL.toString(),
         url: resolvedCanonicalURL,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': resolvedCanonicalURL,
+        },
         ...(articleDate ? { datePublished: articleDate } : {}),
         ...(articleModifiedDate
           ? { dateModified: articleModifiedDate }
           : articleDate
             ? { dateModified: articleDate }
             : {}),
+        ...(articleKeywords && articleKeywords.length > 0
+          ? { keywords: articleKeywords.join(', ') }
+          : {}),
+        ...(articleWordCount ? { wordCount: articleWordCount } : {}),
         author: {
           '@type': 'Person',
           name: articleAuthor || 'NaveenKumar Namachivayam',
           url: 'https://qainsights.com',
+          sameAs: ['https://twitter.com/qainsights', 'https://github.com/QAInsights'],
         },
         publisher: {
           '@type': 'Organization',
@@ -134,11 +160,17 @@ const articleSchema =
           url: 'https://plugins.jmeter.ai',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://plugins.jmeter.ai/favicon.svg',
+            url: 'https://plugins.jmeter.ai/android-chrome-512x512.png',
+            width: 512,
+            height: 512,
           },
         },
       }
     : null;
+const breadcrumbSchema =
+  breadcrumbs && breadcrumbs.length > 0 ? buildBreadcrumbSchema(breadcrumbs) : null;
+const extraSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const safeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, '\\u003c');
 ---
 
 <html lang="en" class="dark">
@@ -154,6 +186,18 @@ const articleSchema =
       href="/llms.txt"
       title="LLM-readable site description"
     />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/rss.xml"
+      title="PerfAtlas Blog RSS Feed"
+    />
+    {
+      markdownUrl && (
+        <link rel="alternate" type="text/markdown" href={markdownUrl} title="Markdown version" />
+      )
+    }
+    <meta name="theme-color" content="#09090b" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -167,12 +211,18 @@ const articleSchema =
       title={title}
       description={description}
       canonical={resolvedCanonicalURL}
+      noindex={noindex}
       openGraph={{
         basic: {
           title: title,
           type: type,
           image: socialImageURL.toString(),
           url: resolvedCanonicalURL,
+        },
+        optional: {
+          description: description,
+          locale: 'en_US',
+          siteName: 'PerfAtlas',
         },
         article:
           type === 'article'
@@ -224,20 +274,20 @@ const articleSchema =
       })();
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" is:inline></script>
-
     {/* Global Organization schema on every page */}
-    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={safeJsonLd(organizationSchema)} />
     {/* Global WebSite schema with SearchAction on every page */}
-    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={safeJsonLd(websiteSchema)} />
     {/* Article schema for blog posts */}
+    {articleSchema && <script type="application/ld+json" set:html={safeJsonLd(articleSchema)} />}
+    {/* BreadcrumbList schema */}
     {
-      articleSchema && (
-        <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+      breadcrumbSchema && (
+        <script type="application/ld+json" set:html={safeJsonLd(breadcrumbSchema)} />
       )
     }
-    {/* Page-specific schema (SoftwareApplication, etc.) */}
-    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    {/* Page-specific schema(s) (SoftwareApplication, FAQPage, ItemList, etc.) */}
+    {extraSchemas.map((item) => <script type="application/ld+json" set:html={safeJsonLd(item)} />)}
 
     {/* Cloudflare Web Analytics */}
     <script

@@ -8,6 +8,7 @@ import Footer from '../components/Footer.astro';
 import PluginModal from '../components/PluginModal.astro';
 import Tooltip from '../components/Tooltip.astro';
 import pluginsData from '../data/plugins_data.json';
+import { buildItemListSchema } from '../utils/seoSchema';
 
 // Filter plugins whose label is Stale/Archived, sorted by score ascending
 const plugins = pluginsData
@@ -24,9 +25,21 @@ const plugins = pluginsData
 const title = 'Potentially Abandoned JMeter Plugins | PerfAtlas';
 const description =
   'List of JMeter plugins that appear to be unmaintained or archived on GitHub. Understand repository status, star count, and last commit dates.';
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Potentially Abandoned', url: '/potentially-abandoned/' },
+];
+const itemListSchema = buildItemListSchema(
+  'Potentially Abandoned JMeter Plugins',
+  plugins.slice(0, 30).map((p: any) => ({
+    name: p.name,
+    url: `/plugin/${p.id}/`,
+    description: p.description,
+  })),
+);
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} breadcrumbs={breadcrumbs} schema={itemListSchema}>
   <Header />
 
   <main class="mx-auto w-full max-w-7xl flex-grow px-6 py-12 md:py-20">

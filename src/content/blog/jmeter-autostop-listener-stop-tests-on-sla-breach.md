@@ -1,6 +1,6 @@
 ---
-title: "JMeter AutoStop Listener: How to Stop Load Tests Automatically on SLA Breach"
-description: "Learn how the JMeter AutoStop Listener stops load tests on error rate, response time, or percentile SLA breaches, and how to fail your CI build when it fires."
+title: "JMeter AutoStop Listener: Fail Load Tests on SLA Breach"
+description: "Configure the JMeter AutoStop Listener to halt tests on error rate, response time, or latency SLA breaches and fail CI/CD pipelines automatically."
 pubDate: 2026-10-05T12:00:00Z
 author: "NaveenKumar Namachivayam"
 image: "../../assets/blog/jmeter-autostop-listener-stop-tests-on-sla-breach.png"

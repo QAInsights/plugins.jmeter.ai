@@ -19,16 +19,14 @@ const jmeterDisplay = formatJMeterVersion(plugin.jmeterCompatibility);
 const jmeterTitle = getJMeterCompatibilityTitle(plugin.jmeterCompatibility);
 ---
 
-<div
-  tabindex="0"
-  role="button"
+<article
   class={`plugin-card text-left group relative flex flex-col rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 w-full cursor-pointer ${
     plugin.isAiReady
       ? 'ai-glow-wrapper shadow-md dark:shadow-[0_0_15px_rgba(155,114,203,0.1)] hover:shadow-xl dark:hover:shadow-[0_0_25px_rgba(66,133,244,0.3)]'
       : 'bg-white dark:bg-dark-surface border border-gray-200 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(204,255,0,0.15)]'
   }`}
   data-category={category.toLowerCase()}
-  data-plugin={JSON.stringify(plugin)}
+  data-plugin-id={plugin.id}
 >
   <div
     class={`flex flex-col h-full w-full relative z-10 ${plugin.isAiReady ? 'bg-white dark:bg-dark-surface rounded-[10px]' : ''}`}
@@ -51,7 +49,7 @@ const jmeterTitle = getJMeterCompatibilityTitle(plugin.jmeterCompatibility);
           >
           <button
             type="button"
-            class="copy-id-btn -ml-1 p-1 text-gray-400 transition-colors hover:text-green-600 dark:hover:text-[#ccff00]"
+            class="copy-id-btn relative z-20 -ml-1 p-1 text-gray-400 transition-colors hover:text-green-600 dark:hover:text-[#ccff00]"
             data-plugin-id={plugin.id}
             title="Copy ID"
           >
@@ -124,8 +122,33 @@ const jmeterTitle = getJMeterCompatibilityTitle(plugin.jmeterCompatibility);
             >
             <span class="install-btn-label sr-only">Install</span>
           </button>
+          <button
+            type="button"
+            class="quick-view-btn relative z-20 flex h-7 w-7 items-center justify-center rounded-md border border-transparent text-gray-400 transition-all hover:border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-500 dark:hover:border-white/10 dark:hover:bg-white/5 dark:hover:text-white"
+            data-plugin-id={plugin.id}
+            aria-label={`Quick view ${plugin.name}`}
+            title="Quick view"
+          >
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              ></path>
+            </svg>
+          </button>
           <label
-            class="group/compare flex h-7 w-10 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-white/5"
+            class="group/compare relative z-20 flex h-7 w-10 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-white/5"
             onclick="event.stopPropagation()"
             title="Add to compare"
             aria-label="Add to compare"
@@ -148,13 +171,18 @@ const jmeterTitle = getJMeterCompatibilityTitle(plugin.jmeterCompatibility);
           <h3
             class="line-clamp-2 text-xl leading-tight font-bold text-gray-900 transition-colors group-hover:text-green-600 dark:text-gray-100 dark:group-hover:text-[#ccff00]"
           >
-            {plugin.name}
+            <a
+              href={`/plugin/${plugin.id}/`}
+              class="after:absolute after:inset-0 after:z-10 focus:outline-none"
+            >
+              {plugin.name}
+            </a>
           </h3>
           {
             vendorHref ? (
               <a
                 href={vendorHref}
-                class="mt-1 w-fit text-xs font-semibold tracking-wider text-gray-500 uppercase transition-colors hover:text-green-600 dark:text-gray-400 dark:hover:text-[#ccff00]"
+                class="relative z-20 mt-1 w-fit text-xs font-semibold tracking-wider text-gray-500 uppercase transition-colors hover:text-green-600 dark:text-gray-400 dark:hover:text-[#ccff00]"
                 onclick="event.stopPropagation()"
               >
                 By {plugin.vendor}
@@ -278,4 +306,4 @@ const jmeterTitle = getJMeterCompatibilityTitle(plugin.jmeterCompatibility);
       </div>
     </div>
   </div>
-</div>
+</article>

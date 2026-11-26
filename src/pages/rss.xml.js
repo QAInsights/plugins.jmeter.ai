@@ -1,10 +1,11 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { filterDrafts, sortPosts } from '../utils/blog';
 
 export const prerender = true;
 
 export async function GET(context) {
-  const blog = await getCollection('blog');
+  const blog = sortPosts(filterDrafts(await getCollection('blog')));
   return rss({
     title: 'PerfAtlas Blog',
     description:

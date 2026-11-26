@@ -280,6 +280,46 @@
       return `${parts.slice(0, 2).join('.')}+`;
     }
 
+    let pluginsMapPromise: Promise<Map<string, any>> | null = null;
+    function loadPluginsMap(): Promise<Map<string, any>> {
+      if (!pluginsMapPromise) {
+        pluginsMapPromise = fetch('/api/plugins.json')
+          .then((res) => (res.ok ? res.json() : []))
+          .then((list: any[]) => new Map(list.map((item) => [item.id, item])))
+          .catch(() => new Map());
+      }
+      return pluginsMapPromise;
+    }
+
+    let chartJsPromise: Promise<any> | null = null;
+    function ensureChartJs(): Promise<any> {
+      // @ts-ignore
+      if (window.Chart) return Promise.resolve(window.Chart);
+      if (!chartJsPromise) {
+        chartJsPromise = new Promise((resolve) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+          script.async = true;
+          // @ts-ignore
+          script.onload = () => resolve(window.Chart || null);
+          script.onerror = () => resolve(null);
+          document.head.appendChild(script);
+        });
+      }
+      return chartJsPromise;
+    }
+
+    // @ts-ignore
+    window.openPluginModalById = async (id: string) => {
+      if (!id) return;
+      const map = await loadPluginsMap();
+      const plugin = map.get(id);
+      if (plugin) {
+        // @ts-ignore
+        window.openPluginModal(plugin);
+      }
+    };
+
     // Expose function globally for the Star Map and other components
     // @ts-ignore
     window.openPluginModal = (p: any) => {
@@ -429,10 +469,15 @@
         const isDark = document.documentElement.classList.contains('dark');
         const chartColor = isDark ? '#ccff00' : '#b0d600';
 
-        // @ts-ignore
-        if (window.Chart && ctx) {
+        ensureChartJs().then((ChartLib) => {
+          if (!ChartLib || !ctx) return;
           // @ts-ignore
-          window.usageChartInstance = new window.Chart(ctx, {
+          if (window.usageChartInstance) {
+            // @ts-ignore
+            window.usageChartInstance.destroy();
+          }
+          // @ts-ignore
+          window.usageChartInstance = new ChartLib(ctx, {
             type: 'line',
             data: {
               labels: labels,
@@ -476,19 +521,20 @@
               interaction: { mode: 'nearest', axis: 'x', intersect: false },
             },
           });
-        }
+        });
       }
 
       document.body.style.overflow = 'hidden';
       if (modal) modal.showModal();
     };
 
-    document.querySelectorAll('.plugin-card').forEach((card) => {
-      card.addEventListener('click', () => {
-        const pluginAttr = card.getAttribute('data-plugin');
-        if (!pluginAttr) return;
+    document.querySelectorAll('.quick-view-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-plugin-id');
+        if (!id) return;
         // @ts-ignore
-        window.openPluginModal(JSON.parse(pluginAttr));
+        window.openPluginModalById(id);
       });
     });
 

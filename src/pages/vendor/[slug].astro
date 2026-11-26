@@ -7,6 +7,7 @@ import PluginModal from '../../components/PluginModal.astro';
 import AskAboutPage from '../../components/AskAboutPage.astro';
 import pluginsData from '../../data/plugins_data.json';
 import { getVendors, type PluginCategory } from '../../utils/plugin';
+import { buildItemListSchema } from '../../utils/seoSchema';
 
 export const prerender = true;
 
@@ -37,9 +38,28 @@ const trendingColor =
     : summary.totalTrending < 0
       ? 'text-red-500'
       : 'text-gray-500 dark:text-gray-400';
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Vendors', url: '/vendor/' },
+  { name: summary.vendor, url: `/vendor/${summary.slug}/` },
+];
+const itemListSchema = buildItemListSchema(
+  `JMeter Plugins by ${summary.vendor}`,
+  summary.plugins.map((p: any) => ({
+    name: p.name,
+    url: `/plugin/${p.id}/`,
+    description: p.description,
+  })),
+);
 ---
 
-<Layout title={title} description={description} image={`/og/vendor/${summary.slug}.png`}>
+<Layout
+  title={title}
+  description={description}
+  image={`/og/vendor/${summary.slug}.png`}
+  breadcrumbs={breadcrumbs}
+  schema={itemListSchema}
+>
   <Header />
   <main class="flex flex-grow flex-col px-6 py-12 md:py-16">
     <div class="mx-auto w-full max-w-7xl">

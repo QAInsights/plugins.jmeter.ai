@@ -4,7 +4,6 @@ export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import pluginsData from '../data/plugins_data.json';
 
 // We'll read the 'ids' from the URL on the client side to avoid huge paths in static build
 // but we can also pre-render common ones if we wanted.
@@ -90,8 +89,6 @@ import pluginsData from '../data/plugins_data.json';
 
   <Footer />
 
-  <script type="application/json" id="plugins-data" set:html={JSON.stringify(pluginsData)} />
-
   <script is:inline>
     function vendorSlug(vendor) {
       if (!vendor) return 'unknown-vendor';
@@ -104,9 +101,12 @@ import pluginsData from '../data/plugins_data.json';
       return s || 'unknown-vendor';
     }
 
-    function initCompare() {
-      const dataEl = document.getElementById('plugins-data');
-      const pluginsData = dataEl ? JSON.parse(dataEl.textContent || '[]') : [];
+    async function initCompare() {
+      let pluginsData = [];
+      try {
+        const res = await fetch('/api/plugins.json');
+        if (res.ok) pluginsData = await res.json();
+      } catch (_) {}
       const urlParams = new URLSearchParams(window.location.search);
       const ids = urlParams.get('ids')?.split(',').filter(Boolean) || [];
 

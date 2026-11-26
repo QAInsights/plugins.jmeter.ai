@@ -11,8 +11,8 @@ async function render() {
 describe('Hero', () => {
   it('should render h1 heading with JMeter copy', async () => {
     const { html } = await render();
-    expect(html).toContain('Power up');
-    expect(html).toContain('JMeter');
+    expect(html).toContain('JMeter Plugins');
+    expect(html).toContain('Directory');
   });
 
   it('should render #searchInput', async () => {

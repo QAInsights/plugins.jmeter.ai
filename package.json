@@ -8,7 +8,8 @@
   "scripts": {
     "predev": "tsx scripts/fetchData.mts",
     "dev": "astro dev",
-    "prebuild": "tsx scripts/fetchData.mts && tsx scripts/generateOgImages.mts",
+    "prebuild": "tsx scripts/fetchData.mts && tsx scripts/generateOgImages.mts && tsx scripts/generateLlmsTxt.mts",
+    "llms:generate": "tsx scripts/generateLlmsTxt.mts",
     "og:generate": "tsx scripts/generateOgImages.mts",
     "og:rebuild": "tsx scripts/generateOgImages.mts --force",
     "crop:featured": "node scripts/cropBlogFeatured.mjs",
