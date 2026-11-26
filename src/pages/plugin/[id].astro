@@ -17,6 +17,10 @@ import {
   hasChangelog,
   vendorSlug,
 } from '../../utils/plugin';
+import { getCollection } from 'astro:content';
+import { filterDrafts } from '../../utils/blog';
+import { findPostsForPlugin } from '../../utils/crossLink';
+import { categoryToSlug, getAlternativesForPlugin } from '../../utils/programmaticSeo';
 import { formatJMeterVersion, getJMeterCompatibilityTitle } from '../../utils/jmeterCompatibility';
 import { buildFaqSchema, buildPluginFaqs, getLatestPluginVersion } from '../../utils/seoSchema';
 
@@ -65,6 +69,9 @@ const chartData = chartLabels.map((l) => history[l]);
 // Related plugins (same vendor / same inferred category)
 const { sameVendor, sameCategory } = getRelatedPlugins(plugin, pluginsData, { limit: 3 });
 const relatedCategory = inferCategory(plugin);
+const categoryHref = `/category/${categoryToSlug(relatedCategory)}/`;
+const alternativesCount = getAlternativesForPlugin(plugin, pluginsData, 6).length;
+const relatedGuides = findPostsForPlugin(plugin, filterDrafts(await getCollection('blog')), 4);
 
 // Release history / changelog timeline
 const changelog = getChangelogTimeline(plugin);
@@ -199,6 +206,10 @@ const schema = {
                     href={`/vendor/${vendorSlug(plugin.vendor)}/`}
                     class="underline-offset-4 transition-colors hover:text-green-600 hover:underline dark:hover:text-[#ccff00]"
                     >{plugin.vendor}</a
+                  > &bull; <a
+                    href={categoryHref}
+                    class="underline-offset-4 transition-colors hover:text-green-600 hover:underline dark:hover:text-[#ccff00]"
+                    >{relatedCategory}</a
                   > &bull; ID: {plugin.id}
                 </p>
               </div>
@@ -442,6 +453,55 @@ const schema = {
                 }
               </div>
             </section>
+
+            {
+              relatedGuides.length > 0 && (
+                <section class="mb-10 border-t border-gray-100 pt-10 dark:border-white/10">
+                  <h2 class="mb-5 text-xl font-bold text-gray-900 dark:text-white">
+                    Tutorials &amp; Guides Featuring {plugin.name}
+                  </h2>
+                  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {relatedGuides.map((guide) => (
+                      <a
+                        href={`/blog/${guide.id}/`}
+                        class="group rounded-xl border border-gray-200 bg-gray-50 p-4 transition-all hover:border-green-500/50 hover:shadow-sm dark:border-white/10 dark:bg-black/20"
+                      >
+                        <p class="text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+                          {guide.data.title}
+                        </p>
+                        <p class="mt-1 line-clamp-2 text-xs text-gray-600 dark:text-gray-400">
+                          {guide.data.description}
+                        </p>
+                      </a>
+                    ))}
+                  </div>
+                </section>
+              )
+            }
+
+            {
+              alternativesCount >= 2 && (
+                <div class="mb-10 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-white/10 dark:bg-black/20">
+                  <div class="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+                    <div>
+                      <h2 class="text-sm font-bold text-gray-900 dark:text-white">
+                        Looking for alternatives to {plugin.name}?
+                      </h2>
+                      <p class="text-xs text-gray-600 dark:text-gray-400">
+                        Compare {alternativesCount} other JMeter {relatedCategory.toLowerCase()}{' '}
+                        plugins side by side.
+                      </p>
+                    </div>
+                    <a
+                      href={`/alternatives/${plugin.id}/`}
+                      class="shrink-0 rounded-lg bg-gray-900 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-green-600 dark:bg-white dark:text-black dark:hover:bg-[#ccff00]"
+                    >
+                      View Alternatives →
+                    </a>
+                  </div>
+                </div>
+              )
+            }
 
             <GitHubBadge url={url} />
 

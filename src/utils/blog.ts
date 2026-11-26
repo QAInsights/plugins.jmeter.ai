@@ -18,3 +18,16 @@ export function filterDrafts(posts: any[]) {
     return true;
   });
 }
+
+/**
+ * Build a URL path for `/blog/tags/[...tag]/` that encodes each path segment
+ * individually while preserving `/` separators used by Astro spread routes
+ * (e.g., `CI/CD` -> `/blog/tags/CI/CD/`, `Load Testing` -> `/blog/tags/Load%20Testing/`).
+ */
+export function tagHref(tag: string): string {
+  const encoded = tag
+    .split('/')
+    .map((segment) => encodeURIComponent(segment))
+    .join('/');
+  return `/blog/tags/${encoded}/`;
+}

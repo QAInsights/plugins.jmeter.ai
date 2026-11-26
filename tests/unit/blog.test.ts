@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getReadingTime, sortPosts, filterDrafts } from '../../src/utils/blog';
+import { getReadingTime, sortPosts, filterDrafts, tagHref } from '../../src/utils/blog';
 
 describe('getReadingTime', () => {
   it('should return "1 min read" for 200 words', () => {
@@ -142,5 +142,13 @@ describe('filterDrafts', () => {
     const filtered = filterDrafts(posts as any);
     expect(filtered).toHaveLength(1);
     vi.unstubAllEnvs();
+  });
+});
+
+describe('tagHref', () => {
+  it('preserves slashes for spread routes while encoding spaces', () => {
+    expect(tagHref('CI/CD')).toBe('/blog/tags/CI/CD/');
+    expect(tagHref('Load Testing')).toBe('/blog/tags/Load%20Testing/');
+    expect(tagHref('JMeter')).toBe('/blog/tags/JMeter/');
   });
 });
