@@ -1,4 +1,5 @@
 const GA4_ID_PATTERN = /^G-[A-Z0-9]{6,20}$/i;
+const GTM_ID_PATTERN = /^GTM-[A-Z0-9]{4,20}$/i;
 
 const AI_REFERRER_HOSTS: ReadonlyArray<{ host: string; source: string }> = [
   { host: 'chatgpt.com', source: 'chatgpt' },
@@ -20,6 +21,16 @@ export function resolveGaMeasurementId(raw: string | undefined | null): string |
   if (!raw) return null;
   const trimmed = raw.trim().toUpperCase();
   return GA4_ID_PATTERN.test(trimmed) ? trimmed : null;
+}
+
+/**
+ * Validate and normalize a Google Tag Manager container ID (e.g. `GTM-W3LV2L26`).
+ * Returns null when unset, `"none"`, or malformed.
+ */
+export function resolveGtmContainerId(raw: string | undefined | null): string | null {
+  if (!raw) return null;
+  const trimmed = raw.trim().toUpperCase();
+  return GTM_ID_PATTERN.test(trimmed) ? trimmed : null;
 }
 
 /**

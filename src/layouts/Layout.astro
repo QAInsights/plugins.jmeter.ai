@@ -7,8 +7,13 @@ import FavoritesManager from '../components/FavoritesManager.astro';
 import PreferencesManager from '../components/PreferencesManager.astro';
 import EthicalAd from '../components/EthicalAd.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import GoogleTagManager from '../components/GoogleTagManager.astro';
 import { resolveEthicalAdsPublisher } from '../utils/ethicalAds';
-import { resolveGaMeasurementId, resolveGscVerification } from '../utils/analytics';
+import {
+  resolveGaMeasurementId,
+  resolveGscVerification,
+  resolveGtmContainerId,
+} from '../utils/analytics';
 import { buildBreadcrumbSchema, type BreadcrumbItem } from '../utils/seoSchema';
 import { SEO } from 'astro-seo';
 
@@ -57,6 +62,7 @@ const adPublisher = showAd
   ? resolveEthicalAdsPublisher(import.meta.env.PUBLIC_ETHICALADS_PUBLISHER)
   : null;
 const gaMeasurementId = resolveGaMeasurementId(import.meta.env.PUBLIC_GA_MEASUREMENT_ID);
+const gtmContainerId = resolveGtmContainerId(import.meta.env.PUBLIC_GTM_ID ?? 'GTM-W3LV2L26');
 const gscVerification = resolveGscVerification(import.meta.env.PUBLIC_GSC_VERIFICATION);
 
 // Determine canonical URL: fallback to current pathname.
@@ -300,12 +306,28 @@ const safeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, '\\u003
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>
 
-    {/* Optional Google Analytics 4 + AI referral & key event tracking */}
+    {/* Google Tag Manager (default GTM-W3LV2L26; override or set "none" via PUBLIC_GTM_ID) */}
+    {gtmContainerId && <GoogleTagManager containerId={gtmContainerId} />}
+
+    {/* Optional direct Google Analytics 4 (when not configured inside GTM) */}
     {gaMeasurementId && <GoogleAnalytics measurementId={gaMeasurementId} />}
   </head>
   <body
     class="selection:bg-primary selection:text-dark-bg flex min-h-screen flex-col font-sans antialiased dark:selection:bg-[#ccff00]"
   >
+    {
+      gtmContainerId && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+            title="Google Tag Manager"
+          />
+        </noscript>
+      )
+    }
     <slot />
     <ScrollToTop />
     <CompareFloatingBar />
