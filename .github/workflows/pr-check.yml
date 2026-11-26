@@ -3,11 +3,14 @@ name: PR Check
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, labeled, ready_for_review]
     paths-ignore:
       - 'src/data/plugins_data.json'
       - 'public/og/**'
       - 'README.md'
       - 'demos/**'
+  pull_request_review:
+    types: [submitted]
 
 permissions:
   contents: write
@@ -16,6 +19,7 @@ permissions:
 jobs:
   quality:
     name: Lint & Format & Test
+    if: github.event_name != 'pull_request_review' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -53,7 +57,15 @@ jobs:
     needs: [quality]
     if: >-
       github.event.pull_request.draft == false &&
-      github.event.pull_request.head.repo.full_name == github.repository
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (
+        contains(github.event.pull_request.labels.*.name, 'auto-merge') ||
+        (
+          github.event_name == 'pull_request_review' &&
+          github.event.review.state == 'approved' &&
+          contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.review.author_association)
+        )
+      )
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
