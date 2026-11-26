@@ -3,9 +3,18 @@ import {
   detectAiReferrer,
   resolveGaMeasurementId,
   resolveGscVerification,
+  resolveGtmContainerId,
 } from '../../src/utils/analytics';
 
 describe('analytics helpers', () => {
+  it('validates and normalizes GTM container IDs', () => {
+    expect(resolveGtmContainerId('GTM-W3LV2L26')).toBe('GTM-W3LV2L26');
+    expect(resolveGtmContainerId('  gtm-abc123  ')).toBe('GTM-ABC123');
+    expect(resolveGtmContainerId('none')).toBeNull();
+    expect(resolveGtmContainerId('')).toBeNull();
+    expect(resolveGtmContainerId('G-ABC1234567')).toBeNull();
+  });
+
   it('validates and normalizes GA4 measurement IDs', () => {
     expect(resolveGaMeasurementId('G-ABC1234567')).toBe('G-ABC1234567');
     expect(resolveGaMeasurementId('  g-abc12345  ')).toBe('G-ABC12345');
