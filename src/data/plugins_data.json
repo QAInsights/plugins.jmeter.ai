@@ -32438,12 +32438,12 @@
       "stars": 28,
       "license": "Apache-2.0",
       "health": {
-        "score": 70,
+        "score": 71,
         "label": "Active",
         "stars": 28,
-        "openIssues": 22,
+        "openIssues": 24,
         "archived": false,
-        "lastCommitAt": "2026-10-16T01:50:13Z",
+        "lastCommitAt": "2026-11-26T05:31:21Z",
         "lastReleaseAt": "2025-04-17T20:02:29Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/CorrelationRecorder"
@@ -36822,12 +36822,12 @@
       "stars": 67,
       "license": "MIT",
       "health": {
-        "score": 86,
+        "score": 88,
         "label": "Active",
         "stars": 67,
-        "openIssues": 21,
+        "openIssues": 14,
         "archived": false,
-        "lastCommitAt": "2026-11-25T06:16:00Z",
+        "lastCommitAt": "2026-11-26T01:03:19Z",
         "lastReleaseAt": "2026-11-24T16:40:18Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -42708,12 +42708,12 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 84,
+        "score": 87,
         "label": "Active",
         "stars": 51,
-        "openIssues": 18,
+        "openIssues": 11,
         "archived": false,
-        "lastCommitAt": "2026-11-24T20:04:09Z",
+        "lastCommitAt": "2026-11-25T23:31:32Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -44399,12 +44399,12 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 84,
+        "score": 87,
         "label": "Active",
         "stars": 51,
-        "openIssues": 18,
+        "openIssues": 11,
         "archived": false,
-        "lastCommitAt": "2026-11-24T20:04:09Z",
+        "lastCommitAt": "2026-11-25T23:31:32Z",
         "lastReleaseAt": "2026-08-25T10:59:43Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
@@ -49966,7 +49966,7 @@
       "stars": 4,
       "license": "N/A",
       "health": {
-        "score": 26,
+        "score": 25,
         "label": "Stale",
         "stars": 4,
         "openIssues": 1,
@@ -58794,7 +58794,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 61,
+        "score": 60,
         "label": "Maintained",
         "stars": 2,
         "openIssues": 0,
@@ -58845,7 +58845,7 @@
       "stars": 1,
       "license": "Apache-2.0",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 1,
         "openIssues": 5,
@@ -60933,7 +60933,7 @@
       "stars": 3,
       "license": "Apache-2.0",
       "health": {
-        "score": 66,
+        "score": 65,
         "label": "Maintained",
         "stars": 3,
         "openIssues": 0,
