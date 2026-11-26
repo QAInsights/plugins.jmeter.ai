@@ -1,0 +1,77 @@
+---
+interface Props {
+  measurementId: string;
+}
+
+const { measurementId } = Astro.props;
+---
+
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+<script is:inline define:vars={{ measurementId }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', measurementId, { anonymize_ip: true });
+
+  (function () {
+    try {
+      if (document.referrer) {
+        var host = new URL(document.referrer).hostname.toLowerCase();
+        var aiHosts = [
+          ['chatgpt.com', 'chatgpt'],
+          ['chat.openai.com', 'chatgpt'],
+          ['perplexity.ai', 'perplexity'],
+          ['claude.ai', 'claude'],
+          ['gemini.google.com', 'gemini'],
+          ['copilot.microsoft.com', 'copilot'],
+          ['you.com', 'you'],
+          ['phind.com', 'phind'],
+          ['meta.ai', 'meta_ai'],
+        ];
+        for (var i = 0; i < aiHosts.length; i++) {
+          if (host === aiHosts[i][0] || host.endsWith('.' + aiHosts[i][0])) {
+            gtag('event', 'ai_referral', {
+              ai_source: aiHosts[i][1],
+              referrer_host: host,
+              landing_page: window.location.pathname,
+            });
+            break;
+          }
+        }
+      }
+    } catch (_) {}
+
+    document.addEventListener(
+      'click',
+      function (e) {
+        var target = e.target;
+        if (!target || !target.closest) return;
+        var installBtn = target.closest('.install-add-btn');
+        if (installBtn) {
+          gtag('event', 'plugin_install_add', {
+            plugin_id: installBtn.getAttribute('data-plugin-id') || '',
+          });
+          return;
+        }
+        var copyBtn = target.closest('.copy-id-btn');
+        if (copyBtn) {
+          gtag('event', 'plugin_id_copy', {
+            plugin_id: copyBtn.getAttribute('data-plugin-id') || '',
+          });
+          return;
+        }
+        var askLink = target.closest('.ask-about-page a');
+        if (askLink) {
+          gtag('event', 'ask_ai_click', {
+            assistant: (askLink.textContent || '').trim(),
+            page_path: window.location.pathname,
+          });
+        }
+      },
+      true,
+    );
+  })();
+</script>

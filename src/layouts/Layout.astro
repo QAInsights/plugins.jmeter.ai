@@ -6,7 +6,9 @@ import InstallFloatingBar from '../components/InstallFloatingBar.astro';
 import FavoritesManager from '../components/FavoritesManager.astro';
 import PreferencesManager from '../components/PreferencesManager.astro';
 import EthicalAd from '../components/EthicalAd.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import { resolveEthicalAdsPublisher } from '../utils/ethicalAds';
+import { resolveGaMeasurementId, resolveGscVerification } from '../utils/analytics';
 import { buildBreadcrumbSchema, type BreadcrumbItem } from '../utils/seoSchema';
 import { SEO } from 'astro-seo';
 
@@ -54,6 +56,8 @@ const {
 const adPublisher = showAd
   ? resolveEthicalAdsPublisher(import.meta.env.PUBLIC_ETHICALADS_PUBLISHER)
   : null;
+const gaMeasurementId = resolveGaMeasurementId(import.meta.env.PUBLIC_GA_MEASUREMENT_ID);
+const gscVerification = resolveGscVerification(import.meta.env.PUBLIC_GSC_VERIFICATION);
 
 // Determine canonical URL: fallback to current pathname.
 // Keep trailing slashes as-is — Astro static output serves pages via
@@ -198,6 +202,7 @@ const safeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, '\\u003
       )
     }
     <meta name="theme-color" content="#09090b" />
+    {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -294,6 +299,9 @@ const safeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, '\\u003
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon='{"token": "18dd9054c9194403bcc8517c16fa73ad"}'></script>
+
+    {/* Optional Google Analytics 4 + AI referral & key event tracking */}
+    {gaMeasurementId && <GoogleAnalytics measurementId={gaMeasurementId} />}
   </head>
   <body
     class="selection:bg-primary selection:text-dark-bg flex min-h-screen flex-col font-sans antialiased dark:selection:bg-[#ccff00]"
