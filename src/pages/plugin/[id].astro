@@ -18,6 +18,11 @@ import {
   vendorSlug,
 } from '../../utils/plugin';
 import { formatJMeterVersion, getJMeterCompatibilityTitle } from '../../utils/jmeterCompatibility';
+import {
+  buildFaqSchema,
+  buildPluginFaqs,
+  getLatestPluginVersion,
+} from '../../utils/seoSchema';
 
 export const prerender = true;
 
@@ -71,6 +76,20 @@ const showChangelog = hasChangelog(plugin);
 
 // SoftwareApplication schema — enables rich results in Google, Bing, and AI search
 const siteBase = 'https://plugins.jmeter.ai';
+const latestVersion = getLatestPluginVersion(plugin.versions as Record<string, unknown> | undefined);
+const lastCommitAt = plugin.githubInfo?.health?.lastCommitAt;
+const licenseName = plugin.githubInfo?.license?.trim();
+const vendorHref = `/vendor/${vendorSlug(plugin.vendor)}/`;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: plugin.vendor, url: vendorHref },
+  { name: plugin.name, url: `/plugin/${plugin.id}/` },
+];
+
+const pluginFaqs = buildPluginFaqs(plugin);
+const faqSchema = buildFaqSchema(pluginFaqs);
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -80,11 +99,15 @@ const schema = {
   applicationSubCategory: 'Load Testing',
   operatingSystem: 'Windows, macOS, Linux',
   url: url,
+  ...(latestVersion ? { softwareVersion: latestVersion } : {}),
+  ...(lastCommitAt ? { dateModified: lastCommitAt } : {}),
+  ...(licenseName ? { license: licenseName } : {}),
   ...(plugin.helpUrl?.trim() ? { softwareHelp: plugin.helpUrl.trim() } : {}),
   ...(plugin.helpUrl?.trim() ? { downloadUrl: plugin.helpUrl.trim() } : {}),
   author: {
     '@type': 'Organization',
     name: plugin.vendor,
+    url: `${siteBase}${vendorHref}`,
   },
   offers: {
     '@type': 'Offer',
@@ -123,26 +146,29 @@ const schema = {
   title={title}
   description={description}
   image={ogImage}
-  schema={schema}
+  schema={[schema, faqSchema]}
+  breadcrumbs={breadcrumbs}
+  markdownUrl={`/plugin/${plugin.id}.md`}
   adKeywords={[relatedCategory === 'Others' ? null : relatedCategory, plugin.name, plugin.vendor]}
 >
   <Header />
   <main class="flex flex-grow flex-col px-4 py-8 sm:px-6 sm:py-16">
     <div class="mx-auto w-full max-w-4xl">
-      {/* Back Button */}
-      <a
-        href="/"
-        class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 dark:hover:text-white"
+      {/* Breadcrumb Navigation */}
+      <nav
+        aria-label="Breadcrumb"
+        class="mb-8 flex flex-wrap items-center gap-2 text-sm font-semibold text-gray-500 dark:text-gray-400"
       >
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
-        >
-        Back to Directory
-      </a>
+        <a href="/" class="transition-colors hover:text-gray-900 dark:hover:text-white">
+          Home
+        </a>
+        <span aria-hidden="true">/</span>
+        <a href={vendorHref} class="transition-colors hover:text-gray-900 dark:hover:text-white">
+          {plugin.vendor}
+        </a>
+        <span aria-hidden="true">/</span>
+        <span class="text-gray-900 dark:text-white" aria-current="page">{plugin.name}</span>
+      </nav>
 
       <AskAboutPage
         prompt={`Answer questions about the JMeter plugin "${plugin.name}" (install, usage, alternatives)`}
@@ -245,21 +271,40 @@ const schema = {
               </div>
             </div>
 
-            <p class="mb-10 text-lg leading-relaxed text-gray-600 md:text-xl dark:text-gray-300">
+            <p class="mb-8 text-lg leading-relaxed text-gray-600 md:text-xl dark:text-gray-300">
               {plugin.description}
             </p>
+
+            {/* Static CLI Install Command — crawlable by search engines and AI agents */}
+            <section class="mb-10 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-white/10 dark:bg-black/30">
+              <div class="mb-2 flex items-center justify-between gap-2">
+                <h2 class="text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+                  Install via JMeter Plugins Manager CLI
+                </h2>
+                <a
+                  href={`/tools/cli-builder/?plugins=${encodeURIComponent(plugin.id)}`}
+                  class="text-xs font-semibold text-green-600 hover:underline dark:text-[#ccff00]"
+                >
+                  Open in CLI Builder →
+                </a>
+              </div>
+              <pre class="overflow-x-auto rounded-lg bg-gray-950 p-3.5 font-mono text-xs text-green-400 sm:text-sm"><code>PluginsManagerCMD.sh install {plugin.id}</code></pre>
+              <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                Windows: <code class="font-mono text-gray-700 dark:text-gray-300">PluginsManagerCMD.bat install {plugin.id}</code>
+              </p>
+            </section>
 
             <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-3">
               <div
                 class="rounded-xl border border-gray-100 bg-gray-50 p-6 dark:border-white/5 dark:bg-black/20"
               >
-                <h4 class="mb-2 text-sm font-bold text-gray-500 uppercase">Total Downloads</h4>
+                <h2 class="mb-2 text-sm font-bold text-gray-500 uppercase">Total Downloads</h2>
                 <p class="text-3xl font-black text-gray-900 dark:text-white">{dlAbsolute}</p>
               </div>
               <div
                 class="rounded-xl border border-gray-100 bg-gray-50 p-6 dark:border-white/5 dark:bg-black/20"
               >
-                <h4 class="mb-2 text-sm font-bold text-gray-500 uppercase">Downloads This Week</h4>
+                <h2 class="mb-2 text-sm font-bold text-gray-500 uppercase">Downloads This Week</h2>
                 <p
                   class={`text-3xl font-black ${plugin.stats.trendingDelta > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`}
                 >
@@ -269,9 +314,9 @@ const schema = {
               {
                 jmeterDisplay && (
                   <div class="rounded-xl border border-gray-100 bg-gray-50 p-6 dark:border-white/5 dark:bg-black/20">
-                    <h4 class="mb-2 text-sm font-bold text-gray-500 uppercase">
+                    <h2 class="mb-2 text-sm font-bold text-gray-500 uppercase">
                       JMeter Compatibility
-                    </h4>
+                    </h2>
                     <p
                       class="flex items-center gap-2 text-3xl font-black text-green-700 dark:text-[#ccff00]"
                       title={jmeterTitle}
@@ -362,9 +407,9 @@ const schema = {
             {
               plugin.componentClasses && plugin.componentClasses.length > 0 && (
                 <div class="mb-10">
-                  <h4 class="mb-4 text-sm font-bold tracking-wide text-gray-900 uppercase dark:text-white">
+                  <h2 class="mb-4 text-sm font-bold tracking-wide text-gray-900 uppercase dark:text-white">
                     Component Classes
-                  </h4>
+                  </h2>
                   <div class="max-h-64 overflow-x-auto overflow-y-auto rounded-xl border border-gray-100 bg-gray-50 p-6 font-mono text-xs leading-loose whitespace-pre text-gray-700 md:text-sm dark:border-white/5 dark:bg-black/20 dark:text-gray-300">
                     {plugin.componentClasses.join('\n')}
                   </div>
@@ -373,6 +418,27 @@ const schema = {
             }
 
             {showChangelog && <ChangelogTimeline entries={changelog} />}
+
+            {/* Visible FAQ matching FAQPage JSON-LD */}
+            <section class="mb-10 border-t border-gray-100 pt-10 dark:border-white/10">
+              <h2 class="mb-5 text-xl font-bold text-gray-900 dark:text-white">
+                Frequently Asked Questions
+              </h2>
+              <div class="space-y-3">
+                {
+                  pluginFaqs.map((faq) => (
+                    <details class="rounded-xl border border-gray-200 bg-gray-50 p-4 dark:border-white/10 dark:bg-black/20">
+                      <summary class="cursor-pointer text-sm font-bold text-gray-900 dark:text-white">
+                        {faq.question}
+                      </summary>
+                      <p class="mt-2.5 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                        {faq.answer}
+                      </p>
+                    </details>
+                  ))
+                }
+              </div>
+            </section>
 
             <GitHubBadge url={url} />
 

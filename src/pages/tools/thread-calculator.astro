@@ -64,6 +64,11 @@ const webAppSchema = {
 <Layout
   title={title}
   description={description}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Tools', url: '/tools/' },
+    { name: 'Thread Calculator', url: '/tools/thread-calculator/' },
+  ]}
   schema={{ '@context': 'https://schema.org', '@graph': [faqSchema, webAppSchema] }}
 >
   <Header />

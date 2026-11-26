@@ -1,6 +1,6 @@
 ---
-title: "JMeter Dummy Sampler: How to Mock API Responses and Debug Test Plans Without a Server"
-description: "Learn how the JMeter Dummy Sampler plugin mocks API responses so you can debug JSON extractors, assertions, and correlation logic without a live server."
+title: "JMeter Dummy Sampler: Mock APIs & Debug Test Plans"
+description: "Use the JMeter Dummy Sampler plugin to mock HTTP/JSON responses and debug extractors, assertions, and correlation logic locally without a live server."
 pubDate: 2026-09-21T12:00:00Z
 author: "NaveenKumar Namachivayam"
 image: "../../assets/blog/jmeter-dummy-sampler-mock-api-responses-debug-test-plans.png"

@@ -70,6 +70,11 @@ const webAppSchema = {
 <Layout
   title={title}
   description={description}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Tools', url: '/tools/' },
+    { name: 'CLI Command Builder', url: '/tools/cli-builder/' },
+  ]}
   schema={{ '@context': 'https://schema.org', '@graph': [faqSchema, webAppSchema] }}
 >
   <Header />

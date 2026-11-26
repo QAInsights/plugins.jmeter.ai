@@ -150,13 +150,14 @@ describe('PluginCard', () => {
     expect(html).toContain('data-category="assertions"');
   });
 
-  it('should set data-plugin attribute containing the plugin id', async () => {
+  it('should render crawlable anchor link to plugin detail page and data-plugin-id', async () => {
     const plugin = makePlugin();
     const { html } = await render(plugin);
-    // The attribute value is HTML-encoded JSON; just verify the id is present
-    expect(html).toContain('data-plugin=');
-    // The encoded JSON should contain the plugin id string
-    expect(html).toMatch(/data-plugin="[^"]*test-plugin[^"]*"/);
+    expect(html).toContain('<article');
+    expect(html).toContain('href="/plugin/test-plugin/"');
+    expect(html).toContain('data-plugin-id="test-plugin"');
+    expect(html).toContain('quick-view-btn');
+    expect(html).not.toContain('data-plugin=');
   });
 
   it('should render copy-id-btn with data-plugin-id', async () => {

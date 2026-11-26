@@ -1,6 +1,6 @@
 ---
-title: "JMeter Datadog Backend Listener: Stream Test Results to Datadog in CI/CD"
-description: "Learn how to stream JMeter test results to Datadog for real-time monitoring and analysis in your CI/CD pipelines"
+title: "JMeter Datadog Backend Listener: Stream Metrics in CI/CD"
+description: "Stream live JMeter p95 latency, throughput, and error metrics to Datadog in CI/CD pipelines. Complete Backend Listener plugin setup and dashboard guide."
 pubDate: 2026-06-06T15:00:00Z
 author: "NaveenKumar Namachivayam"
 image: "../../assets/blog/jmeter-datadog-backend-listener-streaming-test-results-cicd.png"

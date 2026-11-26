@@ -1,6 +1,6 @@
 ---
-title: "JMeter Throughput Shaping Timer vs Concurrency Thread Group: When to Use Which"
-description: "Compare JMeter Throughput Shaping Timer vs Concurrency Thread Group, learn when to control RPS or concurrent users, with a feedback function example."
+title: "Throughput Shaping Timer vs Concurrency Thread Group"
+description: "JMeter Throughput Shaping Timer vs Concurrency Thread Group: when to target RPS vs concurrent users, how to pair them with tstFeedback, and config examples."
 pubDate: 2026-08-30T12:00:00Z
 author: "NaveenKumar Namachivayam"
 image: "../../assets/blog/jmeter-throughput-shaping-timer-vs-concurrency-thread-group.png"

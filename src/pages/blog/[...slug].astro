@@ -27,10 +27,16 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const wordCount = (post.body || '').trim().split(/\s+/).filter(Boolean).length;
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog/' },
+  { name: post.data.title, url: `/blog/${post.id}/` },
+];
 ---
 
 <Layout
-  title={`${post.data.title} - PerfAtlas Blog`}
+  title={`${post.data.title} | PerfAtlas`}
   description={post.data.description}
   image={`/og/blog/${post.id}.png`}
   type="article"
@@ -39,6 +45,10 @@ const { Content, headings } = await render(post);
     ? post.data.updatedDate.toISOString()
     : post.data.pubDate.toISOString()}
   articleAuthor={post.data.author}
+  articleKeywords={post.data.tags}
+  articleWordCount={wordCount}
+  breadcrumbs={breadcrumbs}
+  markdownUrl={`/blog/${post.id}.md`}
   adKeywords={post.data.tags}
 >
   <Header />

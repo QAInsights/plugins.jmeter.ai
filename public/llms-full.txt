@@ -1,0 +1,1193 @@
+# PerfAtlas — Full Directory Reference (llms-full.txt)
+
+> Complete catalog of all 150 Apache JMeter plugins, 4 curated stacks, interactive tools, and 36 tutorials on https://plugins.jmeter.ai. Generated: 2026-11-26.
+
+## Quick Install Reference
+
+Install any plugin via JMeter Plugins Manager CLI:
+```bash
+PluginsManagerCMD.sh install <plugin-id>
+```
+
+## Curated Collections
+
+### CI/CD Stack (https://plugins.jmeter.ai/collections/ci-cd-stack/)
+Everything you need to run JMeter in Jenkins, GitHub Actions, or GitLab CI — validate the test plan before the run, auto-stop the test when KPI thresholds breach, and emit a clean results report your pipeline already understands.
+Auto-populated stack.
+
+### Observability Stack (https://plugins.jmeter.ai/collections/observability-stack/)
+Push JMeter test results in real time to external monitoring backends so you can watch SLAs, latency, and throughput in the same dashboards your ops team already uses — no post-run data import required.
+Auto-populated stack.
+
+### Load Shaping Stack (https://plugins.jmeter.ai/collections/load-shaping-stack/)
+Move beyond simple thread-count ramps. Control exact requests-per-second schedules, use concurrency-based thread groups that scale to demand, and back it all with an auto-stop listener so your tests never run away.
+Auto-populated stack.
+
+### AI-Ready Starter (https://plugins.jmeter.ai/collections/ai-ready-starter/)
+A curated selection of plugins that are AI-Ready — meaning they have been tested and validated for use with AI-assisted tooling and workflows. This collection is auto-populated from the AI-Ready registry and updates automatically as new plugins earn the badge.
+Auto-populated stack.
+
+## Complete Plugin Catalog (150 Plugins)
+
+### jmeter - Core (`jmeter-core`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-core/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-core.md
+- Vendor: JMeter Core Team | Downloads: 39,092 | Weekly: +3,259
+- Install: `PluginsManagerCMD.sh install jmeter-core`
+- Summary: Core functionality for JMeter, including GUI and engine.
+
+### jmeter - HTTP Protocol Support (`jmeter-http`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-http/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-http.md
+- Vendor: JMeter Core Team | Downloads: 39,088 | Weekly: +3,270
+- Install: `PluginsManagerCMD.sh install jmeter-http`
+- Summary: This sampler lets you send an HTTP/HTTPS request to a web server.
+
+### jmeter - Various Core Components (`jmeter-components`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-components/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-components.md
+- Vendor: JMeter Core Team | Downloads: 39,086 | Weekly: +3,267
+- Install: `PluginsManagerCMD.sh install jmeter-components`
+- Summary: Ships a lot of various components for JMeter, including Debug Sampler
+
+### Plugins Manager (`jpgc-plugins-manager`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-plugins-manager/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-plugins-manager.md
+- Vendor: JMeter-Plugins.org | Downloads: 39,085 | Weekly: +3,253
+- JMeter Compatibility: 5.0+
+- Install: `PluginsManagerCMD.sh install jpgc-plugins-manager`
+- Summary: Adds menu item into Options menu to access UI for installing/removing additional plugins
+
+### jmeter - Java Components (`jmeter-java`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-java/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-java.md
+- Vendor: JMeter Core Team | Downloads: 39,068 | Weekly: +3,264
+- Install: `PluginsManagerCMD.sh install jmeter-java`
+- Summary: Java Sampler and other components
+
+### jmeter - TCP Protocol Support (`jmeter-tcp`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-tcp/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-tcp.md
+- Vendor: JMeter Core Team | Downloads: 39,057 | Weekly: +3,267
+- Install: `PluginsManagerCMD.sh install jmeter-tcp`
+- Summary: The TCP Sampler opens a TCP/IP connection to the specified server. It then sends the text, and waits for a response.
+
+### jmeter - OS Process Support (`jmeter-native`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-native/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-native.md
+- Vendor: JMeter Core Team | Downloads: 39,042 | Weekly: +3,263
+- Install: `PluginsManagerCMD.sh install jmeter-native`
+- Summary: The OS Process Sampler is a sampler that can be used to execute commands on the local machine.
+
+### jmeter - JDBC Support (`jmeter-jdbc`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-jdbc/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-jdbc.md
+- Vendor: JMeter Core Team | Downloads: 39,033 | Weekly: +3,250
+- Install: `PluginsManagerCMD.sh install jmeter-jdbc`
+- Summary: This sampler lets you send an JDBC Request (an SQL query) to a database.
+
+### jmeter - FTP Protocol Support (`jmeter-ftp`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-ftp/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-ftp.md
+- Vendor: JMeter Core Team | Downloads: 39,006 | Weekly: +3,266
+- Install: `PluginsManagerCMD.sh install jmeter-ftp`
+- Summary: This controller lets you send an FTP 'retrieve file' or 'upload file' request to an FTP server.
+
+### jmeter - JMS Support (`jmeter-jms`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-jms/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-jms.md
+- Vendor: JMeter Core Team | Downloads: 39,005 | Weekly: +3,262
+- Install: `PluginsManagerCMD.sh install jmeter-jms`
+- Summary: Offers JMS Subscriber, Publisher and JMS P2P
+
+### jmeter - JUnit Support (`jmeter-junit`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-junit/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-junit.md
+- Vendor: JMeter Core Team | Downloads: 39,003 | Weekly: +3,270
+- Install: `PluginsManagerCMD.sh install jmeter-junit`
+- Summary: Executes JUnit tests compiled into JARs
+
+### jmeter - Mail/SMTP Support (`jmeter-mail`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-mail/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-mail.md
+- Vendor: JMeter Core Team | Downloads: 38,995 | Weekly: +3,275
+- Install: `PluginsManagerCMD.sh install jmeter-mail`
+- Summary: The SMTP Sampler can send mail messages using SMTP/SMTPS protocol.
+
+### jmeter - LDAP Protocol Support (`jmeter-ldap`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-ldap/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-ldap.md
+- Vendor: JMeter Core Team | Downloads: 38,995 | Weekly: +3,264
+- Install: `PluginsManagerCMD.sh install jmeter-ldap`
+- Summary: This Sampler lets you send a different Ldap request(Add, Modify, Delete and Search) to an LDAP server.
+
+### jmeter - MongoDB Support (`jmeter-mongodb`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-mongodb/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-mongodb.md
+- Vendor: JMeter Core Team | Downloads: 38,916 | Weekly: +3,273
+- Install: `PluginsManagerCMD.sh install jmeter-mongodb`
+- Summary: Supports testing MongoDB performance
+
+### Custom Thread Groups (`jpgc-casutg`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-casutg/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-casutg.md
+- Vendor: JMeter-Plugins.org | Downloads: 24,995 | Weekly: +2,073
+- JMeter Compatibility: 5.2.1+
+- Install: `PluginsManagerCMD.sh install jpgc-casutg`
+- Summary: Adds new Thread Groups: <ul><li><a href=https://jmeter-plugins.org/wiki/SteppingThreadGroup>Stepping Thread Group</a></li><li><a href=https://jmeter-plugins.org/wiki/UltimateThreadGroup >Ultimate Thread Group</a></li><li><a href=https://jmeter-plugins.org/wiki/ConcurrencyThreadGroup>Concurrency Thread Group</a></li><li><a href=https://jmeter-plugins.org/wiki/ArrivalsThreadGroup>Arrivals Thread Group</a></li><li><a href=https://jmeter-plugins.org/wiki/FreeFormArrivalsThreadGroup>Free-Form Arrivals Thread Group</a></li></ul>
+
+### 3 Basic Graphs (`jpgc-graphs-basic`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-graphs-basic/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-graphs-basic.md
+- Vendor: JMeter-Plugins.org | Downloads: 20,856 | Weekly: +1,448
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-graphs-basic`
+- Summary: <ul><li>Average Response Time</li><li>Active Threads</li><li>Successful/Failed Transactions</li></ul>
+
+### Throughput Shaping Timer (`jpgc-tst`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-tst/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-tst.md
+- Vendor: JMeter-Plugins.org | Downloads: 15,143 | Weekly: +1,181
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-tst`
+- Summary: A plugin to set desired hits/s (RPS) schedule
+
+### Dummy Sampler (`jpgc-dummy`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-dummy/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-dummy.md
+- Vendor: JMeter-Plugins.org | Downloads: 14,986 | Weekly: +1,239
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-dummy`
+- Summary: Debugging sampler that just generates result as you specified. Very convenient to debug your complex scripts
+
+### PerfMon (Servers Performance Monitoring) (`jpgc-perfmon`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-perfmon/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-perfmon.md
+- Vendor: JMeter-Plugins.org | Downloads: 14,420 | Weekly: +1,130
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-perfmon`
+- Summary: Allows collecting target server resource metrics. You need to start ServerAgent on a target machine.
+
+### Custom JMeter Functions (`jpgc-functions`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-functions/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-functions.md
+- Vendor: JMeter-Plugins.org | Downloads: 12,541 | Weekly: +1,050
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-functions`
+- Summary: A number of additional JMeter functions that cover more of typical needs.
+
+### 5 Additional Graphs (`jpgc-graphs-additional`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-graphs-additional/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-graphs-additional.md
+- Vendor: JMeter-Plugins.org | Downloads: 11,188 | Weekly: +855
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-graphs-additional`
+- Summary: <ul><li>Response Codes</li><li>Bytes Throughput</li><li>Connect Times</li><li>Latency</li><li>Hits/s</li></ul>
+
+### Flexible File Writer (`jpgc-ffw`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-ffw/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-ffw.md
+- Vendor: JMeter-Plugins.org | Downloads: 11,162 | Weekly: +899
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-ffw`
+- Summary: Flexible File Writer plugin allows writing test results in flexible format, specified via GUI.
+
+### Inter-Thread Communication (`jpgc-fifo`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-fifo/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-fifo.md
+- Vendor: JMeter-Plugins.org | Downloads: 11,023 | Weekly: +948
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-fifo`
+- Summary: Global string queues for inter-thread communication
+
+### jpgc - Standard Set (`jpgc-standard`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-standard/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-standard.md
+- Vendor: JMeter-Plugins.org | Downloads: 9,689 | Weekly: +768
+- Install: `PluginsManagerCMD.sh install jpgc-standard`
+- Summary: Virtual package, select to install its dependencies
+
+### Parallel Controller & Sampler (`bzm-parallel`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-parallel/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-parallel.md
+- Vendor: BlazeMeter | Downloads: 8,672 | Weekly: +927
+- JMeter Compatibility: 3.1+
+- Repo Health: 93/100 (Active)
+- Install: `PluginsManagerCMD.sh install bzm-parallel`
+- Summary: Parallel Controller makes all of its children to run in parallel to each other
+
+### Random CSV Data Set (`bzm-random-csv`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-random-csv/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-random-csv.md
+- Vendor: BlazeMeter | Downloads: 7,047 | Weekly: +512
+- JMeter Compatibility: 3.0+
+- Repo Health: 93/100 (Active)
+- Install: `PluginsManagerCMD.sh install bzm-random-csv`
+- Summary: Config item that allows reading CSV files in random order
+
+### Synthesis Report (`jpgc-synthesis`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-synthesis/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-synthesis.md
+- Vendor: JMeter-Plugins.org | Downloads: 6,205 | Weekly: +512
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-synthesis`
+- Summary: Synthesis Report is a mix between Summary Report and Aggregate Report
+
+### Command-Line Graph Plotting Tool (`jpgc-cmd`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-cmd/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-cmd.md
+- Vendor: JMeter-Plugins.org | Downloads: 5,806 | Weekly: +496
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-cmd`
+- Summary: There is small command-line utility for generating graphs out of JTL files. It behave just like right-click context menu on all graphs. The tool can generate PNG, CSV or both. Note you can use GraphsGeneratorListener if you want to bulk generate graphs after a test or for existing results.
+
+### Composite Timeline Graph (`jpgc-graphs-composite`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-graphs-composite/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-graphs-composite.md
+- Vendor: JMeter-Plugins.org | Downloads: 5,734 | Weekly: +381
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-graphs-composite`
+- Summary: Graph that is able to show several other graphs data in single place
+
+### Filter Results Tool (`jpgc-filterresults`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-filterresults/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-filterresults.md
+- Vendor: JMeter-Plugins.org | Downloads: 5,698 | Weekly: +522
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-filterresults`
+- Summary: Often it's necessary to filter the results of a test to obtain a global vision with pages without all the urls that are declared in the html page.
+
+### WebSocket Samplers by Peter Doornbosch (`websocket-samplers`)
+- URL: https://plugins.jmeter.ai/plugin/websocket-samplers/ | Markdown: https://plugins.jmeter.ai/plugin/websocket-samplers.md
+- Vendor: Peter Doornbosch | Downloads: 5,686 | Weekly: +201
+- JMeter Compatibility: 3.1+
+- Install: `PluginsManagerCMD.sh install websocket-samplers`
+- Summary: Provides 6 samplers for load testing WebSocket applications. Use the WebSocket request-response sampler for testing a basic request-response flow (the most common case), or combine the other samplers to support a more sophisticated WebSocket test scenario.
+
+### Merge Results (`jpgc-mergeresults`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-mergeresults/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-mergeresults.md
+- Vendor: JMeter-Plugins.org | Downloads: 5,399 | Weekly: +345
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-mergeresults`
+- Summary: Merge Results is a tool to merge files of results (to simplify the comparison of two or more load tests).
+
+### Weighted Switch Controller (`jpgc-wsc`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-wsc/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-wsc.md
+- Vendor: JMeter-Plugins.org | Downloads: 5,307 | Weekly: +345
+- JMeter Compatibility: 2.13+
+- Repo Health: 93/100 (Active)
+- Install: `PluginsManagerCMD.sh install jpgc-wsc`
+- Summary: This controller takes the information about child elements and offers managing relative weights for them.
+
+### Parameterized Controller & Set Variables Action (`jpgc-prmctl`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-prmctl/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-prmctl.md
+- Vendor: JMeter-Plugins.org | Downloads: 4,739 | Weekly: +457
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-prmctl`
+- Summary: A controller and sampler to help reuse modules with variables in the scope
+
+### Selenium/WebDriver Support (`jpgc-webdriver`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-webdriver/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-webdriver.md
+- Vendor: JMeter-Plugins.org | Downloads: 4,628 | Weekly: +532
+- JMeter Compatibility: 5.6.3+
+- Repo Health: 75/100 (Active)
+- Install: `PluginsManagerCMD.sh install jpgc-webdriver`
+- Summary: This plugin allows testing real browser behavior at UI level using Selenium/WebDriver technology
+
+### KPI vs KPI Graphs (`jpgc-graphs-vs`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-graphs-vs/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-graphs-vs.md
+- Vendor: JMeter-Plugins.org | Downloads: 4,504 | Weekly: +205
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-graphs-vs`
+- Summary: <ul><li>Hits/s vs Active Threads</li><li>Avg Response Time vs Active Threads</li></ul>
+
+### Console Status Logger (`jpgc-csl`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-csl/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-csl.md
+- Vendor: JMeter-Plugins.org | Downloads: 4,434 | Weekly: +344
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-csl`
+- Summary: Small listener that prints each second a line with runtime stats into console
+
+### JSON/YAML Plugins (deprecated) (`jpgc-json`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-json/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-json.md
+- Vendor: JMeter-Plugins.org | Downloads: 4,362 | Weekly: +282
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-json`
+- Summary: [Deprecated in favor of core JMeter 4.0+] Allows extracting values from JSON/YAML responses using JSONPath syntax. Also ships JSONPath Assertion.
+
+### Distribution/Percentile Graphs (`jpgc-graphs-dist`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-graphs-dist/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-graphs-dist.md
+- Vendor: JMeter-Plugins.org | Downloads: 4,334 | Weekly: +272
+- JMeter Compatibility: 5.6.3+
+- Install: `PluginsManagerCMD.sh install jpgc-graphs-dist`
+- Summary: <ul><li>Response Times Distribution</li><li>Response Times Percentiles</li></ul>
+
+### BlazeMeter Uploader (`jpgc-sense`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-sense/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-sense.md
+- Vendor: BlazeMeter | Downloads: 4,281 | Weekly: +317
+- JMeter Compatibility: 2.13+
+- Repo Health: 93/100 (Active)
+- Install: `PluginsManagerCMD.sh install jpgc-sense`
+- Summary: This is special plugin in for uploading results to BlazeMeter/BlazeMeter Sense during test running or immediately after test end
+
+### Variables from CSV File (`jpgc-csvars`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-csvars/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-csvars.md
+- Vendor: JMeter-Plugins.org | Downloads: 4,054 | Weekly: +398
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-csvars`
+- Summary: Config item to load one-line CSV file into JMeter variables on startup. Helps to have external configuration file for test plan.
+
+### Graphs Generator Listener (`jpgc-ggl`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-ggl/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-ggl.md
+- Vendor: JMeter-Plugins.org | Downloads: 3,832 | Weekly: +342
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-ggl`
+- Summary: Graphs Generator Listener generates several graphs at end of test
+
+### Test Plan Check Tool (`jpgc-plancheck`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-plancheck/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-plancheck.md
+- Vendor: JMeter-Plugins.org | Downloads: 3,666 | Weekly: +349
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-plancheck`
+- Summary: Small command line tool to check test plan consistency. Helps in automation of JMeter executions.
+
+### Auto-Stop Listener (`jpgc-autostop`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-autostop/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-autostop.md
+- Vendor: JMeter-Plugins.org | Downloads: 3,652 | Weekly: +303
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-autostop`
+- Summary: Ability to stop test based on runtime KPIs
+
+### HTTP Raw Request (`jpgc-httpraw`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-httpraw/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-httpraw.md
+- Vendor: JMeter-Plugins.org | Downloads: 3,612 | Weekly: +303
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-httpraw`
+- Summary: Low-level HTTP request, solves memory problem for huge file upload/download case. Also ships Raw Data Source preprocessor.
+
+### XML Plugins (`jpgc-xml`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-xml/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-xml.md
+- Vendor: JMeter-Plugins.org | Downloads: 3,552 | Weekly: +285
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-xml`
+- Summary: Currently ships XMLFormatPostProcessor
+
+### HTTP Simple Table Server (`jpgc-sts`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-sts/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-sts.md
+- Vendor: JMeter-Plugins.org | Downloads: 3,290 | Weekly: +281
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-sts`
+- Summary: The main idea is to use a tiny http server in JMeter Plugins to manage the dataset files with simple commands to get / add / find rows of data in files.
+
+### UDP Protocol Support (`jpgc-udp`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-udp/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-udp.md
+- Vendor: JMeter-Plugins.org | Downloads: 2,803 | Weekly: +158
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-udp`
+- Summary: This plugin adds UDP protocol support to JMeter. With this plugin you can load test DNS, NTP, TFTP, Boot servers and many-many other systems.
+
+### JMXMon Sample Collector (`jpgc-jmxmon`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-jmxmon/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-jmxmon.md
+- Vendor: JMeter-Plugins.org | Downloads: 2,686 | Weekly: +301
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-jmxmon`
+- Summary: JMXMon lets you plot JMX performance metrics over time when the test is running.
+
+### WebSocket Sampler by Maciej Zaleski (`websocket-sampler`)
+- URL: https://plugins.jmeter.ai/plugin/websocket-sampler/ | Markdown: https://plugins.jmeter.ai/plugin/websocket-sampler.md
+- Vendor: Maciej Zaleski | Downloads: 2,682 | Weekly: +159
+- Repo Health: 29/100 (Stale)
+- Install: `PluginsManagerCMD.sh install websocket-sampler`
+- Summary: 
+
+### DBMon Sample Collector (`jpgc-dbmon`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-dbmon/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-dbmon.md
+- Vendor: JMeter-Plugins.org | Downloads: 2,655 | Weekly: +233
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-dbmon`
+- Summary: DbMon lets you plot performance counters accessible via SQL when the test is running.
+
+### Page Data Extractor (`jpgc-pde`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-pde/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-pde.md
+- Vendor: JMeter-Plugins.org | Downloads: 2,571 | Weekly: +255
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-pde`
+- Summary: This graph will plot data extracted from page results (status, health pages, etc.).
+
+### Lock File Config (`jpgc-lockfile`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-lockfile/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-lockfile.md
+- Vendor: JMeter-Plugins.org | Downloads: 2,386 | Weekly: +262
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-lockfile`
+- Summary: Lock file allows you to set locks to prevent multiple JMeters from running on the same machine
+
+### SSH Protocol Support (`ssh-sampler`)
+- URL: https://plugins.jmeter.ai/plugin/ssh-sampler/ | Markdown: https://plugins.jmeter.ai/plugin/ssh-sampler.md
+- Vendor: Yoann Ciabaud | Downloads: 2,148 | Weekly: +198
+- Repo Health: 22/100 (Stale)
+- Install: `PluginsManagerCMD.sh install ssh-sampler`
+- Summary: 
+
+### BlazeMeter Step-by-step Debugger (`blazemeter-debugger`)
+- URL: https://plugins.jmeter.ai/plugin/blazemeter-debugger/ | Markdown: https://plugins.jmeter.ai/plugin/blazemeter-debugger.md
+- Vendor: BlazeMeter.com | Downloads: 1,931 | Weekly: +286
+- Repo Health: 60/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install blazemeter-debugger`
+- Summary: This plugin enables step-by-step debugging of JMeter scripts
+
+### DI KafkaMeter (`di-kafkameter`)
+- URL: https://plugins.jmeter.ai/plugin/di-kafkameter/ | Markdown: https://plugins.jmeter.ai/plugin/di-kafkameter.md
+- Vendor: DigitalInsight-NCR | Downloads: 1,881 | Weekly: +38
+- Repo Health: 73/100 (Active)
+- Install: `PluginsManagerCMD.sh install di-kafkameter`
+- Summary: Jmeter plugin to push/read events/messages to Kafka topics
+
+### Prometheus Listener Plugin (`jmeter-prometheus`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-prometheus/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-prometheus.md
+- Vendor: johrstrom | Downloads: 1,831 | Weekly: +134
+- Repo Health: 27/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jmeter-prometheus`
+- Summary: A Jmeter plugin to expose sampled metrics to an endpoint to be scraped by Prometheus.
+
+### Extended CSV dataset config (`extended-csv-dataset-config`)
+- URL: https://plugins.jmeter.ai/plugin/extended-csv-dataset-config/ | Markdown: https://plugins.jmeter.ai/plugin/extended-csv-dataset-config.md
+- Vendor: DigitalInsight-NCR | Downloads: 1,816 | Weekly: +243
+- Repo Health: 67/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install extended-csv-dataset-config`
+- Summary: Jmeter plugin to effectively manage CSV dataset like other enterprise industry standard tools. <ul><li>Simply add a "Config Element " and Set the appropriate options</li><li><a href="https://rollno748.medium.com/extended-csv-dataset-config-for-jmeter-17b1d8bda6b8">Usage Guide</a></li><li><a href="https://rollno748.github.io/">Author Details</a></li></ul>
+
+### BlazeMeter - Auto Correlation Recorder Plugin (`bzm-siebel`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-siebel/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-siebel.md
+- Vendor: BlazeMeter | Downloads: 1,701 | Weekly: +210
+- Repo Health: 71/100 (Active)
+- Install: `PluginsManagerCMD.sh install bzm-siebel`
+- Summary: Auto Correlation Recorder provides automatic correlation and detection of variables at recording time
+
+### Redis Data Set (`jpgc-redis`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-redis/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-redis.md
+- Vendor: JMeter-Plugins.org | Downloads: 1,672 | Weekly: +223
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-redis`
+- Summary: Allows reading test data from Redis storage
+
+### BlazeMeter - HTTP/2 Legacy Plugin (`bzm-http2-legacy`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-http2-legacy/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-http2-legacy.md
+- Vendor: BlazeMeter | Downloads: 1,561 | Weekly: +69
+- Repo Health: 84/100 (Active)
+- Install: `PluginsManagerCMD.sh install bzm-http2-legacy`
+- Summary: This is a deprecated HTTP/2 plugin which allows to test the HTTP2 protocol in java 8 (Recommended to migrate to v2.0 or higher)
+
+### Kafka Support (`kafkameter`)
+- URL: https://plugins.jmeter.ai/plugin/kafkameter/ | Markdown: https://plugins.jmeter.ai/plugin/kafkameter.md
+- Vendor: www.signal.co | Downloads: 1,536 | Weekly: +16
+- Install: `PluginsManagerCMD.sh install kafkameter`
+- Summary: 
+
+### JMeter Listener pack (`jmeter.pack-listener`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter.pack-listener/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter.pack-listener.md
+- Vendor: Alexander Babaev | Downloads: 1,498 | Weekly: +135
+- JMeter Compatibility: 5.1+
+- Install: `PluginsManagerCMD.sh install jmeter.pack-listener`
+- Summary: This JMeter Plugin allows to write load test data on-the-fly to <a href="https://clickhouse.yandex">ClickHouse</a> (as well as InfluxDB, ElasticSearch, with additional feature: aggregation of Samplers)<br />Explanations and usage examples on <a href="https://gitlab.com/testload/jmeter-listener/wikis/home">project wiki.</a><br /> <a href="https://grafana.com/orgs/testload/dashboards">Dashboards for ClickHouse.</a>
+
+### MQTT Protocol Samplers (`mqtt-xmeter`)
+- URL: https://plugins.jmeter.ai/plugin/mqtt-xmeter/ | Markdown: https://plugins.jmeter.ai/plugin/mqtt-xmeter.md
+- Vendor: XMeter.com | Downloads: 1,407 | Weekly: +45
+- Repo Health: 22/100 (Stale)
+- Install: `PluginsManagerCMD.sh install mqtt-xmeter`
+- Summary: connect, publish, subscribe and disconnect samplers
+
+### vdn@github - har-convertor-jmeter-tool (`vdn-har-convertor-jmeter-tool`)
+- URL: https://plugins.jmeter.ai/plugin/vdn-har-convertor-jmeter-tool/ | Markdown: https://plugins.jmeter.ai/plugin/vdn-har-convertor-jmeter-tool.md
+- Vendor: Vincent DABURON | Downloads: 1,399 | Weekly: +145
+- Repo Health: 67/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install vdn-har-convertor-jmeter-tool`
+- Summary: Convert a HAR file to a JMeter Script and a Record XML file.
+
+### BlazeMeter - Repositories (`bzm-repositories`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-repositories/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-repositories.md
+- Vendor: BlazeMeter | Downloads: 1,384 | Weekly: +180
+- Install: `PluginsManagerCMD.sh install bzm-repositories`
+- Summary: BlazeMeter repositories functionality for the Auto Correlation Recorder Plugin
+
+### Kafka backend listener (`jmeter.backendlistener.kafka`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.kafka/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.kafka.md
+- Vendor: rahulsinghai | Downloads: 1,257 | Weekly: +25
+- JMeter Compatibility: 5.1.1+
+- Repo Health: 21/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jmeter.backendlistener.kafka`
+- Summary: Apache JMeter plugin for sending sample results to a Kafka server. <ul><li>Simply add a "Backend Listener" and change the implementation</li><li>Change the listener's configuration</li><li>To use filters, simply separate their name by a semicolon. (f1;f2;f3)</li></ul>
+
+### HAR (HTTP Archive) Import (`jmeter-har-import`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-har-import/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-har-import.md
+- Vendor: Qytera GmbH | Downloads: 1,237 | Weekly: +139
+- Repo Health: 73/100 (Active)
+- Install: `PluginsManagerCMD.sh install jmeter-har-import`
+- Summary: This plugin allows you to import HAR files into JMeter and convert them into HTTP Request Samplers for easier recording.
+
+### Custom SOAP Sampler (`custom-soap`)
+- URL: https://plugins.jmeter.ai/plugin/custom-soap/ | Markdown: https://plugins.jmeter.ai/plugin/custom-soap.md
+- Vendor: Lukasz W | Downloads: 1,042 | Weekly: +51
+- JMeter Compatibility: 2.13+
+- Repo Health: 18/100 (Stale)
+- Install: `PluginsManagerCMD.sh install custom-soap`
+- Summary: 
+
+### BlazeMeter - HTTP Plugin (`bzm-http2`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-http2/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-http2.md
+- Vendor: BlazeMeter | Downloads: 1,010 | Weekly: +53
+- Repo Health: 84/100 (Active)
+- Install: `PluginsManagerCMD.sh install bzm-http2`
+- Summary: BlazeMeter HTTP (HTTP/1.1, HTTP/2, HTTP/3)
+
+### JMeter gRPC Request (`jmeter-grpc-request`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-grpc-request/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-grpc-request.md
+- Vendor: bakthava | Downloads: 1,005 | Weekly: +91
+- Repo Health: 55/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install jmeter-grpc-request`
+- Summary: Send gRPC request
+
+### ElasticSearch backend listener (`jmeter.backendlistener.elasticsearch`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.elasticsearch/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.elasticsearch.md
+- Vendor: Delirius325 | Downloads: 972 | Weekly: +26
+- Repo Health: 25/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jmeter.backendlistener.elasticsearch`
+- Summary: Apache JMeter plugin for sending sample results to an ElasticSearch engine. <ul><li>Simply add a "Backend Listener" and change the implementation</li><li>Change the listener's configuration</li><li>To use filters, simply seperate their name by a semicolon. (f1;f2;f3)</li></ul>
+
+### WS Security for SOAP (`tilln-wssecurity`)
+- URL: https://plugins.jmeter.ai/plugin/tilln-wssecurity/ | Markdown: https://plugins.jmeter.ai/plugin/tilln-wssecurity.md
+- Vendor: Till Neunast | Downloads: 857 | Weekly: +77
+- Repo Health: 21/100 (Stale)
+- Install: `PluginsManagerCMD.sh install tilln-wssecurity`
+- Summary: Digital signature, encryption, decryption, timestamp and username token for SOAP messages via Pre/Post-Processors that modify sampler payloads/responses.
+
+### Feather Wand - JMeter AI Agent (`feather-wand-jmeter-ai-agent`)
+- URL: https://plugins.jmeter.ai/plugin/feather-wand-jmeter-ai-agent/ | Markdown: https://plugins.jmeter.ai/plugin/feather-wand-jmeter-ai-agent.md
+- Vendor: QAInsights.com | Downloads: 841 | Weekly: +154
+- Repo Health: 86/100 (Active)
+- Install: `PluginsManagerCMD.sh install feather-wand-jmeter-ai-agent`
+- Summary: AI assistant and autonomous agent for Apache JMeter. Chat with Claude, OpenAI, Google Gemini, DeepSeek, Grok, Meta Muse, AWS Bedrock, Ollama or Apple on-device models, or sign in with your ChatGPT/Codex or Claude Code account, without leaving the JMeter GUI.<ul><li><b>Agent Mode</b>: describe a load test in plain English and the agent builds and edits the test plan for you with 21 JMeter tools, from Thread Groups and samplers to assertions and listeners.</li><li><b>Extract this</b>: highlight a value in View Results Tree and get JSON, CSS selector, regex or boundary extractors that are verified against the real response. Correlation without guesswork, and it works without an API key.</li><li><b>Context-aware commands</b>: @this, @testplan, @optimize, @lint, @sla and @wrap review and tune the plan you have open.</li><li><b>JSR223 refactoring</b>: right-click a Groovy script to refactor, format or add functions.</li><li><b>AI CLI terminal</b>: run Claude Code, OpenAI Codex, OpenCode or Grok CLI in a JMeter tab.</li><li><b>MCP server</b>: let Claude Code, Cursor, Codex or any MCP client read, edit, run and analyze the open test plan.</li><li>Attach jmeter.log or JTL results for error and percentile analysis, record browser flows, and export conversations to Markdown or HTML.</li></ul>Requires Java 17 or later. Ollama and Apple on-device need no API key; for the other providers, add a key to user.properties using the quick-start file in the documentation.
+
+### MQTT Protocol Support (`mqtt-sampler`)
+- URL: https://plugins.jmeter.ai/plugin/mqtt-sampler/ | Markdown: https://plugins.jmeter.ai/plugin/mqtt-sampler.md
+- Vendor: Hemika Kodikara | Downloads: 827 | Weekly: -9
+- Repo Health: 16/100 (Stale)
+- Install: `PluginsManagerCMD.sh install mqtt-sampler`
+- Summary: 
+
+### Datadog Backend Listener (`jmeter-datadog-backend-listener`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-datadog-backend-listener/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-datadog-backend-listener.md
+- Vendor: Datadog | Downloads: 815 | Weekly: +172
+- Repo Health: 73/100 (Active)
+- Install: `PluginsManagerCMD.sh install jmeter-datadog-backend-listener`
+- Summary: Send JMeter test results to Datadog
+
+### BlazeMeter - HLS Plugin (`bzm-hls`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-hls/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-hls.md
+- Vendor: BlazeMeter | Downloads: 807 | Weekly: +42
+- Repo Health: 85/100 (Active)
+- Install: `PluginsManagerCMD.sh install bzm-hls`
+- Summary: HLS protocol sampler, enabling testing for streaming applications
+
+### SSHMon Sample Collector (`tilln-sshmon`)
+- URL: https://plugins.jmeter.ai/plugin/tilln-sshmon/ | Markdown: https://plugins.jmeter.ai/plugin/tilln-sshmon.md
+- Vendor: Till Neunast | Downloads: 805 | Weekly: +105
+- JMeter Compatibility: 2.13+
+- Repo Health: 45/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install tilln-sshmon`
+- Summary: Monitoring plugin for agentless collection and plotting of remote server metrics via SSH connections
+
+### Validate Thread Group (`validate-thread-group`)
+- URL: https://plugins.jmeter.ai/plugin/validate-thread-group/ | Markdown: https://plugins.jmeter.ai/plugin/validate-thread-group.md
+- Vendor: QAInsights.com | Downloads: 772 | Weekly: +155
+- Repo Health: 17/100 (Stale)
+- Install: `PluginsManagerCMD.sh install validate-thread-group`
+- Summary: Adds Validation Thread Group option to the toolbar
+
+### Directory Listing Config (`jpgc-directory-listing`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-directory-listing/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-directory-listing.md
+- Vendor: BlazeMeter | Downloads: 753 | Weekly: +107
+- JMeter Compatibility: 3.1+
+- Repo Health: 93/100 (Active)
+- Install: `PluginsManagerCMD.sh install jpgc-directory-listing`
+- Summary: Directory listing config allows to set file path from source directory into jmeter-variable
+
+### JMS Send and Receive Sampler (`jpgc-jms`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-jms/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-jms.md
+- Vendor: JMeter-Plugins.org | Downloads: 725 | Weekly: +106
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-jms`
+- Summary: If you are using JMS (Java Message Service) to send and receive messages between two or more clients, we have created a sampler which enables you to send and receive messages.
+
+### HTTP Form Manager (`tilln-formman`)
+- URL: https://plugins.jmeter.ai/plugin/tilln-formman/ | Markdown: https://plugins.jmeter.ai/plugin/tilln-formman.md
+- Vendor: Till Neunast | Downloads: 677 | Weekly: +136
+- Repo Health: 19/100 (Stale)
+- Install: `PluginsManagerCMD.sh install tilln-formman`
+- Summary: This plugin makes JMeter behave a little more like a browser: form fields are automatically populated with preselected values.<br><ul><li>No more manual correlation of hidden inputs, such as session variables.</li><li>Just correlate parameters that actually relate to user input.</li></ul>
+
+### Azure backend listener (`jmeter.backendlistener.azure`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.azure/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.azure.md
+- Vendor: adrianmo | Downloads: 665 | Weekly: +152
+- Repo Health: 19/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jmeter.backendlistener.azure`
+- Summary: Apache JMeter plugin that enables you to send test results to Azure Application Insights.
+
+### BlazeMeter - RTE Plugin (`bzm-rte`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-rte/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-rte.md
+- Vendor: BlazeMeter | Downloads: 615 | Weekly: +39
+- Repo Health: 39/100 (Stale)
+- Install: `PluginsManagerCMD.sh install bzm-rte`
+- Summary: Support for RTE (remote terminal emulation), providing a recorder, sampler and config element to interact with remote terminal servers
+
+### XMPP Protocol Support (`jpgc-xmpp`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-xmpp/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-xmpp.md
+- Vendor: BlazeMeter.com | Downloads: 557 | Weekly: +32
+- JMeter Compatibility: 2.13+
+- Repo Health: 93/100 (Active)
+- Install: `PluginsManagerCMD.sh install jpgc-xmpp`
+- Summary: Enables testing XMPP (Jabber) protocol servers
+
+### ISO-8583 Sampler (`tilln-iso8583`)
+- URL: https://plugins.jmeter.ai/plugin/tilln-iso8583/ | Markdown: https://plugins.jmeter.ai/plugin/tilln-iso8583.md
+- Vendor: Till Neunast | Downloads: 551 | Weekly: +50
+- Repo Health: 77/100 (Active)
+- Install: `PluginsManagerCMD.sh install tilln-iso8583`
+- Summary: Generate ISO-8583 financial transactions for testing of payment gateways and switches<br />With support for cryptogram calculation (PIN Block, MAC, ARQC)<br />Based on the <a href="http://jpos.org">jPOS</a> framework
+
+### IBM MQ Support (`mqmeter`)
+- URL: https://plugins.jmeter.ai/plugin/mqmeter/ | Markdown: https://plugins.jmeter.ai/plugin/mqmeter.md
+- Vendor: JoseLuisSR | Downloads: 543 | Weekly: +15
+- Repo Health: 16/100 (Stale)
+- Install: `PluginsManagerCMD.sh install mqmeter`
+- Summary: A JMeter Plugin to put and get message on IBM MQ Queue, also publish message on Topic. It connect to MQ Server through server channel using ip address, port number, userID and password (if the channel has CHLAUTH rules).
+
+### Sample Retrier (`tilln-retrier`)
+- URL: https://plugins.jmeter.ai/plugin/tilln-retrier/ | Markdown: https://plugins.jmeter.ai/plugin/tilln-retrier.md
+- Vendor: Till Neunast | Downloads: 498 | Weekly: +53
+- Repo Health: 11/100 (Stale)
+- Install: `PluginsManagerCMD.sh install tilln-retrier`
+- Summary: Post-Processor that retries failed samplers based on sample results (regex match of response code, data, headers or message).<br /><ul><li>Configurable pause and back-off behaviour</li><li>Handles "Retry-After" HTTP headers</li><li>Retries as represented as sub-results</li></ul>Does <b>not</b> take into account any assertion results.
+
+### JUnit Reporter (`tilln-junit`)
+- URL: https://plugins.jmeter.ai/plugin/tilln-junit/ | Markdown: https://plugins.jmeter.ai/plugin/tilln-junit.md
+- Vendor: Till Neunast | Downloads: 494 | Weekly: +111
+- Repo Health: 40/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install tilln-junit`
+- Summary: Generates CI/CD-compatible JUnit Reports in XML format based on custom KPIs: Comparing aggregate metrics with threshold values determines pass/fail.<br />Supports filtering of sample labels by regular expressions.<br />Supported aggregates:<ul><li>Response time percentiles (any)</li><li>Maximum and minimum response time</li><li>Response time average and standard deviation</li><li>Sample error rate</li><li>Total number of samples</li><li>Custom metrics</li></ul>
+
+### Dynatrace Backend Listener (`jmeter-dynatrace-backend-listener`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-dynatrace-backend-listener/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-dynatrace-backend-listener.md
+- Vendor: Dynatrace | Downloads: 439 | Weekly: +35
+- Repo Health: 16/100 (Archived)
+- Install: `PluginsManagerCMD.sh install jmeter-dynatrace-backend-listener`
+- Summary: Send JMeter test results to Dynatrace
+
+### Hadoop/HBase Testing (`jpgc-hadoop`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-hadoop/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-hadoop.md
+- Vendor: JMeter-Plugins.org | Downloads: 435 | Weekly: +44
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-hadoop`
+- Summary: <ul><li>HBase Connection Config</li><li>HDFS Operations</li><li>Hadoop Job Tracker Sampler</li><li>HBase CRUD Sampler</li><li>HBase Scan Sampler</li><li>HBase Rowkey Sampler</li></ul>
+
+### Rotating JTL Listener (`jpgc-rotating-listener`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-rotating-listener/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-rotating-listener.md
+- Vendor: BlazeMeter | Downloads: 416 | Weekly: +45
+- JMeter Compatibility: 3.1+
+- Repo Health: 93/100 (Active)
+- Install: `PluginsManagerCMD.sh install jpgc-rotating-listener`
+- Summary: Rotating listener provides writing sequence of files, limited by number of samples per file.
+
+### Baolu-csv-data-file-config (`baolu-csv-data-file-config`)
+- URL: https://plugins.jmeter.ai/plugin/baolu-csv-data-file-config/ | Markdown: https://plugins.jmeter.ai/plugin/baolu-csv-data-file-config.md
+- Vendor: libaolu | Downloads: 414 | Weekly: +63
+- Repo Health: 16/100 (Stale)
+- Install: `PluginsManagerCMD.sh install baolu-csv-data-file-config`
+- Summary: <ul><li>This plug-in supports automatic or manual csv data allocation for each thread.It has a similar LoadRunner capability parameterization.</li><li>If your request involves database update operation, using this plug-in in the test script can avoid lock waiting and improve the reliability of test results.</li></ul>
+
+### AWS Support (`awsmeter`)
+- URL: https://plugins.jmeter.ai/plugin/awsmeter/ | Markdown: https://plugins.jmeter.ai/plugin/awsmeter.md
+- Vendor: JoseLuisSR | Downloads: 345 | Weekly: +15
+- Repo Health: 76/100 (Active)
+- Install: `PluginsManagerCMD.sh install awsmeter`
+- Summary: AWS Meter is a comprehensive JMeter plugin designed to execute performance tests against AWS services including Kinesis, SQS, SNS, Cognito, and EventBridge. This plugin provides specialized Java samplers for each AWS service, leveraging the AWS SDK for seamless integration and communication.
+
+### vdn@github - pacing-jmeter-plugin (`vdn-pacing-jmeter-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/vdn-pacing-jmeter-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/vdn-pacing-jmeter-plugin.md
+- Vendor: Vincent DABURON | Downloads: 331 | Weekly: +20
+- Repo Health: 21/100 (Stale)
+- Install: `PluginsManagerCMD.sh install vdn-pacing-jmeter-plugin`
+- Summary: Add Pacing to JMeter, compute a pause for the pacing duration since thread start iteration or since start time in a variable
+
+### Cassandra Support (`netflix-cassandra`)
+- URL: https://plugins.jmeter.ai/plugin/netflix-cassandra/ | Markdown: https://plugins.jmeter.ai/plugin/netflix-cassandra.md
+- Vendor: Netflix | Downloads: 323 | Weekly: -1
+- Repo Health: 20/100 (Archived)
+- Install: `PluginsManagerCMD.sh install netflix-cassandra`
+- Summary: 
+
+### JMeter HTML Report Plugin (`jmeter-html-report-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-html-report-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-html-report-plugin.md
+- Vendor: Srenevasan | Downloads: 306 | Weekly: +52
+- Repo Health: 65/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install jmeter-html-report-plugin`
+- Summary: Interactive HTML report generator for JMeter API testing with request/response details, assertion results, filtering, charts and dark mode support.
+
+### DG - Utility Jmeter Functions (`UtilityJmeterFunctions`)
+- URL: https://plugins.jmeter.ai/plugin/UtilityJmeterFunctions/ | Markdown: https://plugins.jmeter.ai/plugin/UtilityJmeterFunctions.md
+- Vendor: Daniil Golikov | Downloads: 302 | Weekly: +72
+- Repo Health: 22/100 (Stale)
+- Install: `PluginsManagerCMD.sh install UtilityJmeterFunctions`
+- Summary: This plugin adds utility jmeter functions (like ${__...}). List of functions:<br>forEachArray<br>generateEmail<br>generateInnLegal<br>generateInnNatural<br>generateOgrn<br>generatePhoneNumber<br>generatePinCode<br>generateSnils<br>jsonPathFromVar<br>globalCounter<br>randomStringLiteral<br>samplerComment<br>timeRandom
+
+### Swagger / Postman Importer (`swagger-postman-importer`)
+- URL: https://plugins.jmeter.ai/plugin/swagger-postman-importer/ | Markdown: https://plugins.jmeter.ai/plugin/swagger-postman-importer.md
+- Vendor: Bakthavachalam | Downloads: 287 | Weekly: +65
+- JMeter Compatibility: 5.6.3+
+- Repo Health: 49/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install swagger-postman-importer`
+- Summary: JMeter plugin for importing Swagger/OpenAPI specifications and Postman collections to automatically generate JMeter test plans. Supports both JSON and YAML formats with automatic HTTP sampler generation and parameter extraction.
+
+### JMeter Studio - Theme Engine Plugin for Apache JMeter (`jmeter-studio-oss`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-studio-oss/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-studio-oss.md
+- Vendor: QAInsights.com | Downloads: 279 | Weekly: +50
+- Repo Health: 65/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install jmeter-studio-oss`
+- Summary: A modern, extensible theme engine for Apache JMeter featuring both dark and light themes with custom icon sets
+
+### Extractor Success Assertion (`jpgc-esa`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-esa/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-esa.md
+- Vendor: JMeter-Plugins.org | Downloads: 263 | Weekly: +78
+- JMeter Compatibility: 5.1+
+- Repo Health: 13/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jpgc-esa`
+- Summary: Assertion to check that extractor were successfull
+
+### Unique CSV dataset config (`unique-csv-data-set-config`)
+- URL: https://plugins.jmeter.ai/plugin/unique-csv-data-set-config/ | Markdown: https://plugins.jmeter.ai/plugin/unique-csv-data-set-config.md
+- Vendor: HYUNDAI AUTOEVER CORP | Downloads: 261 | Weekly: +33
+- Repo Health: 42/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install unique-csv-data-set-config`
+- Summary: This CSV config plugin offers two distinctive features.<ul>1. The ability to provide CSV data only to specified Thread Groups<br>2. The ability to designate the number of data records that can be used in each Thread.<br>&nbsp;&nbsp;&nbsp;&nbsp;(Effect of unique data allocation.)</ul>
+
+### JWT PreProcessor (`jwt-preProcessor`)
+- URL: https://plugins.jmeter.ai/plugin/jwt-preProcessor/ | Markdown: https://plugins.jmeter.ai/plugin/jwt-preProcessor.md
+- Vendor: Sashika Rangoda | Downloads: 258 | Weekly: +56
+- Repo Health: 8/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jwt-preProcessor`
+- Summary: This is a Jmeter pre-processor plugin that can generate Java Web Token
+
+### Markdown Table Data-driven Controller|JsonPath Assertion for sort (`yongfa365-jmeter-plugins`)
+- URL: https://plugins.jmeter.ai/plugin/yongfa365-jmeter-plugins/ | Markdown: https://plugins.jmeter.ai/plugin/yongfa365-jmeter-plugins.md
+- Vendor: yongfa365 | Downloads: 253 | Weekly: +26
+- Repo Health: 16/100 (Stale)
+- Install: `PluginsManagerCMD.sh install yongfa365-jmeter-plugins`
+- Summary: <ul><li>'Markdown Table Data-driven Controller' on GUI,like 'While Controller' but easier.</li><li>'JsonPath Assertion' can assert elements sort 'Is Asc' or 'Is Desc' or 'All Match' or 'Any Match' or 'count between a and b'</li><li>'Console And Html Report' can gen beautiful html report and console report,It's useful for Jenkins saving log</li></ul>
+
+### One-Click Auto-Correlation Plugin (`io.github.vasanthshanmugam-jmeter-auto-correlation-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/io.github.vasanthshanmugam-jmeter-auto-correlation-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/io.github.vasanthshanmugam-jmeter-auto-correlation-plugin.md
+- Vendor: Vasanth Shanmugam | Downloads: 211 | Weekly: +40
+- Repo Health: 60/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install io.github.vasanthshanmugam-jmeter-auto-correlation-plugin`
+- Summary: One-click detection and correlation of dynamic values in JMeter test scripts. Automatically finds session IDs, CSRF tokens, OAuth/Bearer tokens, hidden form fields, ViewState, SAML tokens, and replaces hardcoded values with extractors.
+
+### Apdex Score Calculation (`rbourga-jmeter-plugins-apdexcalculator`)
+- URL: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-apdexcalculator/ | Markdown: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-apdexcalculator.md
+- Vendor: Robert Bourgault du Coudray | Downloads: 194 | Weekly: +59
+- JMeter Compatibility: 2.13+
+- Repo Health: 81/100 (Active)
+- Install: `PluginsManagerCMD.sh install rbourga-jmeter-plugins-apdexcalculator`
+- Summary: Calculates the Apdex score of Samplers for a given Satisfied Threshold.
+
+### BlazeMeter - Citrix Plugin (`bzm-jmeter-citrix-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-jmeter-citrix-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-jmeter-citrix-plugin.md
+- Vendor: BlazeMeter | Downloads: 188 | Weekly: -2
+- Repo Health: 50/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install bzm-jmeter-citrix-plugin`
+- Summary: Support for Citrix protocol (only available for Microsoft Windows)
+
+### GCP pubsub plugin (`jmeter-pubsub-sampler`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-pubsub-sampler/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-pubsub-sampler.md
+- Vendor: DigitalInsight-NCR | Downloads: 171 | Weekly: +20
+- Repo Health: 72/100 (Active)
+- Install: `PluginsManagerCMD.sh install jmeter-pubsub-sampler`
+- Summary: Jmeter plugin to Publish and Subscribe Messages to GCP PubSub. <ul><li>Simply add a "Publisher/Suscriber config " and provide the service credentials</li><li>Add the Publisher/Subscriber sampler to send/read events</li><li><a href="https://rollno748.github.io/">Author Details</a></li></ul>
+
+### JMeter SSE Sampler (`jmeter-sse-sampler`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-sse-sampler/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-sse-sampler.md
+- Vendor: Cüneyt Çakır | Downloads: 169 | Weekly: +31
+- JMeter Compatibility: 5.6.3+
+- Repo Health: 69/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install jmeter-sse-sampler`
+- Summary: High-performance Server-Sent Events (SSE) sampler for load testing real-time streaming HTTP endpoints. Supports custom authentication headers, configurable listen duration, HTTP error detection, and accurate JMeter metrics.
+
+### Distributed Load Distributor (`loadmagic-load-distributor`)
+- URL: https://plugins.jmeter.ai/plugin/loadmagic-load-distributor/ | Markdown: https://plugins.jmeter.ai/plugin/loadmagic-load-distributor.md
+- Vendor: LoadMagic | Downloads: 168 | Weekly: +38
+- Repo Health: 65/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install loadmagic-load-distributor`
+- Summary: Automatically distributes thread counts across JMeter generators for distributed testing. Works with JMeter remote testing (-R) via -Ggenerator.hosts, or standalone generators via -Jgenerator.id/-Jgenerator.count. Auto-activates from lib/ext — no test plan element required. Supports Standard ThreadGroup, Ultimate Thread Group, Concurrency Thread Group, and Stepping Thread Group.
+
+### JAAR — JTL AI Analysis & Reporting (`io.github.sagaraggarwal86-configurable-aggregate-report`)
+- URL: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-configurable-aggregate-report/ | Markdown: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-configurable-aggregate-report.md
+- Vendor: Sagar Aggarwal | Downloads: 152 | Weekly: +22
+- JMeter Compatibility: 5.6.3+
+- Repo Health: 69/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install io.github.sagaraggarwal86-configurable-aggregate-report`
+- Summary: A file-based Apache JMeter listener plugin for post-test JTL analysis. Provides a filterable aggregate table with features like Filter Results using Start/End Offset & Transaction Names with RegEx support, Dynamic Percentile & Table Columns, SLA Threshold Highlighting (Error %, Response Time & TPS), CLI Headless Mode, Chart Interval Control, AI-Analyzed HTML Performance Report, Data-Only HTML Report (no AI required), Export Report in Excel & PDF Format, Performance Charts, Dark Mode — with zero runtime overhead.
+
+### BPM — Browser Performance Metrics (`io.github.sagaraggarwal86-bpm-jmeter-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-bpm-jmeter-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-bpm-jmeter-plugin.md
+- Vendor: Sagar Aggarwal | Downloads: 135 | Weekly: +32
+- JMeter Compatibility: 5.6.3+
+- Repo Health: 66/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install io.github.sagaraggarwal86-bpm-jmeter-plugin`
+- Summary: A live JMeter listener plugin for capturing browser rendering metrics via Chrome DevTools Protocol. Features include Core Web Vitals (LCP, FCP, CLS, TTFB), Network & Console capture, Composite Performance Score, SLA Threshold Highlighting, Improvement Area Detection, Filter by Start/End Offset & Transaction Names with RegEx support, CLI Headless Mode, Chart Interval Control, HTML Performance Report, and Excel Export — with minimal impact on JMeter thread performance.
+
+### vdn@github - junit-reporter-kpi-compare-jmeter-report-csv (`vdn-junit-reporter-kpi-compare-jmeter-report-csv`)
+- URL: https://plugins.jmeter.ai/plugin/vdn-junit-reporter-kpi-compare-jmeter-report-csv/ | Markdown: https://plugins.jmeter.ai/plugin/vdn-junit-reporter-kpi-compare-jmeter-report-csv.md
+- Vendor: Vincent DABURON | Downloads: 135 | Weekly: +20
+- Repo Health: 79/100 (Active)
+- Install: `PluginsManagerCMD.sh install vdn-junit-reporter-kpi-compare-jmeter-report-csv`
+- Summary: This tool read KPI declarations in a file and apply the KPI assertion on 2 JMeter Report CSV files (current and reference) and generates a result file in JUnit XML format and others formats Html, Json and Csv.
+
+### vdn@github - junit-reporter-kpi-from-jmeter-report-csv tool (`vdn-junit-reporter-kpi-from-jmeter-report-csv`)
+- URL: https://plugins.jmeter.ai/plugin/vdn-junit-reporter-kpi-from-jmeter-report-csv/ | Markdown: https://plugins.jmeter.ai/plugin/vdn-junit-reporter-kpi-from-jmeter-report-csv.md
+- Vendor: Vincent DABURON | Downloads: 121 | Weekly: +26
+- Repo Health: 78/100 (Active)
+- Install: `PluginsManagerCMD.sh install vdn-junit-reporter-kpi-from-jmeter-report-csv`
+- Summary: A tool that creates a JUnit XML file with KPI rules from JMeter CSV Report, export result in html, csv or json format.
+
+### vdn@github - junit-reporter-kpi-from-jmeter-dashboard-stats tool (`vdn-junit-reporter-kpi-from-jmeter-dashboard-stats`)
+- URL: https://plugins.jmeter.ai/plugin/vdn-junit-reporter-kpi-from-jmeter-dashboard-stats/ | Markdown: https://plugins.jmeter.ai/plugin/vdn-junit-reporter-kpi-from-jmeter-dashboard-stats.md
+- Vendor: Vincent DABURON | Downloads: 120 | Weekly: +30
+- Repo Health: 79/100 (Active)
+- Install: `PluginsManagerCMD.sh install vdn-junit-reporter-kpi-from-jmeter-dashboard-stats`
+- Summary: A tool that creates a JUnit XML file with KPI rules from JMeter JMeter Dashboard stats.json and generates a result file in JUnit XML format and other formats : html, csv and json.
+
+### JTL Excel Smart Report Generator (`jtl-xls-smart-report`)
+- URL: https://plugins.jmeter.ai/plugin/jtl-xls-smart-report/ | Markdown: https://plugins.jmeter.ai/plugin/jtl-xls-smart-report.md
+- Vendor: Rishav | Downloads: 104 | Weekly: +34
+- Repo Health: 71/100 (Active)
+- Install: `PluginsManagerCMD.sh install jtl-xls-smart-report`
+- Summary: Generate Excel SLA reports from JTL result files with transaction-wise metrics and P90 SLA validation.
+
+### Cohen's d Results Comparison (`rbourga-jmeter-plugins-cohendeffectsize`)
+- URL: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-cohendeffectsize/ | Markdown: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-cohendeffectsize.md
+- Vendor: Robert Bourgault du Coudray | Downloads: 103 | Weekly: +24
+- JMeter Compatibility: 2.13+
+- Repo Health: 81/100 (Active)
+- Install: `PluginsManagerCMD.sh install rbourga-jmeter-plugins-cohendeffectsize`
+- Summary: Measures the magnitude of the difference between two test results using Cohen's d.
+
+### Atakama Backend Listener Plugin (`jmeter-atakama-backend-listener-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-atakama-backend-listener-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-atakama-backend-listener-plugin.md
+- Vendor: Atakama Technologies | Downloads: 99 | Weekly: +26
+- Repo Health: 13/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jmeter-atakama-backend-listener-plugin`
+- Summary: This plugin aims to send jmeter metrics to Atakama Infrastructure
+
+### CORS Pre-Processor (`tilln-cors-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/tilln-cors-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/tilln-cors-plugin.md
+- Vendor: Till Neunast | Downloads: 93 | Weekly: +9
+- Repo Health: 24/100 (Stale)
+- Install: `PluginsManagerCMD.sh install tilln-cors-plugin`
+- Summary: CORS Pre-Processor makes preflight requests for cross-origin HTTP requests if required, based on request method and headers, and mimics a browser's preflight cache to avoid unnecessary requests.
+
+### Upper Outlier Removal (`rbourga-jmeter-plugins-tukeyoutlierdetector`)
+- URL: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-tukeyoutlierdetector/ | Markdown: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-tukeyoutlierdetector.md
+- Vendor: Robert Bourgault du Coudray | Downloads: 85 | Weekly: +26
+- JMeter Compatibility: 2.13+
+- Repo Health: 81/100 (Active)
+- Install: `PluginsManagerCMD.sh install rbourga-jmeter-plugins-tukeyoutlierdetector`
+- Summary: Detects outliers in the right tail using Tukey's fences and removes them.
+
+### Coordinated Throughput Controller (`coordinated-throughput-controller`)
+- URL: https://plugins.jmeter.ai/plugin/coordinated-throughput-controller/ | Markdown: https://plugins.jmeter.ai/plugin/coordinated-throughput-controller.md
+- Vendor: Amit Kumar | Downloads: 84 | Weekly: +37
+- Repo Health: 79/100 (Active)
+- Install: `PluginsManagerCMD.sh install coordinated-throughput-controller`
+- Summary: A replacement for JMeter's standard Throughput Controller when sibling flows must be mutually exclusive. It coordinates sibling controllers so only one controller runs per parent iteration, fixing cases where multiple Throughput Controllers can run in the same iteration and overwrite variables or execute conflicting business paths.
+
+### DG - JMeter Names Templater (`JmeterNamesTemplater`)
+- URL: https://plugins.jmeter.ai/plugin/JmeterNamesTemplater/ | Markdown: https://plugins.jmeter.ai/plugin/JmeterNamesTemplater.md
+- Vendor: Daniil Golikov | Downloads: 81 | Weekly: +35
+- Repo Health: 26/100 (Stale)
+- Install: `PluginsManagerCMD.sh install JmeterNamesTemplater`
+- Summary: Jmeter Names Templater is a plugin for Jmeter that allows you to set naming templates for elements and rename them based on a described configuration file.
+
+### vdn@github - elastic-apm-tool (`vdn-elastic-apm-tool`)
+- URL: https://plugins.jmeter.ai/plugin/vdn-elastic-apm-tool/ | Markdown: https://plugins.jmeter.ai/plugin/vdn-elastic-apm-tool.md
+- Vendor: Vincent DABURON | Downloads: 68 | Weekly: +8
+- Repo Health: 20/100 (Stale)
+- Install: `PluginsManagerCMD.sh install vdn-elastic-apm-tool`
+- Summary: Manage the Elastic Application Performance Monitoring (ELASTIC APM) in JMeter script.
+
+### Rapi JMeter Plugins (`jmeter-rapi-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-rapi-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-rapi-plugin.md
+- Vendor: NCKU SELAB | Downloads: 67 | Weekly: +20
+- Repo Health: 10/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jmeter-rapi-plugin`
+- Summary: This plugin can run Rapi Runner for front-end load testing while using JMeter and can parse .csv results to generate front-end load reports.
+
+### Prism - tab-style interface plugin for Apache JMeter (`prism`)
+- URL: https://plugins.jmeter.ai/plugin/prism/ | Markdown: https://plugins.jmeter.ai/plugin/prism.md
+- Vendor: QAInsights.com | Downloads: 61 | Weekly: +10
+- Repo Health: 61/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install prism`
+- Summary: A tab-style interface plugin for Apache JMeter
+
+### vdn@github - otel-apm-tool (`vdn-otel-apm-tool`)
+- URL: https://plugins.jmeter.ai/plugin/vdn-otel-apm-tool/ | Markdown: https://plugins.jmeter.ai/plugin/vdn-otel-apm-tool.md
+- Vendor: Vincent DABURON | Downloads: 57 | Weekly: -1
+- Repo Health: 62/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install vdn-otel-apm-tool`
+- Summary: Manage the integration of OpenTelemetry from Elastic Application Performance Monitoring in a JMeter script.
+
+### Atakama Variabilization Plugin (`jmeter-atakama-variabilization-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter-atakama-variabilization-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter-atakama-variabilization-plugin.md
+- Vendor: Atakama Technologies | Downloads: 56 | Weekly: +11
+- Repo Health: 13/100 (Stale)
+- Install: `PluginsManagerCMD.sh install jmeter-atakama-variabilization-plugin`
+- Summary: <b>Variabilization plugin for jmeter:</b><br><br> You can request a trial by following this link: <a href="https://ph-eval.atakama-technologies.com/downloadWebsite/index.php/product/show?id=1">https://ph-eval.atakama-technologies.com/downloadWebsite/index.php/product/show?id=1</a>
+
+### LLM Metrics Visualizer (`llm-metrics-visualizer`)
+- URL: https://plugins.jmeter.ai/plugin/llm-metrics-visualizer/ | Markdown: https://plugins.jmeter.ai/plugin/llm-metrics-visualizer.md
+- Vendor: bakthava | Downloads: 55 | Weekly: +12
+- Repo Health: 62/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install llm-metrics-visualizer`
+- Summary: A JMeter Listener plugin for load testing LLM APIs. Captures real-time metrics including TTFT (Time To First Token), TPOT (Time Per Output Token), RPS, input/output token throughput, and 90th percentile response times. Rows are grouped by HTTP sampler name.
+
+### UbikLoadPack GWT plugin (`ulp-jmeter-gwt-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/ulp-jmeter-gwt-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/ulp-jmeter-gwt-plugin.md
+- Vendor: UbikLoadPack by Ubik-Ingenierie | Downloads: 55 | Weekly: +7
+- Install: `PluginsManagerCMD.sh install ulp-jmeter-gwt-plugin`
+- Summary: Plugin which provides the ability to easily script and performance test GWT based applications. It allows to Record and transform GWTRPC requests to XML, Out of the box transformation of requests from XML back to GWTRPC, On-demand transformation of responses from GWTRPC to XML for optional extraction, On-demand transformation of requests from Java objects back to GWTRPC, On-demand transformation of responses from GWTRPC to Java for optional extraction, Assertion on GWT response to check they are OK, View Results Tree renderer to test XPath extractions of data from GWTRPC responses
+
+### Coefficient of Variation and Modality Check (`rbourga-jmeter-plugins-modalitycovcheck`)
+- URL: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-modalitycovcheck/ | Markdown: https://plugins.jmeter.ai/plugin/rbourga-jmeter-plugins-modalitycovcheck.md
+- Vendor: Robert Bourgault du Coudray | Downloads: 52 | Weekly: +12
+- JMeter Compatibility: 2.13+
+- Repo Health: 81/100 (Active)
+- Install: `PluginsManagerCMD.sh install rbourga-jmeter-plugins-modalitycovcheck`
+- Summary: Checks for multimodality and the level of variation of the test results.
+
+### UbikLoadPack Observability Plugin (`ulp-observability-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/ulp-observability-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/ulp-observability-plugin.md
+- Vendor: UbikLoadPack by Ubik-Ingenierie | Downloads: 49 | Weekly: +15
+- Install: `PluginsManagerCMD.sh install ulp-observability-plugin`
+- Summary: This plugin allows you to monitor your JMeter CLI performance test from your favorite browser without having to start JMeter in GUI mode
+
+### UbikLoadPack Auto-correlator plugin (`ulp-jmeter-autocorrelator-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/ulp-jmeter-autocorrelator-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/ulp-jmeter-autocorrelator-plugin.md
+- Vendor: UbikLoadPack by Ubik-Ingenierie | Downloads: 43 | Weekly: +18
+- Install: `PluginsManagerCMD.sh install ulp-jmeter-autocorrelator-plugin`
+- Summary: Plugin which provides the ability to easily load tests Vaadin, Oracle Siebel, Oracle PeopleSoft, Oracle Hyperion and Oracle JD-Edwards EntrepriseOne (JDE Eone) applications with Apache JMeter
+
+### ApacheJmeter Schema Assertion (`schema-assertion`)
+- URL: https://plugins.jmeter.ai/plugin/schema-assertion/ | Markdown: https://plugins.jmeter.ai/plugin/schema-assertion.md
+- Vendor: yeshan333 | Downloads: 37 | Weekly: +5
+- Repo Health: 76/100 (Active)
+- Install: `PluginsManagerCMD.sh install schema-assertion`
+- Summary: Validate response field types based on JSON/YAML Schema
+
+### MCPLoadTester MCP Sampler (`avm-mcp-sampler`)
+- URL: https://plugins.jmeter.ai/plugin/avm-mcp-sampler/ | Markdown: https://plugins.jmeter.ai/plugin/avm-mcp-sampler.md
+- Vendor: Andrey Markelov | Downloads: 36 | Weekly: +6
+- Repo Health: 64/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install avm-mcp-sampler`
+- Summary: MCP sampler for stdio, HTTP, and HTTP+SSE transports
+
+### Couchbase Plugin (`couchbase`)
+- URL: https://plugins.jmeter.ai/plugin/couchbase/ | Markdown: https://plugins.jmeter.ai/plugin/couchbase.md
+- Vendor: Perfwise | Downloads: 32 | Weekly: +14
+- Repo Health: 14/100 (Stale)
+- Install: `PluginsManagerCMD.sh install couchbase`
+- Summary: JMeter plugin to load test Couchbase DB <ul><li>Simply add a "Config Element " and set the cocuhbase connection options and provide a object name to export</li><li>Add a "Couchbase sampler " and provide the exported object name.</li><li><a href="https://rollno748.github.io/">Author Details</a></li></ul>
+
+### BlazeMeter - MCP Plugin (`bzm-mcp-v1`)
+- URL: https://plugins.jmeter.ai/plugin/bzm-mcp-v1/ | Markdown: https://plugins.jmeter.ai/plugin/bzm-mcp-v1.md
+- Vendor: BlazeMeter | Downloads: 31 | Weekly: +10
+- Repo Health: 75/100 (Active)
+- Install: `PluginsManagerCMD.sh install bzm-mcp-v1`
+- Summary: Apache JMeter plugin for Model Context Protocol (MCP) servers. Provides a client config, an optional managed HTTP/SSE server process, and a sampler to ping, list tools, call tools, and read resources over STDIO, SSE, or Streamable HTTP.
+
+### JMXAuditor — JMX Static Analyser (`io.github.sagaraggarwal86-jmxauditor`)
+- URL: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-jmxauditor/ | Markdown: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-jmxauditor.md
+- Vendor: Sagar Aggarwal | Downloads: 31 | Weekly: +2
+- JMeter Compatibility: 5.6.3+
+- Repo Health: 68/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install io.github.sagaraggarwal86-jmxauditor`
+- Summary: A JMeter GUI-mode plugin that performs static analysis on .jmx test plans. Surfaces findings across six quality categories (Correctness, Security, Scalability, Realism, Maintainability, Observability) with 25 read-only rules. HTML & JSON Report Export, with zero impact on test execution.
+
+### UbikLoadPack Video Streaming plugin (`ulp-jmeter-videostreaming-plugin`)
+- URL: https://plugins.jmeter.ai/plugin/ulp-jmeter-videostreaming-plugin/ | Markdown: https://plugins.jmeter.ai/plugin/ulp-jmeter-videostreaming-plugin.md
+- Vendor: UbikLoadPack by Ubik-Ingenierie | Downloads: 27 | Weekly: +11
+- Install: `PluginsManagerCMD.sh install ulp-jmeter-videostreaming-plugin`
+- Summary: Plugin which provides the ability to easily load test servers delivering Adaptive Bitrate Streaming (ABR). It supports the following implementations: Low Latency Mpeg-Dash, Mpeg-Dash, Apple HLS / Low-Latency HLS (LL-HLS), HLS SGAI (Interstitials), Microsoft Smooth (HSS) and Adobe HDS. Both Live and VOD streams are automatically handled. The plugin realistically simulates players and outputs video specific metrics allowing you to analyze User Experience. It supports HTTP 1.1 and HTTP/2. It also allows to simulate CDN behaviour with Video Streams.
+
+### JMeter Performance Phase Analyzer (`io.phaseanalyzer-performance-phase-analyzer`)
+- URL: https://plugins.jmeter.ai/plugin/io.phaseanalyzer-performance-phase-analyzer/ | Markdown: https://plugins.jmeter.ai/plugin/io.phaseanalyzer-performance-phase-analyzer.md
+- Vendor: Srenevasan | Downloads: 25 | Weekly: +23
+- Repo Health: 75/100 (Active)
+- Install: `PluginsManagerCMD.sh install io.phaseanalyzer-performance-phase-analyzer`
+- Summary: A JMeter listener for phase-aware performance analysis of ramp-up, steady load, ramp-down and complete execution. Includes live metrics, Thread Group selection, offline HTML reports and Excel exports.
+
+### Smart Variable Tracker Navigator (`smart-variable-tracker-navigator`)
+- URL: https://plugins.jmeter.ai/plugin/smart-variable-tracker-navigator/ | Markdown: https://plugins.jmeter.ai/plugin/smart-variable-tracker-navigator.md
+- Vendor: KARTHIC S V | Downloads: 24 | Weekly: +10
+- Repo Health: 67/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install smart-variable-tracker-navigator`
+- Summary: A JMeter GUI plugin for navigating variable extraction and usage across a JMeter test plan. Navigate instantly from variable usage to source extractors and vice versa. Track all variables including underscore-prefixed names and JSR223 script variables.
+
+### ReportPortal Performance Reporter (official) (`reportportal-jmeter`)
+- URL: https://plugins.jmeter.ai/plugin/reportportal-jmeter/ | Markdown: https://plugins.jmeter.ai/plugin/reportportal-jmeter.md
+- Vendor: ReportPortal | Downloads: 21 | Weekly: +13
+- Repo Health: 74/100 (Active)
+- Install: `PluginsManagerCMD.sh install reportportal-jmeter`
+- Summary: Official ReportPortal Backend Listener for JMeter. Reports aggregated latency percentiles (HdrHistogram), error rate, optional SLA quality gate, and failed sample details into a ReportPortal launch. Optionally attaches the native JMeter HTML dashboard as a ZIP. <ul><li>Add a Backend Listener</li><li>Set implementation to <code>com.epam.reportportal.jmeter.PerformanceReporterClient</code></li><li>Set ReportPortal_URL, Project_Name (project slug, not numeric id), and API_Token</li><li>Docs: <a href="https://github.com/reportportal/plugins-performance#jmeter-plugin">setup guide</a></li></ul>
+
+### JVCS — JMX Version Control System (`io.github.sagaraggarwal86-jmx-version-control-system`)
+- URL: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-jmx-version-control-system/ | Markdown: https://plugins.jmeter.ai/plugin/io.github.sagaraggarwal86-jmx-version-control-system.md
+- Vendor: Sagar Aggarwal | Downloads: 20 | Weekly: +4
+- JMeter Compatibility: 5.6.3+
+- Repo Health: 67/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install io.github.sagaraggarwal86-jmx-version-control-system`
+- Summary: A lightweight local version control plugin for Apache JMeter test plans (.jmx files). Auto-snapshots on every save with SHA-256 deduplication, manual checkpoints with notes, one-click rollback with safety net, version freezing, configurable retention with FIFO pruning, periodic auto-checkpoint, selective deletion, export to .jmx, audit trail, lock file mechanism, dirty state indicator, self-healing index, toolbar integration, keyboard shortcuts (Ctrl+K, Ctrl+H) — no Git, no SVN, no external tools required.
+
+### Interval Controller (`interval-controller`)
+- URL: https://plugins.jmeter.ai/plugin/interval-controller/ | Markdown: https://plugins.jmeter.ai/plugin/interval-controller.md
+- Vendor: Georgii Kaliaev | Downloads: 13 | Weekly: +11
+- Repo Health: 75/100 (Active)
+- Install: `PluginsManagerCMD.sh install interval-controller`
+- Summary: Logic Controller that executes nested elements at most once per configured interval per JMeter thread, only when the thread encounters the controller. Supports optional retry-on-failure, jitter, dynamic interval expressions, and token refresh helpers. SKIP does not sleep or block sibling samplers. Not a Timer and not a background scheduler.
+
+### README Config Element (`readme-config-element`)
+- URL: https://plugins.jmeter.ai/plugin/readme-config-element/ | Markdown: https://plugins.jmeter.ai/plugin/readme-config-element.md
+- Vendor: QAInsights.com | Downloads: 12 | Weekly: 0
+- Repo Health: 70/100 (Active)
+- Install: `PluginsManagerCMD.sh install readme-config-element`
+- Summary: A JMeter config element that lets you embed Markdown documentation directly inside your test plan with a live GitHub-style preview and deep-link navigation to tree nodes.
+
+### OAuth Sampler (Deprecated) (`jpgc-oauth`)
+- URL: https://plugins.jmeter.ai/plugin/jpgc-oauth/ | Markdown: https://plugins.jmeter.ai/plugin/jpgc-oauth.md
+- Vendor: JMeter-Plugins.org | Downloads: 9 | Weekly: +3
+- JMeter Compatibility: 2.13+
+- Install: `PluginsManagerCMD.sh install jpgc-oauth`
+- Summary: Does not work with JMeter v3.2+. OAuth sampler is an extended REST sampler which in addition includes the properties needed for this authorization
+
+### Perfana TimescaleDB Backend Listener (`perfana-timescaledb`)
+- URL: https://plugins.jmeter.ai/plugin/perfana-timescaledb/ | Markdown: https://plugins.jmeter.ai/plugin/perfana-timescaledb.md
+- Vendor: Perfana | Downloads: 8 | Weekly: +6
+- Repo Health: 78/100 (Active)
+- Install: `PluginsManagerCMD.sh install perfana-timescaledb`
+- Summary: JMeter backend listener that writes test results directly to TimescaleDB for real-time performance analysis. Batch writing, HikariCP pooling, backpressure handling, URL normalization, and synthetic-monitoring mode.
+
+### Mock Jutsu - The Ultimate Algorithmic Mock Data Engine (`mock-jutsu`)
+- URL: https://plugins.jmeter.ai/plugin/mock-jutsu/ | Markdown: https://plugins.jmeter.ai/plugin/mock-jutsu.md
+- Vendor: ASA Intelligence - Altan Sezer Ayan | Downloads: 1 | Weekly: 0
+- JMeter Compatibility: 5.5+
+- Install: `PluginsManagerCMD.sh install mock-jutsu`
+- Summary: Generate format & checksum-valid mock test data directly inside JMeter test plans via custom functions - no Python, no subprocess, no CSV files needed. 390 types across 49 categories, 6 locales (TR/UK/US/DE/FR/RU), pipe-separated options, mask support (PCI DSS / GDPR / KVKK), zero external dependencies.<br>Plugin Benchmark: https://github.com/altansayan/mock-jutsu-jmeter-plugin-benchmark<br>Requirements: JMeter 5.5+ | Java 17+
+
+### PerfSage SLO Reporter (`perfsage-slo-reporter`)
+- URL: https://plugins.jmeter.ai/plugin/perfsage-slo-reporter/ | Markdown: https://plugins.jmeter.ai/plugin/perfsage-slo-reporter.md
+- Vendor: perfsage.com | Downloads: 1 | Weekly: -1
+- Repo Health: 59/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install perfsage-slo-reporter`
+- Summary: A JMeter plugin by PerfSage for SLO-based reporting and performance analysis.
+
+### ReportPortal backend listener (`jmeter.backendlistener.reportportal`)
+- URL: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.reportportal/ | Markdown: https://plugins.jmeter.ai/plugin/jmeter.backendlistener.reportportal.md
+- Vendor: Prasanta Mohanty | Downloads: 0 | Weekly: 0
+- Repo Health: 78/100 (Active)
+- Install: `PluginsManagerCMD.sh install jmeter.backendlistener.reportportal`
+- Summary: JMeter Backend Listener ReportPortal is a JMeter plugin enabling you to send test results to a Report Portal server <ul><li> get deatils on how to run report portal https://reportportal.io/ </li><li>Simply add a Backend Listener </li><li>Change the listener's configuration</li></ul>
+
+### SuperKey - JMeter Command Center (`superkey`)
+- URL: https://plugins.jmeter.ai/plugin/superkey/ | Markdown: https://plugins.jmeter.ai/plugin/superkey.md
+- Vendor: QAInsights.com | Downloads: 0 | Weekly: 0
+- Repo Health: 66/100 (Maintained)
+- Install: `PluginsManagerCMD.sh install superkey`
+- Summary: JMeter Command Center
+
+## Blog Tutorials (36 Articles)
+
+- **JMeter Random CSV Data Set Config: How to Read Test Data in Random Order** (2026-11-09)
+  URL: https://plugins.jmeter.ai/blog/jmeter-random-csv-data-set-config-plugin-guide/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-random-csv-data-set-config-plugin-guide.md
+  Learn JMeter Random CSV Data Set Config with a tested CSV example, shared vs per-thread lists, header settings, EOF behavior, and a non-GUI verification run.
+- **JMeter Filter Results Tool: How to Remove Ramp-Up and Filter JTL Results** (2026-11-02)
+  URL: https://plugins.jmeter.ai/blog/jmeter-filter-results-tool-remove-ramp-up-filter-jtl-results/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-filter-results-tool-remove-ramp-up-filter-jtl-results.md
+  Learn how to use the JMeter Filter Results Tool to trim ramp-up, drop Debug and JSR223 samplers, and filter JTL results by label, regex, or success via CLI.
+- **JMeter 3 Basic Graphs Plugin: Response Times, Active Threads and TPS Over Time** (2026-10-26)
+  URL: https://plugins.jmeter.ai/blog/jmeter-basic-graphs-plugin-response-times-active-threads-tps/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-basic-graphs-plugin-response-times-active-threads-tps.md
+  Learn how to use the JMeter 3 Basic Graphs plugin for Response Times Over Time, Active Threads and TPS, and export PNG graphs from CLI with JMeterPluginsCMD.
+- **JMeter Custom Functions Plugin: How to Use __env, __base64Encode, __MD5 and More** (2026-10-19)
+  URL: https://plugins.jmeter.ai/blog/jmeter-custom-functions-plugin-env-base64encode-md5-guide/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-custom-functions-plugin-env-base64encode-md5-guide.md
+  Learn how to use the JMeter Custom Functions plugin: __env, __base64Encode, __MD5, __chooseRandom, __if and __caseFormat, with a tested JMX and common pitfalls.
+- **Ultimate Thread Group vs Arrivals Thread Group in JMeter** (2026-10-12)
+  URL: https://plugins.jmeter.ai/blog/jmeter-ultimate-thread-group-vs-arrivals-thread-group/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-ultimate-thread-group-vs-arrivals-thread-group.md
+  Compare JMeter Ultimate vs Arrivals Thread Group with real benchmarks: threads vs arrival rate, concurrency limits, ramp-up schedules, and when to pick each.
+- **JMeter AutoStop Listener: Fail Load Tests on SLA Breach** (2026-10-05)
+  URL: https://plugins.jmeter.ai/blog/jmeter-autostop-listener-stop-tests-on-sla-breach/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-autostop-listener-stop-tests-on-sla-breach.md
+  Configure the JMeter AutoStop Listener to halt tests on error rate, response time, or latency SLA breaches and fail CI/CD pipelines automatically.
+- **JMeter Flexible File Writer: How to Write Custom CSV Results and Save Extracted Data** (2026-09-28)
+  URL: https://plugins.jmeter.ai/blog/jmeter-flexible-file-writer-custom-csv-results/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-flexible-file-writer-custom-csv-results.md
+  Learn how to use the JMeter Flexible File Writer plugin to write custom CSV results, save extracted variables to a file, and avoid buffer and field pitfalls.
+- **JMeter Dummy Sampler: Mock APIs & Debug Test Plans** (2026-09-21)
+  URL: https://plugins.jmeter.ai/blog/jmeter-dummy-sampler-mock-api-responses-debug-test-plans/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-dummy-sampler-mock-api-responses-debug-test-plans.md
+  Use the JMeter Dummy Sampler plugin to mock HTTP/JSON responses and debug extractors, assertions, and correlation logic locally without a live server.
+- **How to Performance Test LLM Streaming APIs with JMeter: Measuring TTFT and Token Throughput** (2026-09-20)
+  URL: https://plugins.jmeter.ai/blog/how-to-performance-test-llm-streaming-apis-with-jmeter-ttft-token-throughput/ | Markdown: https://plugins.jmeter.ai/blog/how-to-performance-test-llm-streaming-apis-with-jmeter-ttft-token-throughput.md
+  Learn how to use JMeter to measure critical performance metrics like Time to First Token (TTFT) and token throughput when load testing streaming LLM APIs.
+- **JMeter Inter-Thread Communication Plugin: How to Share Data Between Thread Groups** (2026-09-14)
+  URL: https://plugins.jmeter.ai/blog/jmeter-inter-thread-communication-plugin-share-data-between-thread-groups/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-inter-thread-communication-plugin-share-data-between-thread-groups.md
+  Learn how the JMeter Inter-Thread Communication plugin shares data between thread groups via FIFO queues, __fifoPut/__fifoPop functions, timeouts, and pitfalls.
+- **JMeter Parallel Controller: How to Simulate AJAX and Concurrent Requests** (2026-09-02)
+  URL: https://plugins.jmeter.ai/blog/jmeter-parallel-controller-simulate-ajax-concurrent-requests/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-parallel-controller-simulate-ajax-concurrent-requests.md
+  Learn how the JMeter Parallel Controller plugin runs samplers concurrently to simulate AJAX calls and browser-style page loads, with JMX examples and pitfalls.
+- **Throughput Shaping Timer vs Concurrency Thread Group** (2026-08-30)
+  URL: https://plugins.jmeter.ai/blog/jmeter-throughput-shaping-timer-vs-concurrency-thread-group/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-throughput-shaping-timer-vs-concurrency-thread-group.md
+  JMeter Throughput Shaping Timer vs Concurrency Thread Group: when to target RPS vs concurrent users, how to pair them with tstFeedback, and config examples.
+- **How to Test MQTT Protocol with JMeter for IoT Applications** (2026-08-09)
+  URL: https://plugins.jmeter.ai/blog/how-to-test-mqtt-protocol-with-jmeter-for-iot-applications/ | Markdown: https://plugins.jmeter.ai/blog/how-to-test-mqtt-protocol-with-jmeter-for-iot-applications.md
+  Learn how to test MQTT protocol with JMeter using the EMQX plugin. Configure connect, publish, and subscribe samplers to load test IoT brokers and devices.
+- **High-Volume Testing on a Budget: Scaling to 1 Million+ RPS with Distributed JMeter** (2026-07-12)
+  URL: https://plugins.jmeter.ai/blog/scale-jmeter-1-million-rps-distributed-testing/ | Markdown: https://plugins.jmeter.ai/blog/scale-jmeter-1-million-rps-distributed-testing.md
+  Learn how to plan, build, and run a distributed JMeter test that scales past 1 million requests per second without an unlimited cloud budget.
+- **AI Observability for Performance Engineers** (2026-06-21)
+  URL: https://plugins.jmeter.ai/blog/ai-observability-for-performance-engineers/ | Markdown: https://plugins.jmeter.ai/blog/ai-observability-for-performance-engineers.md
+  Learn AI observability for performance engineers: TTFT, token metrics, OpenTelemetry GenAI conventions, and tools to monitor LLM systems in production.
+- **JMeter vs k6 for AI & LLM Load Testing (2026)** (2026-06-10)
+  URL: https://plugins.jmeter.ai/blog/jmeter-vs-k6-ai-workload-testing/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-vs-k6-ai-workload-testing.md
+  JMeter vs k6 for LLM APIs compared: TTFT, token throughput, SSE streaming, goodput metrics, and which tool fits your AI workload testing stack.
+- **JMeter Plugin Install Automation with PluginsManagerCMD in a Docker Image** (2026-06-07)
+  URL: https://plugins.jmeter.ai/blog/jmeter-plugin-install-automation-pluginsmanagercmd-docker/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-plugin-install-automation-pluginsmanagercmd-docker.md
+  Learn how to automate JMeter plugin installation inside a Docker image using PluginsManagerCMD, so your container is test-ready from the moment it spins up.
+- **JMeter Datadog Backend Listener: Stream Metrics in CI/CD** (2026-06-06)
+  URL: https://plugins.jmeter.ai/blog/jmeter-datadog-backend-listener-streaming-test-results-cicd/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-datadog-backend-listener-streaming-test-results-cicd.md
+  Stream live JMeter p95 latency, throughput, and error metrics to Datadog in CI/CD pipelines. Complete Backend Listener plugin setup and dashboard guide.
+- **5 JMeter Timer Plugins to Simulate Real User Think Time** (2026-05-26)
+  URL: https://plugins.jmeter.ai/blog/jmeter-timer-plugins-simulate-real-user-think-time/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-timer-plugins-simulate-real-user-think-time.md
+  Learn how to use the 5 best JMeter timer plugins to simulate realistic user think time in your performance tests.
+- **How to Import Swagger and Postman Collections into JMeter Automatically** (2026-05-23)
+  URL: https://plugins.jmeter.ai/blog/how-to-import-swagger-postman-collections-into-jmeter-automatically/ | Markdown: https://plugins.jmeter.ai/blog/how-to-import-swagger-postman-collections-into-jmeter-automatically.md
+  Learn how to convert Swagger/OpenAPI specs and Postman collections into JMeter test plans automatically using CLI tools, scripts, and CI/CD pipelines no manual point-and-click.
+- **How to Use JMeter PerfMon Plugin for Server Resource Monitoring (2026 Guide)** (2026-05-22)
+  URL: https://plugins.jmeter.ai/blog/how-to-use-jmeter-perfmon-plugin-for-server-resource-monitoring-2026-guide/ | Markdown: https://plugins.jmeter.ai/blog/how-to-use-jmeter-perfmon-plugin-for-server-resource-monitoring-2026-guide.md
+  A comprehensive 2026 guide on setting up and using the JMeter PerfMon Plugin and Server Agent to monitor server resources during load tests.
+- **How to Test AWS Services Like SQS and Kinesis with JMeter** (2026-05-19)
+  URL: https://plugins.jmeter.ai/blog/how-to-test-aws-services-like-sqs-and-kinesis-with-jmeter/ | Markdown: https://plugins.jmeter.ai/blog/how-to-test-aws-services-like-sqs-and-kinesis-with-jmeter.md
+  A practical guide for performance engineers and backend developers to load test AWS SQS queues and Kinesis data streams using Apache JMeter.
+- **JMeter WebSocket Plugin Tutorial: Testing Real-Time Apps Under Load** (2026-05-14)
+  URL: https://plugins.jmeter.ai/blog/jmeter-websocket-plugin-tutorial-real-time-load-testing/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-websocket-plugin-tutorial-real-time-load-testing.md
+  Master the JMeter WebSocket Plugin with this step-by-step guide. Learn how to load test real-time applications, manage bidirectional communication, and analyze results with precision.
+- **Real-Time JMeter Metrics with Prometheus and Grafana Using the Backend Listener** (2026-05-11)
+  URL: https://plugins.jmeter.ai/blog/real-time-jmeter-metrics-with-prometheus-and-grafana-using-the-backend-listener/ | Markdown: https://plugins.jmeter.ai/blog/real-time-jmeter-metrics-with-prometheus-and-grafana-using-the-backend-listener.md
+  Learn how to stream JMeter test results to Prometheus and build a live Grafana dashboard using the Backend Listener plugin. Step-by-step guide for observability teams.
+- **JMeter KLoadGen Plugin for Kafka Load Testing with AVRO and Protobuf Schemas - 2026 Practical Guide** (2026-05-07)
+  URL: https://plugins.jmeter.ai/blog/jmeter-kloadgen-plugin-kafka-load-testing-avro-protobuf-schemas-2026-practical-guide/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-kloadgen-plugin-kafka-load-testing-avro-protobuf-schemas-2026-practical-guide.md
+  Explore the top JMeter KLoadGen plugin for Kafka load testing with AVRO and Protobuf schemas in 2026, featuring realistic workload modeling, protocol-specific enhancements like HTTP/2, and real-time observability.
+- **How to Load Test gRPC Microservices with the JMeter gRPC Plugin: A Step-by-Step Guide** (2026-05-05)
+  URL: https://plugins.jmeter.ai/blog/how-to-load-test-grpc-microservices-with-the-jmeter-grpc-plugin/ | Markdown: https://plugins.jmeter.ai/blog/how-to-load-test-grpc-microservices-with-the-jmeter-grpc-plugin.md
+  Learn how to load test gRPC microservices using the JMeter gRPC plugin with this step-by-step guide covering setup, proto files, parameterization, and CI/CD
+- **8 JMeter Plugins That Make Distributed Load Testing Easier** (2026-05-02)
+  URL: https://plugins.jmeter.ai/blog/jmeter-plugins-for-distributed-load-testing/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-plugins-for-distributed-load-testing.md
+  Discover 8 JMeter plugins that simplify distributed load testing, including Feather Wand, PerfMon, HTTP Simple Table Server, and Backend Listener
+- **JMeter vs Gatling: Which Tool Has Better Plugin Support in 2026?** (2026-05-01)
+  URL: https://plugins.jmeter.ai/blog/jmeter-vs-gatling-plugin-support-2026/ | Markdown: https://plugins.jmeter.ai/blog/jmeter-vs-gatling-plugin-support-2026.md
+  A comprehensive comparison of JMeter and Gatling's plugin support in 2026, exploring depth, discoverability, CI/CD support, and AI integrations.
+- **How to Test Kafka Message Queues with JMeter: The Complete Load Testing Guide** (2026-04-25)
+  URL: https://plugins.jmeter.ai/blog/how-to-test-kafka-message-queues-with-jmeter-the-complete-load-testing-guide/ | Markdown: https://plugins.jmeter.ai/blog/how-to-test-kafka-message-queues-with-jmeter-the-complete-load-testing-guide.md
+  Learn how to load test Kafka message queues using JMeter with Kafkameter and Pepper-Box plugins, including producer and consumer examples and best practices.
+- **How to Use JMeter's Throughput Shaping Timer for Realistic Load Profiles** (2026-04-24)
+  URL: https://plugins.jmeter.ai/blog/how-to-use-jmeter-throughput-shaping-timer-for-realistic-load-profiles/ | Markdown: https://plugins.jmeter.ai/blog/how-to-use-jmeter-throughput-shaping-timer-for-realistic-load-profiles.md
+  Learn how to use JMeter's Throughput Shaping Timer to simulate realistic load profiles and improve your load testing accuracy.
+- **Testing AWS SQS and Kinesis with JMeter + LocalStack** (2026-04-24)
+  URL: https://plugins.jmeter.ai/blog/testing-aws-sqs-kinesis-jmeter-localstack/ | Markdown: https://plugins.jmeter.ai/blog/testing-aws-sqs-kinesis-jmeter-localstack.md
+  Run Your Entire AWS Test Environment Locally — Zero Cloud Costs
+- **How to Load Test WebSocket Applications Using JMeter Plugins?** (2026-04-21)
+  URL: https://plugins.jmeter.ai/blog/how-to-load-test-websocket-applications-using-jmeter-plugins/ | Markdown: https://plugins.jmeter.ai/blog/how-to-load-test-websocket-applications-using-jmeter-plugins.md
+  JMeter does not speak WebSocket natively. You need a community sampler, and the two maintained options are WebSocket Samplers by Peter Doornbosch and the older WebSocket Sampler by Maciej Zaleski. In practice, Peter’s suite is cited as the most comprehensive
+- **How to Find and Install the Best JMeter Plugins for Load Testing in 2026 (Using PerfAtlas)** (2026-04-18)
+  URL: https://plugins.jmeter.ai/blog/how-to-find-and-install-the-best-jmeter-plugins-for-load-testing-in-2026/ | Markdown: https://plugins.jmeter.ai/blog/how-to-find-and-install-the-best-jmeter-plugins-for-load-testing-in-2026.md
+  Learn about the latest features and improvements in PerfAtlas
+- **What's new in PerfAtlas?** (2026-04-17)
+  URL: https://plugins.jmeter.ai/blog/new-in-perfatlas/ | Markdown: https://plugins.jmeter.ai/blog/new-in-perfatlas.md
+  Learn about the latest features and improvements in PerfAtlas
+- **Best JMeter Plugins for API Load Testing in 2026 (With Download Stats & Benchmarks)** (2026-04-16)
+  URL: https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026/ | Markdown: https://plugins.jmeter.ai/blog/best-jmeter-plugins-api-testing-2026.md
+  Explore the top JMeter plugins for API load testing in 2026, featuring realistic workload modeling, protocol-specific enhancements like HTTP/2, and real-time observability.
+- **How to install JMeter Plugins Manager?** (2026-04-16)
+  URL: https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger/ | Markdown: https://plugins.jmeter.ai/blog/how-to-install-jmeter-plugins-manger.md
+  Discover how to install JMeter Plugins Manager and explore the latest plugins to supercharge your testing workflows.

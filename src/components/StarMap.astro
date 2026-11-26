@@ -10,8 +10,6 @@ const minifiedPlugins = [...pluginsRaw]
     name: p.name,
     downloads: p.stats?.absoluteDownloads || 0,
     aiReady: p.isAiReady,
-    // Pass full payload for the modal later
-    _raw: p,
   }));
 ---
 
@@ -142,8 +140,8 @@ const minifiedPlugins = [...pluginsRaw]
     });
 
     container.addEventListener('click', () => {
-      if (hoveredNode && window.openPluginModal) {
-        window.openPluginModal(hoveredNode.plugin._raw);
+      if (hoveredNode && (window as any).openPluginModalById) {
+        (window as any).openPluginModalById(hoveredNode.plugin.id);
       }
     });
 
