@@ -5,7 +5,9 @@ import { filterDrafts } from '../../utils/blog';
 export const prerender = true;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = filterDrafts(await getCollection('blog'));
+  const rawPosts: unknown = await getCollection('blog');
+  const allPosts = Array.isArray(rawPosts) ? (rawPosts as Array<CollectionEntry<'blog'>>) : [];
+  const posts = filterDrafts(allPosts);
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
