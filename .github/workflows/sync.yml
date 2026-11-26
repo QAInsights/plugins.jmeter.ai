@@ -34,3 +34,8 @@ jobs:
           git add src/data/plugins_data.json
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: auto-sync daily plugins data"
           git push
+
+      - name: Notify IndexNow (optional)
+        run: npx tsx scripts/submitIndexNow.mts
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}

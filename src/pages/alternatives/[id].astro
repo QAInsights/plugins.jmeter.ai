@@ -1,0 +1,133 @@
+---
+export const prerender = true;
+
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PluginCard from '../../components/PluginCard.astro';
+import PluginModal from '../../components/PluginModal.astro';
+import pluginsData from '../../data/plugins_data.json';
+import { inferCategory } from '../../utils/plugin';
+import { categoryToSlug, getAlternativesForPlugin } from '../../utils/programmaticSeo';
+import { buildFaqSchema, buildItemListSchema } from '../../utils/seoSchema';
+
+export function getStaticPaths() {
+  return pluginsData
+    .map((plugin) => {
+      const alternatives = getAlternativesForPlugin(plugin, pluginsData, 6);
+      return { plugin, alternatives };
+    })
+    .filter(({ alternatives }) => alternatives.length >= 2)
+    .map(({ plugin, alternatives }) => ({
+      params: { id: plugin.id },
+      props: { plugin, alternatives },
+    }));
+}
+
+const { plugin, alternatives } = Astro.props;
+const category = inferCategory(plugin);
+const categoryHref = `/category/${categoryToSlug(category)}/`;
+const fmt = (n: number) => new Intl.NumberFormat('en-US').format(n);
+const topAlt = alternatives[0];
+
+const faqs = [
+  {
+    question: `What is the best alternative to ${plugin.name} in JMeter?`,
+    answer: topAlt
+      ? `The most popular same-category alternative to ${plugin.name} is ${topAlt.name} (${topAlt.id}) by ${topAlt.vendor}, with ${fmt(topAlt.stats?.absoluteDownloads ?? 0)} total downloads.`
+      : `Browse the ${category} category on PerfAtlas for actively maintained alternatives.`,
+  },
+  {
+    question: `How do I switch from ${plugin.name} to an alternative plugin?`,
+    answer: `Install the replacement plugin via PluginsManagerCMD.sh install <plugin-id>, replace the ${plugin.name} element in your .jmx test plan, and validate in non-GUI mode (jmeter -n -t plan.jmx).`,
+  },
+];
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: plugin.name, url: `/plugin/${plugin.id}/` },
+  { name: 'Alternatives', url: `/alternatives/${plugin.id}/` },
+];
+
+const itemListSchema = buildItemListSchema(
+  `Best Alternatives to ${plugin.name}`,
+  alternatives.map((alt) => ({
+    name: alt.name,
+    url: `/plugin/${alt.id}/`,
+    description: alt.description,
+  })),
+);
+---
+
+<Layout
+  title={`Best ${plugin.name} Alternatives for JMeter | PerfAtlas`}
+  description={`Compare the top ${alternatives.length} JMeter ${category.toLowerCase()} alternatives to ${plugin.name} (${plugin.id}) by downloads, GitHub health score, and compatibility.`}
+  breadcrumbs={breadcrumbs}
+  schema={[itemListSchema, buildFaqSchema(faqs)]}
+>
+  <Header />
+  <main class="mx-auto w-full max-w-7xl flex-grow px-4 py-12 sm:px-6 md:py-16">
+    <nav
+      aria-label="Breadcrumb"
+      class="mb-8 flex flex-wrap items-center gap-2 text-sm font-semibold text-gray-500 dark:text-gray-400"
+    >
+      <a href="/" class="hover:text-gray-900 dark:hover:text-white">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href={`/plugin/${plugin.id}/`} class="hover:text-gray-900 dark:hover:text-white">
+        {plugin.name}
+      </a>
+      <span aria-hidden="true">/</span>
+      <span class="text-gray-900 dark:text-white" aria-current="page">Alternatives</span>
+    </nav>
+
+    <div class="mb-12">
+      <p class="mb-3 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400">
+        {category} Alternatives
+      </p>
+      <h1
+        class="mb-4 text-3xl font-black tracking-tighter text-gray-900 md:text-5xl dark:text-white"
+      >
+        Top Alternatives to <span
+          class="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent dark:from-green-400 dark:to-[#ccff00]"
+          >{plugin.name}</span
+        >
+      </h1>
+      <p class="max-w-3xl text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+        Looking for a replacement or peer to <a
+          href={`/plugin/${plugin.id}/`}
+          class="font-semibold text-green-600 hover:underline dark:text-[#ccff00]">{plugin.name}</a
+        > ({fmt(plugin.stats?.absoluteDownloads ?? 0)} downloads)? Here are the highest-adoption actively
+        ranked JMeter plugins in <a
+          href={categoryHref}
+          class="font-semibold text-green-600 hover:underline dark:text-[#ccff00]">{category}</a
+        >.
+      </p>
+    </div>
+
+    <div class="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {alternatives.map((alt) => <PluginCard plugin={alt} />)}
+    </div>
+
+    <section class="mx-auto max-w-4xl border-t border-gray-200 pt-10 dark:border-white/10">
+      <h2 class="mb-5 text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-3">
+        {
+          faqs.map((faq) => (
+            <details class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-5 dark:border-white/10">
+              <summary class="cursor-pointer text-sm font-bold text-gray-900 dark:text-white">
+                {faq.question}
+              </summary>
+              <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                {faq.answer}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <PluginModal />
+</Layout>

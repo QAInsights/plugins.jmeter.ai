@@ -4,6 +4,10 @@ export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import pluginsData from '../data/plugins_data.json';
+import { getTopComparisonPairs } from '../utils/programmaticSeo';
+
+const popularPairs = getTopComparisonPairs(pluginsData, 12);
 
 // We'll read the 'ids' from the URL on the client side to avoid huge paths in static build
 // but we can also pre-render common ones if we wanted.
@@ -85,6 +89,29 @@ import Footer from '../components/Footer.astro';
         </tbody>
       </table>
     </div>
+
+    <section class="mt-16 border-t border-gray-200 pt-12 dark:border-white/10">
+      <h2 class="mb-6 text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+        Popular Plugin Comparisons
+      </h2>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          popularPairs.map((pair) => (
+            <a
+              href={`/compare/${pair.slug}/`}
+              class="dark:bg-dark-surface group rounded-xl border border-gray-200 bg-white p-4 transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
+            >
+              <span class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+                {pair.category}
+              </span>
+              <p class="mt-1 text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+                {pair.pluginA.name} vs {pair.pluginB.name}
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </section>
   </main>
 
   <Footer />

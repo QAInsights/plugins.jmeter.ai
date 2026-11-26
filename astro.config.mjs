@@ -62,8 +62,53 @@ function loadBlogLastmodMap() {
   return map;
 }
 
+function loadThinTagSet() {
+  const counts = new Map();
+  try {
+    const blogDir = path.resolve('src/content/blog');
+    for (const file of fs.readdirSync(blogDir)) {
+      if (!file.endsWith('.md') && !file.endsWith('.mdx')) continue;
+      const raw = fs.readFileSync(path.join(blogDir, file), 'utf8');
+      const fm = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+      if (/^draft:\s*true/m.test(fm)) continue;
+      const inlineTags = fm.match(/^tags:\s*\[([^\]]*)\]/m);
+      let tags = [];
+      if (inlineTags) {
+        tags = inlineTags[1]
+          .split(',')
+          .map((t) => t.trim().replace(/^['"]|['"]$/g, ''))
+          .filter(Boolean);
+      } else {
+        const blockMatch = fm.match(/^tags:\s*\r?\n((?:\s*-\s*.+\r?\n?)+)/m);
+        if (blockMatch) {
+          tags = blockMatch[1]
+            .split(/\r?\n/)
+            .map((line) =>
+              line
+                .replace(/^\s*-\s*/, '')
+                .trim()
+                .replace(/^['"]|['"]$/g, ''),
+            )
+            .filter(Boolean);
+        }
+      }
+      for (const tag of tags) {
+        counts.set(tag, (counts.get(tag) || 0) + 1);
+      }
+    }
+  } catch {
+    // ignore
+  }
+  const thin = new Set();
+  for (const [tag, count] of counts.entries()) {
+    if (count < 2) thin.add(tag);
+  }
+  return thin;
+}
+
 const pluginLastmodMap = loadPluginLastmodMap();
 const blogLastmodMap = loadBlogLastmodMap();
+const thinTagSet = loadThinTagSet();
 
 // https://astro.build/config
 export default defineConfig({
@@ -92,8 +137,16 @@ export default defineConfig({
     }),
     mdx(),
     sitemap({
-      // Exclude auth-protected pages — AI agents shouldn't index these
-      filter: (page) => !page.includes('/settings'),
+      // Exclude auth-protected pages and thin 1-post tag pages from sitemap
+      filter: (page) => {
+        if (page.includes('/settings')) return false;
+        if (page.includes('/blog/tags/') && !page.endsWith('/blog/tags/')) {
+          const rawTag = page.split('/blog/tags/')[1]?.replace(/\/$/, '') ?? '';
+          const decoded = decodeURIComponent(rawTag);
+          if (thinTagSet.has(decoded)) return false;
+        }
+        return true;
+      },
       // Per-URL changefreq and priority — freshness signals for AI crawlers
       customPages: [],
       serialize(item) {
@@ -131,6 +184,16 @@ export default defineConfig({
         // Tools — interactive utilities, stable URLs
         if (item.url.includes('/tools/')) {
           return { ...item, lastmod: buildDateIso, changefreq: 'monthly', priority: 0.7 };
+        }
+        // Category, alternatives, and static comparison programmatic SEO pages
+        if (item.url.includes('/category/')) {
+          return { ...item, lastmod: buildDateIso, changefreq: 'weekly', priority: 0.8 };
+        }
+        if (item.url.includes('/alternatives/')) {
+          return { ...item, lastmod: buildDateIso, changefreq: 'weekly', priority: 0.7 };
+        }
+        if (item.url.includes('/compare/') && item.url !== 'https://plugins.jmeter.ai/compare/') {
+          return { ...item, lastmod: buildDateIso, changefreq: 'weekly', priority: 0.7 };
         }
         // Vendor pages
         if (item.url.includes('/vendor/')) {

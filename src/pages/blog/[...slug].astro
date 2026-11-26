@@ -4,7 +4,13 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
-import { getReadingTime, filterDrafts } from '../../utils/blog';
+import { getReadingTime, filterDrafts, sortPosts } from '../../utils/blog';
+import {
+  findPluginsMentionedInPost,
+  getPrevNextPosts,
+  getRelatedPosts,
+} from '../../utils/crossLink';
+import pluginsData from '../../data/plugins_data.json';
 import TableOfContents from '../../components/TableOfContents.astro';
 import placeholderImg from '../../assets/blog/placeholder.png';
 
@@ -14,19 +20,23 @@ export const prerender = true;
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
-  const posts = filterDrafts(allPosts);
+  const posts = sortPosts(filterDrafts(allPosts));
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: { post, allPosts: posts },
   }));
 }
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  allPosts: Array<CollectionEntry<'blog'>>;
 }
 
-const { post } = Astro.props;
+const { post, allPosts } = Astro.props;
 const { Content, headings } = await render(post);
+const mentionedPlugins = findPluginsMentionedInPost(post, pluginsData, 6);
+const relatedPosts = getRelatedPosts(post, allPosts, 3);
+const { prev: prevPost, next: nextPost } = getPrevNextPosts(post, allPosts);
 const wordCount = (post.body || '').trim().split(/\s+/).filter(Boolean).length;
 const breadcrumbs = [
   { name: 'Home', url: '/' },
@@ -278,9 +288,12 @@ const breadcrumbs = [
             post.data.tags && post.data.tags.length > 0 && (
               <div class="mb-8 flex flex-wrap items-center justify-center gap-2">
                 {post.data.tags.map((tag: string) => (
-                  <span class="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-700 dark:bg-[#ccff00]/10 dark:text-[#ccff00]">
+                  <a
+                    href={`/blog/tags/${encodeURIComponent(tag)}/`}
+                    class="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-700 transition-colors hover:bg-green-100 dark:bg-[#ccff00]/10 dark:text-[#ccff00] dark:hover:bg-[#ccff00]/20"
+                  >
                     {tag}
-                  </span>
+                  </a>
                 ))}
               </div>
             )
@@ -312,6 +325,95 @@ const breadcrumbs = [
         >
           <Content />
         </div>
+
+        {/* Plugins mentioned in this guide */}
+        {
+          mentionedPlugins.length > 0 && (
+            <section class="mt-14 border-t border-gray-200 pt-10 dark:border-white/10">
+              <h2 class="mb-5 text-xl font-bold text-gray-900 dark:text-white">
+                JMeter Plugins Mentioned in This Guide
+              </h2>
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {mentionedPlugins.map((plugin) => (
+                  <a
+                    href={`/plugin/${plugin.id}/`}
+                    class="dark:bg-dark-surface group rounded-xl border border-gray-200 bg-white p-4 transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
+                  >
+                    <p class="font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+                      {plugin.name}
+                    </p>
+                    <p class="mt-1 line-clamp-2 text-xs text-gray-600 dark:text-gray-400">
+                      {plugin.description}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )
+        }
+
+        {/* Related guides */}
+        {
+          relatedPosts.length > 0 && (
+            <section class="mt-14 border-t border-gray-200 pt-10 dark:border-white/10">
+              <h2 class="mb-5 text-xl font-bold text-gray-900 dark:text-white">Related Guides</h2>
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {relatedPosts.map((rel) => (
+                  <a
+                    href={`/blog/${rel.id}/`}
+                    class="dark:bg-dark-surface group flex flex-col rounded-xl border border-gray-200 bg-white p-4 transition-all hover:border-green-500/50 hover:shadow-md dark:border-white/10"
+                  >
+                    <p class="text-sm font-bold text-gray-900 group-hover:text-green-600 dark:text-white dark:group-hover:text-[#ccff00]">
+                      {rel.data.title}
+                    </p>
+                    <p class="mt-2 line-clamp-2 text-xs text-gray-600 dark:text-gray-400">
+                      {rel.data.description}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )
+        }
+
+        {/* Prev / Next post navigation */}
+        {
+          (prevPost || nextPost) && (
+            <nav
+              aria-label="Article navigation"
+              class="mt-12 grid grid-cols-1 gap-4 border-t border-gray-200 pt-8 sm:grid-cols-2 dark:border-white/10"
+            >
+              {prevPost ? (
+                <a
+                  href={`/blog/${prevPost.id}/`}
+                  class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-green-500/50 dark:border-white/10"
+                >
+                  <span class="block text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+                    ← Previous Guide
+                  </span>
+                  <span class="mt-1 block text-sm font-bold text-gray-900 dark:text-white">
+                    {prevPost.data.title}
+                  </span>
+                </a>
+              ) : (
+                <div />
+              )}
+              {nextPost && (
+                <a
+                  href={`/blog/${nextPost.id}/`}
+                  class="dark:bg-dark-surface rounded-xl border border-gray-200 bg-white p-4 text-right transition-colors hover:border-green-500/50 dark:border-white/10"
+                >
+                  <span class="block text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+                    Next Guide →
+                  </span>
+                  <span class="mt-1 block text-sm font-bold text-gray-900 dark:text-white">
+                    {nextPost.data.title}
+                  </span>
+                </a>
+              )}
+            </nav>
+          )
+        }
 
         <footer
           class="mt-16 flex items-center justify-between border-t border-gray-200 pt-8 dark:border-white/10"

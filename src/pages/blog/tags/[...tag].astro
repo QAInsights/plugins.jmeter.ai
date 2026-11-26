@@ -24,11 +24,20 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const isThinTag = posts.length < 2;
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog/' },
+  { name: 'Topics', url: '/blog/tags/' },
+  { name: String(tag), url: `/blog/tags/${encodeURIComponent(String(tag))}/` },
+];
 ---
 
 <Layout
   title={`${tag} - PerfAtlas Blog`}
   description={`Explore all blog posts tagged with ${tag}.`}
+  breadcrumbs={breadcrumbs}
+  noindex={isThinTag}
 >
   <Header />
   <main class="mx-auto w-full max-w-7xl flex-grow px-6 py-12 md:py-20">
