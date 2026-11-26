@@ -56,6 +56,27 @@ describe('programmaticSeo helpers', () => {
     expect(alts.map((a) => a.id)).toEqual(['p-listener-2', 'p-listener-archived']);
   });
 
+  it('returns empty alternatives for catch-all Others plugins', () => {
+    const othersPlugins: ProgrammaticPlugin[] = [
+      {
+        id: 'jpgc-casutg',
+        name: 'Custom Thread Groups',
+        vendor: 'jmeter-plugins.org',
+        description: 'Thread groups',
+        stats: { absoluteDownloads: 1850000 },
+      },
+      {
+        id: 'jpgc-plugins-manager',
+        name: 'Plugins Manager',
+        vendor: 'jmeter-plugins.org',
+        description: 'Installs plugins',
+        stats: { absoluteDownloads: 3000000 },
+      },
+    ];
+    expect(getAlternativesForPlugin(othersPlugins[0], othersPlugins)).toEqual([]);
+    expect(getTopComparisonPairs(othersPlugins, 10)).toEqual([]);
+  });
+
   it('generates canonical deduplicated comparison pairs', () => {
     const pairs = getTopComparisonPairs(plugins, 10);
     expect(pairs).toHaveLength(3);

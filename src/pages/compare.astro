@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro';
 import pluginsData from '../data/plugins_data.json';
 import { getTopComparisonPairs } from '../utils/programmaticSeo';
 
-const popularPairs = getTopComparisonPairs(pluginsData, 12);
+const popularPairs = getTopComparisonPairs(pluginsData, 30);
 
 // We'll read the 'ids' from the URL on the client side to avoid huge paths in static build
 // but we can also pre-render common ones if we wanted.

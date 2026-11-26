@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
-import { getReadingTime, filterDrafts, sortPosts } from '../../utils/blog';
+import { getReadingTime, filterDrafts, sortPosts, tagHref } from '../../utils/blog';
 import {
   findPluginsMentionedInPost,
   getPrevNextPosts,
@@ -289,7 +289,7 @@ const breadcrumbs = [
               <div class="mb-8 flex flex-wrap items-center justify-center gap-2">
                 {post.data.tags.map((tag: string) => (
                   <a
-                    href={`/blog/tags/${encodeURIComponent(tag)}/`}
+                    href={tagHref(tag)}
                     class="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-700 transition-colors hover:bg-green-100 dark:bg-[#ccff00]/10 dark:text-[#ccff00] dark:hover:bg-[#ccff00]/20"
                   >
                     {tag}

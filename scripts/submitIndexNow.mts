@@ -10,10 +10,33 @@ interface PluginEntry {
   stats?: { trendingDelta?: number };
 }
 
+async function verifyKeyLocation(keyLocation: string, expectedKey: string): Promise<boolean> {
+  const res = await fetch(keyLocation);
+  if (!res.ok) {
+    console.error(
+      `[indexnow] Key verification file not reachable at ${keyLocation} (HTTP ${res.status}). Publish public/${expectedKey}.txt (or set INDEXNOW_KEY_LOCATION) before enabling INDEXNOW_KEY.`,
+    );
+    return false;
+  }
+  const body = (await res.text()).trim();
+  if (body !== expectedKey) {
+    console.error(`[indexnow] Key file at ${keyLocation} does not match INDEXNOW_KEY.`);
+    return false;
+  }
+  return true;
+}
+
 async function main() {
   const key = process.env.INDEXNOW_KEY?.trim();
   if (!key) {
     console.log('[indexnow] INDEXNOW_KEY not set — skipping IndexNow submission.');
+    return;
+  }
+
+  const keyLocation = process.env.INDEXNOW_KEY_LOCATION?.trim() || `${SITE}/${key}.txt`;
+  const verified = await verifyKeyLocation(keyLocation, key);
+  if (!verified) {
+    process.exitCode = 1;
     return;
   }
 
@@ -36,9 +59,7 @@ async function main() {
     ...topUpdated,
   ];
 
-  const keyLocation = process.env.INDEXNOW_KEY_LOCATION?.trim() || `${SITE}/${key}.txt`;
   const payload = { host: HOST, key, keyLocation, urlList };
-
   const res = await fetch(INDEXNOW_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
@@ -48,7 +69,8 @@ async function main() {
   console.log(`[indexnow] Submitted ${urlList.length} URLs — HTTP ${res.status}`);
   if (!res.ok) {
     const text = await res.text();
-    console.warn(`[indexnow] Non-OK response body: ${text}`);
+    console.error(`[indexnow] Submission rejected (HTTP ${res.status}): ${text}`);
+    process.exitCode = 1;
   }
 }
 

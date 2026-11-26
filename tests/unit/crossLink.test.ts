@@ -90,4 +90,29 @@ describe('crossLink helpers', () => {
     const posts = findPostsForPlugin(samplePlugins[0], samplePosts);
     expect(posts.map((p) => p.id)).toEqual(['post-newest']);
   });
+
+  it('matches catalog PerfMon plugin against PerfMon Metrics Collector tutorial wording', () => {
+    const perfmonCatalog: CrossLinkPlugin = {
+      id: 'jpgc-perfmon',
+      name: 'PerfMon (Servers Performance Monitoring)',
+      vendor: 'jmeter-plugins.org',
+      description: 'Server monitoring',
+      stats: { absoluteDownloads: 1400000 },
+    };
+    const tutorial: BlogPostLike = {
+      id: 'perfmon-guide',
+      body: 'Add the PerfMon Metrics Collector listener to monitor CPU and memory.',
+      data: {
+        title: 'How to Use JMeter PerfMon Plugin',
+        description: 'Monitor server CPU and memory with PerfMon Metrics Collector.',
+        pubDate: new Date('2026-10-15'),
+      },
+    };
+    expect(findPluginsMentionedInPost(tutorial, [perfmonCatalog]).map((p) => p.id)).toEqual([
+      'jpgc-perfmon',
+    ]);
+    expect(findPostsForPlugin(perfmonCatalog, [tutorial]).map((p) => p.id)).toEqual([
+      'perfmon-guide',
+    ]);
+  });
 });

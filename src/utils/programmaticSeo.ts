@@ -38,12 +38,12 @@ export const CATEGORY_DEFINITIONS: readonly CategoryMeta[] = [
       {
         question: 'Which JMeter listener plugins are safe for headless CI/CD runs?',
         answer:
-          'Avoid GUI-heavy graph listeners during load generation. Use Backend Listeners (Prometheus, InfluxDB, Datadog), Flexible File Writer, or AutoStop Listener in non-GUI mode (-n), and generate reports after the run.',
+          'Avoid GUI-heavy graph listeners during load generation. Use Backend Listeners (such as Prometheus or InfluxDB exporters) and lightweight result writers in non-GUI mode (-n), and generate HTML reports after the run.',
       },
       {
-        question: 'How do I stream live JMeter metrics to Grafana or Datadog?',
+        question: 'How do I stream live JMeter metrics to Grafana or Prometheus?',
         answer:
-          'Install a Backend Listener plugin such as jmeter-prometheus or jmeter-datadog-backend-listener via PluginsManagerCMD.sh install <plugin-id> and attach it to your Test Plan.',
+          'Install a listener plugin such as jmeter-prometheus or jpgc-perfmon via PluginsManagerCMD.sh install <plugin-id> and attach it to your Test Plan.',
       },
     ],
   },
@@ -176,6 +176,9 @@ export function getAlternativesForPlugin<T extends ProgrammaticPlugin>(
   limit = 6,
 ): T[] {
   const category = inferCategory(target);
+  // "Others" is a catch-all bucket containing unrelated utilities (e.g., Plugins Manager,
+  // Custom Thread Groups, CLI tools); never recommend unrelated catch-all plugins as replacements.
+  if (category === 'Others') return [];
   return allPlugins
     .filter((p) => p.id !== target.id && inferCategory(p) === category)
     .sort((a, b) => {
@@ -197,7 +200,7 @@ export interface ComparisonPair<T extends ProgrammaticPlugin> {
 
 /**
  * Generate deterministic, high-value "X vs Y" comparison pairs within the same
- * category from the top downloaded plugins.
+ * functional category (excluding the catch-all "Others" bucket).
  */
 export function getTopComparisonPairs<T extends ProgrammaticPlugin>(
   plugins: readonly T[],
@@ -207,6 +210,7 @@ export function getTopComparisonPairs<T extends ProgrammaticPlugin>(
   const seen = new Set<string>();
 
   for (const def of CATEGORY_DEFINITIONS) {
+    if (def.category === 'Others') continue;
     const topInCategory = plugins
       .filter((p) => inferCategory(p) === def.category)
       .sort((a, b) => (b.stats?.absoluteDownloads ?? 0) - (a.stats?.absoluteDownloads ?? 0))

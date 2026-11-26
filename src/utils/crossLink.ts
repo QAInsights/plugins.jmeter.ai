@@ -65,6 +65,27 @@ export function getPrevNextPosts<T extends BlogPostLike>(
   };
 }
 
+/**
+ * Curated aliases for popular JMeter plugins whose tutorial wording differs
+ * from the upstream catalog name (e.g., `PerfMon (Servers Performance Monitoring)`
+ * is commonly written as `PerfMon` or `PerfMon Metrics Collector`).
+ */
+const PLUGIN_ALIASES: Readonly<Record<string, readonly string[]>> = {
+  'jpgc-perfmon': ['PerfMon', 'PerfMon Metrics Collector'],
+  'jpgc-casutg': [
+    'Concurrency Thread Group',
+    'Ultimate Thread Group',
+    'Arrivals Thread Group',
+    'Stepping Thread Group',
+  ],
+  'jpgc-tst': ['Throughput Shaping Timer'],
+  'jpgc-autostop': ['AutoStop Listener'],
+  'jpgc-ffw': ['Flexible File Writer'],
+  'jpgc-dummy': ['Dummy Sampler'],
+  'jpgc-graphs-basic': ['3 Basic Graphs', 'Response Times Over Time', 'Transactions per Second'],
+  'jpgc-fifo': ['Inter-Thread Communication'],
+};
+
 function matchesPluginInText(plugin: CrossLinkPlugin, haystack: string): boolean {
   const id = plugin.id.trim();
   if (id.length >= 4) {
@@ -72,11 +93,19 @@ function matchesPluginInText(plugin: CrossLinkPlugin, haystack: string): boolean
     if (idRe.test(haystack)) return true;
   }
 
-  // Match distinctive plugin names (>= 6 chars, avoiding overly generic 1-word names)
+  // Match distinctive plugin names (>= 8 chars, multi-word) and base name without parentheticals
   const name = plugin.name.trim();
-  if (name.length >= 8 && name.includes(' ')) {
-    const nameRe = new RegExp(`\\b${escapeRegex(name)}\\b`, 'i');
-    if (nameRe.test(haystack)) return true;
+  const baseName = name.replace(/\s*\([^)]*\)\s*/g, ' ').trim();
+  const candidates = new Set<string>();
+  if (name.length >= 8 && name.includes(' ')) candidates.add(name);
+  if (baseName.length >= 6 && baseName !== name) candidates.add(baseName);
+  for (const alias of PLUGIN_ALIASES[id] ?? []) {
+    candidates.add(alias);
+  }
+
+  for (const candidate of candidates) {
+    const re = new RegExp(`\\b${escapeRegex(candidate)}\\b`, 'i');
+    if (re.test(haystack)) return true;
   }
 
   return false;
