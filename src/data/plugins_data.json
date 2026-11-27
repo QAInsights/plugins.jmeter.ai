@@ -26570,7 +26570,7 @@
       "stars": 32,
       "license": "Apache-2.0",
       "health": {
-        "score": 60,
+        "score": 59,
         "label": "Maintained",
         "stars": 32,
         "openIssues": 2,
@@ -30432,7 +30432,7 @@
       "stars": 29,
       "license": "MIT",
       "health": {
-        "score": 67,
+        "score": 66,
         "label": "Maintained",
         "stars": 29,
         "openIssues": 7,
@@ -32443,7 +32443,7 @@
         "stars": 28,
         "openIssues": 24,
         "archived": false,
-        "lastCommitAt": "2026-11-26T05:31:21Z",
+        "lastCommitAt": "2026-11-26T12:50:36Z",
         "lastReleaseAt": "2025-04-17T20:02:29Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/CorrelationRecorder"
@@ -36825,9 +36825,9 @@
         "score": 88,
         "label": "Active",
         "stars": 67,
-        "openIssues": 14,
+        "openIssues": 15,
         "archived": false,
-        "lastCommitAt": "2026-11-26T01:03:19Z",
+        "lastCommitAt": "2026-11-26T16:40:20Z",
         "lastReleaseAt": "2026-11-24T16:40:18Z",
         "license": "MIT",
         "repoUrl": "https://github.com/QAInsights/jmeter-ai"
@@ -39193,8 +39193,8 @@
       "stars": 5,
       "license": "MIT",
       "health": {
-        "score": 40,
-        "label": "Maintained",
+        "score": 39,
+        "label": "Stale",
         "stars": 5,
         "openIssues": 0,
         "archived": false,
@@ -42708,13 +42708,13 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 87,
+        "score": 89,
         "label": "Active",
         "stars": 51,
-        "openIssues": 11,
+        "openIssues": 6,
         "archived": false,
-        "lastCommitAt": "2026-11-25T23:31:32Z",
-        "lastReleaseAt": "2026-08-25T10:59:43Z",
+        "lastCommitAt": "2026-11-26T12:51:37Z",
+        "lastReleaseAt": "2026-11-26T12:51:37Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
@@ -43899,6 +43899,14 @@
         "depends": [
           "jmeter-http"
         ]
+      },
+      "3.2.1": {
+        "changes": "Stability & reliability maintenance release focused on long, high-concurrency runs",
+        "downloadUrl": "https://github.com/Blazemeter/jmeter-http-plugin/releases/download/v3.2.1/jmeter-bzm-http2-3.2.1.jar",
+        "libs": {},
+        "depends": [
+          "jmeter-http"
+        ]
       }
     },
     "sponsored": false,
@@ -44399,13 +44407,13 @@
       "stars": 51,
       "license": "Apache-2.0",
       "health": {
-        "score": 87,
+        "score": 89,
         "label": "Active",
         "stars": 51,
-        "openIssues": 11,
+        "openIssues": 6,
         "archived": false,
-        "lastCommitAt": "2026-11-25T23:31:32Z",
-        "lastReleaseAt": "2026-08-25T10:59:43Z",
+        "lastCommitAt": "2026-11-26T12:51:37Z",
+        "lastReleaseAt": "2026-11-26T12:51:37Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/Blazemeter/jmeter-http2-plugin"
       }
@@ -45858,7 +45866,7 @@
       "stars": 79,
       "license": "MIT",
       "health": {
-        "score": 77,
+        "score": 76,
         "label": "Active",
         "stars": 79,
         "openIssues": 0,
@@ -49312,7 +49320,7 @@
       "stars": 47,
       "license": "N/A",
       "health": {
-        "score": 73,
+        "score": 72,
         "label": "Active",
         "stars": 47,
         "openIssues": 7,
@@ -50054,7 +50062,7 @@
       "stars": 2,
       "license": "Apache-2.0",
       "health": {
-        "score": 71,
+        "score": 70,
         "label": "Active",
         "stars": 2,
         "openIssues": 0,
@@ -53787,9 +53795,9 @@
         "score": 69,
         "label": "Maintained",
         "stars": 4,
-        "openIssues": 10,
+        "openIssues": 11,
         "archived": false,
-        "lastCommitAt": "2026-11-19T21:44:18Z",
+        "lastCommitAt": "2026-11-26T21:44:11Z",
         "lastReleaseAt": "2026-04-09T22:16:51Z",
         "license": "Apache-2.0",
         "repoUrl": "https://github.com/sagaraggarwal86/jaar-jmeter-plugin"
@@ -60115,7 +60123,7 @@
       "stars": 9,
       "license": "MIT",
       "health": {
-        "score": 76,
+        "score": 75,
         "label": "Active",
         "stars": 9,
         "openIssues": 0,
@@ -61902,7 +61910,7 @@
       "stars": 0,
       "license": "MIT",
       "health": {
-        "score": 59,
+        "score": 58,
         "label": "Maintained",
         "stars": 0,
         "openIssues": 0,
@@ -62398,7 +62406,7 @@
       "stars": 13,
       "license": "Apache-2.0",
       "health": {
-        "score": 50,
+        "score": 49,
         "label": "Maintained",
         "stars": 13,
         "openIssues": 27,
